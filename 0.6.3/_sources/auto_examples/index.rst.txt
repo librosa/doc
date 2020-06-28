@@ -16,9 +16,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_presets_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_presets_thumb.png
+     :alt: Presets
 
-        :ref:`sphx_glr_auto_examples_plot_presets.py`
+     :ref:`sphx_glr_auto_examples_plot_presets.py`
 
 .. raw:: html
 
@@ -36,9 +37,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_superflux_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_superflux_thumb.png
+     :alt: Superflux onsets
 
-        :ref:`sphx_glr_auto_examples_plot_superflux.py`
+     :ref:`sphx_glr_auto_examples_plot_superflux.py`
 
 .. raw:: html
 
@@ -56,9 +58,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_viterbi_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_viterbi_thumb.png
+     :alt: Viterbi decoding
 
-        :ref:`sphx_glr_auto_examples_plot_viterbi.py`
+     :ref:`sphx_glr_auto_examples_plot_viterbi.py`
 
 .. raw:: html
 
@@ -76,9 +79,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_vocal_separation_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_vocal_separation_thumb.png
+     :alt: Vocal separation
 
-        :ref:`sphx_glr_auto_examples_plot_vocal_separation.py`
+     :ref:`sphx_glr_auto_examples_plot_vocal_separation.py`
 
 .. raw:: html
 
@@ -96,9 +100,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_hprss_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_hprss_thumb.png
+     :alt: Harmonic-percussive source separation
 
-        :ref:`sphx_glr_auto_examples_plot_hprss.py`
+     :ref:`sphx_glr_auto_examples_plot_hprss.py`
 
 .. raw:: html
 
@@ -116,9 +121,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_music_sync_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_music_sync_thumb.png
+     :alt: Music Synchronization with Dynamic Time Warping
 
-        :ref:`sphx_glr_auto_examples_plot_music_sync.py`
+     :ref:`sphx_glr_auto_examples_plot_music_sync.py`
 
 .. raw:: html
 
@@ -136,9 +142,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_chroma_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_chroma_thumb.png
+     :alt: Enhanced chroma and chroma variants
 
-        :ref:`sphx_glr_auto_examples_plot_chroma.py`
+     :ref:`sphx_glr_auto_examples_plot_chroma.py`
 
 .. raw:: html
 
@@ -156,9 +163,10 @@ Advanced examples
 
 .. only:: html
 
-    .. figure:: /auto_examples/images/thumb/sphx_glr_plot_segmentation_thumb.png
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_segmentation_thumb.png
+     :alt: Laplacian segmentation
 
-        :ref:`sphx_glr_auto_examples_plot_segmentation.py`
+     :ref:`sphx_glr_auto_examples_plot_segmentation.py`
 
 .. raw:: html
 
@@ -171,7 +179,7 @@ Advanced examples
    /auto_examples/plot_segmentation
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
 
 
 
@@ -181,15 +189,15 @@ Advanced examples
     :class: sphx-glr-footer-gallery
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
-    :download:`Download all examples in Python source code: auto_examples_python.zip <//tmp/tmpicqukkz9/22ac95e957d282432b833bf59e48bdf99e52e8d9/docs/auto_examples/auto_examples_python.zip>`
+    :download:`Download all examples in Python source code: auto_examples_python.zip <//tmp/tmptoeal9x1/22ac95e957d282432b833bf59e48bdf99e52e8d9/docs/auto_examples/auto_examples_python.zip>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//tmp/tmpicqukkz9/22ac95e957d282432b833bf59e48bdf99e52e8d9/docs/auto_examples/auto_examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//tmp/tmptoeal9x1/22ac95e957d282432b833bf59e48bdf99e52e8d9/docs/auto_examples/auto_examples_jupyter.zip>`
 
 
 .. only:: html

@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_auto_examples_plot_music_sync.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_auto_examples_plot_music_sync.py:
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_music_sync.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_music_sync.py:
 
 
 ===============================================
@@ -45,6 +47,7 @@ Our objective is now to find an alignment between these two recordings by using 
 
 
 
+
 ---------------------
 Load Audio Recordings
 ---------------------
@@ -63,6 +66,7 @@ First, let's load a first version of our audio recordings.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_music_sync_001.png
+    :alt: Slower Version $X_1$
     :class: sphx-glr-single-img
 
 
@@ -72,8 +76,9 @@ First, let's load a first version of our audio recordings.
 
  .. code-block:: none
 
-    /tmp/tmpicqukkz9/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmptoeal9x1/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
+
 
 
 
@@ -92,6 +97,7 @@ And a second version, slightly faster.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_music_sync_002.png
+    :alt: Faster Version $X_2$
     :class: sphx-glr-single-img
 
 
@@ -101,8 +107,9 @@ And a second version, slightly faster.
 
  .. code-block:: none
 
-    /tmp/tmpicqukkz9/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmptoeal9x1/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
+
 
 
 
@@ -139,7 +146,9 @@ Extract Chroma Features
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_music_sync_003.png
+    :alt: Chroma Representation of $X_1$, Chroma Representation of $X_2$
     :class: sphx-glr-single-img
+
 
 
 
@@ -168,7 +177,9 @@ Align Chroma Sequences
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_music_sync_004.png
+    :alt: Warping Path on Acc. Cost Matrix $D$
     :class: sphx-glr-single-img
+
 
 
 
@@ -222,7 +233,9 @@ Red lines connect corresponding time positions in the input signals.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_music_sync_005.png
+    :alt: Slower Version $X_1$, Slower Version $X_2$
     :class: sphx-glr-single-img
+
 
 
 
@@ -251,7 +264,7 @@ Springer Verlag, 2015.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.572 seconds)
+   **Total running time of the script:** ( 0 minutes  2.441 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:
@@ -264,13 +277,13 @@ Springer Verlag, 2015.
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: plot_music_sync.py <plot_music_sync.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
 

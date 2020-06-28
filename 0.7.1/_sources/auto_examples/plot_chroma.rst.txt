@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_auto_examples_plot_chroma.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_auto_examples_plot_chroma.py:
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_chroma.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_chroma.py:
 
 
 ===================================
@@ -49,6 +51,7 @@ enhancements:
 
 
 
+
 We'll use a track that has harmonic, melodic, and percussive elements
 
 
@@ -67,8 +70,9 @@ We'll use a track that has harmonic, melodic, and percussive elements
 
  .. code-block:: none
 
-    /tmp/tmpicqukkz9/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmptoeal9x1/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
+
 
 
 
@@ -102,7 +106,9 @@ First, let's plot the original chroma
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_001.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -135,7 +141,9 @@ bins per semi-tone, instead of one
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_002.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -169,7 +177,9 @@ We'll use a large margin for separating harmonics from percussives
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_003.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -205,7 +215,9 @@ This effectively removes any sparse additive noise from the features.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_004.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -237,7 +249,9 @@ using a horizontal median filter.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_005.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -270,6 +284,7 @@ and the result of our filtering.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_006.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
 
 
@@ -279,8 +294,9 @@ and the result of our filtering.
 
  .. code-block:: none
 
-    /tmp/tmpicqukkz9/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_chroma.py:172: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+    /tmp/tmptoeal9x1/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_chroma.py:172: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
       plt.show()
+
 
 
 
@@ -318,7 +334,9 @@ A comparison between the STFT and the CQT methods for chromagram.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_007.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -360,7 +378,9 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_chroma_008.png
+    :alt: plot chroma
     :class: sphx-glr-single-img
+
 
 
 
@@ -368,7 +388,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  30.215 seconds)
+   **Total running time of the script:** ( 0 minutes  29.810 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:
@@ -381,13 +401,13 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: plot_chroma.py <plot_chroma.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: plot_chroma.ipynb <plot_chroma.ipynb>`
 

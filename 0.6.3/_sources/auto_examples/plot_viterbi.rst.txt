@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_auto_examples_plot_viterbi.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_auto_examples_plot_viterbi.py:
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_viterbi.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_viterbi.py:
 
 
 ================
@@ -38,6 +40,7 @@ Our working example will be the problem of silence/non-silence detection.
 
 
 
+
 Load an example signal
 
 
@@ -62,7 +65,9 @@ Load an example signal
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_viterbi_001.png
+    :alt: plot viterbi
     :class: sphx-glr-single-img
+
 
 
 
@@ -97,7 +102,9 @@ non-silence throughout this recording.
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_viterbi_002.png
+    :alt: plot viterbi
     :class: sphx-glr-single-img
+
 
 
 
@@ -134,7 +141,9 @@ range of the probability vector
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_viterbi_003.png
+    :alt: plot viterbi
     :class: sphx-glr-single-img
+
 
 
 
@@ -164,7 +173,9 @@ independently of its neighbors, which would result in the following plot:
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_viterbi_004.png
+    :alt: plot viterbi
     :class: sphx-glr-single-img
+
 
 
 
@@ -197,6 +208,7 @@ where `transition[i, j]` is the probability of moving from state
 
     [[0.5 0.5]
      [0.4 0.6]]
+
 
 
 
@@ -327,6 +339,7 @@ so we need to also compute the probability of silence as its complement.
 
 
 
+
 Now, we're ready to decode!
 We'll use `viterbi_discriminative` here, since the inputs are
 state likelihoods conditional on data (in our case, data is rms).
@@ -357,7 +370,9 @@ state likelihoods conditional on data (in our case, data is rms).
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_viterbi_005.png
+    :alt: plot viterbi
     :class: sphx-glr-single-img
+
 
 
 
@@ -371,7 +386,7 @@ likely to change states.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.482 seconds)
+   **Total running time of the script:** ( 0 minutes  2.308 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_viterbi.py:
@@ -384,13 +399,13 @@ likely to change states.
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: plot_viterbi.py <plot_viterbi.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: plot_viterbi.ipynb <plot_viterbi.ipynb>`
 

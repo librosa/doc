@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_auto_examples_plot_vocal_separation.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_auto_examples_plot_vocal_separation.py:
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_vocal_separation.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_vocal_separation.py:
 
 
 ================
@@ -45,6 +47,7 @@ This is based on the "REPET-SIM" method of `Rafii and Pardo, 2012
 
 
 
+
 Load an example with vocals.
 
 
@@ -55,6 +58,7 @@ Load an example with vocals.
 
     # And compute the spectrogram magnitude and phase
     S_full, phase = librosa.magphase(librosa.stft(y))
+
 
 
 
@@ -79,7 +83,9 @@ Plot a 5-second slice of the spectrum
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_vocal_separation_001.png
+    :alt: plot vocal separation
     :class: sphx-glr-single-img
+
 
 
 
@@ -111,6 +117,7 @@ instrumentation.
     # if we assume signals are additive.  Taking the pointwise minimium
     # with the input spectrum forces this.
     S_filter = np.minimum(S_full, S_filter)
+
 
 
 
@@ -152,6 +159,7 @@ but it sounds better if we use soft-masking.
 
 
 
+
 Plot the same slice, but separated into its foreground and background
 
 
@@ -183,6 +191,7 @@ Plot the same slice, but separated into its foreground and background
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_vocal_separation_002.png
+    :alt: Full spectrum, Background, Foreground
     :class: sphx-glr-single-img
 
 
@@ -192,15 +201,16 @@ Plot the same slice, but separated into its foreground and background
 
  .. code-block:: none
 
-    /tmp/tmpicqukkz9/22ac95e957d282432b833bf59e48bdf99e52e8d9/docs/examples/plot_vocal_separation.py:123: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+    /tmp/tmptoeal9x1/22ac95e957d282432b833bf59e48bdf99e52e8d9/docs/examples/plot_vocal_separation.py:123: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
       plt.show()
+
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  26.298 seconds)
+   **Total running time of the script:** ( 0 minutes  25.332 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:
@@ -213,13 +223,13 @@ Plot the same slice, but separated into its foreground and background
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: plot_vocal_separation.py <plot_vocal_separation.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: plot_vocal_separation.ipynb <plot_vocal_separation.ipynb>`
 

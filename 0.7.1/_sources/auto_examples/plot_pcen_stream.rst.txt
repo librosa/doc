@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_auto_examples_plot_pcen_stream.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_auto_examples_plot_pcen_stream.py:
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_pcen_stream.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_pcen_stream.py:
 
 
 ==============
@@ -38,12 +40,14 @@ We'll need numpy and matplotlib for this example
 
 
 
+
 First, we'll start with an audio file that we want to stream
 
 
 .. code-block:: default
 
     filename = librosa.util.example_audio_file()
+
 
 
 
@@ -75,6 +79,7 @@ audio at a time.
                             hop_length=hop_length,
                             mono=True,
                             fill_value=0)
+
 
 
 
@@ -117,6 +122,7 @@ frequency, and store the results in a list.
 
 
 
+
 For the sake of comparison, let's see how it would look had we 
 run PCEN on the entire spectrum without block-wise processing
 
@@ -135,6 +141,7 @@ run PCEN on the entire spectrum without block-wise processing
     P = librosa.pcen(np.abs(D), sr=sr, hop_length=hop_length)
 
     pcen_full = np.mean(P, axis=0)
+
 
 
 
@@ -172,6 +179,7 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_pcen_stream_001.png
+    :alt: PCEN spectrum
     :class: sphx-glr-single-img
 
 
@@ -181,15 +189,16 @@ Plot the PCEN spectrum and the resulting magnitudes
 
  .. code-block:: none
 
-    /tmp/tmpicqukkz9/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_pcen_stream.py:118: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+    /tmp/tmptoeal9x1/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_pcen_stream.py:118: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
       plt.show()
+
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.519 seconds)
+   **Total running time of the script:** ( 0 minutes  2.419 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_pcen_stream.py:
@@ -202,13 +211,13 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: plot_pcen_stream.py <plot_pcen_stream.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: plot_pcen_stream.ipynb <plot_pcen_stream.ipynb>`
 

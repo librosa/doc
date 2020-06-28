@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_auto_examples_plot_segmentation.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_auto_examples_plot_segmentation.py:
+        Click :ref:`here <sphx_glr_download_auto_examples_plot_segmentation.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_auto_examples_plot_segmentation.py:
 
 
 ======================
@@ -24,6 +26,7 @@ helpful to read along.
 
     # Code source: Brian McFee
     # License: ISC
+
 
 
 
@@ -57,12 +60,14 @@ Imports
 
 
 
+
 First, we'll load in a song
 
 
 .. code-block:: default
 
     y, sr = librosa.load(librosa.ex('fishin'))
+
 
 
 
@@ -93,7 +98,9 @@ Next, we'll compute and plot a log-power CQT
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_segmentation_001.png
+    :alt: plot segmentation
     :class: sphx-glr-single-img
+
 
 
 
@@ -123,7 +130,9 @@ To reduce dimensionality, we'll beat-synchronous the CQT
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_segmentation_002.png
+    :alt: plot segmentation
     :class: sphx-glr-single-img
+
 
 
 
@@ -142,6 +151,7 @@ mode='affinity' here implements S_rep (after Eq. 8)
     # Enhance diagonals with a median filter (Equation 2)
     df = librosa.segment.timelag_filter(scipy.ndimage.median_filter)
     Rf = df(R, size=(1, 7))
+
 
 
 
@@ -176,6 +186,7 @@ Here, we take :math:`\sigma` to be the median distance between successive beats.
 
 
 
+
 And compute the balanced combination (Equations 6, 7, 9)
 
 
@@ -188,6 +199,7 @@ And compute the balanced combination (Equations 6, 7, 9)
     mu = deg_path.dot(deg_path + deg_rec) / np.sum((deg_path + deg_rec)**2)
 
     A = mu * Rf + (1 - mu) * R_path
+
 
 
 
@@ -220,7 +232,9 @@ Plot the resulting graphs (Figure 1, left and center)
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_segmentation_003.png
+    :alt: Recurrence similarity, Path similarity, Combined graph
     :class: sphx-glr-single-img
+
 
 
 
@@ -271,7 +285,9 @@ Now let's compute the normalized Laplacian (Eq. 10)
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_segmentation_004.png
+    :alt: Structure components, Recurrence similarity
     :class: sphx-glr-single-img
+
 
 
 
@@ -312,7 +328,9 @@ Let's use these k components to cluster beats into segments
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_segmentation_005.png
+    :alt: Structure components, Recurrence matrix, Estimated segments
     :class: sphx-glr-single-img
+
 
 
 
@@ -337,6 +355,7 @@ Locate segment boundaries from the label sequence
     bound_frames = librosa.util.fix_frames(bound_frames,
                                            x_min=None,
                                            x_max=C.shape[1]-1)
+
 
 
 
@@ -374,7 +393,9 @@ And plot the final segmentation over original CQT
 
 
 .. image:: /auto_examples/images/sphx_glr_plot_segmentation_006.png
+    :alt: plot segmentation
     :class: sphx-glr-single-img
+
 
 
 
@@ -382,7 +403,7 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.384 seconds)
+   **Total running time of the script:** ( 0 minutes  6.430 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:
@@ -395,13 +416,13 @@ And plot the final segmentation over original CQT
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: plot_segmentation.py <plot_segmentation.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: plot_segmentation.ipynb <plot_segmentation.ipynb>`
 
