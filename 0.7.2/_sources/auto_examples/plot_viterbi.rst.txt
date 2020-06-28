@@ -75,7 +75,7 @@ Load an example signal
 
  .. code-block:: none
 
-    /tmp/tmptoeal9x1/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp8xzbtz_v/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -241,8 +241,8 @@ so we need to also compute the probability of silence as its complement.
 
  .. code-block:: none
 
-    [[0.667 0.667 ... 0.666 0.666]
-     [0.333 0.333 ... 0.334 0.334]]
+    [[0.663 0.663 ... 0.662 0.662]
+     [0.337 0.337 ... 0.338 0.338]]
 
 
 
@@ -293,7 +293,7 @@ likely to change states.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.369 seconds)
+   **Total running time of the script:** ( 0 minutes  2.101 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_viterbi.py:
