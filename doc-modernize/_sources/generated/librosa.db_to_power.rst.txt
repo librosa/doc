@@ -1,0 +1,6 @@
+librosa.db\_to\_power
+=====================
+
+.. currentmodule:: librosa
+
+.. autofunction:: db_to_power

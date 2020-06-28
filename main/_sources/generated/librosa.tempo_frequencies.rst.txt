@@ -1,0 +1,6 @@
+librosa.tempo\_frequencies
+==========================
+
+.. currentmodule:: librosa
+
+.. autofunction:: tempo_frequencies

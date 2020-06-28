@@ -1,0 +1,6 @@
+librosa.C\_weighting
+====================
+
+.. currentmodule:: librosa
+
+.. autofunction:: C_weighting

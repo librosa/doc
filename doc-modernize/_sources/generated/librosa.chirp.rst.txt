@@ -1,0 +1,6 @@
+librosa.chirp
+=============
+
+.. currentmodule:: librosa
+
+.. autofunction:: chirp

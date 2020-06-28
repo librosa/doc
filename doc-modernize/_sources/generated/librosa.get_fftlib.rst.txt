@@ -1,0 +1,6 @@
+librosa.get\_fftlib
+===================
+
+.. currentmodule:: librosa
+
+.. autofunction:: get_fftlib

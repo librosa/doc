@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using display.specshow &mdash; librosa 0.8.0-dev documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example files" href="../recordings.html" />
+    <link rel="prev" title="Laplacian segmentation" href="plot_segmentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">Core IO and DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../display.html">Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature.html">Feature extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onset.html">Onset detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beat.html">Beat and tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decompose.html">Spectrogram decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../effects.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../segment.html">Temporal segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sequence.html">Sequential modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cache.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ioformats.html">Advanced I/O Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced.html">Advanced examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recordings.html">Example files</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">librosa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../advanced.html">Advanced examples</a> &raquo;</li>
+        
+      <li>Using display.specshow</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/auto_examples/plot_display.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-display-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="using-display-specshow">
+<span id="sphx-glr-auto-examples-plot-display-py"></span><h1>Using display.specshow<a class="headerlink" href="#using-display-specshow" title="Permalink to this headline">¶</a></h1>
+<p>This notebook gives a more in-depth demonstration of all things that <em class="xref py py-obj">specshow</em>
+can do to help generate beautiful visualizations of spectro-temporal data.</p>
+<ul class="sphx-glr-horizontal">
+<li><img alt="../_images/sphx_glr_plot_display_001.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_001.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_002.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_002.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_003.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_003.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_004.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_004.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_005.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_005.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_006.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_006.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_007.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_007.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_008.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_008.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_009.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_009.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_010.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_010.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_011.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_011.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_012.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_012.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_013.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_013.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_014.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_014.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_015.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_015.png" />
+</li>
+<li><img alt="../_images/sphx_glr_plot_display_016.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_display_016.png" />
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Brian McFee</span>
+<span class="c1"># License: ISC</span>
+<span class="c1"># sphinx_gallery_thumbnail_number = 15</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># All of librosa&#39;s plotting functions rely on matplotlib.</span>
+<span class="c1"># To demonstrate everything we can do, it will help to</span>
+<span class="c1"># import matplotlib&#39;s pyplot API here.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">librosa</span>
+<span class="kn">import</span> <span class="nn">librosa.display</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># First, we&#39;ll load in a demo track</span>
+
+<span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;trumpet&#39;</span><span class="p">))</span>
+
+
+<span class="c1"># %%</span>
+<span class="c1"># The first thing we might want to do is display an ordinary</span>
+<span class="c1"># (linear) spectrogram.</span>
+<span class="c1"># We&#39;ll do this by first computing the short-time Fourier</span>
+<span class="c1"># transform, and then mapping the magnitudes to a decibel</span>
+<span class="c1"># scale.</span>
+<span class="c1">#</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># STFT of y</span>
+<span class="n">S_db</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">amplitude_to_db</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">D</span><span class="p">),</span> <span class="n">ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># If you&#39;re familiar with matplotlib already, you may know</span>
+<span class="c1"># that there are two ways of using it: the `pyplot` interface</span>
+<span class="c1"># and the object-oriented interface.</span>
+<span class="c1"># Both are supported by librosa, as we&#39;ll show here.</span>
+<span class="c1">#</span>
+<span class="c1"># First, the pyplot interface:</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># And now the object-oriented interface</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+
+<span class="c1"># %%</span>
+<span class="c1"># Both figures are identical, but they use different programming</span>
+<span class="c1"># interfaces to construct.  Most people find the pyplot interface</span>
+<span class="c1"># to be quicker to learn, but the object-oriented interface can</span>
+<span class="c1"># be a little more flexible for complex figures.</span>
+<span class="c1">#</span>
+<span class="c1"># For the remainder of this example, we&#39;ll use the object-oriented</span>
+<span class="c1"># interface.</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Decorating your plot</span>
+<span class="c1"># --------------------</span>
+<span class="c1"># The figure above conveys the basic content of the spectrogram,</span>
+<span class="c1"># but it&#39;s missing axis labels. Without that information, it&#39;s</span>
+<span class="c1"># impossible for a reader to know how to interpret the visualization.</span>
+<span class="c1">#</span>
+<span class="c1"># specshow provides many helpers to automatically decorate the axes</span>
+<span class="c1"># of your plot.  For the plot above, our x-axis corresponds to time,</span>
+<span class="c1"># and our y-axis corresponds to linearly spaced frequencies produced</span>
+<span class="c1"># by the discrete Fourier transform.</span>
+<span class="c1"># We can tell specshow to decorate the axes accordingly:</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Now with labeled axes!&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%+2.f dB&quot;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># This is much better already!  Note that we also added a format string</span>
+<span class="c1"># to the colorbar, so readers know how to read the color scale.</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Changing axis scales</span>
+<span class="c1"># --------------------</span>
+<span class="c1"># The linear frequency scale is sometimes helpful, but often it can</span>
+<span class="c1"># difficult to read.  Alternatively, it is common to use a logarithmic</span>
+<span class="c1"># frequency axis.  This has the benefit that every octave occupies</span>
+<span class="c1"># a constant vertical extent.</span>
+<span class="c1">#</span>
+<span class="c1"># We can tell specshow to use log-scaled frequency axes just as above:</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Using a logarithmic frequency axis&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%+2.f dB&quot;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Changing the analysis parameters</span>
+<span class="c1"># --------------------------------</span>
+<span class="c1"># The default parameter settings used by librosa (e.g., `sr=22050`, `hop_length=512`,</span>
+<span class="c1"># etc) may not be appropriate for every signal.</span>
+<span class="c1"># If you change a parameter from its default value, e.g. when computing an STFT,</span>
+<span class="c1"># you can pass that same parameter to `specshow`.</span>
+<span class="c1"># This ensures that axis scales (e.g. time or frequency) are computed correctly.</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">D_highres</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>
+<span class="n">S_db_hr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">amplitude_to_db</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">D_highres</span><span class="p">),</span> <span class="n">ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db_hr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
+                               <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Higher time and frequency resolution&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%+2.f dB&quot;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Note that only the parameters which are strictly necessary are supported by</span>
+<span class="c1"># `specshow`.  For example, without the `hop_length`, we wouldn&#39;t know how to</span>
+<span class="c1"># translate frame indices to time indices.  However, `n_fft` is *not* needed,</span>
+<span class="c1"># because it can be inferred from the shape of the input spectrogram.</span>
+<span class="c1">#</span>
+<span class="c1"># A full list of the supported parameters is provided in the</span>
+<span class="c1"># `librosa.display.specshow` documentation.</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Other types of spectral data</span>
+<span class="c1"># ----------------------------</span>
+<span class="c1"># The examples above illustrate how to plot linear spectrograms,</span>
+<span class="c1"># but librosa provides many kinds of spectral representations:</span>
+<span class="c1"># Mel-scaled, constant-Q, variable-Q, chromagrams, tempograms, etc.</span>
+<span class="c1">#</span>
+<span class="c1"># specshow can plot these just as well.  For example, a Mel spectrogram</span>
+<span class="c1"># can be displayed as follows:</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">melspectrogram</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+<span class="n">M_db</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">power_to_db</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">M_db</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;mel&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mel spectrogram display&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%+2.f dB&quot;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Constant-Q plots, and other logarithmically scaled frequency representations</span>
+<span class="c1"># such as Variable-Q or `iirt` can be decorated using either the frequencies (Hz)</span>
+<span class="c1"># or their note names in scientific pitch notation:</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">cqt</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+<span class="n">C_db</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">amplitude_to_db</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">C</span><span class="p">),</span> <span class="n">ref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">C_db</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;cqt_hz&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz) axis decoration&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">C_db</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;cqt_note&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Pitch axis decoration&#39;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># In the latter case, the underlying data representation is still measured in</span>
+<span class="c1"># Hz; only the tick labels are changed.</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Chroma representations don&#39;t have a fixed frequency axis, and instead aggregate</span>
+<span class="c1"># information across all frequencies corresponding to a given pitch class.</span>
+<span class="c1"># specshow can plot these too:</span>
+
+<span class="n">chroma</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_cqt</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Chromagram demonstration&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># If you also happen to know the key of the piece being analyzed, you can</span>
+<span class="c1"># pass this to specshow and it will spell the notes properly:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
+                               <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Eb:maj&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Chromagram explicitly in Eb:maj&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># This will also work for &#39;cqt_note&#39; mode.</span>
+
+
+<span class="c1"># %%</span>
+<span class="c1"># Non-spectral data</span>
+<span class="c1"># -----------------</span>
+<span class="c1"># specshow can also be used for data that isn&#39;t exactly spectro-temporal.</span>
+<span class="c1"># One common application is recurrence (self-similarity) plots, which</span>
+<span class="c1"># are time-by-time, as illustrated below.</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">segment</span><span class="o">.</span><span class="n">recurrence_matrix</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;affinity&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Recurrence / self-similarity&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># In this example, notice that we used &#39;time&#39; for both axis labels.</span>
+<span class="c1"># In general, any of the supported modes can be used for either axis.</span>
+<span class="c1"># For example, we could also plot the chroma covariance plot with</span>
+<span class="c1"># chroma decorations on each axis:</span>
+
+<span class="n">ccov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">chroma</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">ccov</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span>
+                               <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Eb:maj&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Chroma covariance&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+
+<span class="c1"># %%</span>
+<span class="c1"># Color maps</span>
+<span class="c1"># ----------</span>
+<span class="c1"># You may have noticed that the color mappings for the images above</span>
+<span class="c1"># were selected automatically by `specshow`.</span>
+<span class="c1"># This is done by `librosa.display.cmap` according to the following heuristic:</span>
+<span class="c1">#</span>
+<span class="c1">#   - If the data is boolean, use black-and-white</span>
+<span class="c1">#   - If the data is (mostly) positive or (mostly) negative, use a sequential</span>
+<span class="c1">#     colormap</span>
+<span class="c1">#   - If the data contains both positive and negative values, use a diverging</span>
+<span class="c1">#     colormap.</span>
+<span class="c1">#</span>
+<span class="c1"># The default sequential colormap is &#39;magma&#39;, which is perceptually uniform and</span>
+<span class="c1"># converts gracefully to grayscale.</span>
+<span class="c1">#</span>
+<span class="c1"># You can always override this automatic colormap selection by setting an</span>
+<span class="c1"># explicit `cmap`:</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Inverted grayscale&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%+2.f dB&quot;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># `specshow` uses `matplotlib.pyplot.pcolormesh` to generate the underlying image.</span>
+<span class="c1"># Any parameters to `pcolormesh` can be passed through from `specshow`, for example,</span>
+<span class="c1"># to set explicit bounds on the minimum and maximum ranges for colors.</span>
+<span class="c1"># This can be helpful when centering divergent colormaps around 0 (or some other</span>
+<span class="c1"># reference point).</span>
+
+<span class="n">max_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ccov</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">ccov</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">max_var</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">max_var</span><span class="p">,</span>
+                               <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span>
+                               <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Eb:maj&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Chroma covariance&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Multiple plots</span>
+<span class="c1"># --------------</span>
+<span class="c1"># Often, we&#39;ll want to show multiple synchronized features simultaneously.</span>
+<span class="c1"># This can be done using matplotlib&#39;s `subplot` mechanism and sharing axes.</span>
+<span class="c1"># There are many examples of this throughout the librosa documentation, but</span>
+<span class="c1"># here we&#39;ll go through it step by step.</span>
+
+<span class="c1"># Construct a subplot grid with 3 rows and 1 column, sharing the x-axis)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># On the first subplot, show the original spectrogram</span>
+<span class="n">img1</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;STFT (log scale)&#39;</span><span class="p">)</span>
+
+<span class="c1"># On the second subplot, show the mel spectrogram</span>
+<span class="n">img2</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">M_db</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;mel&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mel&#39;</span><span class="p">)</span>
+
+<span class="c1"># On the third subplot, show the chroma features</span>
+<span class="n">img3</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span>
+                                <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Eb:maj&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Chroma&#39;</span><span class="p">)</span>
+
+<span class="c1"># To eliminate redundant axis labels, we&#39;ll use &quot;label_outer&quot; on all subplots:</span>
+<span class="k">for</span> <span class="n">ax_i</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">ax_i</span><span class="o">.</span><span class="n">label_outer</span><span class="p">()</span>
+
+<span class="c1"># And we can share colorbars:</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Or have individual colorbars:</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="c1"># We can then even do fancy things like zoom into a particular time and frequency</span>
+<span class="c1"># region.  Since the axes are shared, this will apply to all three subplots at once.</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># Zoom to seconds 1-3</span>
+
+
+<span class="c1"># %%</span>
+<span class="c1"># Non-uniform axes</span>
+<span class="c1"># ----------------</span>
+<span class="c1"># All of the examples so far have used either uniformly, linearly, or geometrically</span>
+<span class="c1"># spaced axes.  But sometimes, we have non-uniform sampling of data, and we&#39;d like</span>
+<span class="c1"># to plot it in natural coordinates.</span>
+<span class="c1">#</span>
+<span class="c1"># One example of this is when using beat-synchronous features in the common case</span>
+<span class="c1"># where the tempo is not exactly fixed.  To demonstrate this, we&#39;ll use a longer</span>
+<span class="c1"># example clip.</span>
+<span class="c1">#</span>
+<span class="c1"># To specify non-uniform axis sampling, you will need to provide the `x_coords`</span>
+<span class="c1"># (or `y_coords`) array indicating the position of each sample, as demonstrated</span>
+<span class="c1"># below.</span>
+
+<span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;nutcracker&#39;</span><span class="p">))</span>
+<span class="n">chroma</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_cqt</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+<span class="n">tempo</span><span class="p">,</span> <span class="n">beats</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">beat</span><span class="o">.</span><span class="n">beat_track</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+
+<span class="c1"># beats contains the frame indices of each detected beat</span>
+<span class="c1"># for synchronization and visualization, we&#39;ll need to expand this</span>
+<span class="c1"># to cover the limits of the data.  This can be done as follows:</span>
+<span class="n">beats</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">fix_frames</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">chroma</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Now beat-synchronize the chroma features</span>
+<span class="n">chroma_sync</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">)</span>
+
+<span class="c1"># For visualization, we can convert to time (in seconds)</span>
+<span class="n">beat_times</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">beats</span><span class="p">)</span>
+
+<span class="c1"># We&#39;ll plot the synchronized and unsynchronized features next</span>
+<span class="c1"># to each other</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                               <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Eb:maj&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Uniform time sampling&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label_outer</span><span class="p">()</span>
+
+<span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">specshow</span><span class="p">(</span><span class="n">chroma_sync</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">x_axis</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
+                         <span class="n">x_coords</span><span class="o">=</span><span class="n">beat_times</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Eb:maj&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Beat-synchronous sampling&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># For clarity, we&#39;ll zoom in on a 15-second patch</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+
+<span class="c1"># %%</span>
+<span class="c1"># Conclusion</span>
+<span class="c1"># ----------</span>
+<span class="c1"># This series of examples demonstrates most of the functionality of</span>
+<span class="c1"># `librosa.display.specshow`, but it does not exhaustively show</span>
+<span class="c1"># every option, e.g., for axis decoration.</span>
+<span class="c1"># Interested readers should look through the rest of the API</span>
+<span class="c1"># documentation to see how these other options can be used</span>
+<span class="c1"># effectively.</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.240 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-display-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9930a2392c024a40649d5e1796d7c8a7/plot_display.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_display.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/508c2f401de5e085afa802c76e7532f4/plot_display.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_display.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../recordings.html" class="btn btn-neutral float-right" title="Example files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plot_segmentation.html" class="btn btn-neutral float-left" title="Laplacian segmentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013--2020, librosa development team
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: doc-modernize
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../0.6.3/index.html">0.6.3</a></dd>
+      <dd><a href="../../0.7.0/index.html">0.7.0</a></dd>
+      <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
+      <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="plot_display.html">doc-modernize</a></dd>
+      <dd><a href="../../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-171031946-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+librosa.time\_to\_frames
+========================
+
+.. currentmodule:: librosa
+
+.. autofunction:: time_to_frames

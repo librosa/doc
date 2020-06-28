@@ -1,0 +1,6 @@
+librosa.tone
+============
+
+.. currentmodule:: librosa
+
+.. autofunction:: tone

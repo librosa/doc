@@ -1,0 +1,6 @@
+librosa.icqt
+============
+
+.. currentmodule:: librosa
+
+.. autofunction:: icqt
