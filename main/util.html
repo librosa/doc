@@ -136,6 +136,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.util.localmax.html">librosa.util.localmax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/librosa.util.localmin.html">librosa.util.localmin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.util.peak_pick.html">librosa.util.peak_pick</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.util.nnls.html">librosa.util.nnls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.util.cyclic_gradient.html">librosa.util.cyclic_gradient</a></li>
@@ -324,19 +325,22 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.util.localmax.html#librosa.util.localmax" title="librosa.util.localmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">localmax</span></code></a>(x[, axis])</p></td>
 <td><p>Find local maxima in an array</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peak_pick</span></code></a>(x, pre_max, post_max, pre_avg, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.util.localmin.html#librosa.util.localmin" title="librosa.util.localmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">localmin</span></code></a>(x[, axis])</p></td>
+<td><p>Find local minima in an array</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peak_pick</span></code></a>(x, pre_max, post_max, pre_avg, …)</p></td>
 <td><p>Uses a flexible heuristic to pick peaks in a signal.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.util.nnls.html#librosa.util.nnls" title="librosa.util.nnls"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nnls</span></code></a>(A, B, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.util.nnls.html#librosa.util.nnls" title="librosa.util.nnls"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nnls</span></code></a>(A, B, **kwargs)</p></td>
 <td><p>Non-negative least squares.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.util.cyclic_gradient.html#librosa.util.cyclic_gradient" title="librosa.util.cyclic_gradient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cyclic_gradient</span></code></a>(data[, edge_order, axis])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.util.cyclic_gradient.html#librosa.util.cyclic_gradient" title="librosa.util.cyclic_gradient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cyclic_gradient</span></code></a>(data[, edge_order, axis])</p></td>
 <td><p>Estimate the gradient of a function over a uniformly sampled, periodic domain.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.util.dtype_c2r.html#librosa.util.dtype_c2r" title="librosa.util.dtype_c2r"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype_c2r</span></code></a>(d[, default])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.util.dtype_c2r.html#librosa.util.dtype_c2r" title="librosa.util.dtype_c2r"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype_c2r</span></code></a>(d[, default])</p></td>
 <td><p>Find the real numpy dtype corresponding to a complex dtype.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.util.dtype_r2c.html#librosa.util.dtype_r2c" title="librosa.util.dtype_r2c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype_r2c</span></code></a>(d[, default])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.util.dtype_r2c.html#librosa.util.dtype_r2c" title="librosa.util.dtype_r2c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype_r2c</span></code></a>(d[, default])</p></td>
 <td><p>Find the complex numpy dtype corresponding to a real dtype.</p></td>
 </tr>
 </tbody>

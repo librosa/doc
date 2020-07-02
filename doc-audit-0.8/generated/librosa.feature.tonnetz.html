@@ -220,8 +220,10 @@
 <dl class="py function">
 <dt id="librosa.feature.tonnetz">
 <code class="sig-prename descclassname">librosa.feature.</code><code class="sig-name descname">tonnetz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sr</span><span class="o">=</span><span class="default_value">22050</span></em>, <em class="sig-param"><span class="n">chroma</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#tonnetz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.feature.tonnetz" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the tonal centroid features (tonnetz), following the method of
-<a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dd><p>Computes the tonal centroid features (tonnetz)</p>
+<p>This representation uses the method of <a class="footnote-reference brackets" href="#id2" id="id1">1</a> to project chroma features
+onto a 6-dimensional basis representing the perfect fifth, minor third,
+and major third each as two-dimensional coordinates.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Harte, C., Sandler, M., &amp; Gasser, M. (2006). “Detecting Harmonic
@@ -299,7 +301,7 @@ pre-computed.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmp8xzbtz_v/1de52b3c7fd4d2be73ceb652bdd409b0822c8526/docs/generated/librosa-feature-tonnetz-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/generated/librosa-feature-tonnetz-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-feature-tonnetz-1.png" src="../_images/librosa-feature-tonnetz-1.png" />
 </div>

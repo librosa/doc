@@ -220,13 +220,13 @@
 <dl class="py function">
 <dt id="librosa.feature.spectral_contrast">
 <code class="sig-prename descclassname">librosa.feature.</code><code class="sig-name descname">spectral_contrast</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sr</span><span class="o">=</span><span class="default_value">22050</span></em>, <em class="sig-param"><span class="n">S</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_fft</span><span class="o">=</span><span class="default_value">2048</span></em>, <em class="sig-param"><span class="n">hop_length</span><span class="o">=</span><span class="default_value">512</span></em>, <em class="sig-param"><span class="n">win_length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">window</span><span class="o">=</span><span class="default_value">'hann'</span></em>, <em class="sig-param"><span class="n">center</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">pad_mode</span><span class="o">=</span><span class="default_value">'reflect'</span></em>, <em class="sig-param"><span class="n">freq</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fmin</span><span class="o">=</span><span class="default_value">200.0</span></em>, <em class="sig-param"><span class="n">n_bands</span><span class="o">=</span><span class="default_value">6</span></em>, <em class="sig-param"><span class="n">quantile</span><span class="o">=</span><span class="default_value">0.02</span></em>, <em class="sig-param"><span class="n">linear</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#spectral_contrast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.feature.spectral_contrast" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute spectral contrast <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<dd><p>Compute spectral contrast</p>
 <p>Each frame of a spectrogram <code class="docutils literal notranslate"><span class="pre">S</span></code> is divided into sub-bands.
 For each sub-band, the energy contrast is estimated by comparing
 the mean energy in the top quantile (peak energy) to that of the
 bottom quantile (valley energy).  High contrast values generally
 correspond to clear, narrow-band signals, while low contrast values
-correspond to broad-band noise.</p>
+correspond to broad-band noise. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Jiang, Dan-Ning, Lie Lu, Hong-Jiang Zhang, Jian-Hua Tao,
@@ -316,7 +316,7 @@ octave-based frequency</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Frequency bands&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spectral contrast&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmp8xzbtz_v/1de52b3c7fd4d2be73ceb652bdd409b0822c8526/docs/generated/librosa-feature-spectral_contrast-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/generated/librosa-feature-spectral_contrast-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-feature-spectral_contrast-1.png" src="../_images/librosa-feature-spectral_contrast-1.png" />
 </div>

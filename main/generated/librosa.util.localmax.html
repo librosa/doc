@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="librosa.util.peak_pick" href="librosa.util.peak_pick.html" />
+    <link rel="next" title="librosa.util.localmin" href="librosa.util.localmin.html" />
     <link rel="prev" title="librosa.util.match_events" href="librosa.util.match_events.html" /> 
 </head>
 
@@ -116,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../util.html#matching">Matching</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../util.html#miscellaneous">Miscellaneous</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">librosa.util.localmax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.util.localmin.html">librosa.util.localmin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.util.peak_pick.html">librosa.util.peak_pick</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.util.nnls.html">librosa.util.nnls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.util.cyclic_gradient.html">librosa.util.cyclic_gradient</a></li>
@@ -239,6 +240,12 @@ conditions are met:</p>
 </dl>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="librosa.util.localmin.html#librosa.util.localmin" title="librosa.util.localmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">localmin</span></code></a></dt><dd></dd>
+</dl>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">localmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -269,7 +276,7 @@ conditions are met:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="librosa.util.peak_pick.html" class="btn btn-neutral float-right" title="librosa.util.peak_pick" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="librosa.util.localmin.html" class="btn btn-neutral float-right" title="librosa.util.localmin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="librosa.util.match_events.html" class="btn btn-neutral float-left" title="librosa.util.match_events" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

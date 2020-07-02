@@ -217,22 +217,22 @@
 <dt id="librosa.griffinlim_cqt">
 <code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">griffinlim_cqt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">n_iter</span><span class="o">=</span><span class="default_value">32</span></em>, <em class="sig-param"><span class="n">sr</span><span class="o">=</span><span class="default_value">22050</span></em>, <em class="sig-param"><span class="n">hop_length</span><span class="o">=</span><span class="default_value">512</span></em>, <em class="sig-param"><span class="n">fmin</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bins_per_octave</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">tuning</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">filter_scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">sparsity</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">window</span><span class="o">=</span><span class="default_value">'hann'</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">pad_mode</span><span class="o">=</span><span class="default_value">'reflect'</span></em>, <em class="sig-param"><span class="n">res_type</span><span class="o">=</span><span class="default_value">'kaiser_fast'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">momentum</span><span class="o">=</span><span class="default_value">0.99</span></em>, <em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">'random'</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#librosa.griffinlim_cqt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Approximate constant-Q magnitude spectrogram inversion using the “fast” Griffin-Lim
-algorithm <a class="footnote-reference brackets" href="#id3" id="id1">1</a> <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+algorithm.</p>
 <p>Given the magnitude of a constant-Q spectrogram (<code class="docutils literal notranslate"><span class="pre">C</span></code>), the algorithm randomly initializes
-phase estimates, and then alternates forward- and inverse-CQT operations.</p>
-<p>This implementation is based on the Griffin-Lim method for Short-time Fourier Transforms,
+phase estimates, and then alternates forward- and inverse-CQT operations. <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
+<p>This implementation is based on the (fast) Griffin-Lim method for Short-time Fourier Transforms, <a class="footnote-reference brackets" href="#id4" id="id2">2</a>
 but adapted for use with constant-Q spectrograms.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>D. W. Griffin and J. S. Lim,
+“Signal estimation from modified short-time Fourier transform,”
+IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Perraudin, N., Balazs, P., &amp; Søndergaard, P. L.
 “A fast Griffin-Lim algorithm,”
 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (pp. 1-4),
 Oct. 2013.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>D. W. Griffin and J. S. Lim,
-“Signal estimation from modified short-time Fourier transform,”
-IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.</p>
 </dd>
 </dl>
 <dl class="field-list">
@@ -273,7 +273,7 @@ in FFT.</p>
 in FFT.</p>
 </dd>
 <dt><strong>pad_mode</strong><span class="classifier">string</span></dt><dd><p>Padding mode for centered frame analysis.</p>
-<p>See also: <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v1.18)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.pad</span></code></a>.</p>
+<p>See also: <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.pad</span></code></a>.</p>
 </dd>
 <dt><strong>res_type</strong><span class="classifier">string</span></dt><dd><p>The resampling mode for recursive downsampling.</p>
 <p>By default, CQT uses an adaptive mode selection to
@@ -347,7 +347,7 @@ for phase initialization.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Magnitude-only icqt reconstruction&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmp8xzbtz_v/1de52b3c7fd4d2be73ceb652bdd409b0822c8526/docs/generated/librosa-griffinlim_cqt-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/generated/librosa-griffinlim_cqt-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-griffinlim_cqt-1.png" src="../_images/librosa-griffinlim_cqt-1.png" />
 </div>

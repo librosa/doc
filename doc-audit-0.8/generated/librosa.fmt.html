@@ -225,18 +225,20 @@
 <dl class="py function">
 <dt id="librosa.fmt">
 <code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">fmt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">t_min</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">n_fmt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kind</span><span class="o">=</span><span class="default_value">'cubic'</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">over_sample</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.fmt" title="Permalink to this definition">¶</a></dt>
-<dd><p>The fast Mellin transform (FMT) <a class="footnote-reference brackets" href="#id3" id="id1">1</a> of a uniformly sampled signal y.</p>
-<p>When the Mellin parameter (beta) is 1/2, it is also known as the scale transform. <a class="footnote-reference brackets" href="#id4" id="id2">2</a>
+<dd><p>The fast Mellin transform (FMT)</p>
+<p>The Mellin of a signal <em class="xref py py-obj">y</em> is performed by interpolating <em class="xref py py-obj">y</em> on an exponential time
+axis, applying a polynomial window, and then taking the discrete Fourier transform.</p>
+<p>When the Mellin parameter (beta) is 1/2, it is also known as the scale transform. <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
 The scale transform can be useful for audio analysis because its magnitude is invariant
 to scaling of the domain (e.g., time stretching or compression).  This is analogous
 to the magnitude of the Fourier transform being invariant to shifts in the input domain.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>De Sena, Antonio, and Davide Rocchesso.
 “A fast Mellin and scale transform.”
 EURASIP Journal on Applied Signal Processing 2007.1 (2007): 75-75.</p>
 </dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="id3"><span class="brackets">2</span></dt>
 <dd><p>Cohen, L.
 “The scale representation.”
 IEEE Transactions on Signal Processing 41, no. 12 (1993): 3275-3292.</p>
@@ -334,7 +336,7 @@ or if <code class="docutils literal notranslate"><span class="pre">y.shape[axis]
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;scale coefficients&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmp8xzbtz_v/1de52b3c7fd4d2be73ceb652bdd409b0822c8526/docs/generated/librosa-fmt-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/generated/librosa-fmt-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-fmt-1_00.png" src="../_images/librosa-fmt-1_00.png" />
 </div>

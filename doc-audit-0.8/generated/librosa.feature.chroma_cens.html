@@ -220,9 +220,9 @@
 <dl class="py function">
 <dt id="librosa.feature.chroma_cens">
 <code class="sig-prename descclassname">librosa.feature.</code><code class="sig-name descname">chroma_cens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sr</span><span class="o">=</span><span class="default_value">22050</span></em>, <em class="sig-param"><span class="n">C</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hop_length</span><span class="o">=</span><span class="default_value">512</span></em>, <em class="sig-param"><span class="n">fmin</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tuning</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_chroma</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">n_octaves</span><span class="o">=</span><span class="default_value">7</span></em>, <em class="sig-param"><span class="n">bins_per_octave</span><span class="o">=</span><span class="default_value">36</span></em>, <em class="sig-param"><span class="n">cqt_mode</span><span class="o">=</span><span class="default_value">'full'</span></em>, <em class="sig-param"><span class="n">window</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">norm</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">win_len_smooth</span><span class="o">=</span><span class="default_value">41</span></em>, <em class="sig-param"><span class="n">smoothing_window</span><span class="o">=</span><span class="default_value">'hann'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#chroma_cens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.feature.chroma_cens" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the chroma variant “Chroma Energy Normalized” (CENS), following <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dd><p>Computes the chroma variant “Chroma Energy Normalized” (CENS)</p>
 <p>To compute CENS features, following steps are taken after obtaining chroma vectors
-using <a class="reference internal" href="librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt" title="librosa.feature.chroma_cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_cqt</span></code></a>:</p>
+using <a class="reference internal" href="librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt" title="librosa.feature.chroma_cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_cqt</span></code></a>: <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>L-1 normalization of each chroma vector</p></li>
@@ -312,7 +312,7 @@ Default: ‘hann’</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmp8xzbtz_v/1de52b3c7fd4d2be73ceb652bdd409b0822c8526/docs/generated/librosa-feature-chroma_cens-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/generated/librosa-feature-chroma_cens-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-feature-chroma_cens-1.png" src="../_images/librosa-feature-chroma_cens-1.png" />
 </div>

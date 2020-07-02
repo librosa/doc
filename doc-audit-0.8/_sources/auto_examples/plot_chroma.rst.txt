@@ -103,8 +103,8 @@ First, let's plot the original chroma
 
 
 
-We can do better by isolating the harmonic component of the audio signal
-We'll use a large margin for separating harmonics from percussives
+We can do better by isolating the harmonic component of the audio signal.
+We'll use a large margin for separating harmonics from percussives:
 
 
 .. code-block:: default
@@ -228,11 +228,10 @@ and the result of our filtering.
 Chroma variants
 ^^^^^^^^^^^^^^^
 There are three chroma variants implemented in librosa: `chroma_stft`, `chroma_cqt`, and `chroma_cens`.
-`chroma_stft` and `chroma_cqt` are two alternative ways of plotting chroma.    
-
+`chroma_stft` and `chroma_cqt` are two alternative ways of plotting chroma.
 `chroma_stft` performs short-time fourier transform of an audio input and maps each STFT bin to chroma, while `chroma_cqt` uses constant-Q transform and maps each cq-bin to chroma.      
 
-A comparison between the STFT and the CQT methods for chromagram. 
+A comparison between the STFT and the CQT methods for chromagram.
 
 
 .. code-block:: default
@@ -302,7 +301,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  33.201 seconds)
+   **Total running time of the script:** ( 0 minutes  47.786 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:

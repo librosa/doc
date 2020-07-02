@@ -70,7 +70,7 @@ Load an example with vocals.
 
  .. code-block:: none
 
-    /tmp/tmp8xzbtz_v/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpmxflk347/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -210,7 +210,7 @@ Plot the same slice, but separated into its foreground and background
 
  .. code-block:: none
 
-    /tmp/tmp8xzbtz_v/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_vocal_separation.py:123: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+    /tmp/tmpmxflk347/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_vocal_separation.py:123: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
       plt.show()
 
 
@@ -219,7 +219,7 @@ Plot the same slice, but separated into its foreground and background
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.024 seconds)
+   **Total running time of the script:** ( 0 minutes  26.715 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:
