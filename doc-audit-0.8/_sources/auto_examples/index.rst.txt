@@ -233,13 +233,13 @@ Advanced examples
 
   .. container:: sphx-glr-download sphx-glr-download-python
 
-    :download:`Download all examples in Python source code: auto_examples_python.zip <//tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/auto_examples/auto_examples_python.zip>`
+    :download:`Download all examples in Python source code: auto_examples_python.zip <//tmp/tmpl55ihlga/9632d75b3af5c03792fa90e09d602ed2623728ab/docs/auto_examples/auto_examples_python.zip>`
 
 
 
   .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//tmp/tmpmxflk347/9dd9dc7653c56a4a73b6e3f34ef5b1a70f2127ba/docs/auto_examples/auto_examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip <//tmp/tmpl55ihlga/9632d75b3af5c03792fa90e09d602ed2623728ab/docs/auto_examples/auto_examples_jupyter.zip>`
 
 
 .. only:: html

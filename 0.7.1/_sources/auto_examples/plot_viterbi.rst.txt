@@ -75,7 +75,7 @@ Load an example signal
 
  .. code-block:: none
 
-    /tmp/tmpmxflk347/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpl55ihlga/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -293,7 +293,7 @@ likely to change states.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.510 seconds)
+   **Total running time of the script:** ( 0 minutes  2.564 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_viterbi.py:
