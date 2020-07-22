@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>librosa.key_to_degrees &mdash; librosa 0.8.0-dev documentation</title>
+  <title>librosa.key_to_degrees &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="librosa.hz_to_mel" href="librosa.hz_to_mel.html" />
+    <link rel="next" title="librosa.mela_to_svara" href="librosa.mela_to_svara.html" />
     <link rel="prev" title="librosa.key_to_notes" href="librosa.key_to_notes.html" /> 
 </head>
 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -111,21 +111,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../core.html#harmonics">Harmonics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#magnitude-scaling">Magnitude scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#time-unit-conversion">Time unit conversion</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../core.html#frequency-unit-conversion">Frequency unit conversion</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_note.html">librosa.hz_to_note</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_midi.html">librosa.hz_to_midi</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.midi_to_hz.html">librosa.midi_to_hz</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.midi_to_note.html">librosa.midi_to_note</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.note_to_hz.html">librosa.note_to_hz</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.note_to_midi.html">librosa.note_to_midi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-unit-conversion">Frequency unit conversion</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../core.html#music-notation">Music notation</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="librosa.key_to_notes.html">librosa.key_to_notes</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">librosa.key_to_degrees</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_mel.html">librosa.hz_to_mel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_octs.html">librosa.hz_to_octs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.mel_to_hz.html">librosa.mel_to_hz</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.octs_to_hz.html">librosa.octs_to_hz</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.A4_to_tuning.html">librosa.A4_to_tuning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.tuning_to_A4.html">librosa.tuning_to_A4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.mela_to_svara.html">librosa.mela_to_svara</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.mela_to_degrees.html">librosa.mela_to_degrees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.thaat_to_degrees.html">librosa.thaat_to_degrees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.list_mela.html">librosa.list_mela</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.list_thaat.html">librosa.list_thaat</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-range-generation">Frequency range generation</a></li>
@@ -227,7 +221,7 @@
 <h1>librosa.key_to_degrees<a class="headerlink" href="#librosa-key-to-degrees" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="librosa.key_to_degrees">
-<code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">key_to_degrees</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#librosa.key_to_degrees" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">key_to_degrees</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/notation.html#key_to_degrees"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.key_to_degrees" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct the diatonic scale degrees for a given key.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -279,7 +273,7 @@ from the tonic.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="librosa.hz_to_mel.html" class="btn btn-neutral float-right" title="librosa.hz_to_mel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="librosa.mela_to_svara.html" class="btn btn-neutral float-right" title="librosa.mela_to_svara" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="librosa.key_to_notes.html" class="btn btn-neutral float-left" title="librosa.key_to_notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -328,10 +322,10 @@ from the tonic.</p>
       <dd><a href="../../0.7.0/index.html">0.7.0</a></dd>
       <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
+      <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../../doc-audit-0.8/index.html">doc-audit-0.8</a></dd>
       <dd><a href="librosa.key_to_degrees.html">main</a></dd>
     </dl>
   </div>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>librosa.griffinlim &mdash; librosa 0.8.0-dev documentation</title>
+  <title>librosa.griffinlim &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -116,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../core.html#magnitude-scaling">Magnitude scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#time-unit-conversion">Time unit conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-unit-conversion">Frequency unit conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html#music-notation">Music notation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-range-generation">Frequency range generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#pitch-and-tuning">Pitch and tuning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#miscellaneous">Miscellaneous</a></li>
@@ -216,24 +217,25 @@
 <dl class="py function">
 <dt id="librosa.griffinlim">
 <code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">griffinlim</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">S</span></em>, <em class="sig-param"><span class="n">n_iter</span><span class="o">=</span><span class="default_value">32</span></em>, <em class="sig-param"><span class="n">hop_length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">win_length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">window</span><span class="o">=</span><span class="default_value">'hann'</span></em>, <em class="sig-param"><span class="n">center</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pad_mode</span><span class="o">=</span><span class="default_value">'reflect'</span></em>, <em class="sig-param"><span class="n">momentum</span><span class="o">=</span><span class="default_value">0.99</span></em>, <em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">'random'</span></em>, <em class="sig-param"><span class="n">random_state</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#librosa.griffinlim" title="Permalink to this definition">¶</a></dt>
-<dd><p>Approximate magnitude spectrogram inversion using the “fast” Griffin-Lim algorithm. <a class="footnote-reference brackets" href="#id3" id="id1">1</a> <a class="footnote-reference brackets" href="#id4" id="id2">2</a></p>
+<dd><p>Approximate magnitude spectrogram inversion using the “fast” Griffin-Lim algorithm.</p>
 <p>Given a short-time Fourier transform magnitude matrix (<code class="docutils literal notranslate"><span class="pre">S</span></code>), the algorithm randomly
 initializes phase estimates, and then alternates forward- and inverse-STFT
-operations.
-Note that this assumes reconstruction of a real-valued time-domain signal, and
+operations. <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
+<p>Note that this assumes reconstruction of a real-valued time-domain signal, and
 that <code class="docutils literal notranslate"><span class="pre">S</span></code> contains only the non-negative frequencies (as computed by
 <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stft</span></code></a>).</p>
+<p>The “fast” GL method <a class="footnote-reference brackets" href="#id4" id="id2">2</a> uses a momentum parameter to accelerate convergence.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>D. W. Griffin and J. S. Lim,
+“Signal estimation from modified short-time Fourier transform,”
+IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Perraudin, N., Balazs, P., &amp; Søndergaard, P. L.
 “A fast Griffin-Lim algorithm,”
 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (pp. 1-4),
 Oct. 2013.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>D. W. Griffin and J. S. Lim,
-“Signal estimation from modified short-time Fourier transform,”
-IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.</p>
 </dd>
 </dl>
 <dl class="field-list">
@@ -321,7 +323,7 @@ generator itself.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Magnitude-only istft reconstruction&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpl55ihlga/5d7314fa226355f96bdfb50a8a60282570cf5917/docs/generated/librosa-griffinlim-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpnt58hyic/adf93050549a15c80610e7cdca9a52a72a665a5c/docs/generated/librosa-griffinlim-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-griffinlim-1.png" src="../_images/librosa-griffinlim-1.png" />
 </div>
@@ -386,10 +388,10 @@ generator itself.</p>
       <dd><a href="../../0.7.0/index.html">0.7.0</a></dd>
       <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
+      <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../../doc-audit-0.8/index.html">doc-audit-0.8</a></dd>
       <dd><a href="librosa.griffinlim.html">main</a></dd>
     </dl>
   </div>

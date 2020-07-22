@@ -70,7 +70,7 @@ We'll use a track that has harmonic, melodic, and percussive elements
 
  .. code-block:: none
 
-    /tmp/tmpl55ihlga/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpnt58hyic/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -294,7 +294,7 @@ and the result of our filtering.
 
  .. code-block:: none
 
-    /tmp/tmpl55ihlga/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_chroma.py:172: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+    /tmp/tmpnt58hyic/ef93c2c2f31582135108594034cc89b6d7cda718/docs/examples/plot_chroma.py:172: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
       plt.show()
 
 
@@ -388,7 +388,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  29.579 seconds)
+   **Total running time of the script:** ( 0 minutes  28.391 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:

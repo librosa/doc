@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; librosa 0.8.0-dev documentation</title>
+  <title>Changelog &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -239,10 +239,23 @@
 <h2>v0.8<a class="headerlink" href="#v0-8" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="v0-8-0">
 <h3>v0.8.0<a class="headerlink" href="#v0-8-0" title="Permalink to this headline">¶</a></h3>
-<p>2020-XX-XX</p>
+<p>2020-07-22</p>
 <dl class="simple">
 <dt>New Features</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/974">#974</a> Variable-Q transform <a class="reference internal" href="generated/librosa.vqt.html#librosa.vqt" title="librosa.vqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.vqt</span></code></a>. <em>Brian McFee, Frank Cwitkowitz</em></p></li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://github.com/librosa/librosa/issues/1203">#1203</a> Support for Carnatic and Hindustani notations. <em>Brian McFee, Kaushik Sripathi Hatti, Kaustuv Kanti Ganguli</em></dt><dd><ul>
+<li><p><a class="reference internal" href="generated/librosa.hz_to_svara_c.html#librosa.hz_to_svara_c" title="librosa.hz_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.hz_to_svara_c</span></code></a>, <a class="reference internal" href="generated/librosa.hz_to_svara_h.html#librosa.hz_to_svara_h" title="librosa.hz_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.hz_to_svara_h</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c" title="librosa.midi_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.midi_to_svara_c</span></code></a>, <a class="reference internal" href="generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h" title="librosa.midi_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.midi_to_svara_h</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/librosa.note_to_svara_c.html#librosa.note_to_svara_c" title="librosa.note_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.note_to_svara_c</span></code></a>, <a class="reference internal" href="generated/librosa.note_to_svara_h.html#librosa.note_to_svara_h" title="librosa.note_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.note_to_svara_h</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/librosa.list_mela.html#librosa.list_mela" title="librosa.list_mela"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.list_mela</span></code></a>, <a class="reference internal" href="generated/librosa.list_thaat.html#librosa.list_thaat" title="librosa.list_thaat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.list_thaat</span></code></a></p></li>
+<li><p>and <a class="reference internal" href="generated/librosa.display.specshow.html#librosa.display.specshow" title="librosa.display.specshow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.specshow</span></code></a> support.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1064">#1064</a> <a class="reference internal" href="generated/librosa.yin.html#librosa.yin" title="librosa.yin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.yin</span></code></a> and <a class="reference internal" href="generated/librosa.pyin.html#librosa.pyin" title="librosa.pyin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.pyin</span></code></a> for fundamental frequency
+estimation. <em>Benjamin van Niekirk</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1018">#1018</a> Variable-Q transform <a class="reference internal" href="generated/librosa.vqt.html#librosa.vqt" title="librosa.vqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.vqt</span></code></a>. <em>Brian McFee, Frank Cwitkowitz</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1059">#1059</a> <em class="xref py py-obj">libsamplerate</em> support in <a class="reference internal" href="generated/librosa.resample.html#librosa.resample" title="librosa.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.resample</span></code></a>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1134">#1134</a> perceptual loudness weighting for B, C, D, and Z-weighting. <em>Bea Steers</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1149">#1149</a> key support and note-spelling in pitch&lt;=&gt;note conversion. <em>Brian
@@ -252,6 +265,7 @@ McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1166">#1166</a> <a class="reference internal" href="generated/librosa.sequence.dtw.html#librosa.sequence.dtw" title="librosa.sequence.dtw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.sequence.dtw</span></code></a> can now return the step matrix. <em>Frank Zaklow</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1171">#1171</a> automatic precision inference for spectral transforms (stft, cqt) and
 explicit control for <a class="reference internal" href="generated/librosa.cqt.html#librosa.cqt" title="librosa.cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.cqt</span></code></a>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1198">#1198</a> <a class="reference internal" href="generated/librosa.util.localmin.html#librosa.util.localmin" title="librosa.util.localmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.localmin</span></code></a> for computing local minima. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 <dt>Removed features and API changes</dt><dd><ul class="simple">
@@ -278,10 +292,10 @@ explicit control for <a class="reference internal" href="generated/librosa.cqt.h
 </ul>
 </dd>
 <dt>Bug fixes</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1078">#1078</a> fixed edge-padding errors in <a class="reference internal" href="generated/librosa.feature.stack_memory.html#librosa.feature.stack_memory" title="librosa.feature.stack_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.stack_memory</span></code></a>. <em>???</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1078">#1078</a> fixed edge-padding errors in <a class="reference internal" href="generated/librosa.feature.stack_memory.html#librosa.feature.stack_memory" title="librosa.feature.stack_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.stack_memory</span></code></a>. <em>beantowel</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1091">#1091</a> fixed joblib version requirements. <em>Thor Whalen</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1094">#1094</a> fixed STFT bug when using large window sizes. <em>Frank Zalkow</em></p></li>
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1157">#1157</a> fixed an alignment bug in <a class="reference internal" href="generated/librosa.iirt.html#librosa.iirt" title="librosa.iirt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.iirt</span></code></a>. <em>Frank Zalkow</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1157">#1157</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1196">#1196</a> fixed an alignment bug in <a class="reference internal" href="generated/librosa.iirt.html#librosa.iirt" title="librosa.iirt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.iirt</span></code></a>. <em>Frank Zalkow</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1159">#1159</a> fixed a warm-up glitch in <a class="reference internal" href="generated/librosa.effects.preemphasis.html#librosa.effects.preemphasis" title="librosa.effects.preemphasis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.effects.preemphasis</span></code></a>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1179">#1179</a> fixed memory initialization in unit tests. <em>Brian McFee</em></p></li>
 </ul>
@@ -1226,10 +1240,10 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
       <dd><a href="../0.7.0/changelog.html">0.7.0</a></dd>
       <dd><a href="../0.7.1/changelog.html">0.7.1</a></dd>
       <dd><a href="../0.7.2/changelog.html">0.7.2</a></dd>
+      <dd><a href="../0.8.0/changelog.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../doc-audit-0.8/changelog.html">doc-audit-0.8</a></dd>
       <dd><a href="changelog.html">main</a></dd>
     </dl>
   </div>

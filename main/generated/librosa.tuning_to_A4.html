@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>librosa.tuning_to_A4 &mdash; librosa 0.8.0-dev documentation</title>
+  <title>librosa.tuning_to_A4 &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="librosa.fft_frequencies" href="librosa.fft_frequencies.html" />
+    <link rel="next" title="librosa.key_to_notes" href="librosa.key_to_notes.html" />
     <link rel="prev" title="librosa.A4_to_tuning" href="librosa.A4_to_tuning.html" /> 
 </head>
 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -114,12 +114,16 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../core.html#frequency-unit-conversion">Frequency unit conversion</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_note.html">librosa.hz_to_note</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_midi.html">librosa.hz_to_midi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_svara_h.html">librosa.hz_to_svara_h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_svara_c.html">librosa.hz_to_svara_c</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.midi_to_hz.html">librosa.midi_to_hz</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.midi_to_note.html">librosa.midi_to_note</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.midi_to_svara_h.html">librosa.midi_to_svara_h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.midi_to_svara_c.html">librosa.midi_to_svara_c</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.note_to_hz.html">librosa.note_to_hz</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.note_to_midi.html">librosa.note_to_midi</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.key_to_notes.html">librosa.key_to_notes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="librosa.key_to_degrees.html">librosa.key_to_degrees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.note_to_svara_h.html">librosa.note_to_svara_h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.note_to_svara_c.html">librosa.note_to_svara_c</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_mel.html">librosa.hz_to_mel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.hz_to_octs.html">librosa.hz_to_octs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.mel_to_hz.html">librosa.mel_to_hz</a></li>
@@ -128,6 +132,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">librosa.tuning_to_A4</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html#music-notation">Music notation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-range-generation">Frequency range generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#pitch-and-tuning">Pitch and tuning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#miscellaneous">Miscellaneous</a></li>
@@ -227,7 +232,7 @@
 <h1>librosa.tuning_to_A4<a class="headerlink" href="#librosa-tuning-to-a4" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="librosa.tuning_to_A4">
-<code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">tuning_to_A4</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning</span></em>, <em class="sig-param"><span class="n">bins_per_octave</span><span class="o">=</span><span class="default_value">12</span></em><span class="sig-paren">)</span><a class="headerlink" href="#librosa.tuning_to_A4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">tuning_to_A4</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning</span></em>, <em class="sig-param"><span class="n">bins_per_octave</span><span class="o">=</span><span class="default_value">12</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/convert.html#tuning_to_A4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.tuning_to_A4" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a tuning deviation (from 0) in fractions of a bin per
 octave (e.g., <code class="docutils literal notranslate"><span class="pre">tuning=-0.1</span></code>) to a reference pitch frequency
 relative to A440.</p>
@@ -288,7 +293,7 @@ pitch frequencies, using 36 bins per octave.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="librosa.fft_frequencies.html" class="btn btn-neutral float-right" title="librosa.fft_frequencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="librosa.key_to_notes.html" class="btn btn-neutral float-right" title="librosa.key_to_notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="librosa.A4_to_tuning.html" class="btn btn-neutral float-left" title="librosa.A4_to_tuning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -337,10 +342,10 @@ pitch frequencies, using 36 bins per octave.</p>
       <dd><a href="../../0.7.0/index.html">0.7.0</a></dd>
       <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
+      <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../../doc-audit-0.8/index.html">doc-audit-0.8</a></dd>
       <dd><a href="librosa.tuning_to_A4.html">main</a></dd>
     </dl>
   </div>

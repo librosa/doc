@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>librosa.fmt &mdash; librosa 0.8.0-dev documentation</title>
+  <title>librosa.fmt &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -125,6 +125,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../core.html#magnitude-scaling">Magnitude scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#time-unit-conversion">Time unit conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-unit-conversion">Frequency unit conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html#music-notation">Music notation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#frequency-range-generation">Frequency range generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#pitch-and-tuning">Pitch and tuning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../core.html#miscellaneous">Miscellaneous</a></li>
@@ -225,18 +226,20 @@
 <dl class="py function">
 <dt id="librosa.fmt">
 <code class="sig-prename descclassname">librosa.</code><code class="sig-name descname">fmt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">t_min</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">n_fmt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kind</span><span class="o">=</span><span class="default_value">'cubic'</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">over_sample</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.fmt" title="Permalink to this definition">¶</a></dt>
-<dd><p>The fast Mellin transform (FMT) <a class="footnote-reference brackets" href="#id3" id="id1">1</a> of a uniformly sampled signal y.</p>
-<p>When the Mellin parameter (beta) is 1/2, it is also known as the scale transform. <a class="footnote-reference brackets" href="#id4" id="id2">2</a>
+<dd><p>The fast Mellin transform (FMT)</p>
+<p>The Mellin of a signal <em class="xref py py-obj">y</em> is performed by interpolating <em class="xref py py-obj">y</em> on an exponential time
+axis, applying a polynomial window, and then taking the discrete Fourier transform.</p>
+<p>When the Mellin parameter (beta) is 1/2, it is also known as the scale transform. <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
 The scale transform can be useful for audio analysis because its magnitude is invariant
 to scaling of the domain (e.g., time stretching or compression).  This is analogous
 to the magnitude of the Fourier transform being invariant to shifts in the input domain.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>De Sena, Antonio, and Davide Rocchesso.
 “A fast Mellin and scale transform.”
 EURASIP Journal on Applied Signal Processing 2007.1 (2007): 75-75.</p>
 </dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="id3"><span class="brackets">2</span></dt>
 <dd><p>Cohen, L.
 “The scale representation.”
 IEEE Transactions on Signal Processing 41, no. 12 (1993): 3275-3292.</p>
@@ -334,7 +337,7 @@ or if <code class="docutils literal notranslate"><span class="pre">y.shape[axis]
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;scale coefficients&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpl55ihlga/5d7314fa226355f96bdfb50a8a60282570cf5917/docs/generated/librosa-fmt-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpnt58hyic/adf93050549a15c80610e7cdca9a52a72a665a5c/docs/generated/librosa-fmt-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-fmt-1_00.png" src="../_images/librosa-fmt-1_00.png" />
 </div>
@@ -402,10 +405,10 @@ or if <code class="docutils literal notranslate"><span class="pre">y.shape[axis]
       <dd><a href="../../0.7.0/index.html">0.7.0</a></dd>
       <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
+      <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../../doc-audit-0.8/index.html">doc-audit-0.8</a></dd>
       <dd><a href="librosa.fmt.html">main</a></dd>
     </dl>
   </div>

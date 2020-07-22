@@ -1,0 +1,6 @@
+librosa.list\_mela
+==================
+
+.. currentmodule:: librosa
+
+.. autofunction:: list_mela

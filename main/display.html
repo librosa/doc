@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Display &mdash; librosa 0.8.0-dev documentation</title>
+  <title>Display &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -112,8 +112,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#axis-formatting">Axis formatting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.TimeFormatter.html">librosa.display.TimeFormatter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.NoteFormatter.html">librosa.display.NoteFormatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.SvaraFormatter.html">librosa.display.SvaraFormatter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.LogHzFormatter.html">librosa.display.LogHzFormatter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.ChromaFormatter.html">librosa.display.ChromaFormatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.ChromaSvaraFormatter.html">librosa.display.ChromaSvaraFormatter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.display.TonnetzFormatter.html">librosa.display.TonnetzFormatter</a></li>
 </ul>
 </li>
@@ -243,11 +245,17 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.display.NoteFormatter.html#librosa.display.NoteFormatter" title="librosa.display.NoteFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NoteFormatter</span></code></a>([octave, major, key])</p></td>
 <td><p>Ticker formatter for Notes</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.display.LogHzFormatter.html#librosa.display.LogHzFormatter" title="librosa.display.LogHzFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogHzFormatter</span></code></a>([major])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.display.SvaraFormatter.html#librosa.display.SvaraFormatter" title="librosa.display.SvaraFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SvaraFormatter</span></code></a>(Sa[, octave, major, abbr, mela])</p></td>
+<td><p>Ticker formatter for Svara</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.display.LogHzFormatter.html#librosa.display.LogHzFormatter" title="librosa.display.LogHzFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogHzFormatter</span></code></a>([major])</p></td>
 <td><p>Ticker formatter for logarithmic frequency</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.display.ChromaFormatter.html#librosa.display.ChromaFormatter" title="librosa.display.ChromaFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChromaFormatter</span></code></a>([key])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.display.ChromaFormatter.html#librosa.display.ChromaFormatter" title="librosa.display.ChromaFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChromaFormatter</span></code></a>([key])</p></td>
 <td><p>A formatter for chroma axes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.display.ChromaSvaraFormatter.html#librosa.display.ChromaSvaraFormatter" title="librosa.display.ChromaSvaraFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChromaSvaraFormatter</span></code></a>([Sa, mela, abbr])</p></td>
+<td><p>A formatter for chroma axes with svara instead of notes.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.display.TonnetzFormatter.html#librosa.display.TonnetzFormatter" title="librosa.display.TonnetzFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TonnetzFormatter</span></code></a>()</p></td>
 <td><p>A formatter for tonnetz axes</p></td>
@@ -328,10 +336,10 @@
       <dd><a href="../0.7.0/display.html">0.7.0</a></dd>
       <dd><a href="../0.7.1/display.html">0.7.1</a></dd>
       <dd><a href="../0.7.2/display.html">0.7.2</a></dd>
+      <dd><a href="../0.8.0/display.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../doc-audit-0.8/display.html">doc-audit-0.8</a></dd>
       <dd><a href="display.html">main</a></dd>
     </dl>
   </div>

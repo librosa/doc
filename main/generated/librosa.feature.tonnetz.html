@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>librosa.feature.tonnetz &mdash; librosa 0.8.0-dev documentation</title>
+  <title>librosa.feature.tonnetz &mdash; librosa 0.8.0 documentation</title>
   
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8.0-dev
+                0.8.0
               </div>
             
           
@@ -220,8 +220,10 @@
 <dl class="py function">
 <dt id="librosa.feature.tonnetz">
 <code class="sig-prename descclassname">librosa.feature.</code><code class="sig-name descname">tonnetz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sr</span><span class="o">=</span><span class="default_value">22050</span></em>, <em class="sig-param"><span class="n">chroma</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#tonnetz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librosa.feature.tonnetz" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the tonal centroid features (tonnetz), following the method of
-<a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dd><p>Computes the tonal centroid features (tonnetz)</p>
+<p>This representation uses the method of <a class="footnote-reference brackets" href="#id2" id="id1">1</a> to project chroma features
+onto a 6-dimensional basis representing the perfect fifth, minor third,
+and major third each as two-dimensional coordinates.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Harte, C., Sandler, M., &amp; Gasser, M. (2006). “Detecting Harmonic
@@ -299,7 +301,7 @@ pre-computed.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpl55ihlga/5d7314fa226355f96bdfb50a8a60282570cf5917/docs/generated/librosa-feature-tonnetz-1.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../../../../home/bmcfee/git/librosa/docs/../../../../../tmp/tmpnt58hyic/adf93050549a15c80610e7cdca9a52a72a665a5c/docs/generated/librosa-feature-tonnetz-1.py">Source code</a>)</p>
 <div class="figure align-default">
 <img alt="../_images/librosa-feature-tonnetz-1.png" src="../_images/librosa-feature-tonnetz-1.png" />
 </div>
@@ -364,10 +366,10 @@ pre-computed.</p>
       <dd><a href="../../0.7.0/index.html">0.7.0</a></dd>
       <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
+      <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="../../doc-audit-0.8/index.html">doc-audit-0.8</a></dd>
       <dd><a href="librosa.feature.tonnetz.html">main</a></dd>
     </dl>
   </div>
