@@ -1,6 +1,0 @@
-librosa.phase\_vocoder
-======================
-
-.. currentmodule:: librosa
-
-.. autofunction:: phase_vocoder

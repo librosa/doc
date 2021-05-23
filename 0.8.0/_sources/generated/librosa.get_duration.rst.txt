@@ -1,6 +1,0 @@
-librosa.get\_duration
-=====================
-
-.. currentmodule:: librosa
-
-.. autofunction:: get_duration

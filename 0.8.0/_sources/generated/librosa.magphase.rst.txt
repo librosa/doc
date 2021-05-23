@@ -1,6 +1,0 @@
-librosa.magphase
-================
-
-.. currentmodule:: librosa
-
-.. autofunction:: magphase

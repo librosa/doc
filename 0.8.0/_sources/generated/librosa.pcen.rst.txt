@@ -1,6 +1,0 @@
-librosa.pcen
-============
-
-.. currentmodule:: librosa
-
-.. autofunction:: pcen

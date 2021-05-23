@@ -1,6 +1,0 @@
-librosa.vqt
-===========
-
-.. currentmodule:: librosa
-
-.. autofunction:: vqt

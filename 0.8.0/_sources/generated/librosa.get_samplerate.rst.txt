@@ -1,6 +1,0 @@
-librosa.get\_samplerate
-=======================
-
-.. currentmodule:: librosa
-
-.. autofunction:: get_samplerate

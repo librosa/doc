@@ -1,6 +1,0 @@
-librosa.yin
-===========
-
-.. currentmodule:: librosa
-
-.. autofunction:: yin

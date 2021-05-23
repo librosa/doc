@@ -1,6 +1,0 @@
-librosa.mu\_expand
-==================
-
-.. currentmodule:: librosa
-
-.. autofunction:: mu_expand

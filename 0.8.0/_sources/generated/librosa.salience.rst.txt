@@ -1,6 +1,0 @@
-librosa.salience
-================
-
-.. currentmodule:: librosa
-
-.. autofunction:: salience
