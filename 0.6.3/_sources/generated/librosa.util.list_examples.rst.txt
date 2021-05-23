@@ -1,0 +1,6 @@
+librosa.util.list\_examples
+===========================
+
+.. currentmodule:: librosa.util
+
+.. autofunction:: list_examples
