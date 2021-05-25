@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -200,8 +202,8 @@
   <div class="section" id="librosa-beat-tempo">
 <h1>librosa.beat.tempo<a class="headerlink" href="#librosa-beat-tempo" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.beat.tempo">
-<code class="sig-prename descclassname"><span class="pre">librosa.beat.</span></code><code class="sig-name descname"><span class="pre">tempo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">y=None</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">onset_envelope=None</span></em>, <em class="sig-param"><span class="pre">hop_length=512</span></em>, <em class="sig-param"><span class="pre">start_bpm=120</span></em>, <em class="sig-param"><span class="pre">std_bpm=1.0</span></em>, <em class="sig-param"><span class="pre">ac_size=8.0</span></em>, <em class="sig-param"><span class="pre">max_tempo=320.0</span></em>, <em class="sig-param"><span class="pre">aggregate=&lt;function</span> <span class="pre">mean&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#tempo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.tempo" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.beat.tempo">
+<span class="sig-prename descclassname"><span class="pre">librosa.beat.</span></span><span class="sig-name descname"><span class="pre">tempo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">y=None</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">onset_envelope=None</span></em>, <em class="sig-param"><span class="pre">hop_length=512</span></em>, <em class="sig-param"><span class="pre">start_bpm=120</span></em>, <em class="sig-param"><span class="pre">std_bpm=1.0</span></em>, <em class="sig-param"><span class="pre">ac_size=8.0</span></em>, <em class="sig-param"><span class="pre">max_tempo=320.0</span></em>, <em class="sig-param"><span class="pre">aggregate=&lt;function</span> <span class="pre">mean&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#tempo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.tempo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimate the tempo (beats per minute)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -284,7 +286,7 @@ If <em class="xref py py-obj">None</em>, then tempo is estimated independently f
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-beat-tempo-1_00_00.png" class="plot-directive" src="../_images/librosa-beat-tempo-1_00_00.png" />
+<img alt="../_images/librosa-beat-tempo-1_00_00.png" src="../_images/librosa-beat-tempo-1_00_00.png" />
 </div>
 <p>Plot dynamic tempo estimates over a tempogram</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -298,7 +300,7 @@ If <em class="xref py py-obj">None</em>, then tempo is estimated independently f
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-beat-tempo-1_01_00.png" class="plot-directive" src="../_images/librosa-beat-tempo-1_01_00.png" />
+<img alt="../_images/librosa-beat-tempo-1_01_00.png" src="../_images/librosa-beat-tempo-1_01_00.png" />
 </div>
 </dd></dl>
 

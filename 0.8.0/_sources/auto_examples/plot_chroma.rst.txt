@@ -118,15 +118,6 @@ First, let's plot the original chroma
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -261,15 +252,6 @@ and the result of our filtering.
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -355,7 +337,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  28.206 seconds)
+   **Total running time of the script:** ( 0 minutes  22.934 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:

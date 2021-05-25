@@ -97,7 +97,7 @@ First, we'll load in a song
 
  .. code-block:: none
 
-    /tmp/tmpr3j6xyin/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpmlmdrby5/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -132,15 +132,6 @@ Next, we'll compute and plot a log-power CQT
     :alt: plot segmentation
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
 
 
 
@@ -177,15 +168,6 @@ To reduce dimensionality, we'll beat-synchronous the CQT
     :alt: plot segmentation
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
 
 
 
@@ -477,22 +459,13 @@ And plot the final segmentation over original CQT
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.444 seconds)
+   **Total running time of the script:** ( 0 minutes  10.650 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:

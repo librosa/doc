@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -200,8 +202,8 @@
   <div class="section" id="librosa-beat-plp">
 <h1>librosa.beat.plp<a class="headerlink" href="#librosa-beat-plp" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.beat.plp">
-<code class="sig-prename descclassname"><span class="pre">librosa.beat.</span></code><code class="sig-name descname"><span class="pre">plp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">384</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#plp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.plp" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.beat.plp">
+<span class="sig-prename descclassname"><span class="pre">librosa.beat.</span></span><span class="sig-name descname"><span class="pre">plp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">384</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#plp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.plp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predominant local pulse (PLP) estimation. <a class="reference internal" href="#r17007ed197b4-1" id="id1">[1]</a></p>
 <p>The PLP method analyzes the onset strength envelope in the frequency domain
 to find a locally stable tempo for each frame.  These local periodicities
@@ -283,7 +285,7 @@ Both are normalized here to make comparison easier.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-beat-plp-1_00_00.png" class="plot-directive" src="../_images/librosa-beat-plp-1_00_00.png" />
+<img alt="../_images/librosa-beat-plp-1_00_00.png" src="../_images/librosa-beat-plp-1_00_00.png" />
 </div>
 <p>PLP local maxima can be used as estimates of beat positions.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tempo</span><span class="p">,</span> <span class="n">beats</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">beat</span><span class="o">.</span><span class="n">beat_track</span><span class="p">(</span><span class="n">onset_envelope</span><span class="o">=</span><span class="n">onset_env</span><span class="p">)</span>
@@ -313,7 +315,7 @@ Both are normalized here to make comparison easier.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-beat-plp-1_01_00.png" class="plot-directive" src="../_images/librosa-beat-plp-1_01_00.png" />
+<img alt="../_images/librosa-beat-plp-1_01_00.png" src="../_images/librosa-beat-plp-1_01_00.png" />
 </div>
 </dd></dl>
 

@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -310,7 +312,7 @@ explicit control for <a class="reference internal" href="generated/librosa.cqt.h
 </ul>
 </dd>
 <dt>Other changes</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1064">#1064</a> unit test suite modernized to support latest <code class="xref py py-obj docutils literal notranslate"><span class="pre">pytest</span></code>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1064">#1064</a> unit test suite modernized to support latest <em class="xref py py-obj">pytest</em>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1112">#1112</a> numba accelerated <a class="reference internal" href="generated/librosa.feature.stack_memory.html#librosa.feature.stack_memory" title="librosa.feature.stack_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.stack_memory</span></code></a>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1120">#1120</a> added reference tuning for pitch conversion utilities. <em>Julia Wilkins</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1123">#1123</a> fixed Python requirement definition in installation script. <em>Stefan
@@ -503,7 +505,7 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/790">#790</a> removed dependency on deprecated <a class="reference external" href="https://docs.python.org/3/library/imp.html#module-imp" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imp</span></code></a> module. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/787">#787</a> fixed typos in CONTRIBUTING documentation. <em>Vincent Lostanlen</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/785">#785</a> removed all run-time assertions in favor of proper exceptions. <em>Brian McFee</em></p></li>
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/783">#783</a> migrated test infrastructure from <code class="xref py py-obj docutils literal notranslate"><span class="pre">nose</span></code> to <code class="xref py py-obj docutils literal notranslate"><span class="pre">pytest</span></code>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/783">#783</a> migrated test infrastructure from <em class="xref py py-obj">nose</em> to <em class="xref py py-obj">pytest</em>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/777">#777</a> include LICENSE file in source distribution. <em>toddrme2178</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/769">#769</a> updated documentation in <a class="reference internal" href="generated/librosa.istft.html#librosa.istft" title="librosa.istft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.istft</span></code></a>. <em>Shayenne Moura</em></p></li>
 </ul>
@@ -711,7 +713,7 @@ energy. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 <dt>Other changes</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/352">#352</a> removed <code class="xref py py-obj docutils literal notranslate"><span class="pre">seaborn</span></code> integration. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/352">#352</a> removed <em class="xref py py-obj">seaborn</em> integration. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/368">#368</a> rewrite of the <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> submodule.  All plots are now in natural coordinates. <em>Brian
 McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/402">#402</a> <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> submodule is not automatically imported. <em>Brian McFee</em></p></li>
@@ -1060,7 +1062,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 <li><p>Updated demo notebook(s) to IPython 2.0</p></li>
 <li><p>Moved <em class="xref py py-obj">perceptual_weighting()</em> from <a class="reference internal" href="feature.html#module-librosa.feature" title="librosa.feature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature</span></code></a> into <a class="reference internal" href="core.html#module-librosa" title="librosa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa</span></code></a></p></li>
 <li><p>Moved <em class="xref py py-obj">stack_memory()</em> from <a class="reference internal" href="segment.html#module-librosa.segment" title="librosa.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.segment</span></code></a> into <a class="reference internal" href="feature.html#module-librosa.feature" title="librosa.feature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature</span></code></a></p></li>
-<li><p>Standardized <em class="xref py py-obj">librosa.output.annotation</em> input format to match <code class="xref py py-obj docutils literal notranslate"><span class="pre">mir_eval</span></code></p></li>
+<li><p>Standardized <em class="xref py py-obj">librosa.output.annotation</em> input format to match <em class="xref py py-obj">mir_eval</em></p></li>
 <li><p>Standardized variable names (e.g., <em class="xref py py-obj">onset_envelope</em>).</p></li>
 </ul>
 </dd>

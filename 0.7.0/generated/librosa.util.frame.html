@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -217,8 +219,8 @@
   <div class="section" id="librosa-util-frame">
 <h1>librosa.util.frame<a class="headerlink" href="#librosa-util-frame" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.util.frame">
-<code class="sig-prename descclassname"><span class="pre">librosa.util.</span></code><code class="sig-name descname"><span class="pre">frame</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/util/utils.html#frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.util.frame" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.util.frame">
+<span class="sig-prename descclassname"><span class="pre">librosa.util.</span></span><span class="sig-name descname"><span class="pre">frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/util/utils.html#frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.util.frame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slice a time series into overlapping frames.</p>
 <p>This implementation uses low-level stride manipulation to avoid
 redundant copies of the time series data.</p>

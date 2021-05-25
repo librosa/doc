@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,10 +36,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -223,8 +225,8 @@
   <div class="section" id="librosa-core-reassigned-spectrogram">
 <h1>librosa.core.reassigned_spectrogram<a class="headerlink" href="#librosa-core-reassigned-spectrogram" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.core.reassigned_spectrogram">
-<code class="sig-prename descclassname"><span class="pre">librosa.core.</span></code><code class="sig-name descname"><span class="pre">reassigned_spectrogram</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">y</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">S=None</span></em>, <em class="sig-param"><span class="pre">n_fft=2048</span></em>, <em class="sig-param"><span class="pre">hop_length=None</span></em>, <em class="sig-param"><span class="pre">win_length=None</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">center=True</span></em>, <em class="sig-param"><span class="pre">reassign_frequencies=True</span></em>, <em class="sig-param"><span class="pre">reassign_times=True</span></em>, <em class="sig-param"><span class="pre">ref_power=1e-06</span></em>, <em class="sig-param"><span class="pre">fill_nan=False</span></em>, <em class="sig-param"><span class="pre">clip=True</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.complex64'&gt;</span></em>, <em class="sig-param"><span class="pre">pad_mode='reflect'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#reassigned_spectrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.core.reassigned_spectrogram" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.core.reassigned_spectrogram">
+<span class="sig-prename descclassname"><span class="pre">librosa.core.</span></span><span class="sig-name descname"><span class="pre">reassigned_spectrogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">y</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">S=None</span></em>, <em class="sig-param"><span class="pre">n_fft=2048</span></em>, <em class="sig-param"><span class="pre">hop_length=None</span></em>, <em class="sig-param"><span class="pre">win_length=None</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">center=True</span></em>, <em class="sig-param"><span class="pre">reassign_frequencies=True</span></em>, <em class="sig-param"><span class="pre">reassign_times=True</span></em>, <em class="sig-param"><span class="pre">ref_power=1e-06</span></em>, <em class="sig-param"><span class="pre">fill_nan=False</span></em>, <em class="sig-param"><span class="pre">clip=True</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.complex64'&gt;</span></em>, <em class="sig-param"><span class="pre">pad_mode='reflect'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#reassigned_spectrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.core.reassigned_spectrogram" title="Permalink to this definition">¶</a></dt>
 <dd><p>Time-frequency reassigned spectrogram.</p>
 <p>The reassignment vectors are calculated using equations 5.20 and 5.23 in
 <a class="reference internal" href="#r79b930005248-1" id="id1">[1]</a>:</p>

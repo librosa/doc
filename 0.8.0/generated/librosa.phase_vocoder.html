@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -221,15 +223,15 @@
   <div class="section" id="librosa-phase-vocoder">
 <h1>librosa.phase_vocoder<a class="headerlink" href="#librosa-phase-vocoder" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.phase_vocoder">
-<code class="sig-prename descclassname"><span class="pre">librosa.</span></code><code class="sig-name descname"><span class="pre">phase_vocoder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#phase_vocoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.phase_vocoder" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.phase_vocoder">
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">phase_vocoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#phase_vocoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.phase_vocoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Phase vocoder.  Given an STFT matrix D, speed up by a factor of <code class="docutils literal notranslate"><span class="pre">rate</span></code></p>
 <p>Based on the implementation provided by <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
 <p>This is a simplified implementation, intended primarily for
 reference and pedagogical purposes.  It makes no attempt to
 handle transients, and is likely to produce many audible
 artifacts.  For a higher quality implementation, we recommend
-the RubberBand library <a class="footnote-reference brackets" href="#id4" id="id2">2</a> and its Python wrapper <a class="reference external" href="https://pyrubberband.readthedocs.io/en/stable/api.html#module-pyrubberband" title="(in pyrubberband v0.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyrubberband</span></code></a>.</p>
+the RubberBand library <a class="footnote-reference brackets" href="#id4" id="id2">2</a> and its Python wrapper <em class="xref py py-obj">pyrubberband</em>.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Ellis, D. P. W. “A phase vocoder in Matlab.”

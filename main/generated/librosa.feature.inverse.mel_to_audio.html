@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.feature.inverse.mel_to_audio &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.feature.inverse.mel_to_audio &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -72,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -213,8 +215,8 @@
   <div class="section" id="librosa-feature-inverse-mel-to-audio">
 <h1>librosa.feature.inverse.mel_to_audio<a class="headerlink" href="#librosa-feature-inverse-mel-to-audio" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.feature.inverse.mel_to_audio">
-<code class="sig-prename descclassname"><span class="pre">librosa.feature.inverse.</span></code><code class="sig-name descname"><span class="pre">mel_to_audio</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">M</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">n_fft=2048</span></em>, <em class="sig-param"><span class="pre">hop_length=None</span></em>, <em class="sig-param"><span class="pre">win_length=None</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">center=True</span></em>, <em class="sig-param"><span class="pre">pad_mode='reflect'</span></em>, <em class="sig-param"><span class="pre">power=2.0</span></em>, <em class="sig-param"><span class="pre">n_iter=32</span></em>, <em class="sig-param"><span class="pre">length=None</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/inverse.html#mel_to_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.inverse.mel_to_audio" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.feature.inverse.mel_to_audio">
+<span class="sig-prename descclassname"><span class="pre">librosa.feature.inverse.</span></span><span class="sig-name descname"><span class="pre">mel_to_audio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">M</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">n_fft=2048</span></em>, <em class="sig-param"><span class="pre">hop_length=None</span></em>, <em class="sig-param"><span class="pre">win_length=None</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">center=True</span></em>, <em class="sig-param"><span class="pre">pad_mode='reflect'</span></em>, <em class="sig-param"><span class="pre">power=2.0</span></em>, <em class="sig-param"><span class="pre">n_iter=32</span></em>, <em class="sig-param"><span class="pre">length=None</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/inverse.html#mel_to_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.inverse.mel_to_audio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invert a mel power spectrogram to audio using Griffin-Lim.</p>
 <p>This is primarily a convenience wrapper for:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">inverse</span><span class="o">.</span><span class="n">mel_to_stft</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>

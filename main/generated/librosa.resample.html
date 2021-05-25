@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.resample &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.resample &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -72,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -224,8 +226,8 @@
   <div class="section" id="librosa-resample">
 <h1>librosa.resample<a class="headerlink" href="#librosa-resample" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.resample">
-<code class="sig-prename descclassname"><span class="pre">librosa.</span></code><code class="sig-name descname"><span class="pre">resample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_sr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_sr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kaiser_best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/audio.html#resample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.resample" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.resample">
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">resample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_sr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_sr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kaiser_best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/audio.html#resample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.resample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resample a time series from orig_sr to target_sr</p>
 <p>By default, this uses a high-quality (but relatively slow) method (‘kaiser_best’)
 for band-limited sinc interpolation.  The alternate <code class="docutils literal notranslate"><span class="pre">res_type</span></code> values listed below
@@ -239,22 +241,36 @@ offer different trade-offs of speed and quality.</p>
 </dd>
 <dt><strong>target_sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>target sampling rate</p>
 </dd>
-<dt><strong>res_type</strong><span class="classifier">str</span></dt><dd><p>resample type (see note)</p>
+<dt><strong>res_type</strong><span class="classifier">str</span></dt><dd><p>resample type</p>
+<dl class="simple">
+<dt>‘kaiser_best’ (default)</dt><dd><p><a class="reference external" href="https://resampy.readthedocs.io/en/latest/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a> high-quality mode</p>
+</dd>
+<dt>‘kaiser_fast’</dt><dd><p><a class="reference external" href="https://resampy.readthedocs.io/en/latest/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a> faster method</p>
+</dd>
+<dt>‘fft’ or ‘scipy’</dt><dd><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.6.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a> Fourier method.</p>
+</dd>
+<dt>‘polyphase’</dt><dd><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html#scipy.signal.resample_poly" title="(in SciPy v1.6.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample_poly</span></code></a> polyphase filtering. (fast)</p>
+</dd>
+<dt>‘linear’</dt><dd><p><em class="xref py py-obj">samplerate</em> linear interpolation. (very fast)</p>
+</dd>
+<dt>‘zero_order_hold’</dt><dd><p><em class="xref py py-obj">samplerate</em> repeat the last value between samples. (very fast)</p>
+</dd>
+<dt>‘sinc_best’, ‘sinc_medium’ or ‘sinc_fastest’</dt><dd><p><em class="xref py py-obj">samplerate</em> high-, medium-, and low-quality sinc interpolation.</p>
+</dd>
+<dt>‘soxr_vhq’, ‘soxr_hq’, ‘soxr_mq’ or ‘soxr_lq’</dt><dd><p><em class="xref py py-obj">soxr</em> Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.
+<code class="docutils literal notranslate"><span class="pre">'soxr_hq'</span></code> is the default setting of <em class="xref py py-obj">soxr</em> (fast)</p>
+</dd>
+<dt>‘soxr_qq’</dt><dd><p><em class="xref py py-obj">soxr</em> Quick cubic interpolation (very fast)</p>
+</dd>
+</dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>By default, this uses <a class="reference external" href="https://resampy.readthedocs.io/en/latest/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a>’s high-quality mode (‘kaiser_best’).</p>
-<p>To use a faster method, set <code class="docutils literal notranslate"><span class="pre">res_type='kaiser_fast'</span></code>.</p>
-<p>To use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.6.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a>, set <code class="docutils literal notranslate"><span class="pre">res_type='fft'</span></code> or <code class="docutils literal notranslate"><span class="pre">res_type='scipy'</span></code>. (slow)</p>
-<p>To use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html#scipy.signal.resample_poly" title="(in SciPy v1.6.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample_poly</span></code></a>, set <code class="docutils literal notranslate"><span class="pre">res_type='polyphase'</span></code>. (fast)</p>
-<p>To use <a class="reference external" href="https://python-samplerate.readthedocs.io/en/latest/samplerate/converters.html#samplerate.converters.resample" title="(in python-samplerate v0.1.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samplerate.converters.resample</span></code></a>, set any of the following:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">res_type='linear'</span></code>: linear interpolation (fast)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">res_type='zero_order_hold'</span></code>: repeat the last value between samples (very fast)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">res_type='sinc_best'</span></code>, <code class="docutils literal notranslate"><span class="pre">'sinc_medium'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'sinc_fastest'</span></code>: for high-, medium-,
-and low-quality sinc interpolation</p></li>
-</ul>
-</div></blockquote>
+<p><em class="xref py py-obj">samplerate</em> and <em class="xref py py-obj">soxr</em> are not installed with <a class="reference internal" href="../core.html#module-librosa" title="librosa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa</span></code></a>.
+To use <em class="xref py py-obj">samplerate</em> or <em class="xref py py-obj">soxr</em>, they should be installed manually:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install samplerate
+$ pip install soxr
+</pre></div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -294,6 +310,7 @@ integer-valued.</p>
 <dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.6.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://resampy.readthedocs.io/en/latest/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://python-samplerate.readthedocs.io/en/latest/samplerate/converters.html#samplerate.converters.resample" title="(in python-samplerate v0.1.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samplerate.converters.resample</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#soxr.resample" title="(in Python-SoXR)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr.resample</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>

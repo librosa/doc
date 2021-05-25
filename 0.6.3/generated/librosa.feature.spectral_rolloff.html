@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -217,8 +219,8 @@
   <div class="section" id="librosa-feature-spectral-rolloff">
 <h1>librosa.feature.spectral_rolloff<a class="headerlink" href="#librosa-feature-spectral-rolloff" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.feature.spectral_rolloff">
-<code class="sig-prename descclassname"><span class="pre">librosa.feature.</span></code><code class="sig-name descname"><span class="pre">spectral_rolloff</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.85</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#spectral_rolloff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.spectral_rolloff" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.feature.spectral_rolloff">
+<span class="sig-prename descclassname"><span class="pre">librosa.feature.</span></span><span class="sig-name descname"><span class="pre">spectral_rolloff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.85</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#spectral_rolloff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.spectral_rolloff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute roll-off frequency.</p>
 <p>The roll-off frequency is defined for each frame as the center frequency
 for a spectrogram bin such that at least roll_percent (0.85 by default)
@@ -299,7 +301,7 @@ Otherwise, it can be a single array of <em class="xref py py-obj">d</em> center 
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-feature-spectral_rolloff-1.png" class="plot-directive" src="../_images/librosa-feature-spectral_rolloff-1.png" />
+<img alt="../_images/librosa-feature-spectral_rolloff-1.png" src="../_images/librosa-feature-spectral_rolloff-1.png" />
 </div>
 </dd></dl>
 

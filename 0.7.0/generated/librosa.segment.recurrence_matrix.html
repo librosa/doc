@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -207,8 +209,8 @@
   <div class="section" id="librosa-segment-recurrence-matrix">
 <h1>librosa.segment.recurrence_matrix<a class="headerlink" href="#librosa-segment-recurrence-matrix" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.segment.recurrence_matrix">
-<code class="sig-prename descclassname"><span class="pre">librosa.segment.</span></code><code class="sig-name descname"><span class="pre">recurrence_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'connectivity'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/segment.html#recurrence_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.segment.recurrence_matrix" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.segment.recurrence_matrix">
+<span class="sig-prename descclassname"><span class="pre">librosa.segment.</span></span><span class="sig-name descname"><span class="pre">recurrence_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'connectivity'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/segment.html#recurrence_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.segment.recurrence_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a recurrence matrix from a data matrix.</p>
 <p><em class="xref py py-obj">rec[i, j]</em> is non-zero if <em class="xref py py-obj">data[:, i]</em> is one of <em class="xref py py-obj">data[:, j]</em>’s
 k-nearest-neighbors and <em class="xref py py-obj">|i - j| &gt;= width</em></p>
@@ -327,7 +329,7 @@ By default, the last index (-1) is taken.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-segment-recurrence_matrix-1.png" class="plot-directive" src="../_images/librosa-segment-recurrence_matrix-1.png" />
+<img alt="../_images/librosa-segment-recurrence_matrix-1.png" src="../_images/librosa-segment-recurrence_matrix-1.png" />
 </div>
 </dd></dl>
 

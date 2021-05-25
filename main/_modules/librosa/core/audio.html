@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.core.audio &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.core.audio &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -70,7 +72,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -676,23 +678,34 @@
 <span class="sd">        target sampling rate</span>
 
 <span class="sd">    res_type : str</span>
-<span class="sd">        resample type (see note)</span>
+<span class="sd">        resample type</span>
+
+<span class="sd">        &#39;kaiser_best&#39; (default)</span>
+<span class="sd">            `resampy` high-quality mode</span>
+<span class="sd">        &#39;kaiser_fast&#39;</span>
+<span class="sd">            `resampy` faster method</span>
+<span class="sd">        &#39;fft&#39; or &#39;scipy&#39;</span>
+<span class="sd">            `scipy.signal.resample` Fourier method.</span>
+<span class="sd">        &#39;polyphase&#39;</span>
+<span class="sd">            `scipy.signal.resample_poly` polyphase filtering. (fast)</span>
+<span class="sd">        &#39;linear&#39;</span>
+<span class="sd">            `samplerate` linear interpolation. (very fast)</span>
+<span class="sd">        &#39;zero_order_hold&#39;</span>
+<span class="sd">            `samplerate` repeat the last value between samples. (very fast)</span>
+<span class="sd">        &#39;sinc_best&#39;, &#39;sinc_medium&#39; or &#39;sinc_fastest&#39;</span>
+<span class="sd">            `samplerate` high-, medium-, and low-quality sinc interpolation.</span>
+<span class="sd">        &#39;soxr_vhq&#39;, &#39;soxr_hq&#39;, &#39;soxr_mq&#39; or &#39;soxr_lq&#39;</span>
+<span class="sd">            `soxr` Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.</span>
+<span class="sd">            ``&#39;soxr_hq&#39;`` is the default setting of `soxr` (fast)</span>
+<span class="sd">        &#39;soxr_qq&#39;</span>
+<span class="sd">            `soxr` Quick cubic interpolation (very fast)</span>
 
 <span class="sd">        .. note::</span>
-<span class="sd">            By default, this uses `resampy`&#39;s high-quality mode (&#39;kaiser_best&#39;).</span>
+<span class="sd">            `samplerate` and `soxr` are not installed with `librosa`.</span>
+<span class="sd">            To use `samplerate` or `soxr`, they should be installed manually::</span>
 
-<span class="sd">            To use a faster method, set ``res_type=&#39;kaiser_fast&#39;``.</span>
-
-<span class="sd">            To use `scipy.signal.resample`, set ``res_type=&#39;fft&#39;`` or ``res_type=&#39;scipy&#39;``. (slow)</span>
-
-<span class="sd">            To use `scipy.signal.resample_poly`, set ``res_type=&#39;polyphase&#39;``. (fast)</span>
-
-<span class="sd">            To use `samplerate.converters.resample`, set any of the following:</span>
-
-<span class="sd">                - ``res_type=&#39;linear&#39;``: linear interpolation (fast)</span>
-<span class="sd">                - ``res_type=&#39;zero_order_hold&#39;``: repeat the last value between samples (very fast)</span>
-<span class="sd">                - ``res_type=&#39;sinc_best&#39;``, ``&#39;sinc_medium&#39;``, or ``&#39;sinc_fastest&#39;``: for high-, medium-,</span>
-<span class="sd">                  and low-quality sinc interpolation</span>
+<span class="sd">                $ pip install samplerate</span>
+<span class="sd">                $ pip install soxr</span>
 
 <span class="sd">        .. note::</span>
 <span class="sd">            When using ``res_type=&#39;polyphase&#39;``, only integer sampling rates are</span>
@@ -727,6 +740,7 @@
 <span class="sd">    scipy.signal.resample</span>
 <span class="sd">    resampy</span>
 <span class="sd">    samplerate.converters.resample</span>
+<span class="sd">    soxr.resample</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -778,6 +792,11 @@
 
         <span class="c1"># We have to transpose here to match libsamplerate</span>
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">samplerate</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">converter_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">elif</span> <span class="n">res_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;soxr&#39;</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">soxr</span>
+
+        <span class="c1"># We have to transpose here to match soxr</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">soxr</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
@@ -1072,7 +1091,7 @@
 <span class="sd">    &gt;&gt;&gt; ax.set_title(&#39;LP Model Forward Prediction&#39;)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">order</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">))</span> <span class="ow">or</span> <span class="n">order</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;order must be an integer &gt; 0&quot;</span><span class="p">)</span>
 
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

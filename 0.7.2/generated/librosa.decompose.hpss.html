@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -200,8 +202,8 @@
   <div class="section" id="librosa-decompose-hpss">
 <h1>librosa.decompose.hpss<a class="headerlink" href="#librosa-decompose-hpss" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.decompose.hpss">
-<code class="sig-prename descclassname"><span class="pre">librosa.decompose.</span></code><code class="sig-name descname"><span class="pre">hpss</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">31</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/decompose.html#hpss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.decompose.hpss" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.decompose.hpss">
+<span class="sig-prename descclassname"><span class="pre">librosa.decompose.</span></span><span class="sig-name descname"><span class="pre">hpss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">31</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/decompose.html#hpss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.decompose.hpss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Median-filtering harmonic percussive source separation (HPSS).</p>
 <p>If <em class="xref py py-obj">margin = 1.0</em>, decomposes an input spectrogram <em class="xref py py-obj">S = H + P</em>
 where <em class="xref py py-obj">H</em> contains the harmonic components,
@@ -304,7 +306,7 @@ of the percussive mask.</p></li>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-decompose-hpss-1_00_00.png" class="plot-directive" src="../_images/librosa-decompose-hpss-1_00_00.png" />
+<img alt="../_images/librosa-decompose-hpss-1_00_00.png" src="../_images/librosa-decompose-hpss-1_00_00.png" />
 </div>
 <p>Or with a narrower horizontal filter</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">decompose</span><span class="o">.</span><span class="n">hpss</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>

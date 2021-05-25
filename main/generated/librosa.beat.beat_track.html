@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.beat.beat_track &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.beat.beat_track &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -72,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -206,8 +208,8 @@
   <div class="section" id="librosa-beat-beat-track">
 <h1>librosa.beat.beat_track<a class="headerlink" href="#librosa-beat-beat-track" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.beat.beat_track">
-<code class="sig-prename descclassname"><span class="pre">librosa.beat.</span></code><code class="sig-name descname"><span class="pre">beat_track</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#beat_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.beat_track" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.beat.beat_track">
+<span class="sig-prename descclassname"><span class="pre">librosa.beat.</span></span><span class="sig-name descname"><span class="pre">beat_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#beat_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.beat_track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dynamic programming beat tracker.</p>
 <p>Beats are detected in three stages, following the method of <a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
 <blockquote>
@@ -335,7 +337,7 @@ or if <code class="docutils literal notranslate"><span class="pre">units</span><
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-beat-beat_track-1.png" class="plot-directive" src="../_images/librosa-beat-beat_track-1.png" />
+<img alt="../_images/librosa-beat-beat_track-1.png" src="../_images/librosa-beat-beat_track-1.png" />
 </div>
 </dd></dl>
 

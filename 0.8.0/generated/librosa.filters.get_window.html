@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -210,8 +212,8 @@
   <div class="section" id="librosa-filters-get-window">
 <h1>librosa.filters.get_window<a class="headerlink" href="#librosa-filters-get-window" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.filters.get_window">
-<code class="sig-prename descclassname"><span class="pre">librosa.filters.</span></code><code class="sig-name descname"><span class="pre">get_window</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fftbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/filters.html#get_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.filters.get_window" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.filters.get_window">
+<span class="sig-prename descclassname"><span class="pre">librosa.filters.</span></span><span class="sig-name descname"><span class="pre">get_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fftbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/filters.html#get_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.filters.get_window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a window function.</p>
 <p>This is a wrapper for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.get_window.html#scipy.signal.get_window" title="(in SciPy v1.6.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.get_window</span></code></a> that additionally
 supports callable or pre-computed windows.</p>

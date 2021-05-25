@@ -176,18 +176,10 @@ Now we can load in a file and do some analysis with the new defaults
 
  .. code-block:: none
 
-    /tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpmlmdrby5/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
-    /tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpmlmdrby5/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
-    /tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
 
 
 
@@ -195,7 +187,7 @@ Now we can load in a file and do some analysis with the new defaults
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.727 seconds)
+   **Total running time of the script:** ( 0 minutes  1.417 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_presets.py:

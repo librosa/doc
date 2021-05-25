@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -220,8 +222,8 @@
   <div class="section" id="librosa-core-istft">
 <h1>librosa.core.istft<a class="headerlink" href="#librosa-core-istft" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.core.istft">
-<code class="sig-prename descclassname"><span class="pre">librosa.core.</span></code><code class="sig-name descname"><span class="pre">istft</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stft_matrix</span></em>, <em class="sig-param"><span class="pre">hop_length=None</span></em>, <em class="sig-param"><span class="pre">win_length=None</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">center=True</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">length=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#istft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.core.istft" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.core.istft">
+<span class="sig-prename descclassname"><span class="pre">librosa.core.</span></span><span class="sig-name descname"><span class="pre">istft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stft_matrix</span></em>, <em class="sig-param"><span class="pre">hop_length=None</span></em>, <em class="sig-param"><span class="pre">win_length=None</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">center=True</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">length=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#istft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.core.istft" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inverse short-time Fourier transform (ISTFT).</p>
 <p>Converts a complex-valued spectrogram <em class="xref py py-obj">stft_matrix</em> to time-series <em class="xref py py-obj">y</em>
 by minimizing the mean squared error between <em class="xref py py-obj">stft_matrix</em> and STFT of

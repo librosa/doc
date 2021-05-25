@@ -239,19 +239,6 @@ We can tell specshow to use log-scaled frequency axes just as above:
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -285,19 +272,6 @@ This ensures that axis scales (e.g. time or frequency) are computed correctly.
     :alt: Higher time and frequency resolution
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
 
 
 
@@ -343,17 +317,6 @@ can be displayed as follows:
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -397,15 +360,6 @@ or their note names in scientific pitch notation:
           :alt: Pitch axis decoration
           :class: sphx-glr-multi-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
 
 
 
@@ -599,15 +553,6 @@ so we'll zoom into a single octave for this example.
           :class: sphx-glr-multi-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -710,19 +655,6 @@ explicit `cmap`:
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -811,19 +743,6 @@ here we'll go through it step by step.
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -905,7 +824,7 @@ effectively.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.652 seconds)
+   **Total running time of the script:** ( 0 minutes  8.816 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_display.py:

@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -205,8 +207,8 @@
   <div class="section" id="librosa-display-noteformatter">
 <h1>librosa.display.NoteFormatter<a class="headerlink" href="#librosa-display-noteformatter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="librosa.display.NoteFormatter">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">librosa.display.</span></code><code class="sig-name descname"><span class="pre">NoteFormatter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">octave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#NoteFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.NoteFormatter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.display.NoteFormatter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">librosa.display.</span></span><span class="sig-name descname"><span class="pre">NoteFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">octave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#NoteFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.NoteFormatter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ticker formatter for Notes</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -241,11 +243,11 @@
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-display-NoteFormatter-1.png" class="plot-directive" src="../_images/librosa-display-NoteFormatter-1.png" />
+<img alt="../_images/librosa-display-NoteFormatter-1.png" src="../_images/librosa-display-NoteFormatter-1.png" />
 </div>
 <dl class="py method">
-<dt id="librosa.display.NoteFormatter.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">octave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#NoteFormatter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.NoteFormatter.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.display.NoteFormatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">octave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#NoteFormatter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.NoteFormatter.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -263,10 +265,10 @@
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_minus</span></code>(s)</p></td>
-<td><p>Some classes may want to replace a hyphen for minus with the proper unicode symbol (U+2212) for typographical correctness. This is a helper method to perform such a replacement when it is enabled via <a href="#id1"><span class="problematic" id="id2">:rc:`axes.unicode_minus`</span></a>.</p></td>
+<td><p>Some classes may want to replace a hyphen for minus with the proper unicode symbol (U+2212) for typographical correctness.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_data</span></code>(value)</p></td>
-<td><p>Return the full string representation of the value with the position unspecified.</p></td>
+<td><p>Returns the full string representation of the value with the position unspecified.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_data_short</span></code>(value)</p></td>
 <td><p>Return a short string version of the tick value.</p></td>
@@ -287,7 +289,7 @@
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_locs</span></code>(locs)</p></td>
-<td><p>Set the locations of the ticks.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_view_interval</span></code>(vmin, vmax)</p></td>
 <td><p></p></td>

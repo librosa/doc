@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -217,8 +219,8 @@
   <div class="section" id="librosa-feature-mfcc">
 <h1>librosa.feature.mfcc<a class="headerlink" href="#librosa-feature-mfcc" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.feature.mfcc">
-<code class="sig-prename descclassname"><span class="pre">librosa.feature.</span></code><code class="sig-name descname"><span class="pre">mfcc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mfcc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dct_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ortho'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lifter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#mfcc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.mfcc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.feature.mfcc">
+<span class="sig-prename descclassname"><span class="pre">librosa.feature.</span></span><span class="sig-name descname"><span class="pre">mfcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mfcc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dct_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ortho'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lifter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#mfcc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.mfcc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mel-frequency cepstral coefficients (MFCCs)</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -316,7 +318,7 @@ on time series input</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-feature-mfcc-1_00_00.png" class="plot-directive" src="../_images/librosa-feature-mfcc-1_00_00.png" />
+<img alt="../_images/librosa-feature-mfcc-1_00_00.png" src="../_images/librosa-feature-mfcc-1_00_00.png" />
 </div>
 <p>Compare different DCT bases</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m_slaney</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">dct_type</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -335,7 +337,7 @@ on time series input</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-feature-mfcc-1_01_00.png" class="plot-directive" src="../_images/librosa-feature-mfcc-1_01_00.png" />
+<img alt="../_images/librosa-feature-mfcc-1_01_00.png" src="../_images/librosa-feature-mfcc-1_01_00.png" />
 </div>
 </dd></dl>
 

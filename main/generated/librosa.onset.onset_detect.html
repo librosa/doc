@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.onset.onset_detect &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.onset.onset_detect &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -72,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -207,8 +209,8 @@
   <div class="section" id="librosa-onset-onset-detect">
 <h1>librosa.onset.onset_detect<a class="headerlink" href="#librosa-onset-onset-detect" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.onset.onset_detect">
-<code class="sig-prename descclassname"><span class="pre">librosa.onset.</span></code><code class="sig-name descname"><span class="pre">onset_detect</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/onset.html#onset_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.onset.onset_detect" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.onset.onset_detect">
+<span class="sig-prename descclassname"><span class="pre">librosa.onset.</span></span><span class="sig-name descname"><span class="pre">onset_detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/onset.html#onset_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.onset.onset_detect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Locate note onset events by picking peaks in an onset strength envelope.</p>
 <p>The <em class="xref py py-obj">peak_pick</em> parameters were chosen by large-scale hyper-parameter
 optimization over the dataset provided by <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
@@ -237,6 +239,11 @@ preceding minimum of <code class="docutils literal notranslate"><span class="pre
 </dd>
 <dt><strong>energy</strong><span class="classifier">np.ndarray [shape=(m,)] (optional)</span></dt><dd><p>An energy function to use for backtracking detected onset events.
 If none is provided, then <code class="docutils literal notranslate"><span class="pre">onset_envelope</span></code> is used.</p>
+</dd>
+<dt><strong>normalize</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), normalize the onset envelope to have minimum of 0 and
+maximum of 1 prior to detection.  This is helpful for standardizing the
+parameters of <a class="reference internal" href="librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.peak_pick</span></code></a>.</p>
+<p>Otherwise, the onset envelope is left unnormalized.</p>
 </dd>
 <dt><strong>kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>Additional parameters for peak picking.</p>
 <p>See <a class="reference internal" href="librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.peak_pick</span></code></a> for details.</p>
@@ -302,7 +309,7 @@ an empty list.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-onset-onset_detect-1.png" class="plot-directive" src="../_images/librosa-onset-onset_detect-1.png" />
+<img alt="../_images/librosa-onset-onset_detect-1.png" src="../_images/librosa-onset-onset_detect-1.png" />
 </div>
 </dd></dl>
 

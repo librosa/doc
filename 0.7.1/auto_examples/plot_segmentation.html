@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,10 +36,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -235,7 +237,7 @@ helpful to read along.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpmlmdrby5/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/core/audio.py:146: UserWarning: PySoundFile failed. Trying audioread instead.
   warnings.warn(&#39;PySoundFile failed. Trying audioread instead.&#39;)
 </pre></div>
 </div>
@@ -255,11 +257,6 @@ helpful to read along.</p>
 </pre></div>
 </div>
 <img alt="plot segmentation" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_segmentation_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The &#39;basey&#39; parameter of __init__() has been renamed &#39;base&#39; since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-  scaler(mode, **kwargs)
-</pre></div>
-</div>
 <p>To reduce dimensionality, we’ll beat-synchronous the CQT</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">tempo</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">beats</span></a> <span class="o">=</span> <a href="../generated/librosa.beat.beat_track.html#librosa.beat.beat_track" title="librosa.beat.beat_track" class="sphx-glr-backref-module-librosa-beat sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">beat</span><span class="o">.</span><span class="n">beat_track</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Csync</span></a> <span class="o">=</span> <a href="../generated/librosa.util.sync.html#librosa.util.sync" title="librosa.util.sync" class="sphx-glr-backref-module-librosa-util sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">sync</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">C</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">beats</span></a><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.median.html#numpy.median" title="numpy.median" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">median</span></a><span class="p">)</span>
@@ -279,11 +276,6 @@ helpful to read along.</p>
 </pre></div>
 </div>
 <img alt="plot segmentation" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_segmentation_002.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The &#39;basey&#39; parameter of __init__() has been renamed &#39;base&#39; since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-  scaler(mode, **kwargs)
-</pre></div>
-</div>
 <p>Let’s build a weighted recurrence matrix using beat-synchronous CQT
 (Equation 1)
 width=3 prevents links within the same bar
@@ -449,12 +441,7 @@ mode=’affinity’ here implements S_rep (after Eq. 8)</p>
 </pre></div>
 </div>
 <img alt="plot segmentation" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_segmentation_006.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpr3j6xyin/ef93c2c2f31582135108594034cc89b6d7cda718/librosa/display.py:862: MatplotlibDeprecationWarning: The &#39;basey&#39; parameter of __init__() has been renamed &#39;base&#39; since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-  scaler(mode, **kwargs)
-</pre></div>
-</div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.498 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.796 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-segmentation-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1753f05b4d82bdfe3ba891cf6ced2b66/plot_segmentation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_segmentation.py</span></code></a></p>

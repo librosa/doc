@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -205,8 +207,8 @@
   <div class="section" id="librosa-display-waveplot">
 <h1>librosa.display.waveplot<a class="headerlink" href="#librosa-display-waveplot" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.display.waveplot">
-<code class="sig-prename descclassname"><span class="pre">librosa.display.</span></code><code class="sig-name descname"><span class="pre">waveplot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#waveplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.waveplot" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.display.waveplot">
+<span class="sig-prename descclassname"><span class="pre">librosa.display.</span></span><span class="sig-name descname"><span class="pre">waveplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#waveplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.waveplot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the amplitude envelope of a waveform.</p>
 <p>If <em class="xref py py-obj">y</em> is monophonic, a filled curve is drawn between <em class="xref py py-obj">[-abs(y), abs(y)]</em>.</p>
 <p>If <em class="xref py py-obj">y</em> is stereo, the curve is drawn between <em class="xref py py-obj">[-abs(y[1]), abs(y[0])]</em>,
@@ -281,7 +283,7 @@ the duration of <em class="xref py py-obj">y</em>, then <em class="xref py py-ob
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-display-waveplot-1.png" class="plot-directive" src="../_images/librosa-display-waveplot-1.png" />
+<img alt="../_images/librosa-display-waveplot-1.png" src="../_images/librosa-display-waveplot-1.png" />
 </div>
 </dd></dl>
 

@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -209,8 +211,8 @@
   <div class="section" id="librosa-display-cmap">
 <h1>librosa.display.cmap<a class="headerlink" href="#librosa-display-cmap" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.display.cmap">
-<code class="sig-prename descclassname"><span class="pre">librosa.display.</span></code><code class="sig-name descname"><span class="pre">cmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_seq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'magma'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'coolwarm'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#cmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.cmap" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.display.cmap">
+<span class="sig-prename descclassname"><span class="pre">librosa.display.</span></span><span class="sig-name descname"><span class="pre">cmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_seq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'magma'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_bool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_div</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'coolwarm'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/display.html#cmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.display.cmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a default colormap from the given data.</p>
 <p>If the data is boolean, use a black and white colormap.</p>
 <p>If the data has both positive and negative values,

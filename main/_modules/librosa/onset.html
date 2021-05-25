@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.onset &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.onset &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -70,7 +72,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -228,6 +230,7 @@
     <span class="n">backtrack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">units</span><span class="o">=</span><span class="s2">&quot;frames&quot;</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Locate note onset events by picking peaks in an onset strength envelope.</span>
@@ -265,6 +268,13 @@
 <span class="sd">    energy : np.ndarray [shape=(m,)] (optional)</span>
 <span class="sd">        An energy function to use for backtracking detected onset events.</span>
 <span class="sd">        If none is provided, then ``onset_envelope`` is used.</span>
+
+<span class="sd">    normalize : bool</span>
+<span class="sd">        If ``True`` (default), normalize the onset envelope to have minimum of 0 and</span>
+<span class="sd">        maximum of 1 prior to detection.  This is helpful for standardizing the</span>
+<span class="sd">        parameters of `librosa.util.peak_pick`.</span>
+
+<span class="sd">        Otherwise, the onset envelope is left unnormalized.</span>
 
 <span class="sd">    kwargs : additional keyword arguments</span>
 <span class="sd">        Additional parameters for peak picking.</span>
@@ -336,32 +346,34 @@
 
     <span class="c1"># Shift onset envelope up to be non-negative</span>
     <span class="c1"># (a common normalization step to make the threshold more consistent)</span>
-    <span class="n">onset_envelope</span> <span class="o">-=</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="c1"># Normalize onset strength function to [0, 1] range</span>
+        <span class="n">onset_envelope</span> <span class="o">=</span> <span class="n">onset_envelope</span> <span class="o">-</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="c1"># Max-scale with safe division</span>
+        <span class="n">onset_envelope</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>
 
     <span class="c1"># Do we have any onsets to grab?</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)):</span>
+        <span class="n">onsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 
-    <span class="c1"># Normalize onset strength function to [0, 1] range</span>
-    <span class="n">onset_envelope</span> <span class="o">/=</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># These parameter settings found by large-scale search</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;pre_max&quot;</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span>  <span class="c1"># 30ms</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;post_max&quot;</span><span class="p">,</span> <span class="mf">0.00</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 0ms</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;pre_avg&quot;</span><span class="p">,</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span>  <span class="c1"># 100ms</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;post_avg&quot;</span><span class="p">,</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 100ms</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;wait&quot;</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span>  <span class="c1"># 30ms</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">)</span>
 
-    <span class="c1"># These parameter settings found by large-scale search</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;pre_max&quot;</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span>  <span class="c1"># 30ms</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;post_max&quot;</span><span class="p">,</span> <span class="mf">0.00</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 0ms</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;pre_avg&quot;</span><span class="p">,</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span>  <span class="c1"># 100ms</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;post_avg&quot;</span><span class="p">,</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 100ms</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;wait&quot;</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span>  <span class="c1"># 30ms</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">)</span>
+        <span class="c1"># Peak pick the onset envelope</span>
+        <span class="n">onsets</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">peak_pick</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="c1"># Peak pick the onset envelope</span>
-    <span class="n">onsets</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">peak_pick</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Optionally backtrack the events</span>
+        <span class="k">if</span> <span class="n">backtrack</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">energy</span> <span class="o">=</span> <span class="n">onset_envelope</span>
 
-    <span class="c1"># Optionally backtrack the events</span>
-    <span class="k">if</span> <span class="n">backtrack</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">energy</span> <span class="o">=</span> <span class="n">onset_envelope</span>
-
-        <span class="n">onsets</span> <span class="o">=</span> <span class="n">onset_backtrack</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
+            <span class="n">onsets</span> <span class="o">=</span> <span class="n">onset_backtrack</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
         <span class="k">pass</span>
@@ -742,10 +754,10 @@
     <span class="k">if</span> <span class="n">aggregate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">aggregate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span>
 
-    <span class="k">if</span> <span class="n">lag</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lag</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lag</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lag</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;lag must be a positive integer&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">max_size</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">max_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">max_size</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">max_size</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;max_size must be a positive integer&quot;</span><span class="p">)</span>
 
     <span class="c1"># First, compute mel spectrogram</span>

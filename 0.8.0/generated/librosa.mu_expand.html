@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -223,8 +225,8 @@
   <div class="section" id="librosa-mu-expand">
 <h1>librosa.mu_expand<a class="headerlink" href="#librosa-mu-expand" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.mu_expand">
-<code class="sig-prename descclassname"><span class="pre">librosa.</span></code><code class="sig-name descname"><span class="pre">mu_expand</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/audio.html#mu_expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.mu_expand" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.mu_expand">
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">mu_expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/audio.html#mu_expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.mu_expand" title="Permalink to this definition">¶</a></dt>
 <dd><p>mu-law expansion</p>
 <p>This function is the inverse of <code class="docutils literal notranslate"><span class="pre">mu_compress</span></code>. Given a mu-law compressed
 signal <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>, the mu-law expansion is calculated by:</p>

@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -200,8 +202,8 @@
   <div class="section" id="librosa-decompose-nn-filter">
 <h1>librosa.decompose.nn_filter<a class="headerlink" href="#librosa-decompose-nn-filter" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.decompose.nn_filter">
-<code class="sig-prename descclassname"><span class="pre">librosa.decompose.</span></code><code class="sig-name descname"><span class="pre">nn_filter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/decompose.html#nn_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.decompose.nn_filter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.decompose.nn_filter">
+<span class="sig-prename descclassname"><span class="pre">librosa.decompose.</span></span><span class="sig-name descname"><span class="pre">nn_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/decompose.html#nn_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.decompose.nn_filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filtering by nearest-neighbors.</p>
 <p>Each data point (e.g, spectrogram column) is replaced
 by aggregating its nearest neighbors in feature space.</p>
@@ -315,7 +317,7 @@ but this can be overridden directly by setting the <em class="xref py py-obj">me
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-decompose-nn_filter-1.png" class="plot-directive" src="../_images/librosa-decompose-nn_filter-1.png" />
+<img alt="../_images/librosa-decompose-nn_filter-1.png" src="../_images/librosa-decompose-nn_filter-1.png" />
 </div>
 </dd></dl>
 

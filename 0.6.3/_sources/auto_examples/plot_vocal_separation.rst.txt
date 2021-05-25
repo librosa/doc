@@ -103,19 +103,6 @@ Plot a 5-second slice of the spectrum
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/22ac95e957d282432b833bf59e48bdf99e52e8d9/librosa/display.py:831: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/22ac95e957d282432b833bf59e48bdf99e52e8d9/librosa/display.py:831: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/22ac95e957d282432b833bf59e48bdf99e52e8d9/librosa/display.py:831: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
@@ -233,26 +220,13 @@ Plot the same slice, but separated into its foreground and background
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /tmp/tmpr3j6xyin/22ac95e957d282432b833bf59e48bdf99e52e8d9/librosa/display.py:831: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/22ac95e957d282432b833bf59e48bdf99e52e8d9/librosa/display.py:831: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-    /tmp/tmpr3j6xyin/22ac95e957d282432b833bf59e48bdf99e52e8d9/librosa/display.py:831: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-      scaler(mode, **kwargs)
-
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  30.424 seconds)
+   **Total running time of the script:** ( 0 minutes  28.068 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:

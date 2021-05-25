@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.perceptual_weighting &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>librosa.perceptual_weighting &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -72,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -230,8 +232,8 @@
   <div class="section" id="librosa-perceptual-weighting">
 <h1>librosa.perceptual_weighting<a class="headerlink" href="#librosa-perceptual-weighting" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.perceptual_weighting">
-<code class="sig-prename descclassname"><span class="pre">librosa.</span></code><code class="sig-name descname"><span class="pre">perceptual_weighting</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#perceptual_weighting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.perceptual_weighting" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.perceptual_weighting">
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">perceptual_weighting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'A'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#perceptual_weighting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.perceptual_weighting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perceptual weighting of a power spectrogram:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S_p</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">frequency_weighting</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">/</span> <span class="n">ref</span><span class="p">)</span>
 </pre></div>
@@ -300,7 +302,7 @@ e.g. <em class="xref py py-obj">‘A’</em>, <em class="xref py py-obj">‘B’
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-perceptual_weighting-1.png" class="plot-directive" src="../_images/librosa-perceptual_weighting-1.png" />
+<img alt="../_images/librosa-perceptual_weighting-1.png" src="../_images/librosa-perceptual_weighting-1.png" />
 </div>
 </dd></dl>
 

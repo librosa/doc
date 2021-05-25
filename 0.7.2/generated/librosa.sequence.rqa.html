@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -204,8 +206,8 @@
   <div class="section" id="librosa-sequence-rqa">
 <h1>librosa.sequence.rqa<a class="headerlink" href="#librosa-sequence-rqa" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.sequence.rqa">
-<code class="sig-prename descclassname"><span class="pre">librosa.sequence.</span></code><code class="sig-name descname"><span class="pre">rqa</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_onset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knight_moves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/sequence.html#rqa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.sequence.rqa" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.sequence.rqa">
+<span class="sig-prename descclassname"><span class="pre">librosa.sequence.</span></span><span class="sig-name descname"><span class="pre">rqa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_onset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knight_moves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/sequence.html#rqa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.sequence.rqa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recurrence quantification analysis (RQA)</p>
 <p>This function implements different forms of RQA as described by
 Serra, Serra, and Andrzejak <a class="reference internal" href="#rbe1ccd42c916-1" id="id1">[1]</a>.  These methods take as input
@@ -323,7 +325,7 @@ in the best alignment sequence.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-sequence-rqa-1_00_00.png" class="plot-directive" src="../_images/librosa-sequence-rqa-1_00_00.png" />
+<img alt="../_images/librosa-sequence-rqa-1_00_00.png" src="../_images/librosa-sequence-rqa-1_00_00.png" />
 </div>
 <p>Full alignment using gaps and knight moves</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># New gaps cost 5, extending old gaps cost 10 for each step</span>
@@ -343,7 +345,7 @@ in the best alignment sequence.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-sequence-rqa-1_01_00.png" class="plot-directive" src="../_images/librosa-sequence-rqa-1_01_00.png" />
+<img alt="../_images/librosa-sequence-rqa-1_01_00.png" src="../_images/librosa-sequence-rqa-1_01_00.png" />
 </div>
 </dd></dl>
 

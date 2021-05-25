@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -222,8 +224,8 @@
   <div class="section" id="librosa-core-griffinlim-cqt">
 <h1>librosa.core.griffinlim_cqt<a class="headerlink" href="#librosa-core-griffinlim-cqt" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="librosa.core.griffinlim_cqt">
-<code class="sig-prename descclassname"><span class="pre">librosa.core.</span></code><code class="sig-name descname"><span class="pre">griffinlim_cqt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">C</span></em>, <em class="sig-param"><span class="pre">n_iter=32</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">hop_length=512</span></em>, <em class="sig-param"><span class="pre">fmin=None</span></em>, <em class="sig-param"><span class="pre">bins_per_octave=12</span></em>, <em class="sig-param"><span class="pre">tuning=0.0</span></em>, <em class="sig-param"><span class="pre">filter_scale=1</span></em>, <em class="sig-param"><span class="pre">norm=1</span></em>, <em class="sig-param"><span class="pre">sparsity=0.01</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">scale=True</span></em>, <em class="sig-param"><span class="pre">pad_mode='reflect'</span></em>, <em class="sig-param"><span class="pre">res_type='kaiser_fast'</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">length=None</span></em>, <em class="sig-param"><span class="pre">momentum=0.99</span></em>, <em class="sig-param"><span class="pre">init='random'</span></em>, <em class="sig-param"><span class="pre">random_state=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/constantq.html#griffinlim_cqt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.core.griffinlim_cqt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="librosa.core.griffinlim_cqt">
+<span class="sig-prename descclassname"><span class="pre">librosa.core.</span></span><span class="sig-name descname"><span class="pre">griffinlim_cqt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">C</span></em>, <em class="sig-param"><span class="pre">n_iter=32</span></em>, <em class="sig-param"><span class="pre">sr=22050</span></em>, <em class="sig-param"><span class="pre">hop_length=512</span></em>, <em class="sig-param"><span class="pre">fmin=None</span></em>, <em class="sig-param"><span class="pre">bins_per_octave=12</span></em>, <em class="sig-param"><span class="pre">tuning=0.0</span></em>, <em class="sig-param"><span class="pre">filter_scale=1</span></em>, <em class="sig-param"><span class="pre">norm=1</span></em>, <em class="sig-param"><span class="pre">sparsity=0.01</span></em>, <em class="sig-param"><span class="pre">window='hann'</span></em>, <em class="sig-param"><span class="pre">scale=True</span></em>, <em class="sig-param"><span class="pre">pad_mode='reflect'</span></em>, <em class="sig-param"><span class="pre">res_type='kaiser_fast'</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">length=None</span></em>, <em class="sig-param"><span class="pre">momentum=0.99</span></em>, <em class="sig-param"><span class="pre">init='random'</span></em>, <em class="sig-param"><span class="pre">random_state=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/constantq.html#griffinlim_cqt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.core.griffinlim_cqt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Approximate constant-Q magnitude spectrogram inversion using the “fast” Griffin-Lim
 algorithm <a class="reference internal" href="#re33fb425db1f-1" id="id1">[1]</a> <a class="reference internal" href="#re33fb425db1f-2" id="id2">[2]</a>.</p>
 <p>Given the magnitude of a constant-Q spectrogram (<em class="xref py py-obj">C</em>), the algorithm randomly initializes
@@ -360,7 +362,7 @@ for phase initialization.</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<img alt="../_images/librosa-core-griffinlim_cqt-1.png" class="plot-directive" src="../_images/librosa-core-griffinlim_cqt-1.png" />
+<img alt="../_images/librosa-core-griffinlim_cqt-1.png" src="../_images/librosa-core-griffinlim_cqt-1.png" />
 </div>
 </dd></dl>
 

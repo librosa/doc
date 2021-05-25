@@ -7,13 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Changelog &mdash; librosa 0.8.1rc0 documentation</title>
+  <title>Changelog &mdash; librosa 0.8.1rc2 documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -72,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc0
+                0.8.1rc2
               </div>
             
           
@@ -250,6 +252,7 @@
 <dt>New Features</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1293">#1293</a> <a class="reference internal" href="generated/librosa.effects.deemphasis.html#librosa.effects.deemphasis" title="librosa.effects.deemphasis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.effects.deemphasis</span></code></a>, inverse operation of <a class="reference internal" href="generated/librosa.effects.preemphasis.html#librosa.effects.preemphasis" title="librosa.effects.preemphasis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.effects.preemphasis</span></code></a>. <em>Dan Mazur</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1207">#1207</a>  <a class="reference internal" href="generated/librosa.display.waveshow.html#librosa.display.waveshow" title="librosa.display.waveshow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.waveshow</span></code></a>, adaptively visualize waveforms by amplitude envelope when zoomed out, or raw sample values when zoomed in. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1338">#1338</a> <a class="reference internal" href="generated/librosa.resample.html#librosa.resample" title="librosa.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.resample</span></code></a> now optionally supports <em class="xref py py-obj">soxr</em>. <em>Myungchul Keum</em></p></li>
 </ul>
 </dd>
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -257,6 +260,7 @@
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1240">#1240</a> <a class="reference internal" href="generated/librosa.display.specshow.html#librosa.display.specshow" title="librosa.display.specshow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.specshow</span></code></a> now correctly infers <em class="xref py py-obj">fmax</em> for mel frequency axes. <em>Brian McFee, Bea Steers</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1311">#1311</a> <a class="reference internal" href="generated/librosa.filters.chroma.html#librosa.filters.chroma" title="librosa.filters.chroma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.chroma</span></code></a> fixed an error in how chromagrams were generated when <em class="xref py py-obj">n_chroma!=12</em> and <em class="xref py py-obj">base_c=True</em>. <em>Joon Lim</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1322">#1322</a> <a class="reference internal" href="generated/librosa.feature.inverse.mel_to_audio.html#librosa.feature.inverse.mel_to_audio" title="librosa.feature.inverse.mel_to_audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.inverse.mel_to_audio</span></code></a> now infers <em class="xref py py-obj">hop_length</em> by default in a way that is consistent with the rest of the package. <em>Dan Ellis</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1341">#1341</a> <a class="reference internal" href="generated/librosa.onset.onset_detect.html#librosa.onset.onset_detect" title="librosa.onset.onset_detect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.onset.onset_detect</span></code></a> no longer modifies user-provided onset envelopes. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 <dt>Documentation</dt><dd><ul class="simple">
@@ -279,6 +283,9 @@ a plot if the axes are of the same type and shape. <em>N. Dorukhan Sergin</em></
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1335">#1335</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1336">#1336</a> <a class="reference internal" href="generated/librosa.display.specshow.html#librosa.display.specshow" title="librosa.display.specshow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.specshow</span></code></a> now supports pitch notation
 (Western, Hindustani, and Carnatic) for STFT matrices. <em>Paul Biberstein, Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1333">#1333</a> minimum version of <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> has been updated to 0.10.2. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1340">#1340</a> several functions now support <em class="xref py py-obj">np.integer</em>-valued parameters as well as integer-valued parameters. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1207">#1207</a> <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> time-formatted axes now have enhanced precision at short time scales. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1341">#1341</a> <a class="reference internal" href="generated/librosa.onset.onset_detect.html#librosa.onset.onset_detect" title="librosa.onset.onset_detect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.onset.onset_detect</span></code></a> can now optionally disable normalization of the onset envelope. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 <dt>Deprecations to be removed in 0.9</dt><dd><ul class="simple">
@@ -355,7 +362,7 @@ explicit control for <a class="reference internal" href="generated/librosa.cqt.h
 </ul>
 </dd>
 <dt>Other changes</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1064">#1064</a> unit test suite modernized to support latest <code class="xref py py-obj docutils literal notranslate"><span class="pre">pytest</span></code>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1064">#1064</a> unit test suite modernized to support latest <em class="xref py py-obj">pytest</em>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1112">#1112</a> numba accelerated <a class="reference internal" href="generated/librosa.feature.stack_memory.html#librosa.feature.stack_memory" title="librosa.feature.stack_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.stack_memory</span></code></a>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1120">#1120</a> added reference tuning for pitch conversion utilities. <em>Julia Wilkins</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1123">#1123</a> fixed Python requirement definition in installation script. <em>Stefan
@@ -548,7 +555,7 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/790">#790</a> removed dependency on deprecated <a class="reference external" href="https://docs.python.org/3/library/imp.html#module-imp" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imp</span></code></a> module. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/787">#787</a> fixed typos in CONTRIBUTING documentation. <em>Vincent Lostanlen</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/785">#785</a> removed all run-time assertions in favor of proper exceptions. <em>Brian McFee</em></p></li>
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/783">#783</a> migrated test infrastructure from <code class="xref py py-obj docutils literal notranslate"><span class="pre">nose</span></code> to <code class="xref py py-obj docutils literal notranslate"><span class="pre">pytest</span></code>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/783">#783</a> migrated test infrastructure from <em class="xref py py-obj">nose</em> to <em class="xref py py-obj">pytest</em>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/777">#777</a> include LICENSE file in source distribution. <em>toddrme2178</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/769">#769</a> updated documentation in <a class="reference internal" href="generated/librosa.istft.html#librosa.istft" title="librosa.istft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.istft</span></code></a>. <em>Shayenne Moura</em></p></li>
 </ul>
@@ -756,7 +763,7 @@ energy. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 <dt>Other changes</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/352">#352</a> removed <code class="xref py py-obj docutils literal notranslate"><span class="pre">seaborn</span></code> integration. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/352">#352</a> removed <em class="xref py py-obj">seaborn</em> integration. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/368">#368</a> rewrite of the <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> submodule.  All plots are now in natural coordinates. <em>Brian
 McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/402">#402</a> <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> submodule is not automatically imported. <em>Brian McFee</em></p></li>
@@ -1105,7 +1112,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 <li><p>Updated demo notebook(s) to IPython 2.0</p></li>
 <li><p>Moved <em class="xref py py-obj">perceptual_weighting()</em> from <a class="reference internal" href="feature.html#module-librosa.feature" title="librosa.feature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature</span></code></a> into <a class="reference internal" href="core.html#module-librosa" title="librosa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa</span></code></a></p></li>
 <li><p>Moved <em class="xref py py-obj">stack_memory()</em> from <a class="reference internal" href="segment.html#module-librosa.segment" title="librosa.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.segment</span></code></a> into <a class="reference internal" href="feature.html#module-librosa.feature" title="librosa.feature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature</span></code></a></p></li>
-<li><p>Standardized <em class="xref py py-obj">librosa.output.annotation</em> input format to match <code class="xref py py-obj docutils literal notranslate"><span class="pre">mir_eval</span></code></p></li>
+<li><p>Standardized <em class="xref py py-obj">librosa.output.annotation</em> input format to match <em class="xref py py-obj">mir_eval</em></p></li>
 <li><p>Standardized variable names (e.g., <em class="xref py py-obj">onset_envelope</em>).</p></li>
 </ul>
 </dd>

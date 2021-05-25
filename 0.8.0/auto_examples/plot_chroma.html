@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
@@ -35,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -262,11 +264,6 @@ recurrence-based smoothing technique of
 </pre></div>
 </div>
 <img alt="plot chroma" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_chroma_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The &#39;basey&#39; parameter of __init__() has been renamed &#39;base&#39; since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-  scaler(mode, **kwargs)
-</pre></div>
-</div>
 <p>We can do better by isolating the harmonic component of the audio signal.
 We’ll use a large margin for separating harmonics from percussives:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_harm</span></a> <span class="o">=</span> <a href="../generated/librosa.effects.harmonic.html#librosa.effects.harmonic" title="librosa.effects.harmonic" class="sphx-glr-backref-module-librosa-effects sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">effects</span><span class="o">.</span><span class="n">harmonic</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
@@ -333,11 +330,6 @@ and the result of our filtering.</p>
 </pre></div>
 </div>
 <img alt="plot chroma" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_chroma_005.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpr3j6xyin/adf93050549a15c80610e7cdca9a52a72a665a5c/librosa/display.py:974: MatplotlibDeprecationWarning: The &#39;basey&#39; parameter of __init__() has been renamed &#39;base&#39; since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
-  scaler(mode, **kwargs)
-</pre></div>
-</div>
 </div>
 <div class="section" id="chroma-variants">
 <h2>Chroma variants<a class="headerlink" href="#chroma-variants" title="Permalink to this headline">¶</a></h2>
@@ -386,7 +378,7 @@ that are invariant to dynamics and timbre.</p>
 </pre></div>
 </div>
 <img alt="plot chroma" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_chroma_007.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  28.206 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  22.934 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-chroma-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/1c20f4f9ccc615dc1a8b9eafe004d98d/plot_chroma.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_chroma.py</span></code></a></p>
