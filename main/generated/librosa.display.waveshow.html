@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.display.waveshow &mdash; librosa 0.8.1rc2 documentation</title>
+  <title>librosa.display.waveshow &mdash; librosa 0.8.1 documentation</title>
   
 
   
@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                0.8.1rc2
+                0.8.1
               </div>
             
           
@@ -220,8 +220,8 @@
 samples-based view of the signal (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.step.html#matplotlib.pyplot.step" title="(in Matplotlib v3.4.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.step</span></code></a>) and an
 amplitude-envelope view of the signal (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.fill_between.html#matplotlib.pyplot.fill_between" title="(in Matplotlib v3.4.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.fill_between</span></code></a>)
 depending on the time extent of the plot’s viewport.</p>
-<p>More specifically, when the plot spans a time interval of less than <em class="xref py py-obj">max_points /
-sr</em> (by default, 1/2 second), the samples-based view is used, and otherwise a
+<p>More specifically, when the plot spans a time interval of less than <code class="docutils literal notranslate"><span class="pre">max_points</span> <span class="pre">/</span>
+<span class="pre">sr</span></code> (by default, 1/2 second), the samples-based view is used, and otherwise a
 downsampled amplitude envelope is used.
 This is done to limit the complexity of the visual elements to guarantee an
 efficient, visually interpretable plot.</p>
@@ -245,7 +245,7 @@ plot each signal independently.</p>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code> (samples per second)</p>
 </dd>
 <dt><strong>max_points</strong><span class="classifier">postive integer</span></dt><dd><p>Maximum number of samples to draw.  When the plot covers a time extent
-smaller than <em class="xref py py-obj">max_points / sr</em> (default: 1/2 second), samples are drawn.</p>
+smaller than <code class="docutils literal notranslate"><span class="pre">max_points</span> <span class="pre">/</span> <span class="pre">sr</span></code> (default: 1/2 second), samples are drawn.</p>
 <p>If drawing raw samples would exceed <em class="xref py py-obj">max_points</em>, then a downsampled
 amplitude envelope extracted from non-overlapping windows of <em class="xref py py-obj">y</em> is
 visualized instead.  The parameters of the amplitude envelope are defined so
@@ -335,7 +335,7 @@ supported.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.01</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sample view&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Full signal&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">y_harm</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Harmonic&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">y_perc</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Percussive&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">y_perc</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Percussive&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">label_outer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -401,6 +401,7 @@ supported.</p>
       <dd><a href="../../0.7.1/index.html">0.7.1</a></dd>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
+      <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>librosa.effects &mdash; librosa 0.8.1rc2 documentation</title>
+  <title>librosa.effects &mdash; librosa 0.8.1 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.8.1rc2
+                0.8.1
               </div>
             
           
@@ -474,10 +474,7 @@
 <span class="sd">        how many steps per octave</span>
 
 <span class="sd">    res_type : string</span>
-<span class="sd">        Resample type. Possible options:</span>
-<span class="sd">            &#39;kaiser_best&#39;, &#39;kaiser_fast&#39;, and &#39;scipy&#39;, &#39;polyphase&#39;, &#39;fft&#39;.</span>
-
-<span class="sd">        By default, &#39;kaiser_best&#39; is used.</span>
+<span class="sd">        Resample type. By default, &#39;kaiser_best&#39; is used.</span>
 
 <span class="sd">        See `librosa.resample` for more information.</span>
 
@@ -867,9 +864,9 @@
     <span class="sd">&quot;&quot;&quot;De-emphasize an audio signal with the inverse operation of preemphasis():</span>
 
 <span class="sd">    If y = preemphasis(x, coef=coef, zi=zi), the deemphasis is:</span>
-<span class="sd">        x[i] = y[i] + coef * x[i-1]</span>
-<span class="sd">        x = deemphasis(y, coef=coef, zi=zi)</span>
 
+<span class="sd">    &gt;&gt;&gt; x[i] = y[i] + coef * x[i-1]</span>
+<span class="sd">    &gt;&gt;&gt; x = deemphasis(y, coef=coef, zi=zi)</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

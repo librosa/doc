@@ -176,9 +176,9 @@ Now we can load in a file and do some analysis with the new defaults
 
  .. code-block:: none
 
-    /tmp/tmpmlmdrby5/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp__8r_v48/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
-    /tmp/tmpmlmdrby5/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp__8r_v48/b0064fe7dbe8048b1d4148e61a568b6fe3fca91b/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -187,7 +187,7 @@ Now we can load in a file and do some analysis with the new defaults
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.375 seconds)
+   **Total running time of the script:** ( 0 minutes  1.592 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_presets.py:
