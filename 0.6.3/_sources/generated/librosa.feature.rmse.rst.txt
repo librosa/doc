@@ -1,6 +1,0 @@
-﻿librosa.feature.rmse
-====================
-
-.. currentmodule:: librosa.feature
-
-.. autofunction:: rmse

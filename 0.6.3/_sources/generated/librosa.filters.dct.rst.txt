@@ -1,6 +1,0 @@
-﻿librosa.filters.dct
-===================
-
-.. currentmodule:: librosa.filters
-
-.. autofunction:: dct
