@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Vocal separation &mdash; librosa 0.9.0rc0 documentation</title>
+  <title>Vocal separation &mdash; librosa 0.9.0 documentation</title>
   
 
   
@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                0.9.0rc0
+                0.9.0
               </div>
             
           
@@ -226,7 +226,7 @@ but is a bit more numerically stable in practice.</p></li>
 <span class="c1"># Standard imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a>
 
 <span class="kn">import</span> <span class="nn">librosa</span>
 
@@ -241,7 +241,7 @@ but is a bit more numerically stable in practice.</p></li>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">S_full</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">phase</span></a> <span class="o">=</span> <a href="../generated/librosa.magphase.html#librosa.magphase" title="librosa.magphase" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">magphase</span></a><span class="p">(</span><a href="../generated/librosa.stft.html#librosa.stft" title="librosa.stft" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">stft</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">))</span>
 
 <span class="c1"># Play back a 5-second excerpt with vocals</span>
-<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">[</span><span class="mi">10</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">:</span><span class="mi">15</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">],</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
+<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">[</span><span class="mi">10</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">:</span><span class="mi">15</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">],</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -331,7 +331,7 @@ To do this, we’ll need to re-introduce the phase information
 that we had previously set aside.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_foreground</span></a> <span class="o">=</span> <a href="../generated/librosa.istft.html#librosa.istft" title="librosa.istft" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">istft</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">S_foreground</span></a> <span class="o">*</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">phase</span></a><span class="p">)</span>
 <span class="c1"># Play back a 5-second excerpt with vocals</span>
-<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_foreground</span></a><span class="p">[</span><span class="mi">10</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">:</span><span class="mi">15</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">],</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
+<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_foreground</span></a><span class="p">[</span><span class="mi">10</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">:</span><span class="mi">15</span><span class="o">*</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">],</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -343,7 +343,7 @@ that we had previously set aside.</p>
 
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  38.030 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  36.512 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-vocal-separation-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/c9d6a26603bb5d66c0973897988dbb3e/plot_vocal_separation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vocal_separation.py</span></code></a></p>
@@ -369,7 +369,7 @@ that we had previously set aside.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2013--2021, librosa development team.
+        &#169; Copyright 2013--2022, librosa development team.
 
     </p>
   </div>
@@ -403,7 +403,7 @@ that we had previously set aside.</p>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
       <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
-      <dd><a href="../../0.9.0rc0/index.html">0.9.0rc0</a></dd>
+      <dd><a href="../../0.9.0/index.html">0.9.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>

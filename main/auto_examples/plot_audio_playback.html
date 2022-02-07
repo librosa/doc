@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Audio playback &mdash; librosa 0.9.0rc0 documentation</title>
+  <title>Audio playback &mdash; librosa 0.9.0 documentation</title>
   
 
   
@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                0.9.0rc0
+                0.9.0
               </div>
             
           
@@ -223,7 +223,7 @@ to play audio signals through your web browser.</p>
 <span class="kn">import</span> <span class="nn">librosa.display</span>
 
 <span class="c1"># We&#39;ll need IPython.display&#39;s Audio widget</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a>
 
 <span class="c1"># We&#39;ll also use `mir_eval` to synthesize a signal for us</span>
 <span class="kn">import</span> <span class="nn">mir_eval.sonify</span>
@@ -242,7 +242,7 @@ directly and play them back in the browser.</p>
                         <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">,</span>
                         <span class="n">duration</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_sweep</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
+<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_sweep</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -261,7 +261,7 @@ directly and play them back in the browser.</p>
 in the same way.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a> <span class="o">=</span> <a href="../generated/librosa.load.html#librosa.load" title="librosa.load" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;trumpet&#39;</span><span class="p">))</span>
 
-<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
+<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -280,7 +280,7 @@ in the same way.</p>
 use sonification to directly observe the output of a
 fundamental frequency estimator.</p>
 <p>We’ll do this using <a class="reference internal" href="../generated/librosa.pyin.html#librosa.pyin" title="librosa.pyin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.pyin</span></code></a> for analysis,
-and <code class="xref py py-obj docutils literal notranslate"><span class="pre">mir_eval.sonify.pitch_contour</span></code> for synthesis.</p>
+and <a class="reference external" href="https://craffel.github.io/mir_eval/index.html#mir_eval.sonify.pitch_contour" title="(in mir_eval v0.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mir_eval.sonify.pitch_contour</span></code></a> for synthesis.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using fill_na=None retains the best-guess f0 at unvoiced frames</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f0</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">voiced_flag</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">voiced_probs</span></a> <span class="o">=</span> <a href="../generated/librosa.pyin.html#librosa.pyin" title="librosa.pyin" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">pyin</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span>
                                              <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">,</span>
@@ -303,7 +303,7 @@ and negate the frequency for unvoiced frames.</p>
 <span class="c1"># And sonify the f0 using mir_eval</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_f0</span></a> <span class="o">=</span> <a href="https://craffel.github.io/mir_eval/index.html#mir_eval.sonify.pitch_contour" title="mir_eval.sonify.pitch_contour" class="sphx-glr-backref-module-mir_eval-sonify sphx-glr-backref-type-py-function"><span class="n">mir_eval</span><span class="o">.</span><span class="n">sonify</span><span class="o">.</span><span class="n">pitch_contour</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">times</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f0</span></a> <span class="o">*</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vneg</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 
-<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_f0</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
+<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_f0</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -336,7 +336,7 @@ click track and the original signal are of the same length.</p>
 <span class="c1"># Sonify onset times as clicks</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_clicks</span></a> <span class="o">=</span> <a href="../generated/librosa.clicks.html#librosa.clicks" title="librosa.clicks" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">clicks</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">times</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">onset_times</span></a><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">),</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 
-<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.display.Audio" class="sphx-glr-backref-module-IPython-display sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">+</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_clicks</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
+<a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">+</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_clicks</span></a><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -354,10 +354,10 @@ click track and the original signal are of the same length.</p>
 <p>Finally, some important things to note when using interactive playback:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPython.display.Audio</span></code> works by serializing the entire audio signal and
+<li><p><a class="reference external" href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="(in IPython v8.0.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPython.display.Audio</span></code></a> works by serializing the entire audio signal and
 sending it to the browser in a UUEncoded stream.  This may be inefficient for
 long signals.</p></li>
-<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPython.display.Audio</span></code> can also work directly with filenames and URLs.  If
+<li><p><a class="reference external" href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="(in IPython v8.0.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPython.display.Audio</span></code></a> can also work directly with filenames and URLs.  If
 you’re working with long signals, or do not want to load the signal into python
 directly, it may be better to use one of these modes.</p></li>
 <li><p>Audio playback, by default, will normalize the amplitude of the signal being
@@ -369,7 +369,7 @@ in the same cell, you can use
 each widget.  This is helpful when playing back multiple related signals.</p></li>
 </ul>
 </div></blockquote>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.957 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.940 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-audio-playback-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/79b4d41009c9d9cb0c35328f4de7afb2/plot_audio_playback.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_audio_playback.py</span></code></a></p>
@@ -396,7 +396,7 @@ each widget.  This is helpful when playing back multiple related signals.</p></l
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2013--2021, librosa development team.
+        &#169; Copyright 2013--2022, librosa development team.
 
     </p>
   </div>
@@ -430,7 +430,7 @@ each widget.  This is helpful when playing back multiple related signals.</p></l
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
       <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
-      <dd><a href="../../0.9.0rc0/index.html">0.9.0rc0</a></dd>
+      <dd><a href="../../0.9.0/index.html">0.9.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>

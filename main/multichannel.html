@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Multi-channel &mdash; librosa 0.9.0rc0 documentation</title>
+  <title>Multi-channel &mdash; librosa 0.9.0 documentation</title>
   
 
   
@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                0.9.0rc0
+                0.9.0
               </div>
             
           
@@ -332,7 +332,7 @@ In these cases, it is best to either process each channel separately (if they ar
 truly independent) or aggregate representations across channels (e.g., by averaging
 features) if they are strongly related.</p>
 <p><strong>Self- and cross-similarity matrices</strong>, as computed by <a class="reference internal" href="generated/librosa.segment.recurrence_matrix.html#librosa.segment.recurrence_matrix" title="librosa.segment.recurrence_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.segment.recurrence_matrix</span></code></a> have limited multi-channel support.
-This is because the output objects may be sparse data structures (such as <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.sparse.csr_matrix.html#scipy.sparse.csr_matrix" title="(in SciPy v1.7.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.sparse.csr_matrix</span></code></a>) which do not generalize to more than two dimensions.
+This is because the output objects may be sparse data structures (such as <code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.sparse.csr_matrix</span></code>) which do not generalize to more than two dimensions.
 These functions still accept multi-channel input, but flatten the leading dimensions
 (channels) when comparing features between different time-steps.
 If independent similarity matrices are desired, it is recommended to process each
@@ -389,7 +389,7 @@ Functions which guarantee channel-wise independence are documented accordingly.<
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2013--2021, librosa development team.
+        &#169; Copyright 2013--2022, librosa development team.
 
     </p>
   </div>
@@ -423,7 +423,7 @@ Functions which guarantee channel-wise independence are documented accordingly.<
       <dd><a href="../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../0.8.0/index.html">0.8.0</a></dd>
       <dd><a href="../0.8.1/index.html">0.8.1</a></dd>
-      <dd><a href="../0.9.0rc0/multichannel.html">0.9.0rc0</a></dd>
+      <dd><a href="../0.9.0/multichannel.html">0.9.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>

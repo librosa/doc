@@ -246,8 +246,8 @@ offer different trade-offs of speed and quality.</p>
 <p class="admonition-title">Note</p>
 <p>By default, this uses <a class="reference external" href="https://resampy.readthedocs.io/en/latest/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a>’s high-quality mode (‘kaiser_best’).</p>
 <p>To use a faster method, set <code class="docutils literal notranslate"><span class="pre">res_type='kaiser_fast'</span></code>.</p>
-<p>To use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.7.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a>, set <code class="docutils literal notranslate"><span class="pre">res_type='fft'</span></code> or <code class="docutils literal notranslate"><span class="pre">res_type='scipy'</span></code>. (slow)</p>
-<p>To use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.signal.resample_poly.html#scipy.signal.resample_poly" title="(in SciPy v1.7.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample_poly</span></code></a>, set <code class="docutils literal notranslate"><span class="pre">res_type='polyphase'</span></code>. (fast)</p>
+<p>To use <code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code>, set <code class="docutils literal notranslate"><span class="pre">res_type='fft'</span></code> or <code class="docutils literal notranslate"><span class="pre">res_type='scipy'</span></code>. (slow)</p>
+<p>To use <code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample_poly</span></code>, set <code class="docutils literal notranslate"><span class="pre">res_type='polyphase'</span></code>. (fast)</p>
 <p>To use <em class="xref py py-obj">samplerate.converters.resample</em>, set any of the following:</p>
 <blockquote>
 <div><ul class="simple">
@@ -293,7 +293,7 @@ integer-valued.</p>
 <p class="admonition-title">See also</p>
 <dl class="simple">
 <dt><a class="reference internal" href="librosa.util.fix_length.html#librosa.util.fix_length" title="librosa.util.fix_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.fix_length</span></code></a></dt><dd></dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.7.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a></dt><dd></dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></dt><dd></dd>
 <dt><a class="reference external" href="https://resampy.readthedocs.io/en/latest/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://python-samplerate.readthedocs.io/en/latest/samplerate/converters.html#samplerate.converters.resample" title="(in python-samplerate v0.1.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samplerate.converters.resample</span></code></a></dt><dd></dd>
 </dl>
@@ -326,7 +326,7 @@ integer-valued.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2013--2021, librosa development team.
+        &#169; Copyright 2013--2022, librosa development team.
 
     </p>
   </div>
@@ -360,7 +360,7 @@ integer-valued.</p>
       <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="librosa.resample.html">0.8.0</a></dd>
       <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
-      <dd><a href="../../0.9.0rc0/index.html">0.9.0rc0</a></dd>
+      <dd><a href="../../0.9.0/index.html">0.9.0</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
