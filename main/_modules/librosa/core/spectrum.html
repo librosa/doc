@@ -1,83 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>librosa.core.spectrum &mdash; librosa 0.9.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>librosa.core.spectrum &mdash; librosa 0.9.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                0.9.0
+                0.9.1
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -85,18 +42,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation instructions</a></li>
@@ -132,69 +78,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">librosa</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
       <li>librosa.core.spectrum</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for librosa.core.spectrum</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
@@ -217,6 +124,7 @@
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">..filters</span> <span class="kn">import</span> <span class="n">get_window</span><span class="p">,</span> <span class="n">semitone_filterbank</span>
 <span class="kn">from</span> <span class="nn">..filters</span> <span class="kn">import</span> <span class="n">window_sumsquare</span>
+<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;stft&quot;</span><span class="p">,</span>
@@ -236,7 +144,8 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="stft"><a class="viewcode-back" href="../../../generated/librosa.stft.html#librosa.stft">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="stft"><a class="viewcode-back" href="../../../generated/librosa.stft.html#librosa.stft">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">stft</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -453,7 +362,8 @@
     <span class="k">return</span> <span class="n">stft_matrix</span></div>
 
 
-<div class="viewcode-block" id="istft"><a class="viewcode-back" href="../../../generated/librosa.istft.html#librosa.istft">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="istft"><a class="viewcode-back" href="../../../generated/librosa.istft.html#librosa.istft">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">istft</span><span class="p">(</span>
     <span class="n">stft_matrix</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1002,7 +912,8 @@
     <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">S_h</span>
 
 
-<div class="viewcode-block" id="reassigned_spectrogram"><a class="viewcode-back" href="../../../generated/librosa.reassigned_spectrogram.html#librosa.reassigned_spectrogram">[docs]</a><span class="k">def</span> <span class="nf">reassigned_spectrogram</span><span class="p">(</span>
+<div class="viewcode-block" id="reassigned_spectrogram"><a class="viewcode-back" href="../../../generated/librosa.reassigned_spectrogram.html#librosa.reassigned_spectrogram">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="k">def</span> <span class="nf">reassigned_spectrogram</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -1306,7 +1217,8 @@
     <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">mags</span></div>
 
 
-<div class="viewcode-block" id="magphase"><a class="viewcode-back" href="../../../generated/librosa.magphase.html#librosa.magphase">[docs]</a><span class="k">def</span> <span class="nf">magphase</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="magphase"><a class="viewcode-back" href="../../../generated/librosa.magphase.html#librosa.magphase">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="k">def</span> <span class="nf">magphase</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Separate a complex-valued spectrogram D into its magnitude (S)</span>
 <span class="sd">    and phase (P) components, so that ``D = S * P``.</span>
 
@@ -1367,7 +1279,8 @@
     <span class="k">return</span> <span class="n">mag</span><span class="p">,</span> <span class="n">phase</span></div>
 
 
-<div class="viewcode-block" id="phase_vocoder"><a class="viewcode-back" href="../../../generated/librosa.phase_vocoder.html#librosa.phase_vocoder">[docs]</a><span class="k">def</span> <span class="nf">phase_vocoder</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="phase_vocoder"><a class="viewcode-back" href="../../../generated/librosa.phase_vocoder.html#librosa.phase_vocoder">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="k">def</span> <span class="nf">phase_vocoder</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Phase vocoder.  Given an STFT matrix D, speed up by a factor of ``rate``</span>
 
 <span class="sd">    Based on the implementation provided by [#]_.</span>
@@ -1474,7 +1387,8 @@
     <span class="k">return</span> <span class="n">d_stretch</span></div>
 
 
-<div class="viewcode-block" id="iirt"><a class="viewcode-back" href="../../../generated/librosa.iirt.html#librosa.iirt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="iirt"><a class="viewcode-back" href="../../../generated/librosa.iirt.html#librosa.iirt">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">iirt</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1667,7 +1581,8 @@
     <span class="k">return</span> <span class="n">bands_power</span></div>
 
 
-<div class="viewcode-block" id="power_to_db"><a class="viewcode-back" href="../../../generated/librosa.power_to_db.html#librosa.power_to_db">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="power_to_db"><a class="viewcode-back" href="../../../generated/librosa.power_to_db.html#librosa.power_to_db">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">power_to_db</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">amin</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="mf">80.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert a power spectrogram (amplitude squared) to decibel (dB) units</span>
 
@@ -1790,7 +1705,8 @@
     <span class="k">return</span> <span class="n">log_spec</span></div>
 
 
-<div class="viewcode-block" id="db_to_power"><a class="viewcode-back" href="../../../generated/librosa.db_to_power.html#librosa.db_to_power">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="db_to_power"><a class="viewcode-back" href="../../../generated/librosa.db_to_power.html#librosa.db_to_power">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert a dB-scale spectrogram to a power spectrogram.</span>
 
@@ -1817,7 +1733,8 @@
     <span class="k">return</span> <span class="n">ref</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">S_db</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="amplitude_to_db"><a class="viewcode-back" href="../../../generated/librosa.amplitude_to_db.html#librosa.amplitude_to_db">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="amplitude_to_db"><a class="viewcode-back" href="../../../generated/librosa.amplitude_to_db.html#librosa.amplitude_to_db">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">amplitude_to_db</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">amin</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="mf">80.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert an amplitude spectrogram to dB-scaled spectrogram.</span>
 
@@ -1879,7 +1796,8 @@
     <span class="k">return</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref_value</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">amin</span><span class="o">=</span><span class="n">amin</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="n">top_db</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="db_to_amplitude"><a class="viewcode-back" href="../../../generated/librosa.db_to_amplitude.html#librosa.db_to_amplitude">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="db_to_amplitude"><a class="viewcode-back" href="../../../generated/librosa.db_to_amplitude.html#librosa.db_to_amplitude">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert a dB-scaled spectrogram to an amplitude spectrogram.</span>
 
@@ -1906,7 +1824,8 @@
     <span class="k">return</span> <span class="n">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
 
 
-<div class="viewcode-block" id="perceptual_weighting"><a class="viewcode-back" href="../../../generated/librosa.perceptual_weighting.html#librosa.perceptual_weighting">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="perceptual_weighting"><a class="viewcode-back" href="../../../generated/librosa.perceptual_weighting.html#librosa.perceptual_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">perceptual_weighting</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Perceptual weighting of a power spectrogram::</span>
 
@@ -1977,7 +1896,8 @@
     <span class="k">return</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="fmt"><a class="viewcode-back" href="../../../generated/librosa.fmt.html#librosa.fmt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="fmt"><a class="viewcode-back" href="../../../generated/librosa.fmt.html#librosa.fmt">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fmt</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">t_min</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">over_sample</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The fast Mellin transform (FMT)</span>
 
@@ -2167,7 +2087,8 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="pcen"><a class="viewcode-back" href="../../../generated/librosa.pcen.html#librosa.pcen">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="pcen"><a class="viewcode-back" href="../../../generated/librosa.pcen.html#librosa.pcen">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">pcen</span><span class="p">(</span>
     <span class="n">S</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -2436,7 +2357,8 @@
         <span class="k">return</span> <span class="n">S_out</span></div>
 
 
-<div class="viewcode-block" id="griffinlim"><a class="viewcode-back" href="../../../generated/librosa.griffinlim.html#librosa.griffinlim">[docs]</a><span class="k">def</span> <span class="nf">griffinlim</span><span class="p">(</span>
+<div class="viewcode-block" id="griffinlim"><a class="viewcode-back" href="../../../generated/librosa.griffinlim.html#librosa.griffinlim">[docs]</a><span class="nd">@deprecate_positional_args</span>
+<span class="k">def</span> <span class="nf">griffinlim</span><span class="p">(</span>
     <span class="n">S</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">n_iter</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
@@ -2750,33 +2672,24 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2013--2022, librosa development team.
-
-    </p>
+    <p>&#169; Copyright 2013--2022, librosa development team.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
   
 
@@ -2793,37 +2706,29 @@
       <dd><a href="../../../../0.8.0/index.html">0.8.0</a></dd>
       <dd><a href="../../../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../../../0.9.0/index.html">0.9.0</a></dd>
+      <dd><a href="../../../../0.9.1/index.html">0.9.1</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
       <dd><a href="spectrum.html">main</a></dd>
     </dl>
   </div>
-</div>
-
-  <script type="text/javascript">
+</div><script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-171031946-1', 'auto');
-    
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-171031946-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>
