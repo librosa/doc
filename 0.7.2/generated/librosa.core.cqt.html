@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.core.cqt &mdash; librosa 0.7.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
@@ -125,7 +127,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="librosa-core-cqt">
+
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        
+            You're reading an old version of this documentation.
+            If you want up-to-date information, please have a look at <a href="../../0.9.1/index.html">0.9.1</a>.
+        
+    
+  </p>
+</div>
+
+
+  <section id="librosa-core-cqt">
 <h1>librosa.core.cqt<a class="headerlink" href="#librosa-core-cqt" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.core.cqt">
@@ -228,9 +244,9 @@ use a fast, but potentially inaccurate down-sampling.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="figure align-default">
-<img alt="../_images/librosa-core-cqt-1_00_00.png" src="../_images/librosa-core-cqt-1_00_00.png" />
-</div>
+<figure class="align-default">
+<img alt="../_images/librosa-core-cqt-1_00_00.png" class="plot-directive" src="../_images/librosa-core-cqt-1_00_00.png" />
+</figure>
 <p>Limit the frequency range</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">cqt</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="n">librosa</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">),</span>
 <span class="gp">... </span>                <span class="n">n_bins</span><span class="o">=</span><span class="mi">60</span><span class="p">))</span>
@@ -255,7 +271,8 @@ use a fast, but potentially inaccurate down-sampling.</p>
 </div>
 </dd></dl>
 
-</div>
+</section>
+
 
 
            </div>
@@ -291,15 +308,14 @@ use a fast, but potentially inaccurate down-sampling.</p>
   </span>
   <div class="rst-other-versions">
     <dl>
-      <dt>Tags</dt>
+      <dt>Releases</dt>
       <dd><a href="librosa.core.cqt.html">0.7.2</a></dd>
-      <dd><a href="../../0.8.0/index.html">0.8.0</a></dd>
       <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../0.9.0/index.html">0.9.0</a></dd>
       <dd><a href="../../0.9.1/index.html">0.9.1</a></dd>
     </dl>
     <dl>
-      <dt>Branches</dt>
+      <dt>Development versions</dt>
       <dd><a href="../../main/index.html">main</a></dd>
     </dl>
   </div>

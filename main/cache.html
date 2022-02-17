@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Caching &mdash; librosa 0.9.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
@@ -110,11 +112,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="caching">
+
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../0.9.1/cache.html">0.9.1</a>.
+    
+  </p>
+</div>
+
+
+  <section id="caching">
 <h1>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h1>
 <p>This section covers the <em>librosa</em> function cache.  This allows you
 to store and re-use intermediate computations across sessions.</p>
-<div class="section" id="enabling-the-cache">
+<section id="enabling-the-cache">
 <h2>Enabling the cache<a class="headerlink" href="#enabling-the-cache" title="Permalink to this headline">¶</a></h2>
 <p>By default, caching is disabled.  To enable caching, the environment
 variable <em class="xref py py-obj">LIBROSA_CACHE_DIR</em> must be set prior to loading <em>librosa</em>.
@@ -138,8 +152,8 @@ To purge the cache directly, call:</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="cache-configuration">
+</section>
+<section id="cache-configuration">
 <h2>Cache configuration<a class="headerlink" href="#cache-configuration" title="Permalink to this headline">¶</a></h2>
 <p>The cache is implemented on top of <a class="reference external" href="https://pythonhosted.org/joblib/memory.html">joblib.Memory</a>.
 The default configuration can be overridden by setting the following environment variables</p>
@@ -156,8 +170,8 @@ The default configuration can be overridden by setting the following environment
 parameters.</p>
 <p>As of 0.7, librosa’s cache wraps (rather than extends) the <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code> object.
 The memory object can be directly accessed by <code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.cache.memory</span></code>.</p>
-</div>
-<div class="section" id="cache-levels">
+</section>
+<section id="cache-levels">
 <h2>Cache levels<a class="headerlink" href="#cache-levels" title="Permalink to this headline">¶</a></h2>
 <p>Cache levels operate in a fashion similar to logging levels.
 For small values of <em class="xref py py-obj">LIBROSA_CACHE_LEVEL</em>, only the most important (frequently used) data are cached.
@@ -173,8 +187,8 @@ As a result, application code may run faster at the expense of larger disk usage
 </ul>
 </div></blockquote>
 <p>The default cache level is 10.</p>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>To demonstrate how to use the cache, we’ll first call an example script twice without caching:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ time -p ./estimate_tuning.py Kevin_MacLeod_-_Vibe_Ace.ogg
@@ -239,8 +253,9 @@ user 4.17
 sys 1.22
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
+
 
 
            </div>
@@ -276,15 +291,14 @@ sys 1.22
   </span>
   <div class="rst-other-versions">
     <dl>
-      <dt>Tags</dt>
+      <dt>Releases</dt>
       <dd><a href="../0.7.2/cache.html">0.7.2</a></dd>
-      <dd><a href="../0.8.0/cache.html">0.8.0</a></dd>
       <dd><a href="../0.8.1/cache.html">0.8.1</a></dd>
       <dd><a href="../0.9.0/cache.html">0.9.0</a></dd>
       <dd><a href="../0.9.1/cache.html">0.9.1</a></dd>
     </dl>
     <dl>
-      <dt>Branches</dt>
+      <dt>Development versions</dt>
       <dd><a href="cache.html">main</a></dd>
     </dl>
   </div>

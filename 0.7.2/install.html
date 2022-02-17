@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation instructions &mdash; librosa 0.7.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
@@ -103,9 +105,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="installation-instructions">
+
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        
+            You're reading an old version of this documentation.
+            If you want up-to-date information, please have a look at <a href="../0.9.1/install.html">0.9.1</a>.
+        
+    
+  </p>
+</div>
+
+
+  <section id="installation-instructions">
 <h1>Installation instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pypi">
+<section id="pypi">
 <h2>pypi<a class="headerlink" href="#pypi" title="Permalink to this headline">¶</a></h2>
 <p>The simplest way to install <em>librosa</em> is through the Python Package Index (PyPI).
 This will ensure that all required dependencies are fulfilled.
@@ -122,8 +138,8 @@ This can be achieved by executing the following command:</p>
 </pre></div>
 </div>
 <p>to install just for your own user.</p>
-</div>
-<div class="section" id="conda">
+</section>
+<section id="conda">
 <h2>conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h2>
 <p>If you use conda/Anaconda environments, librosa can be installed from the
 <em class="xref py py-obj">conda-forge</em> channel:</p>
@@ -135,8 +151,8 @@ This can be avoided by installing from the <code class="xref py py-obj docutils 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">numba</span> <span class="n">numba</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="source">
+</section>
+<section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
 <p>If you’ve downloaded the archive manually from the <a class="reference external" href="https://github.com/librosa/librosa/releases/">releases</a> page, you can install using the
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">setuptools</span></code> script:</p>
@@ -156,16 +172,17 @@ install with <em class="xref py py-obj">pip install -e</em> to link to your acti
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">librosa</span><span class="o">/</span><span class="n">librosa</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ffmpeg">
+</section>
+<section id="ffmpeg">
 <h2>ffmpeg<a class="headerlink" href="#ffmpeg" title="Permalink to this headline">¶</a></h2>
 <p>To fuel <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> with more audio-decoding power, you can install <em>ffmpeg</em> which
 ships with many audio decoders.  Note that conda users on Linux and OSX will
 have this installed by default; Windows users must install ffmpeg separately.</p>
 <p>OSX users can use <em>homebrew</em> to install ffmpeg by calling
 <em class="xref py py-obj">brew install ffmpeg</em> or get a binary version from their website <a class="reference external" href="https://www.ffmpeg.org">https://www.ffmpeg.org</a>.</p>
-</div>
-</div>
+</section>
+</section>
+
 
 
            </div>
@@ -201,15 +218,14 @@ have this installed by default; Windows users must install ffmpeg separately.</p
   </span>
   <div class="rst-other-versions">
     <dl>
-      <dt>Tags</dt>
+      <dt>Releases</dt>
       <dd><a href="install.html">0.7.2</a></dd>
-      <dd><a href="../0.8.0/install.html">0.8.0</a></dd>
       <dd><a href="../0.8.1/install.html">0.8.1</a></dd>
       <dd><a href="../0.9.0/install.html">0.9.0</a></dd>
       <dd><a href="../0.9.1/install.html">0.9.1</a></dd>
     </dl>
     <dl>
-      <dt>Branches</dt>
+      <dt>Development versions</dt>
       <dd><a href="../main/install.html">main</a></dd>
     </dl>
   </div>
