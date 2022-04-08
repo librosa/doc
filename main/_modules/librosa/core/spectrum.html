@@ -1621,7 +1621,7 @@
 
 <span class="sd">    top_db : float &gt;= 0 [scalar]</span>
 <span class="sd">        threshold the output at ``top_db`` below the peak:</span>
-<span class="sd">        ``max(10 * log10(S)) - top_db``</span>
+<span class="sd">        ``max(10 * log10(S/ref)) - top_db``</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -1751,7 +1751,8 @@
 <span class="k">def</span> <span class="nf">amplitude_to_db</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">amin</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="mf">80.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert an amplitude spectrogram to dB-scaled spectrogram.</span>
 
-<span class="sd">    This is equivalent to ``power_to_db(S**2)``, but is provided for convenience.</span>
+<span class="sd">    This is equivalent to ``power_to_db(S**2, ref=ref**2, amin=amin**2, top_db=top_db)``,</span>
+<span class="sd">    but is provided for convenience.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1770,7 +1771,7 @@
 
 <span class="sd">    top_db : float &gt;= 0 [scalar]</span>
 <span class="sd">        threshold the output at ``top_db`` below the peak:</span>
-<span class="sd">        ``max(20 * log10(S)) - top_db``</span>
+<span class="sd">        ``max(20 * log10(S/ref)) - top_db``</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -1816,7 +1817,7 @@
 
 <span class="sd">    This effectively inverts `amplitude_to_db`::</span>
 
-<span class="sd">        db_to_amplitude(S_db) ~= 10.0**(0.5 * (S_db + log10(ref)/10))</span>
+<span class="sd">        db_to_amplitude(S_db) ~= 10.0**(0.5 * S_db/10 + log10(ref))</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
