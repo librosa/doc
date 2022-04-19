@@ -147,6 +147,9 @@ transforming the multi-label decoding problem to a collection
 of binary Viterbi problems (one for each <em>state</em> or label).</p>
 <p>The output is a binary matrix <code class="docutils literal notranslate"><span class="pre">states[s,</span> <span class="pre">t]</span></code> indicating whether each
 state <code class="docutils literal notranslate"><span class="pre">s</span></code> is active at time <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p>
+<p>Like <a class="reference internal" href="librosa.sequence.viterbi_discriminative.html#librosa.sequence.viterbi_discriminative" title="librosa.sequence.viterbi_discriminative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viterbi_discriminative</span></code></a>, the probabilities of the optimal state sequences
+are not normalized here.  If using the <em class="xref py py-obj">return_logp=True</em> option (see below),
+be aware that the “probabilities” may not sum to (and may exceed) 1.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
@@ -170,7 +173,7 @@ is assumed.</p>
 <dt><strong>p_init</strong><span class="classifier">np.ndarray [shape=(n_states,)]</span></dt><dd><p>Optional: initial state distribution.
 If not provided, it is assumed to be uniform.</p>
 </dd>
-<dt><strong>return_logp</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return the log-likelihood of the state sequence.</p>
+<dt><strong>return_logp</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return the (unnormalized) log-likelihood of the state sequences.</p>
 </dd>
 </dl>
 </dd>
@@ -179,8 +182,8 @@ If not provided, it is assumed to be uniform.</p>
 <dt>Either <code class="docutils literal notranslate"><span class="pre">states</span></code> or <code class="docutils literal notranslate"><span class="pre">(states,</span> <span class="pre">logp)</span></code>:</dt><dd></dd>
 <dt><strong>states</strong><span class="classifier">np.ndarray [shape=(…, n_states, n_steps)]</span></dt><dd><p>The most likely state sequence.</p>
 </dd>
-<dt><strong>logp</strong><span class="classifier">np.ndarray [shape=(…, n_states,)]</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">return_logp=True</span></code>, the log probability of each state activation
-sequence <code class="docutils literal notranslate"><span class="pre">states</span></code></p>
+<dt><strong>logp</strong><span class="classifier">np.ndarray [shape=(…, n_states,)]</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">return_logp=True</span></code>, the (unnormalized) log probability of each
+state activation sequence <code class="docutils literal notranslate"><span class="pre">states</span></code></p>
 </dd>
 </dl>
 </dd>

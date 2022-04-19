@@ -146,6 +146,10 @@ for observation likelihood sequences, under the assumption that
 <code class="docutils literal notranslate"><span class="pre">P[Obs(t)</span> <span class="pre">|</span> <span class="pre">State(t)</span> <span class="pre">=</span> <span class="pre">s]</span></code> is proportional to
 <code class="docutils literal notranslate"><span class="pre">P[State(t)</span> <span class="pre">=</span> <span class="pre">s</span> <span class="pre">|</span> <span class="pre">Obs(t)]</span> <span class="pre">/</span> <span class="pre">P[State(t)</span> <span class="pre">=</span> <span class="pre">s]</span></code>, where the denominator
 is the marginal probability of state <code class="docutils literal notranslate"><span class="pre">s</span></code> occurring as given by <code class="docutils literal notranslate"><span class="pre">p_state</span></code>.</p>
+<p>Note that because the denominator <code class="docutils literal notranslate"><span class="pre">P[State(t)</span> <span class="pre">=</span> <span class="pre">s]</span></code> is not explicitly
+calculated, the resulting probabilities (or log-probabilities) are not
+normalized.  If using the <em class="xref py py-obj">return_logp=True</em> option (see below),
+be aware that the “probabilities” may not sum to (and may exceed) 1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -174,8 +178,8 @@ If not provided, it is assumed to be uniform.</p>
 If <code class="docutils literal notranslate"><span class="pre">prob</span></code> contains multiple input channels,
 then each channel is decoded independently.</p>
 </dd>
-<dt><strong>logp</strong><span class="classifier">scalar [float] or np.ndarray</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">return_logp=True</span></code>, the log probability of <code class="docutils literal notranslate"><span class="pre">states</span></code> given
-the observations.</p>
+<dt><strong>logp</strong><span class="classifier">scalar [float] or np.ndarray</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">return_logp=True</span></code>, the (unnormalized) log probability
+of <code class="docutils literal notranslate"><span class="pre">states</span></code> given the observations.</p>
 </dd>
 </dl>
 </dd>
