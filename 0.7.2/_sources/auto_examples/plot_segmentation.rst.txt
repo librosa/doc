@@ -97,7 +97,7 @@ First, we'll load in a song
 
  .. code-block:: none
 
-    /tmp/tmpvujlcn09/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -140,7 +140,7 @@ Next, we'll compute and plot a log-power CQT
 
  .. code-block:: none
 
-    /tmp/tmpvujlcn09/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -186,7 +186,7 @@ To reduce dimensionality, we'll beat-synchronous the CQT
 
  .. code-block:: none
 
-    /tmp/tmpvujlcn09/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -489,7 +489,7 @@ And plot the final segmentation over original CQT
 
  .. code-block:: none
 
-    /tmp/tmpvujlcn09/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -498,7 +498,7 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.538 seconds)
+   **Total running time of the script:** ( 0 minutes  10.583 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:
