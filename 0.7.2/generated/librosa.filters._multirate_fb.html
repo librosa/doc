@@ -137,7 +137,7 @@
 into subbands. In the case of a multirate filter bank, the band-pass filters
 operate with resampled versions of the input signal, e.g. to keep the length
 of a filter constant while shifting its center frequency.</p>
-<p>This implementation uses <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> to design the filters.</p>
+<p>This implementation uses <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> to design the filters.</p>
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -150,21 +150,21 @@ Also defines the number of filters in the filterbank.</p>
 <dt><strong>Q</strong><span class="classifier">float</span></dt><dd><p>Q factor (influences the filter bandwith).</p>
 </dd>
 <dt><strong>passband_ripple</strong><span class="classifier">float</span></dt><dd><p>The maximum loss in the passband (dB)
-See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> for details.</p>
+See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> for details.</p>
 </dd>
 <dt><strong>stopband_attenuation</strong><span class="classifier">float</span></dt><dd><p>The minimum attenuation in the stopband (dB)
-See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> for details.</p>
+See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> for details.</p>
 </dd>
 <dt><strong>ftype</strong><span class="classifier">str</span></dt><dd><p>The type of IIR filter to design
-See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> for details.</p>
+See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a> for details.</p>
 </dd>
-<dt><strong>flayout</strong><span class="classifier">string</span></dt><dd><p>Valid <em class="xref py py-obj">output</em> argument for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a>.</p>
+<dt><strong>flayout</strong><span class="classifier">string</span></dt><dd><p>Valid <em class="xref py py-obj">output</em> argument for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a>.</p>
 <ul class="simple">
 <li><p>If <em class="xref py py-obj">ba</em>, returns numerators/denominators of the transfer functions,
-used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a>.
+used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a>.
 Can be unstable for high-order filters.</p></li>
 <li><p>If <em class="xref py py-obj">sos</em>, returns a series of second-order filters,
-used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a>.
+used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a>.
 Minimizes numerical precision errors for high-order filters, but is slower.</p></li>
 <li><p>If <em class="xref py py-obj">zpk</em>, returns zeros, poles, and system gains of the transfer functions.</p></li>
 </ul>
@@ -191,7 +191,7 @@ If <em class="xref py py-obj">center_freqs.shape</em> does not match <em class="
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>

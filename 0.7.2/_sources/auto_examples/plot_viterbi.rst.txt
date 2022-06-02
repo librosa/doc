@@ -89,13 +89,13 @@ Load an example signal
 
  .. code-block:: none
 
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -224,11 +224,11 @@ independently of its neighbors, which would result in the following plot:
 
  .. code-block:: none
 
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -302,7 +302,7 @@ so we need to also compute the probability of silence as its complement.
       0.6666863  0.66668093 0.66668844 0.6667025  0.6666882  0.66659105
       0.666566   0.66656137 0.66658425 0.6666702  0.6666781  0.6666808
       0.66664445 0.6666428  0.66665864 0.6666496  0.66597325 0.6332568
-      0.565287   0.51315165 0.46493763 0.4289661  0.4174757  0.43100828
+      0.565287   0.51315165 0.46493763 0.4289661  0.41747576 0.43100828
       0.4557107  0.44279826 0.40919942 0.36801213 0.33117193 0.32734305
       0.33589602 0.34995198 0.36854565 0.38243645 0.3977514  0.40770727
       0.41529024 0.4371997  0.44843513 0.45536363 0.467516   0.45526844
@@ -311,7 +311,7 @@ so we need to also compute the probability of silence as its complement.
       0.6665775  0.5691235  0.46814352 0.40058243 0.34356403 0.31266928
       0.30578673 0.33672208 0.38994128 0.3435294  0.27476007 0.21300626
       0.1649099  0.15554106 0.15957916 0.15955073 0.16644585 0.17588961
-      0.18820965 0.21075332 0.25177717 0.2630303  0.26994652 0.2619083
+      0.18820965 0.21075332 0.25177717 0.2630303  0.26994652 0.26190835
       0.22955096 0.22823179 0.23443395 0.24548042 0.27291352 0.33201182
       0.40812153 0.5046619  0.61227214 0.6514728  0.6617671  0.66529995
       0.6661643  0.6663485  0.666373   0.6662399  0.666326   0.6662947
@@ -324,10 +324,10 @@ so we need to also compute the probability of silence as its complement.
       0.5133821  0.5423028  0.5859402  0.6291387  0.6509739  0.6619408
       0.6645152  0.6653484  0.6654525  0.61951697 0.4705053  0.3777169
       0.32032567 0.284069   0.2920292  0.31536585 0.33947343 0.3635468
-      0.38816082 0.41106814 0.42890376 0.45955908 0.46007532 0.45066845
-      0.4351374  0.40234917 0.39231366 0.39058787 0.39216512 0.4247653
+      0.38816082 0.41106814 0.4289037  0.45955908 0.46007532 0.45066845
+      0.4351374  0.40234917 0.39231366 0.39058787 0.39216518 0.4247653
       0.42306644 0.38793647 0.35002232 0.30539632 0.29092264 0.29614902
-      0.31410837 0.3347454  0.3778159  0.43759775 0.5079247  0.60124874
+      0.31410837 0.3347454  0.3778159  0.4375978  0.5079247  0.60124874
       0.6505161  0.6203172  0.42866933 0.30231488 0.2255764  0.17425478
       0.15799701 0.16310495 0.18772101 0.21032327 0.21690273 0.21076733
       0.18132639 0.16777033 0.17310756 0.18597764 0.20130521 0.21142936
@@ -354,7 +354,7 @@ so we need to also compute the probability of silence as its complement.
       0.3333137  0.33331904 0.33331153 0.33329752 0.3333118  0.33340892
       0.33343402 0.3334386  0.33341572 0.33332983 0.33332193 0.3333192
       0.33335555 0.33335724 0.33334136 0.33335045 0.33402675 0.36674318
-      0.434713   0.48684838 0.5350624  0.5710339  0.5825243  0.5689917
+      0.434713   0.48684838 0.5350624  0.5710339  0.58252424 0.5689917
       0.5442893  0.55720174 0.5908006  0.63198787 0.66882807 0.67265695
       0.664104   0.650048   0.63145435 0.61756355 0.6022486  0.5922927
       0.58470976 0.5628003  0.5515649  0.54463637 0.532484   0.54473156
@@ -363,7 +363,7 @@ so we need to also compute the probability of silence as its complement.
       0.33342248 0.4308765  0.5318565  0.59941757 0.65643597 0.6873307
       0.6942133  0.6632779  0.6100587  0.6564706  0.72523993 0.78699374
       0.8350901  0.84445894 0.84042084 0.8404493  0.83355415 0.8241104
-      0.81179035 0.7892467  0.7482228  0.7369697  0.7300535  0.7380917
+      0.81179035 0.7892467  0.7482228  0.7369697  0.7300535  0.73809165
       0.77044904 0.7717682  0.76556605 0.7545196  0.7270865  0.6679882
       0.5918785  0.49533808 0.38772783 0.3485272  0.3382329  0.33470005
       0.3338357  0.33365148 0.33362702 0.33376008 0.333674   0.33370528
@@ -373,13 +373,13 @@ so we need to also compute the probability of silence as its complement.
       0.44724515 0.4272664  0.4449041  0.4859707  0.5217533  0.54643667
       0.55696845 0.5357014  0.5083561  0.4967389  0.48074734 0.5014303
       0.52475685 0.52703714 0.5258363  0.5234677  0.5207137  0.51002353
-      0.48661792 0.4576972  0.41405982 0.37086132 0.3490261  0.33805922
+      0.48661795 0.4576972  0.41405982 0.37086132 0.3490261  0.33805922
       0.3354848  0.33465162 0.3345475  0.38048306 0.5294947  0.6222831
       0.6796743  0.715931   0.7079708  0.68463415 0.6605266  0.6364532
-      0.6118392  0.58893186 0.57109624 0.5404409  0.5399247  0.54933155
-      0.5648626  0.5976508  0.60768634 0.60941213 0.6078349  0.5752347
+      0.6118392  0.58893186 0.5710963  0.5404409  0.5399247  0.54933155
+      0.5648626  0.5976508  0.60768634 0.60941213 0.6078348  0.5752347
       0.57693356 0.6120635  0.6499777  0.6946037  0.70907736 0.703851
-      0.6858916  0.6652546  0.6221841  0.56240225 0.4920753  0.39875126
+      0.6858916  0.6652546  0.6221841  0.5624022  0.4920753  0.39875126
       0.3494839  0.3796828  0.57133067 0.6976851  0.7744236  0.8257452
       0.842003   0.83689505 0.812279   0.7896767  0.78309727 0.7892327
       0.8186736  0.8322297  0.82689244 0.81402236 0.7986948  0.78857064
@@ -444,11 +444,11 @@ state likelihoods conditional on data (in our case, data is rms).
 
  .. code-block:: none
 
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpdsyzh6_x/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpho6y8kgs/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -465,7 +465,7 @@ likely to change states.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.273 seconds)
+   **Total running time of the script:** ( 0 minutes  2.986 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_viterbi.py:
