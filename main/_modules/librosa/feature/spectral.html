@@ -279,7 +279,7 @@
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;log Power spectrogram&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># input is time domain:y or spectrogam:s</span>
+    <span class="c1"># input is time domain:y or spectrogram:s</span>
     <span class="c1">#</span>
 
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
@@ -1172,7 +1172,7 @@
 <span class="sd">    coefficients : np.ndarray [shape=(..., order+1, t)]</span>
 <span class="sd">        polynomial coefficients for each frame.</span>
 
-<span class="sd">        ``coeffecients[..., 0, :]`` corresponds to the highest degree (``order``),</span>
+<span class="sd">        ``coefficients[..., 0, :]`` corresponds to the highest degree (``order``),</span>
 
 <span class="sd">        ``coefficients[..., 1, :]`` corresponds to the next highest degree (``order-1``),</span>
 

@@ -350,7 +350,7 @@
         <span class="c1"># raise a UserWarning if lifter array includes critical values</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lifter_sine</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">lifter_sine</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">):</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="n">message</span><span class="o">=</span><span class="s2">&quot;lifter array includes critial values that may invoke underflow.&quot;</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">=</span><span class="s2">&quot;lifter array includes critical values that may invoke underflow.&quot;</span><span class="p">,</span>
                 <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
                 <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="p">)</span>
