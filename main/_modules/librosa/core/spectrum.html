@@ -1286,8 +1286,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+    <span class="c1"># Prevent NaNs and return magnitude 0, phase 1+0j for zero</span>
+    <span class="n">zeros_to_ones</span> <span class="o">=</span> <span class="n">mag</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">mag_nonzero</span> <span class="o">=</span> <span class="n">mag</span> <span class="o">+</span> <span class="n">zeros_to_ones</span>
+    <span class="c1"># Compute real and imaginary separately, because complex division can</span>
+    <span class="c1"># produce NaNs when denormalized numbers are involved (&lt; ~2e-39 for</span>
+    <span class="c1"># complex64, ~5e-309 for complex128)</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">util</span><span class="o">.</span><span class="n">dtype_r2c</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+    <span class="n">phase</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">real</span> <span class="o">/</span> <span class="n">mag_nonzero</span> <span class="o">+</span> <span class="n">zeros_to_ones</span>
+    <span class="n">phase</span><span class="o">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">imag</span> <span class="o">/</span> <span class="n">mag_nonzero</span>
+
     <span class="n">mag</span> <span class="o">**=</span> <span class="n">power</span>
-    <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">mag</span><span class="p">,</span> <span class="n">phase</span></div>
 
