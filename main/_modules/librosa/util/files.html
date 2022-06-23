@@ -302,6 +302,12 @@
 <span class="sd">    &gt;&gt;&gt; # Or last 10 files</span>
 <span class="sd">    &gt;&gt;&gt; files = librosa.util.find_files(&#39;~/Music&#39;, offset=-10)</span>
 
+<span class="sd">    &gt;&gt;&gt; # Avoid including search patterns in the path string</span>
+<span class="sd">    &gt;&gt;&gt; import glob</span>
+<span class="sd">    &gt;&gt;&gt; directory = &#39;~/[202206] Music&#39;</span>
+<span class="sd">    &gt;&gt;&gt; directory = glob.escape(directory)  # Escape the special characters</span>
+<span class="sd">    &gt;&gt;&gt; files = librosa.util.find_files(directory)</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    directory : str</span>
