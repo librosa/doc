@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.resample &mdash; librosa 0.9.1 documentation</title>
+  <title>librosa.resample &mdash; librosa 0.9.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -37,7 +37,7 @@
             <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.1
+                0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -131,16 +131,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../0.9.1/index.html">0.9.1</a>.
-    
-  </p>
-</div>
-
 
   <section id="librosa-resample">
 <h1>librosa.resample<a class="headerlink" href="#librosa-resample" title="Permalink to this headline">¶</a></h1>
@@ -162,9 +152,9 @@ offer different trade-offs of speed and quality.</p>
 </dd>
 <dt><strong>res_type</strong><span class="classifier">str</span></dt><dd><p>resample type</p>
 <dl class="simple">
-<dt>‘kaiser_best’ (default)</dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code> high-quality mode</p>
+<dt>‘kaiser_best’ (default)</dt><dd><p><a class="reference external" href="https://resampy.readthedocs.io/en/stable/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a> high-quality mode</p>
 </dd>
-<dt>‘kaiser_fast’</dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code> faster method</p>
+<dt>‘kaiser_fast’</dt><dd><p><a class="reference external" href="https://resampy.readthedocs.io/en/stable/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a> faster method</p>
 </dd>
 <dt>‘fft’ or ‘scipy’</dt><dd><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a> Fourier method.</p>
 </dd>
@@ -227,7 +217,7 @@ integer-valued.</p>
 <dl class="simple">
 <dt><a class="reference internal" href="librosa.util.fix_length.html#librosa.util.fix_length" title="librosa.util.fix_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.fix_length</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a></dt><dd></dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></dt><dd></dd>
+<dt><a class="reference external" href="https://resampy.readthedocs.io/en/stable/api.html#module-resampy" title="(in resampy v0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://python-samplerate.readthedocs.io/en/latest/samplerate/converters.html#samplerate.converters.resample" title="(in python-samplerate v0.1.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samplerate.converters.resample</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#soxr.resample" title="(in Python-SoXR v0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr.resample</span></code></a></dt><dd></dd>
 </dl>

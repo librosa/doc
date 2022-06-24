@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.segment &mdash; librosa 0.9.1 documentation</title>
+  <title>librosa.segment &mdash; librosa 0.9.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.1
+                0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -103,16 +103,6 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../0.9.1/index.html">0.9.1</a>.
-    
-  </p>
-</div>
 
 
   <h1>Source code for librosa.segment</h1><div class="highlight"><pre>
@@ -287,10 +277,10 @@
 <span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(ncols=2, sharex=True, sharey=True)</span>
 <span class="sd">    &gt;&gt;&gt; imgsim = librosa.display.specshow(xsim, x_axis=&#39;s&#39;, y_axis=&#39;s&#39;,</span>
 <span class="sd">    ...                          hop_length=hop_length, ax=ax[0])</span>
-<span class="sd">    &gt;&gt;&gt; ax[0].set(title=&#39;Binary recurrence (symmetric)&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].set(title=&#39;Binary cross-similarity (symmetric)&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; imgaff = librosa.display.specshow(xsim_aff, x_axis=&#39;s&#39;, y_axis=&#39;s&#39;,</span>
 <span class="sd">    ...                          cmap=&#39;magma_r&#39;, hop_length=hop_length, ax=ax[1])</span>
-<span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;Affinity recurrence&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;Cross-affinity&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(imgsim, ax=ax[0], orientation=&#39;horizontal&#39;, ticks=[0, 1])</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(imgaff, ax=ax[1], orientation=&#39;horizontal&#39;)</span>
