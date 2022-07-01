@@ -153,6 +153,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -733,6 +734,23 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x_frame</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="n">hop</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">x_frame</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">_chroma_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="s1">&#39;chroma_h&#39;</span><span class="p">,</span> <span class="s1">&#39;chroma_c&#39;</span><span class="p">,)</span>
+<span class="n">_cqt_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;cqt_hz&#39;</span><span class="p">,</span> <span class="s1">&#39;cqt_note&#39;</span><span class="p">,</span> <span class="s1">&#39;cqt_svara&#39;</span><span class="p">,)</span>
+<span class="n">_freq_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;fft&#39;</span><span class="p">,</span> <span class="s1">&#39;hz&#39;</span><span class="p">,</span> <span class="s1">&#39;fft_note&#39;</span><span class="p">,</span> <span class="s1">&#39;fft_svara&#39;</span><span class="p">,)</span>
+<span class="n">_time_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">,)</span>
+<span class="n">_lag_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lag&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_s&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_ms&#39;</span><span class="p">,)</span>
+<span class="n">_misc_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;tempo&#39;</span><span class="p">,</span> <span class="s1">&#39;fourier_tempo&#39;</span><span class="p">,</span> <span class="s1">&#39;mel&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;tonnetz&#39;</span><span class="p">,</span> <span class="s1">&#39;frames&#39;</span><span class="p">,)</span>
+
+<span class="n">_AXIS_COMPAT</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="p">[(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">_misc_ax_types</span><span class="p">]</span> <span class="o">+</span>
+    <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">_chroma_ax_types</span><span class="p">,</span> <span class="n">_chroma_ax_types</span><span class="p">)]</span> <span class="o">+</span>
+    <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">_cqt_ax_types</span><span class="p">,</span> <span class="n">_cqt_ax_types</span><span class="p">)]</span> <span class="o">+</span>
+    <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">_freq_ax_types</span><span class="p">,</span> <span class="n">_freq_ax_types</span><span class="p">)]</span> <span class="o">+</span>
+    <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">_time_ax_types</span><span class="p">,</span> <span class="n">_time_ax_types</span><span class="p">)]</span> <span class="o">+</span>
+    <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">_lag_ax_types</span><span class="p">,</span> <span class="n">_lag_ax_types</span><span class="p">)]</span>
+<span class="p">)</span>
 
 
 <div class="viewcode-block" id="specshow"><a class="viewcode-back" href="../../generated/librosa.display.specshow.html#librosa.display.specshow">[docs]</a><span class="nd">@deprecate_positional_args</span>
@@ -1394,10 +1412,10 @@
 
 
 <span class="k">def</span> <span class="nf">__same_axes</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if two axes are the same, used to determine squared plots&quot;&quot;&quot;</span>
-    <span class="n">axes_same_and_not_none</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_axis</span> <span class="o">==</span> <span class="n">y_axis</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x_axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Check if two axes are similar, used to determine squared plots&quot;&quot;&quot;</span>
+    <span class="n">axes_compatible_and_not_none</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_AXIS_COMPAT</span>
     <span class="n">axes_same_lim</span> <span class="o">=</span> <span class="n">xlim</span> <span class="o">==</span> <span class="n">ylim</span>
-    <span class="k">return</span> <span class="n">axes_same_and_not_none</span> <span class="ow">and</span> <span class="n">axes_same_lim</span>
+    <span class="k">return</span> <span class="n">axes_compatible_and_not_none</span> <span class="ow">and</span> <span class="n">axes_same_lim</span>
 
 
 <div class="viewcode-block" id="waveshow"><a class="viewcode-back" href="../../generated/librosa.display.waveshow.html#librosa.display.waveshow">[docs]</a><span class="nd">@deprecate_positional_args</span>
