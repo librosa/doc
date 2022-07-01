@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.harmonic &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.core.harmonic &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.core.harmonic</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -127,13 +117,11 @@
 <span class="kn">import</span> <span class="nn">scipy.signal</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">is_unique</span>
-<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;salience&quot;</span><span class="p">,</span> <span class="s2">&quot;interp_harmonics&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="salience"><a class="viewcode-back" href="../../../generated/librosa.salience.html#librosa.salience">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">salience</span><span class="p">(</span>
+<div class="viewcode-block" id="salience"><a class="viewcode-back" href="../../../generated/librosa.salience.html#librosa.salience">[docs]</a><span class="k">def</span> <span class="nf">salience</span><span class="p">(</span>
     <span class="n">S</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">freqs</span><span class="p">,</span>
@@ -248,8 +236,7 @@
     <span class="k">return</span> <span class="n">S_sal</span></div>
 
 
-<div class="viewcode-block" id="interp_harmonics"><a class="viewcode-back" href="../../../generated/librosa.interp_harmonics.html#librosa.interp_harmonics">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">interp_harmonics</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">harmonics</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="interp_harmonics"><a class="viewcode-back" href="../../../generated/librosa.interp_harmonics.html#librosa.interp_harmonics">[docs]</a><span class="k">def</span> <span class="nf">interp_harmonics</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">harmonics</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the energy at harmonics of time-frequency representation.</span>
 
 <span class="sd">    Given a frequency-based energy representation such as a spectrogram</span>

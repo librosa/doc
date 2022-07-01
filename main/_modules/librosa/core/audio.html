@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.audio &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.core.audio &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.core.audio</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -135,7 +125,6 @@
 <span class="kn">from</span> <span class="nn">.._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;load&quot;</span><span class="p">,</span>
@@ -162,8 +151,7 @@
 <span class="c1"># -- CORE ROUTINES --#</span>
 <span class="c1"># Load should never be cached, since we cannot verify that the contents of</span>
 <span class="c1"># &#39;path&#39; are unchanged across calls.</span>
-<div class="viewcode-block" id="load"><a class="viewcode-back" href="../../../generated/librosa.load.html#librosa.load">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">load</span><span class="p">(</span>
+<div class="viewcode-block" id="load"><a class="viewcode-back" href="../../../generated/librosa.load.html#librosa.load">[docs]</a><span class="k">def</span> <span class="nf">load</span><span class="p">(</span>
     <span class="n">path</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -391,8 +379,7 @@
     <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="n">sr_native</span>
 
 
-<div class="viewcode-block" id="stream"><a class="viewcode-back" href="../../../generated/librosa.stream.html#librosa.stream">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+<div class="viewcode-block" id="stream"><a class="viewcode-back" href="../../../generated/librosa.stream.html#librosa.stream">[docs]</a><span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
     <span class="n">path</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">block_length</span><span class="p">,</span>
@@ -619,8 +606,7 @@
     <span class="k">return</span> <span class="n">y</span></div>
 
 
-<div class="viewcode-block" id="resample"><a class="viewcode-back" href="../../../generated/librosa.resample.html#librosa.resample">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="resample"><a class="viewcode-back" href="../../../generated/librosa.resample.html#librosa.resample">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">resample</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">,</span> <span class="n">fix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
@@ -773,8 +759,7 @@
     <span class="k">return</span> <span class="n">y_hat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_duration"><a class="viewcode-back" href="../../../generated/librosa.get_duration.html#librosa.get_duration">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">get_duration</span><span class="p">(</span>
+<div class="viewcode-block" id="get_duration"><a class="viewcode-back" href="../../../generated/librosa.get_duration.html#librosa.get_duration">[docs]</a><span class="k">def</span> <span class="nf">get_duration</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the duration (in seconds) of an audio time series,</span>
@@ -916,8 +901,7 @@
             <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">samplerate</span></div>
 
 
-<div class="viewcode-block" id="autocorrelate"><a class="viewcode-back" href="../../../generated/librosa.autocorrelate.html#librosa.autocorrelate">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="autocorrelate"><a class="viewcode-back" href="../../../generated/librosa.autocorrelate.html#librosa.autocorrelate">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">autocorrelate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Bounded-lag auto-correlation</span>
 
@@ -986,8 +970,7 @@
     <span class="k">return</span> <span class="n">autocorr</span></div>
 
 
-<div class="viewcode-block" id="lpc"><a class="viewcode-back" href="../../../generated/librosa.lpc.html#librosa.lpc">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">lpc</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="lpc"><a class="viewcode-back" href="../../../generated/librosa.lpc.html#librosa.lpc">[docs]</a><span class="k">def</span> <span class="nf">lpc</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Linear Prediction Coefficients via Burg&#39;s method</span>
 
 <span class="sd">    This function applies Burg&#39;s method to estimate coefficients of a linear</span>
@@ -1171,8 +1154,7 @@
     <span class="k">return</span> <span class="n">ar_coeffs</span>
 
 
-<div class="viewcode-block" id="zero_crossings"><a class="viewcode-back" href="../../../generated/librosa.zero_crossings.html#librosa.zero_crossings">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="zero_crossings"><a class="viewcode-back" href="../../../generated/librosa.zero_crossings.html#librosa.zero_crossings">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">zero_crossings</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">ref_magnitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zero_pos</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
 <span class="p">):</span>
@@ -1301,8 +1283,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="clicks"><a class="viewcode-back" href="../../../generated/librosa.clicks.html#librosa.clicks">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">clicks</span><span class="p">(</span>
+<div class="viewcode-block" id="clicks"><a class="viewcode-back" href="../../../generated/librosa.clicks.html#librosa.clicks">[docs]</a><span class="k">def</span> <span class="nf">clicks</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1439,8 +1420,7 @@
     <span class="k">return</span> <span class="n">click_signal</span></div>
 
 
-<div class="viewcode-block" id="tone"><a class="viewcode-back" href="../../../generated/librosa.tone.html#librosa.tone">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">tone</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="tone"><a class="viewcode-back" href="../../../generated/librosa.tone.html#librosa.tone">[docs]</a><span class="k">def</span> <span class="nf">tone</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Construct a pure tone (cosine) signal at a given frequency.</span>
 
 <span class="sd">    Parameters</span>
@@ -1505,8 +1485,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">/</span> <span class="n">sr</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="chirp"><a class="viewcode-back" href="../../../generated/librosa.chirp.html#librosa.chirp">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">chirp</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="chirp"><a class="viewcode-back" href="../../../generated/librosa.chirp.html#librosa.chirp">[docs]</a><span class="k">def</span> <span class="nf">chirp</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Construct a &quot;chirp&quot; or &quot;sine-sweep&quot; signal.</span>
 
 <span class="sd">    The chirp sweeps from frequency ``fmin`` to ``fmax`` (in Hz).</span>
@@ -1611,8 +1590,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="mu_compress"><a class="viewcode-back" href="../../../generated/librosa.mu_compress.html#librosa.mu_compress">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">mu_compress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">quantize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="mu_compress"><a class="viewcode-back" href="../../../generated/librosa.mu_compress.html#librosa.mu_compress">[docs]</a><span class="k">def</span> <span class="nf">mu_compress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">quantize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;mu-law compression</span>
 
 <span class="sd">    Given an input signal ``-1 &lt;= x &lt;= 1``, the mu-law compression</span>
@@ -1706,8 +1684,7 @@
     <span class="k">return</span> <span class="n">x_comp</span></div>
 
 
-<div class="viewcode-block" id="mu_expand"><a class="viewcode-back" href="../../../generated/librosa.mu_expand.html#librosa.mu_expand">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">mu_expand</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">quantize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="mu_expand"><a class="viewcode-back" href="../../../generated/librosa.mu_expand.html#librosa.mu_expand">[docs]</a><span class="k">def</span> <span class="nf">mu_expand</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">255.0</span><span class="p">,</span> <span class="n">quantize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;mu-law expansion</span>
 
 <span class="sd">    This function is the inverse of ``mu_compress``. Given a mu-law compressed</span>

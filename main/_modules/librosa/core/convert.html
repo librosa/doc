@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.convert &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.core.convert &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.core.convert</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -124,7 +114,6 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">notation</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;frames_to_samples&quot;</span><span class="p">,</span>
@@ -171,8 +160,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="frames_to_samples"><a class="viewcode-back" href="../../../generated/librosa.frames_to_samples.html#librosa.frames_to_samples">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">frames_to_samples</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="frames_to_samples"><a class="viewcode-back" href="../../../generated/librosa.frames_to_samples.html#librosa.frames_to_samples">[docs]</a><span class="k">def</span> <span class="nf">frames_to_samples</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Converts frame indices to audio sample indices.</span>
 
 <span class="sd">    Parameters</span>
@@ -212,8 +200,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="samples_to_frames"><a class="viewcode-back" href="../../../generated/librosa.samples_to_frames.html#librosa.samples_to_frames">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">samples_to_frames</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="samples_to_frames"><a class="viewcode-back" href="../../../generated/librosa.samples_to_frames.html#librosa.samples_to_frames">[docs]</a><span class="k">def</span> <span class="nf">samples_to_frames</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Converts sample indices into STFT frames.</span>
 
 <span class="sd">    Examples</span>
@@ -264,8 +251,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">samples</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span> <span class="o">//</span> <span class="n">hop_length</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="frames_to_time"><a class="viewcode-back" href="../../../generated/librosa.frames_to_time.html#librosa.frames_to_time">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">frames_to_time</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="frames_to_time"><a class="viewcode-back" href="../../../generated/librosa.frames_to_time.html#librosa.frames_to_time">[docs]</a><span class="k">def</span> <span class="nf">frames_to_time</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Converts frame counts to time (seconds).</span>
 
 <span class="sd">    Parameters</span>
@@ -305,8 +291,7 @@
     <span class="k">return</span> <span class="n">samples_to_time</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="time_to_frames"><a class="viewcode-back" href="../../../generated/librosa.time_to_frames.html#librosa.time_to_frames">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">time_to_frames</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="time_to_frames"><a class="viewcode-back" href="../../../generated/librosa.time_to_frames.html#librosa.time_to_frames">[docs]</a><span class="k">def</span> <span class="nf">time_to_frames</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Converts time stamps into STFT frames.</span>
 
 <span class="sd">    Parameters</span>
@@ -354,8 +339,7 @@
     <span class="k">return</span> <span class="n">samples_to_frames</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="time_to_samples"><a class="viewcode-back" href="../../../generated/librosa.time_to_samples.html#librosa.time_to_samples">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">time_to_samples</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
+<div class="viewcode-block" id="time_to_samples"><a class="viewcode-back" href="../../../generated/librosa.time_to_samples.html#librosa.time_to_samples">[docs]</a><span class="k">def</span> <span class="nf">time_to_samples</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert timestamps (in seconds) to sample indices.</span>
 
 <span class="sd">    Parameters</span>
@@ -386,8 +370,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">*</span> <span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="samples_to_time"><a class="viewcode-back" href="../../../generated/librosa.samples_to_time.html#librosa.samples_to_time">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">samples_to_time</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
+<div class="viewcode-block" id="samples_to_time"><a class="viewcode-back" href="../../../generated/librosa.samples_to_time.html#librosa.samples_to_time">[docs]</a><span class="k">def</span> <span class="nf">samples_to_time</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert sample indices to time (in seconds).</span>
 
 <span class="sd">    Parameters</span>
@@ -424,8 +407,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="blocks_to_frames"><a class="viewcode-back" href="../../../generated/librosa.blocks_to_frames.html#librosa.blocks_to_frames">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">blocks_to_frames</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">):</span>
+<div class="viewcode-block" id="blocks_to_frames"><a class="viewcode-back" href="../../../generated/librosa.blocks_to_frames.html#librosa.blocks_to_frames">[docs]</a><span class="k">def</span> <span class="nf">blocks_to_frames</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert block indices to frame indices</span>
 
 <span class="sd">    Parameters</span>
@@ -461,8 +443,7 @@
     <span class="k">return</span> <span class="n">block_length</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">blocks</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="blocks_to_samples"><a class="viewcode-back" href="../../../generated/librosa.blocks_to_samples.html#librosa.blocks_to_samples">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">blocks_to_samples</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">):</span>
+<div class="viewcode-block" id="blocks_to_samples"><a class="viewcode-back" href="../../../generated/librosa.blocks_to_samples.html#librosa.blocks_to_samples">[docs]</a><span class="k">def</span> <span class="nf">blocks_to_samples</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert block indices to sample indices</span>
 
 <span class="sd">    Parameters</span>
@@ -505,8 +486,7 @@
     <span class="k">return</span> <span class="n">frames_to_samples</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="blocks_to_time"><a class="viewcode-back" href="../../../generated/librosa.blocks_to_time.html#librosa.blocks_to_time">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">blocks_to_time</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="p">):</span>
+<div class="viewcode-block" id="blocks_to_time"><a class="viewcode-back" href="../../../generated/librosa.blocks_to_time.html#librosa.blocks_to_time">[docs]</a><span class="k">def</span> <span class="nf">blocks_to_time</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert block indices to time (in seconds)</span>
 
 <span class="sd">    Parameters</span>
@@ -589,8 +569,7 @@
     <span class="k">return</span> <span class="n">midi_to_hz</span><span class="p">(</span><span class="n">note_to_midi</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="note_to_midi"><a class="viewcode-back" href="../../../generated/librosa.note_to_midi.html#librosa.note_to_midi">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">note_to_midi</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">round_midi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="note_to_midi"><a class="viewcode-back" href="../../../generated/librosa.note_to_midi.html#librosa.note_to_midi">[docs]</a><span class="k">def</span> <span class="nf">note_to_midi</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">round_midi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert one or more spelled notes to MIDI number(s).</span>
 
 <span class="sd">    Notes may be spelled out with optional accidentals or octave numbers.</span>
@@ -698,8 +677,7 @@
     <span class="k">return</span> <span class="n">note_value</span></div>
 
 
-<div class="viewcode-block" id="midi_to_note"><a class="viewcode-back" href="../../../generated/librosa.midi_to_note.html#librosa.midi_to_note">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">midi_to_note</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="midi_to_note"><a class="viewcode-back" href="../../../generated/librosa.midi_to_note.html#librosa.midi_to_note">[docs]</a><span class="k">def</span> <span class="nf">midi_to_note</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert one or more MIDI numbers to note strings.</span>
 
 <span class="sd">    MIDI numbers will be rounded to the nearest integer.</span>
@@ -902,8 +880,7 @@
     <span class="k">return</span> <span class="n">midi_to_note</span><span class="p">(</span><span class="n">hz_to_midi</span><span class="p">(</span><span class="n">frequencies</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="hz_to_mel"><a class="viewcode-back" href="../../../generated/librosa.hz_to_mel.html#librosa.hz_to_mel">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">hz_to_mel</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="hz_to_mel"><a class="viewcode-back" href="../../../generated/librosa.hz_to_mel.html#librosa.hz_to_mel">[docs]</a><span class="k">def</span> <span class="nf">hz_to_mel</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert Hz to Mels</span>
 
 <span class="sd">    Examples</span>
@@ -958,8 +935,7 @@
     <span class="k">return</span> <span class="n">mels</span></div>
 
 
-<div class="viewcode-block" id="mel_to_hz"><a class="viewcode-back" href="../../../generated/librosa.mel_to_hz.html#librosa.mel_to_hz">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">mel_to_hz</span><span class="p">(</span><span class="n">mels</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="mel_to_hz"><a class="viewcode-back" href="../../../generated/librosa.mel_to_hz.html#librosa.mel_to_hz">[docs]</a><span class="k">def</span> <span class="nf">mel_to_hz</span><span class="p">(</span><span class="n">mels</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert mel bin numbers to frequencies</span>
 
 <span class="sd">    Examples</span>
@@ -1013,8 +989,7 @@
     <span class="k">return</span> <span class="n">freqs</span></div>
 
 
-<div class="viewcode-block" id="hz_to_octs"><a class="viewcode-back" href="../../../generated/librosa.hz_to_octs.html#librosa.hz_to_octs">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">hz_to_octs</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<div class="viewcode-block" id="hz_to_octs"><a class="viewcode-back" href="../../../generated/librosa.hz_to_octs.html#librosa.hz_to_octs">[docs]</a><span class="k">def</span> <span class="nf">hz_to_octs</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert frequencies (Hz) to (fractional) octave numbers.</span>
 
 <span class="sd">    Examples</span>
@@ -1048,8 +1023,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">A440</span><span class="p">)</span> <span class="o">/</span> <span class="mi">16</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="octs_to_hz"><a class="viewcode-back" href="../../../generated/librosa.octs_to_hz.html#librosa.octs_to_hz">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">octs_to_hz</span><span class="p">(</span><span class="n">octs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<div class="viewcode-block" id="octs_to_hz"><a class="viewcode-back" href="../../../generated/librosa.octs_to_hz.html#librosa.octs_to_hz">[docs]</a><span class="k">def</span> <span class="nf">octs_to_hz</span><span class="p">(</span><span class="n">octs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert octaves numbers to frequencies.</span>
 
 <span class="sd">    Octaves are counted relative to A.</span>
@@ -1084,8 +1058,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">A440</span><span class="p">)</span> <span class="o">/</span> <span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">octs</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="A4_to_tuning"><a class="viewcode-back" href="../../../generated/librosa.A4_to_tuning.html#librosa.A4_to_tuning">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">A4_to_tuning</span><span class="p">(</span><span class="n">A4</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<div class="viewcode-block" id="A4_to_tuning"><a class="viewcode-back" href="../../../generated/librosa.A4_to_tuning.html#librosa.A4_to_tuning">[docs]</a><span class="k">def</span> <span class="nf">A4_to_tuning</span><span class="p">(</span><span class="n">A4</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert a reference pitch frequency (e.g., ``A4=435``) to a tuning</span>
 <span class="sd">    estimation, in fractions of a bin per octave.</span>
 
@@ -1134,8 +1107,7 @@
     <span class="k">return</span> <span class="n">bins_per_octave</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">A4</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">440.0</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="tuning_to_A4"><a class="viewcode-back" href="../../../generated/librosa.tuning_to_A4.html#librosa.tuning_to_A4">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">tuning_to_A4</span><span class="p">(</span><span class="n">tuning</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<div class="viewcode-block" id="tuning_to_A4"><a class="viewcode-back" href="../../../generated/librosa.tuning_to_A4.html#librosa.tuning_to_A4">[docs]</a><span class="k">def</span> <span class="nf">tuning_to_A4</span><span class="p">(</span><span class="n">tuning</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert a tuning deviation (from 0) in fractions of a bin per</span>
 <span class="sd">    octave (e.g., ``tuning=-0.1``) to a reference pitch frequency</span>
 <span class="sd">    relative to A440.</span>
@@ -1185,8 +1157,7 @@
     <span class="k">return</span> <span class="mf">440.0</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">tuning</span><span class="p">)</span> <span class="o">/</span> <span class="n">bins_per_octave</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="fft_frequencies"><a class="viewcode-back" href="../../../generated/librosa.fft_frequencies.html#librosa.fft_frequencies">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">fft_frequencies</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">):</span>
+<div class="viewcode-block" id="fft_frequencies"><a class="viewcode-back" href="../../../generated/librosa.fft_frequencies.html#librosa.fft_frequencies">[docs]</a><span class="k">def</span> <span class="nf">fft_frequencies</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Alternative implementation of `np.fft.fftfreq`</span>
 
 <span class="sd">    Parameters</span>
@@ -1212,8 +1183,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">sr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="cqt_frequencies"><a class="viewcode-back" href="../../../generated/librosa.cqt_frequencies.html#librosa.cqt_frequencies">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">cqt_frequencies</span><span class="p">(</span><span class="n">n_bins</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<div class="viewcode-block" id="cqt_frequencies"><a class="viewcode-back" href="../../../generated/librosa.cqt_frequencies.html#librosa.cqt_frequencies">[docs]</a><span class="k">def</span> <span class="nf">cqt_frequencies</span><span class="p">(</span><span class="n">n_bins</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the center frequencies of Constant-Q bins.</span>
 
 <span class="sd">    Examples</span>
@@ -1248,8 +1218,7 @@
     <span class="k">return</span> <span class="n">correction</span> <span class="o">*</span> <span class="n">fmin</span> <span class="o">*</span> <span class="n">frequencies</span></div>
 
 
-<div class="viewcode-block" id="mel_frequencies"><a class="viewcode-back" href="../../../generated/librosa.mel_frequencies.html#librosa.mel_frequencies">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">mel_frequencies</span><span class="p">(</span><span class="n">n_mels</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mf">11025.0</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="mel_frequencies"><a class="viewcode-back" href="../../../generated/librosa.mel_frequencies.html#librosa.mel_frequencies">[docs]</a><span class="k">def</span> <span class="nf">mel_frequencies</span><span class="p">(</span><span class="n">n_mels</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mf">11025.0</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute an array of acoustic frequencies tuned to the mel scale.</span>
 
 <span class="sd">    The mel scale is a quasi-logarithmic function of acoustic frequency</span>
@@ -1331,8 +1300,7 @@
     <span class="k">return</span> <span class="n">mel_to_hz</span><span class="p">(</span><span class="n">mels</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="n">htk</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="tempo_frequencies"><a class="viewcode-back" href="../../../generated/librosa.tempo_frequencies.html#librosa.tempo_frequencies">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">tempo_frequencies</span><span class="p">(</span><span class="n">n_bins</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
+<div class="viewcode-block" id="tempo_frequencies"><a class="viewcode-back" href="../../../generated/librosa.tempo_frequencies.html#librosa.tempo_frequencies">[docs]</a><span class="k">def</span> <span class="nf">tempo_frequencies</span><span class="p">(</span><span class="n">n_bins</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the frequencies (in beats per minute) corresponding</span>
 <span class="sd">    to an onset auto-correlation or tempogram matrix.</span>
 
@@ -1369,8 +1337,7 @@
     <span class="k">return</span> <span class="n">bin_frequencies</span></div>
 
 
-<div class="viewcode-block" id="fourier_tempo_frequencies"><a class="viewcode-back" href="../../../generated/librosa.fourier_tempo_frequencies.html#librosa.fourier_tempo_frequencies">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">fourier_tempo_frequencies</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="mi">384</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+<div class="viewcode-block" id="fourier_tempo_frequencies"><a class="viewcode-back" href="../../../generated/librosa.fourier_tempo_frequencies.html#librosa.fourier_tempo_frequencies">[docs]</a><span class="k">def</span> <span class="nf">fourier_tempo_frequencies</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="mi">384</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the frequencies (in beats per minute) corresponding</span>
 <span class="sd">    to a Fourier tempogram matrix.</span>
 
@@ -1403,8 +1370,7 @@
 
 
 <span class="c1"># A-weighting should be capitalized: suppress the naming warning</span>
-<div class="viewcode-block" id="A_weighting"><a class="viewcode-back" href="../../../generated/librosa.A_weighting.html#librosa.A_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">A_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
+<div class="viewcode-block" id="A_weighting"><a class="viewcode-back" href="../../../generated/librosa.A_weighting.html#librosa.A_weighting">[docs]</a><span class="k">def</span> <span class="nf">A_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
     <span class="sd">&quot;&quot;&quot;Compute the A-weighting of a set of frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -1457,8 +1423,7 @@
     <span class="k">return</span> <span class="n">weights</span> <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="B_weighting"><a class="viewcode-back" href="../../../generated/librosa.B_weighting.html#librosa.B_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">B_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
+<div class="viewcode-block" id="B_weighting"><a class="viewcode-back" href="../../../generated/librosa.B_weighting.html#librosa.B_weighting">[docs]</a><span class="k">def</span> <span class="nf">B_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
     <span class="sd">&quot;&quot;&quot;Compute the B-weighting of a set of frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -1510,8 +1475,7 @@
     <span class="k">return</span> <span class="n">weights</span> <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="C_weighting"><a class="viewcode-back" href="../../../generated/librosa.C_weighting.html#librosa.C_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">C_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
+<div class="viewcode-block" id="C_weighting"><a class="viewcode-back" href="../../../generated/librosa.C_weighting.html#librosa.C_weighting">[docs]</a><span class="k">def</span> <span class="nf">C_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
     <span class="sd">&quot;&quot;&quot;Compute the C-weighting of a set of frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -1561,8 +1525,7 @@
     <span class="k">return</span> <span class="n">weights</span> <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="D_weighting"><a class="viewcode-back" href="../../../generated/librosa.D_weighting.html#librosa.D_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">D_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
+<div class="viewcode-block" id="D_weighting"><a class="viewcode-back" href="../../../generated/librosa.D_weighting.html#librosa.D_weighting">[docs]</a><span class="k">def</span> <span class="nf">D_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=-</span><span class="mf">80.0</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
     <span class="sd">&quot;&quot;&quot;Compute the D-weighting of a set of frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -1617,7 +1580,6 @@
     <span class="k">return</span> <span class="n">weights</span> <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span></div>
 
 
-<span class="nd">@deprecate_positional_args</span>
 <span class="k">def</span> <span class="nf">Z_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frequencies</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">weights</span> <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
@@ -1633,8 +1595,7 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="frequency_weighting"><a class="viewcode-back" href="../../../generated/librosa.frequency_weighting.html#librosa.frequency_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">frequency_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="frequency_weighting"><a class="viewcode-back" href="../../../generated/librosa.frequency_weighting.html#librosa.frequency_weighting">[docs]</a><span class="k">def</span> <span class="nf">frequency_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the weighting of a set of frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -1677,8 +1638,7 @@
     <span class="k">return</span> <span class="n">WEIGHTING_FUNCTIONS</span><span class="p">[</span><span class="n">kind</span><span class="p">](</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="multi_frequency_weighting"><a class="viewcode-back" href="../../../generated/librosa.multi_frequency_weighting.html#librosa.multi_frequency_weighting">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">multi_frequency_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kinds</span><span class="o">=</span><span class="s2">&quot;ZAC&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="multi_frequency_weighting"><a class="viewcode-back" href="../../../generated/librosa.multi_frequency_weighting.html#librosa.multi_frequency_weighting">[docs]</a><span class="k">def</span> <span class="nf">multi_frequency_weighting</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kinds</span><span class="o">=</span><span class="s2">&quot;ZAC&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute multiple weightings of a set of frequencies.</span>
 
 <span class="sd">    Parameters</span>
@@ -1724,8 +1684,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="times_like"><a class="viewcode-back" href="../../../generated/librosa.times_like.html#librosa.times_like">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">times_like</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="times_like"><a class="viewcode-back" href="../../../generated/librosa.times_like.html#librosa.times_like">[docs]</a><span class="k">def</span> <span class="nf">times_like</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return an array of time values to match the time axis from a feature matrix.</span>
 
 <span class="sd">    Parameters</span>
@@ -1777,8 +1736,7 @@
     <span class="k">return</span> <span class="n">samples_to_time</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="samples_like"><a class="viewcode-back" href="../../../generated/librosa.samples_like.html#librosa.samples_like">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">samples_like</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="samples_like"><a class="viewcode-back" href="../../../generated/librosa.samples_like.html#librosa.samples_like">[docs]</a><span class="k">def</span> <span class="nf">samples_like</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return an array of sample indices to match the time axis from a feature matrix.</span>
 
 <span class="sd">    Parameters</span>
@@ -1830,8 +1788,7 @@
     <span class="k">return</span> <span class="n">frames_to_samples</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="midi_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">midi_to_svara_h</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="midi_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h">[docs]</a><span class="k">def</span> <span class="nf">midi_to_svara_h</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert MIDI numbers to Hindustani svara</span>
 
 <span class="sd">    Parameters</span>
@@ -1939,8 +1896,7 @@
     <span class="k">return</span> <span class="n">svara</span></div>
 
 
-<div class="viewcode-block" id="hz_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.hz_to_svara_h.html#librosa.hz_to_svara_h">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">hz_to_svara_h</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="hz_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.hz_to_svara_h.html#librosa.hz_to_svara_h">[docs]</a><span class="k">def</span> <span class="nf">hz_to_svara_h</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert frequencies (in Hz) to Hindustani svara</span>
 
 <span class="sd">    Note that this conversion assumes 12-tone equal temperament.</span>
@@ -2002,8 +1958,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="note_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.note_to_svara_h.html#librosa.note_to_svara_h">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">note_to_svara_h</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="note_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.note_to_svara_h.html#librosa.note_to_svara_h">[docs]</a><span class="k">def</span> <span class="nf">note_to_svara_h</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert western notes to Hindustani svara</span>
 
 <span class="sd">    Note that this conversion assumes 12-tone equal temperament.</span>
@@ -2062,8 +2017,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="midi_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">midi_to_svara_c</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="midi_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c">[docs]</a><span class="k">def</span> <span class="nf">midi_to_svara_c</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert MIDI numbers to Carnatic svara within a given melakarta raga</span>
 
 <span class="sd">    Parameters</span>
@@ -2137,8 +2091,7 @@
     <span class="k">return</span> <span class="n">svara</span></div>
 
 
-<div class="viewcode-block" id="hz_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.hz_to_svara_c.html#librosa.hz_to_svara_c">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">hz_to_svara_c</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="hz_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.hz_to_svara_c.html#librosa.hz_to_svara_c">[docs]</a><span class="k">def</span> <span class="nf">hz_to_svara_c</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert frequencies (in Hz) to Carnatic svara</span>
 
 <span class="sd">    Note that this conversion assumes 12-tone equal temperament.</span>
@@ -2204,8 +2157,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="note_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.note_to_svara_c.html#librosa.note_to_svara_c">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">note_to_svara_c</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="note_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.note_to_svara_c.html#librosa.note_to_svara_c">[docs]</a><span class="k">def</span> <span class="nf">note_to_svara_c</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert western notes to Carnatic svara</span>
 
 <span class="sd">    Note that this conversion assumes 12-tone equal temperament.</span>

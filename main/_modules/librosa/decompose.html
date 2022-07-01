@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.decompose &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.decompose &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.decompose</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -141,13 +131,11 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">segment</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">.util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;decompose&quot;</span><span class="p">,</span> <span class="s2">&quot;hpss&quot;</span><span class="p">,</span> <span class="s2">&quot;nn_filter&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="decompose"><a class="viewcode-back" href="../../generated/librosa.decompose.decompose.html#librosa.decompose.decompose">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span>
+<div class="viewcode-block" id="decompose"><a class="viewcode-back" href="../../generated/librosa.decompose.decompose.html#librosa.decompose.decompose">[docs]</a><span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span>
     <span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transformer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Decompose a feature matrix.</span>
@@ -318,7 +306,6 @@
 
 
 <div class="viewcode-block" id="hpss"><a class="viewcode-back" href="../../generated/librosa.decompose.hpss.html#librosa.decompose.hpss">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="nd">@deprecate_positional_args</span>
 <span class="k">def</span> <span class="nf">hpss</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Median-filtering harmonic percussive source separation (HPSS).</span>
 
@@ -509,7 +496,6 @@
 
 
 <div class="viewcode-block" id="nn_filter"><a class="viewcode-back" href="../../generated/librosa.decompose.nn_filter.html#librosa.decompose.nn_filter">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="nd">@deprecate_positional_args</span>
 <span class="k">def</span> <span class="nf">nn_filter</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Filtering by nearest-neighbors.</span>
 

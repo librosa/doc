@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.constantq &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.core.constantq &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.core.constantq</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -132,15 +122,13 @@
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">filters</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;hybrid_cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;pseudo_cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;icqt&quot;</span><span class="p">,</span> <span class="s2">&quot;griffinlim_cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;vqt&quot;</span><span class="p">]</span>
 
 <span class="c1"># TODO: ivqt, griffinlim_vqt</span>
 
 
-<div class="viewcode-block" id="cqt"><a class="viewcode-back" href="../../../generated/librosa.cqt.html#librosa.cqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="cqt"><a class="viewcode-back" href="../../../generated/librosa.cqt.html#librosa.cqt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cqt</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -313,8 +301,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="hybrid_cqt"><a class="viewcode-back" href="../../../generated/librosa.hybrid_cqt.html#librosa.hybrid_cqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="hybrid_cqt"><a class="viewcode-back" href="../../../generated/librosa.hybrid_cqt.html#librosa.hybrid_cqt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hybrid_cqt</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -497,8 +484,7 @@
     <span class="k">return</span> <span class="n">__trim_stack</span><span class="p">(</span><span class="n">cqt_resp</span><span class="p">,</span> <span class="n">n_bins</span><span class="p">,</span> <span class="n">cqt_resp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="pseudo_cqt"><a class="viewcode-back" href="../../../generated/librosa.pseudo_cqt.html#librosa.pseudo_cqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="pseudo_cqt"><a class="viewcode-back" href="../../../generated/librosa.pseudo_cqt.html#librosa.pseudo_cqt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">pseudo_cqt</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -654,8 +640,7 @@
     <span class="k">return</span> <span class="n">C</span></div>
 
 
-<div class="viewcode-block" id="icqt"><a class="viewcode-back" href="../../../generated/librosa.icqt.html#librosa.icqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<div class="viewcode-block" id="icqt"><a class="viewcode-back" href="../../../generated/librosa.icqt.html#librosa.icqt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">icqt</span><span class="p">(</span>
     <span class="n">C</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -879,8 +864,7 @@
     <span class="k">return</span> <span class="n">y</span></div>
 
 
-<div class="viewcode-block" id="vqt"><a class="viewcode-back" href="../../../generated/librosa.vqt.html#librosa.vqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="viewcode-block" id="vqt"><a class="viewcode-back" href="../../../generated/librosa.vqt.html#librosa.vqt">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">vqt</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1351,8 +1335,7 @@
     <span class="k">return</span> <span class="n">num_twos</span>
 
 
-<div class="viewcode-block" id="griffinlim_cqt"><a class="viewcode-back" href="../../../generated/librosa.griffinlim_cqt.html#librosa.griffinlim_cqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">griffinlim_cqt</span><span class="p">(</span>
+<div class="viewcode-block" id="griffinlim_cqt"><a class="viewcode-back" href="../../../generated/librosa.griffinlim_cqt.html#librosa.griffinlim_cqt">[docs]</a><span class="k">def</span> <span class="nf">griffinlim_cqt</span><span class="p">(</span>
     <span class="n">C</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">n_iter</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>

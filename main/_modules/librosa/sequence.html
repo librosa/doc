@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.sequence &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.sequence &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.sequence</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -156,7 +146,6 @@
 <span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="n">pad_center</span><span class="p">,</span> <span class="n">fill_off_diagonal</span><span class="p">,</span> <span class="n">tiny</span><span class="p">,</span> <span class="n">expand_to</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">.filters</span> <span class="kn">import</span> <span class="n">get_window</span>
-<span class="kn">from</span> <span class="nn">.util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;dtw&quot;</span><span class="p">,</span>
@@ -172,8 +161,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="dtw"><a class="viewcode-back" href="../../generated/librosa.sequence.dtw.html#librosa.sequence.dtw">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">dtw</span><span class="p">(</span>
+<div class="viewcode-block" id="dtw"><a class="viewcode-back" href="../../generated/librosa.sequence.dtw.html#librosa.sequence.dtw">[docs]</a><span class="k">def</span> <span class="nf">dtw</span><span class="p">(</span>
     <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -599,7 +587,6 @@
     <span class="k">return</span> <span class="n">wp</span>
 
 
-<span class="nd">@deprecate_positional_args</span>
 <span class="k">def</span> <span class="nf">dtw_backtracking</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">step_sizes_sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subseq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Backtrack a warping path.</span>
 
@@ -649,8 +636,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">wp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="rqa"><a class="viewcode-back" href="../../generated/librosa.sequence.rqa.html#librosa.sequence.rqa">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">rqa</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">gap_onset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap_extend</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">knight_moves</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">backtrack</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="rqa"><a class="viewcode-back" href="../../generated/librosa.sequence.rqa.html#librosa.sequence.rqa">[docs]</a><span class="k">def</span> <span class="nf">rqa</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">gap_onset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap_extend</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">knight_moves</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">backtrack</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Recurrence quantification analysis (RQA)</span>
 
 <span class="sd">    This function implements different forms of RQA as described by</span>
@@ -1059,8 +1045,7 @@
     <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">logp</span>
 
 
-<div class="viewcode-block" id="viterbi"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi.html#librosa.sequence.viterbi">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">viterbi</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="viterbi"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi.html#librosa.sequence.viterbi">[docs]</a><span class="k">def</span> <span class="nf">viterbi</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Viterbi decoding from observation likelihoods.</span>
 
 <span class="sd">    Given a sequence of observation likelihoods ``prob[s, t]``,</span>
@@ -1196,8 +1181,7 @@
     <span class="k">return</span> <span class="n">states</span></div>
 
 
-<div class="viewcode-block" id="viterbi_discriminative"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi_discriminative.html#librosa.sequence.viterbi_discriminative">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">viterbi_discriminative</span><span class="p">(</span>
+<div class="viewcode-block" id="viterbi_discriminative"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi_discriminative.html#librosa.sequence.viterbi_discriminative">[docs]</a><span class="k">def</span> <span class="nf">viterbi_discriminative</span><span class="p">(</span>
     <span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">p_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Viterbi decoding from discriminative state predictions.</span>
@@ -1406,8 +1390,7 @@
     <span class="k">return</span> <span class="n">states</span></div>
 
 
-<div class="viewcode-block" id="viterbi_binary"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi_binary.html#librosa.sequence.viterbi_binary">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">viterbi_binary</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">p_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="viterbi_binary"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi_binary.html#librosa.sequence.viterbi_binary">[docs]</a><span class="k">def</span> <span class="nf">viterbi_binary</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">p_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Viterbi decoding from binary (multi-label), discriminative state predictions.</span>
 
 <span class="sd">    Given a sequence of conditional state predictions ``prob[s, t]``,</span>
@@ -1735,8 +1718,7 @@
     <span class="k">return</span> <span class="n">transition</span></div>
 
 
-<div class="viewcode-block" id="transition_local"><a class="viewcode-back" href="../../generated/librosa.sequence.transition_local.html#librosa.sequence.transition_local">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">transition_local</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="transition_local"><a class="viewcode-back" href="../../generated/librosa.sequence.transition_local.html#librosa.sequence.transition_local">[docs]</a><span class="k">def</span> <span class="nf">transition_local</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Construct a localized transition matrix.</span>
 
 <span class="sd">    The transition matrix will have the following properties:</span>

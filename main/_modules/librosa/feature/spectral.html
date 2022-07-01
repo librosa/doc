@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.feature.spectral &mdash; librosa 0.9.2 documentation</title>
+  <title>librosa.feature.spectral &mdash; librosa 0.10.0.dev0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9.2
+                0.10.0.dev0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -104,16 +104,6 @@
            <div itemprop="articleBody">
              
 
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../../0.9.2/index.html">0.9.2</a>.
-    
-  </p>
-</div>
-
 
   <h1>Source code for librosa.feature.spectral</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -128,7 +118,6 @@
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">filters</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecate_positional_args</span>
 
 <span class="kn">from</span> <span class="nn">..core.convert</span> <span class="kn">import</span> <span class="n">fft_frequencies</span>
 <span class="kn">from</span> <span class="nn">..core.audio</span> <span class="kn">import</span> <span class="n">zero_crossings</span>
@@ -156,8 +145,7 @@
 
 
 <span class="c1"># -- Spectral features -- #</span>
-<div class="viewcode-block" id="spectral_centroid"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_centroid.html#librosa.feature.spectral_centroid">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">spectral_centroid</span><span class="p">(</span>
+<div class="viewcode-block" id="spectral_centroid"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_centroid.html#librosa.feature.spectral_centroid">[docs]</a><span class="k">def</span> <span class="nf">spectral_centroid</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -314,8 +302,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">freq</span> <span class="o">*</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="spectral_bandwidth"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_bandwidth.html#librosa.feature.spectral_bandwidth">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">spectral_bandwidth</span><span class="p">(</span>
+<div class="viewcode-block" id="spectral_bandwidth"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_bandwidth.html#librosa.feature.spectral_bandwidth">[docs]</a><span class="k">def</span> <span class="nf">spectral_bandwidth</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -489,8 +476,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">S</span> <span class="o">*</span> <span class="n">deviation</span> <span class="o">**</span> <span class="n">p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">p</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="spectral_contrast"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_contrast.html#librosa.feature.spectral_contrast">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">spectral_contrast</span><span class="p">(</span>
+<div class="viewcode-block" id="spectral_contrast"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_contrast.html#librosa.feature.spectral_contrast">[docs]</a><span class="k">def</span> <span class="nf">spectral_contrast</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -689,8 +675,7 @@
         <span class="k">return</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">peak</span><span class="p">)</span> <span class="o">-</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">valley</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="spectral_rolloff"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_rolloff.html#librosa.feature.spectral_rolloff">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">spectral_rolloff</span><span class="p">(</span>
+<div class="viewcode-block" id="spectral_rolloff"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_rolloff.html#librosa.feature.spectral_rolloff">[docs]</a><span class="k">def</span> <span class="nf">spectral_rolloff</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -851,8 +836,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">ind</span> <span class="o">*</span> <span class="n">freq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="spectral_flatness"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_flatness.html#librosa.feature.spectral_flatness">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">spectral_flatness</span><span class="p">(</span>
+<div class="viewcode-block" id="spectral_flatness"><a class="viewcode-back" href="../../../generated/librosa.feature.spectral_flatness.html#librosa.feature.spectral_flatness">[docs]</a><span class="k">def</span> <span class="nf">spectral_flatness</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -982,8 +966,7 @@
     <span class="k">return</span> <span class="n">gmean</span> <span class="o">/</span> <span class="n">amean</span></div>
 
 
-<div class="viewcode-block" id="rms"><a class="viewcode-back" href="../../../generated/librosa.feature.rms.html#librosa.feature.rms">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">rms</span><span class="p">(</span>
+<div class="viewcode-block" id="rms"><a class="viewcode-back" href="../../../generated/librosa.feature.rms.html#librosa.feature.rms">[docs]</a><span class="k">def</span> <span class="nf">rms</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1098,8 +1081,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">power</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="poly_features"><a class="viewcode-back" href="../../../generated/librosa.feature.poly_features.html#librosa.feature.poly_features">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">poly_features</span><span class="p">(</span>
+<div class="viewcode-block" id="poly_features"><a class="viewcode-back" href="../../../generated/librosa.feature.poly_features.html#librosa.feature.poly_features">[docs]</a><span class="k">def</span> <span class="nf">poly_features</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -1254,8 +1236,7 @@
     <span class="k">return</span> <span class="n">coefficients</span></div>
 
 
-<div class="viewcode-block" id="zero_crossing_rate"><a class="viewcode-back" href="../../../generated/librosa.feature.zero_crossing_rate.html#librosa.feature.zero_crossing_rate">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">zero_crossing_rate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="zero_crossing_rate"><a class="viewcode-back" href="../../../generated/librosa.feature.zero_crossing_rate.html#librosa.feature.zero_crossing_rate">[docs]</a><span class="k">def</span> <span class="nf">zero_crossing_rate</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the zero-crossing rate of an audio time series.</span>
 
 <span class="sd">    Parameters</span>
@@ -1317,8 +1298,7 @@
 
 
 <span class="c1"># -- Chroma --#</span>
-<div class="viewcode-block" id="chroma_stft"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_stft.html#librosa.feature.chroma_stft">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">chroma_stft</span><span class="p">(</span>
+<div class="viewcode-block" id="chroma_stft"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_stft.html#librosa.feature.chroma_stft">[docs]</a><span class="k">def</span> <span class="nf">chroma_stft</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -1479,8 +1459,7 @@
     <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_chroma</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="chroma_cqt"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">chroma_cqt</span><span class="p">(</span>
+<div class="viewcode-block" id="chroma_cqt"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt">[docs]</a><span class="k">def</span> <span class="nf">chroma_cqt</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -1622,8 +1601,7 @@
     <span class="k">return</span> <span class="n">chroma</span></div>
 
 
-<div class="viewcode-block" id="chroma_cens"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_cens.html#librosa.feature.chroma_cens">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">chroma_cens</span><span class="p">(</span>
+<div class="viewcode-block" id="chroma_cens"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_cens.html#librosa.feature.chroma_cens">[docs]</a><span class="k">def</span> <span class="nf">chroma_cens</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
@@ -1788,8 +1766,7 @@
     <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">cens</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="tonnetz"><a class="viewcode-back" href="../../../generated/librosa.feature.tonnetz.html#librosa.feature.tonnetz">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">tonnetz</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">chroma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="tonnetz"><a class="viewcode-back" href="../../../generated/librosa.feature.tonnetz.html#librosa.feature.tonnetz">[docs]</a><span class="k">def</span> <span class="nf">tonnetz</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">chroma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Computes the tonal centroid features (tonnetz)</span>
 
 <span class="sd">    This representation uses the method of [#]_ to project chroma features</span>
@@ -1895,8 +1872,7 @@
 
 
 <span class="c1"># -- Mel spectrogram and MFCCs -- #</span>
-<div class="viewcode-block" id="mfcc"><a class="viewcode-back" href="../../../generated/librosa.feature.mfcc.html#librosa.feature.mfcc">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">mfcc</span><span class="p">(</span>
+<div class="viewcode-block" id="mfcc"><a class="viewcode-back" href="../../../generated/librosa.feature.mfcc.html#librosa.feature.mfcc">[docs]</a><span class="k">def</span> <span class="nf">mfcc</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dct_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s2">&quot;ortho&quot;</span><span class="p">,</span> <span class="n">lifter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mel-frequency cepstral coefficients (MFCCs)</span>
@@ -2037,8 +2013,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="melspectrogram"><a class="viewcode-back" href="../../../generated/librosa.feature.melspectrogram.html#librosa.feature.melspectrogram">[docs]</a><span class="nd">@deprecate_positional_args</span>
-<span class="k">def</span> <span class="nf">melspectrogram</span><span class="p">(</span>
+<div class="viewcode-block" id="melspectrogram"><a class="viewcode-back" href="../../../generated/librosa.feature.melspectrogram.html#librosa.feature.melspectrogram">[docs]</a><span class="k">def</span> <span class="nf">melspectrogram</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
