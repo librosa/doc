@@ -186,12 +186,15 @@
 <span class="sd">        Anything past the midpoint will be converted to negative time.</span>
 
 <span class="sd">    unit : str or None</span>
-<span class="sd">        Abbreviation of the physical unit for axis labels and ticks.</span>
-<span class="sd">        Either equal to `s` (seconds) or `ms` (milliseconds) or None (default).</span>
-<span class="sd">        If set to None, the resulting TimeFormatter object adapts its string</span>
-<span class="sd">        representation to the duration of the underlying time range:</span>
-<span class="sd">        `hh:mm:ss` above 3600 seconds; `mm:ss` between 60 and 3600 seconds;</span>
-<span class="sd">        and `ss` below 60 seconds.</span>
+<span class="sd">        Abbreviation of the string representation for axis labels and ticks.</span>
+<span class="sd">        List of supported units:</span>
+<span class="sd">        * `&quot;h&quot;`: hour-based format (`H:MM:SS`)</span>
+<span class="sd">        * `&quot;m&quot;`: minute-based format (`M:SS`)</span>
+<span class="sd">        * `&quot;s&quot;`: second-based format (`S.sss` in scientific notation)</span>
+<span class="sd">        * `&quot;ms&quot;`: millisecond-based format (`s.µµµ` in scientific notation)</span>
+<span class="sd">        * `None`: adaptive to the duration of the underlying time range: similar</span>
+<span class="sd">        to `&quot;h&quot;` above 3600 seconds; to `&quot;m&quot;` between 60 and 3600 seconds; to</span>
+<span class="sd">        `&quot;s&quot;` between 1 and 60 seconds; and to `&quot;ms&quot;` below 1 second.</span>
 
 
 <span class="sd">    See also</span>
@@ -233,7 +236,7 @@
 
 <div class="viewcode-block" id="TimeFormatter.__init__"><a class="viewcode-back" href="../../generated/librosa.display.TimeFormatter.html#librosa.display.TimeFormatter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-        <span class="k">if</span> <span class="n">unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Unknown time unit: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span>
@@ -257,27 +260,22 @@
             <span class="n">value</span> <span class="o">=</span> <span class="n">x</span>
             <span class="n">sign</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s2">&quot;h&quot;</span> <span class="ow">or</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&gt;</span> <span class="mi">3600</span><span class="p">)):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mf">3600.0</span><span class="p">),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">60</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span> <span class="ow">or</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">)):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">60</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>
             <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.3g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="o">==</span><span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s2">&quot;ms&quot;</span><span class="p">:</span>
             <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.3g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&gt;</span> <span class="mi">3600</span><span class="p">:</span>
-                <span class="c1"># Hours viz</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mf">3600.0</span><span class="p">),</span>
-                    <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)),</span>
-                    <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">60</span><span class="p">)),</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
-                <span class="c1"># Minutes viz</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2">:</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">60</span><span class="p">)))</span>
-            <span class="k">elif</span> <span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="c1"># Seconds viz</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># Milliseconds viz</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="o">==</span><span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:s}{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span></div>
 
@@ -727,8 +725,8 @@
 <span class="n">_chroma_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="s1">&#39;chroma_h&#39;</span><span class="p">,</span> <span class="s1">&#39;chroma_c&#39;</span><span class="p">,)</span>
 <span class="n">_cqt_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;cqt_hz&#39;</span><span class="p">,</span> <span class="s1">&#39;cqt_note&#39;</span><span class="p">,</span> <span class="s1">&#39;cqt_svara&#39;</span><span class="p">,)</span>
 <span class="n">_freq_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;fft&#39;</span><span class="p">,</span> <span class="s1">&#39;hz&#39;</span><span class="p">,</span> <span class="s1">&#39;fft_note&#39;</span><span class="p">,</span> <span class="s1">&#39;fft_svara&#39;</span><span class="p">,)</span>
-<span class="n">_time_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">,)</span>
-<span class="n">_lag_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lag&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_s&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_ms&#39;</span><span class="p">,)</span>
+<span class="n">_time_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">,)</span>
+<span class="n">_lag_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lag&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_h&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_m&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_s&#39;</span><span class="p">,</span> <span class="s1">&#39;lag_ms&#39;</span><span class="p">,)</span>
 <span class="n">_misc_ax_types</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;tempo&#39;</span><span class="p">,</span> <span class="s1">&#39;fourier_tempo&#39;</span><span class="p">,</span> <span class="s1">&#39;mel&#39;</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="s1">&#39;tonnetz&#39;</span><span class="p">,</span> <span class="s1">&#39;frames&#39;</span><span class="p">,)</span>
 
 <span class="n">_AXIS_COMPAT</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
@@ -836,9 +834,13 @@
 
 <span class="sd">        - &#39;time&#39; : markers are shown as milliseconds, seconds, minutes, or hours.</span>
 <span class="sd">                Values are plotted in units of seconds.</span>
+<span class="sd">        - &#39;h&#39; : markers are shown as hours, minutes, and seconds.</span>
+<span class="sd">        - &#39;m&#39; : markers are shown as minutes and seconds.</span>
 <span class="sd">        - &#39;s&#39; : markers are shown as seconds.</span>
 <span class="sd">        - &#39;ms&#39; : markers are shown as milliseconds.</span>
 <span class="sd">        - &#39;lag&#39; : like time, but past the halfway point counts as negative values.</span>
+<span class="sd">        - &#39;lag_h&#39; : same as lag, but in hours, minutes and seconds.</span>
+<span class="sd">        - &#39;lag_m&#39; : same as lag, but in minutes and seconds.</span>
 <span class="sd">        - &#39;lag_s&#39; : same as lag, but in seconds.</span>
 <span class="sd">        - &#39;lag_ms&#39; : same as lag, but in milliseconds.</span>
 
@@ -1061,9 +1063,13 @@
         <span class="s2">&quot;chroma_c&quot;</span><span class="p">:</span> <span class="n">__coord_chroma</span><span class="p">,</span>
         <span class="s2">&quot;chroma_h&quot;</span><span class="p">:</span> <span class="n">__coord_chroma</span><span class="p">,</span>
         <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
+        <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
+        <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;ms&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;lag&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
+        <span class="s2">&quot;lag_h&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
+        <span class="s2">&quot;lag_m&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;lag_s&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;lag_ms&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;tonnetz&quot;</span><span class="p">:</span> <span class="n">__coord_n</span><span class="p">,</span>
@@ -1152,6 +1158,8 @@
     <span class="n">axis</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thaat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Configure axis tickers, locators, and labels&quot;&quot;&quot;</span>
+    <span class="n">time_units</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;minutes&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;seconds&quot;</span><span class="p">,</span> <span class="s2">&quot;ms&quot;</span><span class="p">:</span> <span class="s2">&quot;milliseconds&quot;</span><span class="p">}</span>
 
     <span class="k">if</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;tonnetz&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TonnetzFormatter</span><span class="p">())</span>
@@ -1206,30 +1214,21 @@
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="n">time_units</span><span class="p">:</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">ax_type</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
-
-    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;ms&quot;</span><span class="p">:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time (ms)&quot;</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time (</span><span class="si">{:s}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_units</span><span class="p">[</span><span class="n">ax_type</span><span class="p">]))</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;lag&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag&quot;</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;lag_s&quot;</span><span class="p">:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ax_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;lag_&quot;</span><span class="p">):</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="n">ax_type</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag (s)&quot;</span><span class="p">)</span>
-
-    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;lag_ms&quot;</span><span class="p">:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag (ms)&quot;</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag (</span><span class="si">{:s}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_units</span><span class="p">[</span><span class="n">unit</span><span class="p">]))</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;cqt_note&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NoteFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">))</span>
@@ -1466,11 +1465,19 @@
 <span class="sd">        - &#39;time&#39; : markers are shown as milliseconds, seconds, minutes, or hours.</span>
 <span class="sd">                    Values are plotted in units of seconds.</span>
 
+<span class="sd">        - &#39;h&#39; : markers are shown as hours, minutes, and seconds.</span>
+
+<span class="sd">        - &#39;m&#39; : markers are shown as minutes and seconds.</span>
+
 <span class="sd">        - &#39;s&#39; : markers are shown as seconds.</span>
 
 <span class="sd">        - &#39;ms&#39; : markers are shown as milliseconds.</span>
 
 <span class="sd">        - &#39;lag&#39; : like time, but past the halfway point counts as negative values.</span>
+
+<span class="sd">        - &#39;lag_h&#39; : same as lag, but in hours.</span>
+
+<span class="sd">        - &#39;lag_m&#39; : same as lag, but in minutes.</span>
 
 <span class="sd">        - &#39;lag_s&#39; : same as lag, but in seconds.</span>
 

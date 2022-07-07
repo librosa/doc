@@ -137,12 +137,15 @@ or hours:minutes:seconds.</p>
 <dt><strong>lag</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the time axis is interpreted in lag coordinates.
 Anything past the midpoint will be converted to negative time.</p>
 </dd>
-<dt><strong>unit</strong><span class="classifier">str or None</span></dt><dd><p>Abbreviation of the physical unit for axis labels and ticks.
-Either equal to <em class="xref py py-obj">s</em> (seconds) or <em class="xref py py-obj">ms</em> (milliseconds) or None (default).
-If set to None, the resulting TimeFormatter object adapts its string
-representation to the duration of the underlying time range:
-<em class="xref py py-obj">hh:mm:ss</em> above 3600 seconds; <em class="xref py py-obj">mm:ss</em> between 60 and 3600 seconds;
-and <em class="xref py py-obj">ss</em> below 60 seconds.</p>
+<dt><strong>unit</strong><span class="classifier">str or None</span></dt><dd><p>Abbreviation of the string representation for axis labels and ticks.
+List of supported units:
+* <em class="xref py py-obj">“h”</em>: hour-based format (<em class="xref py py-obj">H:MM:SS</em>)
+* <em class="xref py py-obj">“m”</em>: minute-based format (<em class="xref py py-obj">M:SS</em>)
+* <em class="xref py py-obj">“s”</em>: second-based format (<em class="xref py py-obj">S.sss</em> in scientific notation)
+* <em class="xref py py-obj">“ms”</em>: millisecond-based format (<em class="xref py py-obj">s.µµµ</em> in scientific notation)
+* <em class="xref py py-obj">None</em>: adaptive to the duration of the underlying time range: similar
+to <em class="xref py py-obj">“h”</em> above 3600 seconds; to <em class="xref py py-obj">“m”</em> between 60 and 3600 seconds; to
+<em class="xref py py-obj">“s”</em> between 1 and 60 seconds; and to <em class="xref py py-obj">“ms”</em> below 1 second.</p>
 </dd>
 </dl>
 </dd>
