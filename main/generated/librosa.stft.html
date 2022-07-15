@@ -141,7 +141,7 @@
 <h1>librosa.stft<a class="headerlink" href="#librosa-stft" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.stft">
-<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">stft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hann'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'constant'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#stft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.stft" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">stft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hann'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'constant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#stft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.stft" title="Permalink to this definition">¶</a></dt>
 <dd><p>Short-time Fourier transform (STFT).</p>
 <p>The STFT represents a signal in the time-frequency domain by
 computing discrete Fourier transforms (DFT) over short overlapping
@@ -208,15 +208,32 @@ precision of the input signal.</p>
 </dd>
 <dt><strong>pad_mode</strong><span class="classifier">string or function</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">center=True</span></code>, this argument is passed to <em class="xref py py-obj">np.pad</em> for padding
 the edges of the signal <code class="docutils literal notranslate"><span class="pre">y</span></code>. By default (<code class="docutils literal notranslate"><span class="pre">pad_mode=&quot;constant&quot;</span></code>),
-<code class="docutils literal notranslate"><span class="pre">y</span></code> is padded on both sides with zeros.
-If <code class="docutils literal notranslate"><span class="pre">center=False</span></code>,  this argument is ignored.</p>
+<code class="docutils literal notranslate"><span class="pre">y</span></code> is padded on both sides with zeros.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not all padding modes supported by <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.pad</span></code></a> are supported here.
+<em class="xref py py-obj">wrap</em>, <em class="xref py py-obj">mean</em>, <em class="xref py py-obj">maximum</em>, <em class="xref py py-obj">median</em>, and <em class="xref py py-obj">minimum</em> are not supported.</p>
+<p>Other modes that depend at most on input values at the edges of the
+signal (e.g., <em class="xref py py-obj">constant</em>, <em class="xref py py-obj">edge</em>, <em class="xref py py-obj">linear_ramp</em>) are supported.</p>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">center=False</span></code>,  this argument is ignored.</p>
+</dd>
+<dt><strong>out</strong><span class="classifier">np.ndarray or None</span></dt><dd><p>A pre-allocated, complex-valued array to store the STFT results.
+This must be of compatible shape and dtype for the given input parameters.</p>
+<p>If <em class="xref py py-obj">out</em> is larger than necessary for the provided input signal, then only
+a prefix slice of <em class="xref py py-obj">out</em> will be used.</p>
+<p>If not provided, a new array is allocated and returned.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
+<dd class="field-even"><dl>
 <dt><strong>D</strong><span class="classifier">np.ndarray [shape=(…, 1 + n_fft/2, n_frames), dtype=dtype]</span></dt><dd><p>Complex-valued matrix of short-term Fourier transform
 coefficients.</p>
+<p>If a pre-allocated <em class="xref py py-obj">out</em> array is provided, then <em class="xref py py-obj">D</em> will be
+a reference to <em class="xref py py-obj">out</em>.</p>
+<p>If <em class="xref py py-obj">out</em> is larger than necessary, then <em class="xref py py-obj">D</em> will be a sliced
+view: <em class="xref py py-obj">D = out[…, :n_frames]</em>.</p>
 </dd>
 </dl>
 </dd>

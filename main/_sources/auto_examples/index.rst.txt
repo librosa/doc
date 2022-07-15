@@ -96,27 +96,6 @@ Advanced examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use streaming IO with librosa.pcen to do dynamic per-channel ...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_pcen_stream_thumb.png
-     :alt: PCEN Streaming
-
-     :ref:`sphx_glr_auto_examples_plot_pcen_stream.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_pcen_stream
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="In this short tutorial, we demonstrate the use of dynamic time warping (DTW) for music synchron...">
 
 .. only:: html
@@ -135,6 +114,27 @@ Advanced examples
    :hidden:
 
    /auto_examples/plot_music_sync
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use streaming IO with librosa.pcen to do dynamic per-channel ...">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_pcen_stream_thumb.png
+     :alt: PCEN Streaming
+
+     :ref:`sphx_glr_auto_examples_plot_pcen_stream.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_pcen_stream
 
 .. raw:: html
 

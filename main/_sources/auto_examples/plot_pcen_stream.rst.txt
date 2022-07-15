@@ -28,11 +28,15 @@ to do dynamic per-channel energy normalization on a spectrogram incrementally.
 This is useful when processing long audio files that are too large to load all at
 once, or when streaming data from a recording device.
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-18
+It also illustrates how to use a pre-allocated output buffer for block-wise
+short-time Fourier transforms.  This provides a minor speed boost and reduction
+in memory usage when processing audio streams.
+
+.. GENERATED FROM PYTHON SOURCE LINES 21-22
 
 We'll need numpy and matplotlib for this example
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-27
+.. GENERATED FROM PYTHON SOURCE LINES 22-31
 
 .. code-block:: default
 
@@ -52,11 +56,11 @@ We'll need numpy and matplotlib for this example
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-29
+.. GENERATED FROM PYTHON SOURCE LINES 32-33
 
 First, we'll start with an audio file that we want to stream
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-31
+.. GENERATED FROM PYTHON SOURCE LINES 33-35
 
 .. code-block:: default
 
@@ -69,12 +73,12 @@ First, we'll start with an audio file that we want to stream
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-34
+.. GENERATED FROM PYTHON SOURCE LINES 36-38
 
 Next, we'll set up the block reader to work on short segments of
 audio at a time.
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-52
+.. GENERATED FROM PYTHON SOURCE LINES 38-56
 
 .. code-block:: default
 
@@ -103,12 +107,12 @@ audio at a time.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-55
+.. GENERATED FROM PYTHON SOURCE LINES 57-59
 
 For this example, we'll compute PCEN on each block, find the maximum
 response over frequency, and store the results in a list.
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-79
+.. GENERATED FROM PYTHON SOURCE LINES 59-88
 
 .. code-block:: default
 
@@ -119,10 +123,15 @@ response over frequency, and store the results in a list.
     # Initialize the PCEN filter delays to steady state
     zi = None
 
+    # Create a handle for storing the block STFT outputs
+    # After the first block has been processed, we can re-use
+    # this buffer instead of allocating a new one for each block.
+    D = None
+
     for y_block in stream:
         # Compute the STFT (without padding, so center=False)
         D = librosa.stft(y_block, n_fft=n_fft, hop_length=hop_length,
-                         center=False)
+                         center=False, out=D)
 
         # Compute PCEN on the magnitude spectrum, using initial delays
         # returned from our previous call (if any)
@@ -143,12 +152,12 @@ response over frequency, and store the results in a list.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-82
+.. GENERATED FROM PYTHON SOURCE LINES 89-91
 
 For the sake of comparison, let's see how it would look had we
 run PCEN on the entire spectrum without block-wise processing
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-95
+.. GENERATED FROM PYTHON SOURCE LINES 91-104
 
 .. code-block:: default
 
@@ -172,11 +181,11 @@ run PCEN on the entire spectrum without block-wise processing
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-97
+.. GENERATED FROM PYTHON SOURCE LINES 105-106
 
 Plot the PCEN spectrum and the resulting magnitudes
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-114
+.. GENERATED FROM PYTHON SOURCE LINES 106-123
 
 .. code-block:: default
 
@@ -212,7 +221,7 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.472 seconds)
+   **Total running time of the script:** ( 0 minutes  2.875 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_pcen_stream.py:
