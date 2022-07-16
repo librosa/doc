@@ -1088,6 +1088,40 @@
     <span class="k">return</span> <span class="n">Snorm</span></div>
 
 
+<span class="nd">@numba</span><span class="o">.</span><span class="n">stencil</span>
+<span class="k">def</span> <span class="nf">_localmax_sten</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&#39;&#39;&#39;Numba stencil for local maxima computation&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">stencil</span>
+<span class="k">def</span> <span class="nf">_localmin_sten</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&#39;&#39;&#39;Numba stencil for local minima computation&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">([</span><span class="s1">&#39;void(int16[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(int32[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(int64[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(float32[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(float64[:], bool_[:])&#39;</span><span class="p">],</span> <span class="s1">&#39;(n)-&gt;(n)&#39;</span><span class="p">,</span>
+                   <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_localmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&#39;&#39;&#39;Vectorized wrapper for the localmax stencil&#39;&#39;&#39;</span>
+    <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">_localmax_sten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">([</span><span class="s1">&#39;void(int16[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(int32[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(int64[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(float32[:], bool_[:])&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;void(float64[:], bool_[:])&#39;</span><span class="p">],</span> <span class="s1">&#39;(n)-&gt;(n)&#39;</span><span class="p">,</span>
+                   <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_localmin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&#39;&#39;&#39;Vectorized wrapper for the localmin stencil&#39;&#39;&#39;</span>
+    <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">_localmin_sten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="localmax"><a class="viewcode-back" href="../../../generated/librosa.util.localmax.html#librosa.util.localmax">[docs]</a><span class="k">def</span> <span class="nf">localmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find local maxima in an array</span>
 
@@ -1133,19 +1167,20 @@
 <span class="sd">    --------</span>
 <span class="sd">    localmin</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Rotate the target axis to the end</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
-    <span class="n">paddings</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">paddings</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Allocate the output array and rotate target axis</span>
+    <span class="n">lmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">lmaxi</span> <span class="o">=</span> <span class="n">lmax</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
-    <span class="n">x_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">paddings</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">)</span>
+    <span class="c1"># Call the vectorized stencil</span>
+    <span class="n">_localmax</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">lmaxi</span><span class="p">)</span>
 
-    <span class="n">inds1</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">inds1</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Handle the edge condition not covered by the stencil</span>
+    <span class="n">lmaxi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">xi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
-    <span class="n">inds2</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">inds2</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_pad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">])</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">x_pad</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">inds1</span><span class="p">)])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">x_pad</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">inds2</span><span class="p">)])</span></div>
+    <span class="k">return</span> <span class="n">lmax</span></div>
 
 
 <div class="viewcode-block" id="localmin"><a class="viewcode-back" href="../../../generated/librosa.util.localmin.html#librosa.util.localmin">[docs]</a><span class="k">def</span> <span class="nf">localmin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -1194,19 +1229,20 @@
 <span class="sd">    --------</span>
 <span class="sd">    localmax</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Rotate the target axis to the end</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
-    <span class="n">paddings</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">paddings</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Allocate the output array and rotate target axis</span>
+    <span class="n">lmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">lmini</span> <span class="o">=</span> <span class="n">lmin</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
-    <span class="n">x_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">paddings</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">)</span>
+    <span class="c1"># Call the vectorized stencil</span>
+    <span class="n">_localmin</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">lmini</span><span class="p">)</span>
 
-    <span class="n">inds1</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">inds1</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Handle the edge condition not covered by the stencil</span>
+    <span class="n">lmini</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
-    <span class="n">inds2</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">inds2</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_pad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">])</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">x_pad</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">inds1</span><span class="p">)])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">x_pad</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">inds2</span><span class="p">)])</span></div>
+    <span class="k">return</span> <span class="n">lmin</span></div>
 
 
 <div class="viewcode-block" id="peak_pick"><a class="viewcode-back" href="../../../generated/librosa.util.peak_pick.html#librosa.util.peak_pick">[docs]</a><span class="k">def</span> <span class="nf">peak_pick</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">pre_max</span><span class="p">,</span> <span class="n">post_max</span><span class="p">,</span> <span class="n">pre_avg</span><span class="p">,</span> <span class="n">post_avg</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">wait</span><span class="p">):</span>
