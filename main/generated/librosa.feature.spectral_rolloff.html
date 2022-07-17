@@ -142,9 +142,9 @@ for a spectrogram bin such that at least roll_percent (0.85 by default)
 of the energy of the spectrum in this frame is contained in this bin and
 the bins below. This can be used to, e.g., approximate the maximum (or
 minimum) frequency by setting roll_percent to a value close to 1 (or 0).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)] or None</span></dt><dd><p>audio time series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>audio sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
@@ -157,8 +157,8 @@ minimum) frequency by setting roll_percent to a value close to 1 (or 0).</p>
 </dd>
 <dt><strong>win_length</strong><span class="classifier">int &lt;= n_fft [scalar]</span></dt><dd><p>Each frame of audio is windowed by <em class="xref py py-obj">window()</em>.
 The window will be of length <em class="xref py py-obj">win_length</em> and then padded
-with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.</p>
-<p>If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
+with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.
+If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
 </dd>
 <dt><strong>window</strong><span class="classifier">string, tuple, number, function, or np.ndarray [shape=(n_fft,)]</span></dt><dd><ul class="simple">
 <li><p>a window specification (string, tuple, or number);
@@ -178,11 +178,8 @@ By default, STFT uses zero padding.</p>
 </dd>
 <dt><strong>freq</strong><span class="classifier">None or np.ndarray [shape=(d,) or shape=(…, d, t)]</span></dt><dd><p>Center frequencies for spectrogram bins.
 If <em class="xref py py-obj">None</em>, then FFT bin center frequencies are used.
-Otherwise, it can be a single array of <code class="docutils literal notranslate"><span class="pre">d</span></code> center frequencies,</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">freq</span></code> is assumed to be sorted in increasing order</p>
-</div>
+Otherwise, it can be a single array of <code class="docutils literal notranslate"><span class="pre">d</span></code> center frequencies,
+.. note:: <code class="docutils literal notranslate"><span class="pre">freq</span></code> is assumed to be sorted in increasing order</p>
 </dd>
 <dt><strong>roll_percent</strong><span class="classifier">float [0 &lt; roll_percent &lt; 1]</span></dt><dd><p>Roll-off percentage.</p>
 </dd>

@@ -145,9 +145,9 @@
 <a class="reference external" href="http://labrosa.ee.columbia.edu/matlab/chroma-ansyn/">http://labrosa.ee.columbia.edu/matlab/chroma-ansyn/</a></p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)] or None</span></dt><dd><p>audio time series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
@@ -155,8 +155,8 @@
 <dt><strong>S</strong><span class="classifier">np.ndarray [shape=(…, d, t)] or None</span></dt><dd><p>power spectrogram</p>
 </dd>
 <dt><strong>norm</strong><span class="classifier">float or None</span></dt><dd><p>Column-wise normalization.
-See <a class="reference internal" href="librosa.util.normalize.html#librosa.util.normalize" title="librosa.util.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.normalize</span></code></a> for details.</p>
-<p>If <em class="xref py py-obj">None</em>, no normalization is performed.</p>
+See <a class="reference internal" href="librosa.util.normalize.html#librosa.util.normalize" title="librosa.util.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.normalize</span></code></a> for details.
+If <em class="xref py py-obj">None</em>, no normalization is performed.</p>
 </dd>
 <dt><strong>n_fft</strong><span class="classifier">int  &gt; 0 [scalar]</span></dt><dd><p>FFT window size if provided <code class="docutils literal notranslate"><span class="pre">y,</span> <span class="pre">sr</span></code> instead of <code class="docutils literal notranslate"><span class="pre">S</span></code></p>
 </dd>
@@ -164,8 +164,8 @@ See <a class="reference internal" href="librosa.util.normalize.html#librosa.util
 </dd>
 <dt><strong>win_length</strong><span class="classifier">int &lt;= n_fft [scalar]</span></dt><dd><p>Each frame of audio is windowed by <em class="xref py py-obj">window()</em>.
 The window will be of length <em class="xref py py-obj">win_length</em> and then padded
-with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.</p>
-<p>If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
+with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.
+If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
 </dd>
 <dt><strong>window</strong><span class="classifier">string, tuple, number, function, or np.ndarray [shape=(n_fft,)]</span></dt><dd><ul class="simple">
 <li><p>a window specification (string, tuple, or number);
@@ -188,8 +188,20 @@ If <em class="xref py py-obj">None</em>, it is automatically estimated.</p>
 </dd>
 <dt><strong>n_chroma</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>Number of chroma bins to produce (12 by default).</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>Arguments to parameterize chroma filters.
-See <a class="reference internal" href="librosa.filters.chroma.html#librosa.filters.chroma" title="librosa.filters.chroma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.chroma</span></code></a> for details.</p>
+<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments to parameterize chroma filters.</span></dt><dd></dd>
+<dt><strong>ctroct</strong><span class="classifier">float &gt; 0 [scalar]</span></dt><dd></dd>
+<dt><strong>octwidth</strong><span class="classifier">float &gt; 0 or None [scalar]</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">ctroct</span></code> and <code class="docutils literal notranslate"><span class="pre">octwidth</span></code> specify a dominance window:
+a Gaussian weighting centered on <code class="docutils literal notranslate"><span class="pre">ctroct</span></code> (in octs, A0 = 27.5Hz)
+and with a gaussian half-width of <code class="docutils literal notranslate"><span class="pre">octwidth</span></code>.
+Set <code class="docutils literal notranslate"><span class="pre">octwidth</span></code> to <em class="xref py py-obj">None</em> to use a flat weighting.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">float &gt; 0 or np.inf</span></dt><dd><p>Normalization factor for each filter</p>
+</dd>
+<dt><strong>base_c</strong><span class="classifier">bool</span></dt><dd><p>If True, the filter bank will start at ‘C’.
+If False, the filter bank will start at ‘A’.</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">np.dtype</span></dt><dd><p>The data type of the output basis.
+By default, uses 32-bit (single-precision) floating point.</p>
 </dd>
 </dl>
 </dd>

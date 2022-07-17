@@ -155,11 +155,37 @@ Santa Barbara, CA, USA: ACM Press. doi:10.1145/1178723.1178727.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
 </dd>
-<dt><strong>chroma</strong><span class="classifier">np.ndarray [shape=(n_chroma, t)] or None</span></dt><dd><p>Normalized energy for each chroma bin at each frame.</p>
-<p>If <em class="xref py py-obj">None</em>, a cqt chromagram is performed.</p>
+<dt><strong>chroma</strong><span class="classifier">np.ndarray [shape=(n_chroma, t)] or None</span></dt><dd><p>Normalized energy for each chroma bin at each frame.
+If <em class="xref py py-obj">None</em>, a cqt chromagram is performed.</p>
 </dd>
-<dt><strong>**kwargs</strong></dt><dd><p>Additional keyword arguments to <a class="reference internal" href="librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt" title="librosa.feature.chroma_cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_cqt</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">chroma</span></code> is not
-pre-computed.</p>
+<dt><strong>**kwargs</strong><span class="classifier">Additional keyword arguments to <a class="reference internal" href="librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt" title="librosa.feature.chroma_cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_cqt</span></code></a>,</span></dt><dd><p>if <code class="docutils literal notranslate"><span class="pre">chroma</span></code> is not pre-computed.</p>
+</dd>
+<dt><strong>C</strong><span class="classifier">np.ndarray [shape=(…, d, t)] [Optional]</span></dt><dd><p>a pre-computed constant-Q spectrogram</p>
+</dd>
+<dt><strong>hop_length</strong><span class="classifier">int &gt; 0</span></dt><dd><p>number of samples between successive chroma frames</p>
+</dd>
+<dt><strong>fmin</strong><span class="classifier">float &gt; 0</span></dt><dd><p>minimum frequency to analyze in the CQT.
+Default: <em class="xref py py-obj">C1 ~= 32.7 Hz</em></p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">int &gt; 0, +-np.inf, or None</span></dt><dd><p>Column-wise normalization of the chromagram.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float</span></dt><dd><p>Pre-normalization energy threshold.  Values below the
+threshold are discarded, resulting in a sparse chromagram.</p>
+</dd>
+<dt><strong>tuning</strong><span class="classifier">float</span></dt><dd><p>Deviation (in fractions of a CQT bin) from A440 tuning</p>
+</dd>
+<dt><strong>n_chroma</strong><span class="classifier">int &gt; 0</span></dt><dd><p>Number of chroma bins to produce</p>
+</dd>
+<dt><strong>n_octaves</strong><span class="classifier">int &gt; 0</span></dt><dd><p>Number of octaves to analyze above <code class="docutils literal notranslate"><span class="pre">fmin</span></code></p>
+</dd>
+<dt><strong>window</strong><span class="classifier">None or np.ndarray</span></dt><dd><p>Optional window parameter to <em class="xref py py-obj">filters.cq_to_chroma</em></p>
+</dd>
+<dt><strong>bins_per_octave</strong><span class="classifier">int &gt; 0, optional</span></dt><dd><p>Number of bins per octave in the CQT.
+Must be an integer multiple of <code class="docutils literal notranslate"><span class="pre">n_chroma</span></code>.
+Default: 36 (3 bins per semitone)
+If <em class="xref py py-obj">None</em>, it will match <code class="docutils literal notranslate"><span class="pre">n_chroma</span></code>.</p>
+</dd>
+<dt><strong>cqt_mode</strong><span class="classifier">[‘full’, ‘hybrid’]</span></dt><dd><p>Constant-Q transform mode</p>
 </dd>
 </dl>
 </dd>

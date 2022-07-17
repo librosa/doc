@@ -138,8 +138,25 @@
 </dd>
 <dt><strong>power</strong><span class="classifier">float &gt; 0 [scalar]</span></dt><dd><p>Exponent for the magnitude melspectrogram</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>Mel filter bank parameters.
-See <a class="reference internal" href="librosa.filters.mel.html#librosa.filters.mel" title="librosa.filters.mel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.mel</span></code></a> for details</p>
+<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments for Mel filter bank parameters</span></dt><dd></dd>
+<dt><strong>n_mels</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>number of Mel bands to generate</p>
+</dd>
+<dt><strong>fmin</strong><span class="classifier">float &gt;= 0 [scalar]</span></dt><dd><p>lowest frequency (in Hz)</p>
+</dd>
+<dt><strong>fmax</strong><span class="classifier">float &gt;= 0 [scalar]</span></dt><dd><p>highest frequency (in Hz).
+If <em class="xref py py-obj">None</em>, use <code class="docutils literal notranslate"><span class="pre">fmax</span> <span class="pre">=</span> <span class="pre">sr</span> <span class="pre">/</span> <span class="pre">2.0</span></code></p>
+</dd>
+<dt><strong>htk</strong><span class="classifier">bool [scalar]</span></dt><dd><p>use HTK formula instead of Slaney</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">{None, ‘slaney’, or number} [scalar]</span></dt><dd><p>If ‘slaney’, divide the triangular mel weights by the width of
+the mel band (area normalization).
+If numeric, use <a class="reference internal" href="librosa.util.normalize.html#librosa.util.normalize" title="librosa.util.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.normalize</span></code></a> to normalize each filter
+by to unit l_p norm. See <a class="reference internal" href="librosa.util.normalize.html#librosa.util.normalize" title="librosa.util.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.normalize</span></code></a> for a full
+description of supported norm values (including <em class="xref py py-obj">+-np.inf</em>).
+Otherwise, leave all the triangles aiming for a peak value of 1.0</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">np.dtype</span></dt><dd><p>The data type of the output basis.
+By default, uses 32-bit (single-precision) floating point.</p>
 </dd>
 </dl>
 </dd>

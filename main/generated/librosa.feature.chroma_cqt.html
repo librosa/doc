@@ -137,9 +137,9 @@
 <dt class="sig sig-object py" id="librosa.feature.chroma_cqt">
 <span class="sig-prename descclassname"><span class="pre">librosa.feature.</span></span><span class="sig-name descname"><span class="pre">chroma_cqt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tuning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_chroma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_octaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins_per_octave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">36</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cqt_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/feature/spectral.html#chroma_cqt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.feature.chroma_cqt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constant-Q chromagram</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n,)]</span></dt><dd><p>audio time series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
@@ -148,8 +148,8 @@
 </dd>
 <dt><strong>hop_length</strong><span class="classifier">int &gt; 0</span></dt><dd><p>number of samples between successive chroma frames</p>
 </dd>
-<dt><strong>fmin</strong><span class="classifier">float &gt; 0</span></dt><dd><p>minimum frequency to analyze in the CQT.</p>
-<p>Default: <em class="xref py py-obj">C1 ~= 32.7 Hz</em></p>
+<dt><strong>fmin</strong><span class="classifier">float &gt; 0</span></dt><dd><p>minimum frequency to analyze in the CQT.
+Default: <em class="xref py py-obj">C1 ~= 32.7 Hz</em></p>
 </dd>
 <dt><strong>norm</strong><span class="classifier">int &gt; 0, +-np.inf, or None</span></dt><dd><p>Column-wise normalization of the chromagram.</p>
 </dd>
@@ -166,8 +166,8 @@ threshold are discarded, resulting in a sparse chromagram.</p>
 </dd>
 <dt><strong>bins_per_octave</strong><span class="classifier">int &gt; 0, optional</span></dt><dd><p>Number of bins per octave in the CQT.
 Must be an integer multiple of <code class="docutils literal notranslate"><span class="pre">n_chroma</span></code>.
-Default: 36 (3 bins per semitone)</p>
-<p>If <em class="xref py py-obj">None</em>, it will match <code class="docutils literal notranslate"><span class="pre">n_chroma</span></code>.</p>
+Default: 36 (3 bins per semitone)
+If <em class="xref py py-obj">None</em>, it will match <code class="docutils literal notranslate"><span class="pre">n_chroma</span></code>.</p>
 </dd>
 <dt><strong>cqt_mode</strong><span class="classifier">[‘full’, ‘hybrid’]</span></dt><dd><p>Constant-Q transform mode</p>
 </dd>

@@ -143,9 +143,9 @@ the mel basis by <code class="docutils literal notranslate"><span class="pre">me
 <code class="docutils literal notranslate"><span class="pre">S</span></code> is first computed, and then mapped onto the mel scale by
 <code class="docutils literal notranslate"><span class="pre">mel_f.dot(S**power)</span></code>.</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">power=2</span></code> operates on a power spectrum.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)] or None</span></dt><dd><p>audio time-series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
@@ -159,8 +159,8 @@ See <a class="reference internal" href="librosa.stft.html#librosa.stft" title="l
 </dd>
 <dt><strong>win_length</strong><span class="classifier">int &lt;= n_fft [scalar]</span></dt><dd><p>Each frame of audio is windowed by <em class="xref py py-obj">window()</em>.
 The window will be of length <em class="xref py py-obj">win_length</em> and then padded
-with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.</p>
-<p>If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
+with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.
+If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
 </dd>
 <dt><strong>window</strong><span class="classifier">string, tuple, number, function, or np.ndarray [shape=(n_fft,)]</span></dt><dd><ul class="simple">
 <li><p>a window specification (string, tuple, or number);
@@ -175,14 +175,31 @@ see <a class="reference external" href="https://docs.scipy.org/doc/scipy/referen
 <li><p>If <em class="xref py py-obj">False</em>, then frame <code class="docutils literal notranslate"><span class="pre">t</span></code> begins at <code class="docutils literal notranslate"><span class="pre">y[t</span> <span class="pre">*</span> <span class="pre">hop_length]</span></code></p></li>
 </ul>
 </dd>
-<dt><strong>pad_mode</strong><span class="classifier">string</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">center=True</span></code>, the padding mode to use at the edges of the signal.</p>
-<p>By default, STFT uses zero padding.</p>
+<dt><strong>pad_mode</strong><span class="classifier">string</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">center=True</span></code>, the padding mode to use at the edges of the signal.
+By default, STFT uses zero padding.</p>
 </dd>
 <dt><strong>power</strong><span class="classifier">float &gt; 0 [scalar]</span></dt><dd><p>Exponent for the magnitude melspectrogram.
 e.g., 1 for energy, 2 for power, etc.</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>Mel filter bank parameters.</p>
-<p>See <a class="reference internal" href="librosa.filters.mel.html#librosa.filters.mel" title="librosa.filters.mel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.mel</span></code></a> for details.</p>
+<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments for Mel filter bank parameters</span></dt><dd></dd>
+<dt><strong>n_mels</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>number of Mel bands to generate</p>
+</dd>
+<dt><strong>fmin</strong><span class="classifier">float &gt;= 0 [scalar]</span></dt><dd><p>lowest frequency (in Hz)</p>
+</dd>
+<dt><strong>fmax</strong><span class="classifier">float &gt;= 0 [scalar]</span></dt><dd><p>highest frequency (in Hz).
+If <em class="xref py py-obj">None</em>, use <code class="docutils literal notranslate"><span class="pre">fmax</span> <span class="pre">=</span> <span class="pre">sr</span> <span class="pre">/</span> <span class="pre">2.0</span></code></p>
+</dd>
+<dt><strong>htk</strong><span class="classifier">bool [scalar]</span></dt><dd><p>use HTK formula instead of Slaney</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">{None, ‘slaney’, or number} [scalar]</span></dt><dd><p>If ‘slaney’, divide the triangular mel weights by the width of
+the mel band (area normalization).
+If numeric, use <a class="reference internal" href="librosa.util.normalize.html#librosa.util.normalize" title="librosa.util.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.normalize</span></code></a> to normalize each filter
+by to unit l_p norm. See <a class="reference internal" href="librosa.util.normalize.html#librosa.util.normalize" title="librosa.util.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.normalize</span></code></a> for a full
+description of supported norm values (including <em class="xref py py-obj">+-np.inf</em>).
+Otherwise, leave all the triangles aiming for a peak value of 1.0</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">np.dtype</span></dt><dd><p>The data type of the output basis.
+By default, uses 32-bit (single-precision) floating point.</p>
 </dd>
 </dl>
 </dd>

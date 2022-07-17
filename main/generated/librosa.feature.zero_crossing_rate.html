@@ -150,13 +150,21 @@
 This is similar to the padding in <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a>,
 but uses edge-value copies instead of zero-padding.</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>See <a class="reference internal" href="librosa.zero_crossings.html#librosa.zero_crossings" title="librosa.zero_crossings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.zero_crossings</span></code></a></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By default, the <code class="docutils literal notranslate"><span class="pre">pad</span></code> parameter is set to <em class="xref py py-obj">False</em>, which
+<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments to pass to <a class="reference internal" href="librosa.zero_crossings.html#librosa.zero_crossings" title="librosa.zero_crossings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.zero_crossings</span></code></a></span></dt><dd></dd>
+<dt><strong>threshold</strong><span class="classifier">float &gt; 0 or None</span></dt><dd><p>If specified, values where <code class="docutils literal notranslate"><span class="pre">-threshold</span> <span class="pre">&lt;=</span> <span class="pre">y</span> <span class="pre">&lt;=</span> <span class="pre">threshold</span></code> are
+clipped to 0.</p>
+</dd>
+<dt><strong>ref_magnitude</strong><span class="classifier">float &gt; 0 or callable</span></dt><dd><p>If numeric, the threshold is scaled relative to <code class="docutils literal notranslate"><span class="pre">ref_magnitude</span></code>.
+If callable, the threshold is scaled relative to
+<code class="docutils literal notranslate"><span class="pre">ref_magnitude(np.abs(y))</span></code>.</p>
+</dd>
+<dt><strong>zero_pos</strong><span class="classifier">boolean</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> then the value 0 is interpreted as having positive sign.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, then 0, -1, and +1 all have distinct signs.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int</span></dt><dd><p>Axis along which to compute zero-crossings.
+.. note:: By default, the <code class="docutils literal notranslate"><span class="pre">pad</span></code> parameter is set to <em class="xref py py-obj">False</em>, which
 differs from the default specified by
 <a class="reference internal" href="librosa.zero_crossings.html#librosa.zero_crossings" title="librosa.zero_crossings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.zero_crossings</span></code></a>.</p>
-</div>
 </dd>
 </dl>
 </dd>

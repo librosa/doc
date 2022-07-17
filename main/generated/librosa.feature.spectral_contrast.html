@@ -153,9 +153,9 @@ In Multimedia and Expo, 2002. ICME’02. Proceedings.
 IEEE, 2002.</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)] or None</span></dt><dd><p>audio time series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number  &gt; 0 [scalar]</span></dt><dd><p>audio sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
@@ -168,8 +168,8 @@ IEEE, 2002.</p>
 </dd>
 <dt><strong>win_length</strong><span class="classifier">int &lt;= n_fft [scalar]</span></dt><dd><p>Each frame of audio is windowed by <em class="xref py py-obj">window()</em>.
 The window will be of length <em class="xref py py-obj">win_length</em> and then padded
-with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.</p>
-<p>If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
+with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.
+If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
 </dd>
 <dt><strong>window</strong><span class="classifier">string, tuple, number, function, or np.ndarray [shape=(n_fft,)]</span></dt><dd><ul class="simple">
 <li><p>a window specification (string, tuple, or number);
@@ -187,8 +187,8 @@ see <a class="reference external" href="https://docs.scipy.org/doc/scipy/referen
 <dt><strong>pad_mode</strong><span class="classifier">string</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">center=True</span></code>, the padding mode to use at the edges of the signal.
 By default, STFT uses zero padding.</p>
 </dd>
-<dt><strong>freq</strong><span class="classifier">None or np.ndarray [shape=(d,)]</span></dt><dd><p>Center frequencies for spectrogram bins.</p>
-<p>If <em class="xref py py-obj">None</em>, then FFT bin center frequencies are used.
+<dt><strong>freq</strong><span class="classifier">None or np.ndarray [shape=(d,)]</span></dt><dd><p>Center frequencies for spectrogram bins.
+If <em class="xref py py-obj">None</em>, then FFT bin center frequencies are used.
 Otherwise, it can be a single array of <code class="docutils literal notranslate"><span class="pre">d</span></code> center frequencies.</p>
 </dd>
 <dt><strong>fmin</strong><span class="classifier">float &gt; 0</span></dt><dd><p>Frequency cutoff for the first bin <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">fmin]</span></code>
@@ -199,8 +199,8 @@ Subsequent bins will cover <code class="docutils literal notranslate"><span clas
 <dt><strong>quantile</strong><span class="classifier">float in (0, 1)</span></dt><dd><p>quantile for determining peaks and valleys</p>
 </dd>
 <dt><strong>linear</strong><span class="classifier">bool</span></dt><dd><p>If <em class="xref py py-obj">True</em>, return the linear difference of magnitudes:
-<code class="docutils literal notranslate"><span class="pre">peaks</span> <span class="pre">-</span> <span class="pre">valleys</span></code>.</p>
-<p>If <em class="xref py py-obj">False</em>, return the logarithmic difference:
+<code class="docutils literal notranslate"><span class="pre">peaks</span> <span class="pre">-</span> <span class="pre">valleys</span></code>.
+If <em class="xref py py-obj">False</em>, return the logarithmic difference:
 <code class="docutils literal notranslate"><span class="pre">log(peaks)</span> <span class="pre">-</span> <span class="pre">log(valleys)</span></code>.</p>
 </dd>
 </dl>

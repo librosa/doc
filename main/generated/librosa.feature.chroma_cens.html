@@ -156,9 +156,9 @@ matching and retrieval applications.</p>
 In Proceedings of the International Conference on Music Information Retrieval (ISMIR), 2011.</p>
 </dd>
 </dl>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n,)]</span></dt><dd><p>audio time series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
@@ -180,8 +180,8 @@ Default: <em class="xref py py-obj">C1 ~= 32.7 Hz</em></p>
 </dd>
 <dt><strong>window</strong><span class="classifier">None or np.ndarray</span></dt><dd><p>Optional window parameter to <em class="xref py py-obj">filters.cq_to_chroma</em></p>
 </dd>
-<dt><strong>bins_per_octave</strong><span class="classifier">int &gt; 0</span></dt><dd><p>Number of bins per octave in the CQT.</p>
-<p>Default: 36</p>
+<dt><strong>bins_per_octave</strong><span class="classifier">int &gt; 0</span></dt><dd><p>Number of bins per octave in the CQT.
+Default: 36</p>
 </dd>
 <dt><strong>cqt_mode</strong><span class="classifier">[‘full’, ‘hybrid’]</span></dt><dd><p>Constant-Q transform mode</p>
 </dd>

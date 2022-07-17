@@ -135,9 +135,9 @@ spectrogram.</p>
 <li><p><a class="reference internal" href="librosa.db_to_power.html#librosa.db_to_power" title="librosa.db_to_power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.db_to_power</span></code></a> is applied to map the dB-scaled result to a power spectrogram</p></li>
 </ol>
 </div></blockquote>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>mfcc</strong><span class="classifier">np.ndarray [shape=(…, n_mfcc, n)]</span></dt><dd><p>The Mel-frequency cepstral coefficients</p>
 </dd>
 <dt><strong>n_mels</strong><span class="classifier">int &gt; 0</span></dt><dd><p>The number of Mel frequencies</p>
@@ -146,15 +146,15 @@ spectrogram.</p>
 By default, DCT type-2 is used.</p>
 </dd>
 <dt><strong>norm</strong><span class="classifier">None or ‘ortho’</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">dct_type</span></code> is <em class="xref py py-obj">2 or 3</em>, setting <code class="docutils literal notranslate"><span class="pre">norm='ortho'</span></code> uses an orthonormal
-DCT basis.</p>
-<p>Normalization is not supported for <em class="xref py py-obj">dct_type=1</em>.</p>
+DCT basis.
+Normalization is not supported for <em class="xref py py-obj">dct_type=1</em>.</p>
 </dd>
 <dt><strong>ref</strong><span class="classifier">number or callable</span></dt><dd><p>Reference power for (inverse) decibel calculation</p>
 </dd>
-<dt><strong>lifter</strong><span class="classifier">number &gt;= 0</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">lifter&gt;0</span></code>, apply inverse liftering (inverse cepstral filtering):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;-</span> <span class="n">M</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">lifter</span><span class="p">)</span> <span class="o">*</span> <span class="n">lifter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
+<dt><strong>lifter</strong><span class="classifier">number &gt;= 0</span></dt><dd><dl class="simple">
+<dt>If <code class="docutils literal notranslate"><span class="pre">lifter&gt;0</span></code>, apply inverse liftering (inverse cepstral filtering)::</dt><dd><p>M[n, :] &lt;- M[n, :] / (1 + sin(pi * (n + 1) / lifter) * lifter / 2)</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>

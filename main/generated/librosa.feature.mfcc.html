@@ -159,18 +159,60 @@ of each channel.</p>
 By default, DCT type-2 is used.</p>
 </dd>
 <dt><strong>norm</strong><span class="classifier">None or ‘ortho’</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">dct_type</span></code> is <em class="xref py py-obj">2 or 3</em>, setting <code class="docutils literal notranslate"><span class="pre">norm='ortho'</span></code> uses an ortho-normal
-DCT basis.</p>
-<p>Normalization is not supported for <code class="docutils literal notranslate"><span class="pre">dct_type=1</span></code>.</p>
+DCT basis.
+Normalization is not supported for <code class="docutils literal notranslate"><span class="pre">dct_type=1</span></code>.</p>
 </dd>
-<dt><strong>lifter</strong><span class="classifier">number &gt;= 0</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">lifter&gt;0</span></code>, apply <em>liftering</em> (cepstral filtering) to the MFCCs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;-</span> <span class="n">M</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">lifter</span><span class="p">)</span> <span class="o">*</span> <span class="n">lifter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
+<dt><strong>lifter</strong><span class="classifier">number &gt;= 0</span></dt><dd><dl class="simple">
+<dt>If <code class="docutils literal notranslate"><span class="pre">lifter&gt;0</span></code>, apply <em>liftering</em> (cepstral filtering) to the MFCCs::</dt><dd><p>M[n, :] &lt;- M[n, :] * (1 + sin(pi * (n + 1) / lifter) * lifter / 2)</p>
+</dd>
+</dl>
 <p>Setting <code class="docutils literal notranslate"><span class="pre">lifter</span> <span class="pre">&gt;=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">n_mfcc</span></code> emphasizes the higher-order coefficients.
 As <code class="docutils literal notranslate"><span class="pre">lifter</span></code> increases, the coefficient weighting becomes approximately linear.</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>Arguments to <a class="reference internal" href="librosa.feature.melspectrogram.html#librosa.feature.melspectrogram" title="librosa.feature.melspectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melspectrogram</span></code></a>, if operating
-on time series input</p>
+<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments to <a class="reference internal" href="librosa.feature.melspectrogram.html#librosa.feature.melspectrogram" title="librosa.feature.melspectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melspectrogram</span></code></a></span></dt><dd><p>if operating on time series input</p>
+</dd>
+<dt><strong>n_fft</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>length of the FFT window</p>
+</dd>
+<dt><strong>hop_length</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>number of samples between successive frames.
+See <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a></p>
+</dd>
+<dt><strong>win_length</strong><span class="classifier">int &lt;= n_fft [scalar]</span></dt><dd><p>Each frame of audio is windowed by <em class="xref py py-obj">window()</em>.
+The window will be of length <em class="xref py py-obj">win_length</em> and then padded
+with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.
+If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">=</span> <span class="pre">n_fft</span></code>.</p>
+</dd>
+<dt><strong>window</strong><span class="classifier">string, tuple, number, function, or np.ndarray [shape=(n_fft,)]</span></dt><dd><ul class="simple">
+<li><p>a window specification (string, tuple, or number);</p></li>
+</ul>
+<p>see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.get_window.html#scipy.signal.get_window" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.get_window</span></code></a>
+- a window function, such as <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hann.html#scipy.signal.windows.hann" title="(in SciPy v1.8.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.windows.hann</span></code></a>
+- a vector or array of length <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>
+.. see also:: <a class="reference internal" href="librosa.filters.get_window.html#librosa.filters.get_window" title="librosa.filters.get_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.get_window</span></code></a></p>
+</dd>
+<dt><strong>center</strong><span class="classifier">boolean</span></dt><dd><ul class="simple">
+<li><p>If <em class="xref py py-obj">True</em>, the signal <code class="docutils literal notranslate"><span class="pre">y</span></code> is padded so that frame</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">t</span></code> is centered at <code class="docutils literal notranslate"><span class="pre">y[t</span> <span class="pre">*</span> <span class="pre">hop_length]</span></code>.
+- If <em class="xref py py-obj">False</em>, then frame <code class="docutils literal notranslate"><span class="pre">t</span></code> begins at <code class="docutils literal notranslate"><span class="pre">y[t</span> <span class="pre">*</span> <span class="pre">hop_length]</span></code></p>
+</dd>
+<dt><strong>pad_mode</strong><span class="classifier">string</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">center=True</span></code>, the padding mode to use at the edges of the signal.
+By default, STFT uses zero padding.</p>
+</dd>
+<dt><strong>power</strong><span class="classifier">float &gt; 0 [scalar]</span></dt><dd><p>Exponent for the magnitude melspectrogram.
+e.g., 1 for energy, 2 for power, etc.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments for Mel filter bank parameters</span></dt><dd></dd>
+<dt><strong>n_mels</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>number of Mel bands to generate</p>
+</dd>
+<dt><strong>fmin</strong><span class="classifier">float &gt;= 0 [scalar]</span></dt><dd><p>lowest frequency (in Hz)</p>
+</dd>
+<dt><strong>fmax</strong><span class="classifier">float &gt;= 0 [scalar]</span></dt><dd><p>highest frequency (in Hz).
+If <em class="xref py py-obj">None</em>, use <code class="docutils literal notranslate"><span class="pre">fmax</span> <span class="pre">=</span> <span class="pre">sr</span> <span class="pre">/</span> <span class="pre">2.0</span></code></p>
+</dd>
+<dt><strong>htk</strong><span class="classifier">bool [scalar]</span></dt><dd><p>use HTK formula instead of Slaney</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">np.dtype</span></dt><dd><p>The data type of the output basis.
+By default, uses 32-bit (single-precision) floating point.</p>
 </dd>
 </dl>
 </dd>
