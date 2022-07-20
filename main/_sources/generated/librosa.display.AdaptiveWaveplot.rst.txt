@@ -14,6 +14,8 @@
    .. autosummary::
    
       ~AdaptiveWaveplot.__init__
+      ~AdaptiveWaveplot.connect
+      ~AdaptiveWaveplot.disconnect
       ~AdaptiveWaveplot.update
    
    
