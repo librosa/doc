@@ -243,28 +243,23 @@ Springer Verlag, 2015.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.343 seconds)
+   **Total running time of the script:** ( 0 minutes  3.166 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_music_sync.py <plot_music_sync.py>`
 
-     :download:`Download Python source code: plot_music_sync.py <plot_music_sync.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
+      :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
 
 
 .. only:: html

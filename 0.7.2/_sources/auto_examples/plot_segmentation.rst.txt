@@ -93,11 +93,9 @@ First, we'll load in a song
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -136,11 +134,9 @@ Next, we'll compute and plot a log-power CQT
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -182,11 +178,9 @@ To reduce dimensionality, we'll beat-synchronous the CQT
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -485,11 +479,9 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -498,28 +490,23 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.894 seconds)
+   **Total running time of the script:** ( 0 minutes  8.272 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_segmentation.py <plot_segmentation.py>`
 
-     :download:`Download Python source code: plot_segmentation.py <plot_segmentation.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_segmentation.ipynb <plot_segmentation.ipynb>`
+      :download:`Download Jupyter notebook: plot_segmentation.ipynb <plot_segmentation.ipynb>`
 
 
 .. only:: html

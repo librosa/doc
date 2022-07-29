@@ -66,11 +66,9 @@ Load the example clip.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -155,15 +153,13 @@ We can plot the two components along with the original spectrogram
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -275,15 +271,13 @@ components, and vocals have been suppressed in the percussive components.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmpi9sbatsb/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmp6kzazrdf/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linscaley' parameter of __init__() has been renamed 'linscale' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
@@ -292,28 +286,23 @@ components, and vocals have been suppressed in the percussive components.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.903 seconds)
+   **Total running time of the script:** ( 0 minutes  6.832 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_hprss.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_hprss.py <plot_hprss.py>`
 
-     :download:`Download Python source code: plot_hprss.py <plot_hprss.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_hprss.ipynb <plot_hprss.ipynb>`
+      :download:`Download Jupyter notebook: plot_hprss.ipynb <plot_hprss.ipynb>`
 
 
 .. only:: html
