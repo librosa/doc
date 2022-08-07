@@ -175,17 +175,17 @@ Now we can load in a file and do some analysis with the new defaults
 
  .. code-block:: none
 
-    /tmp/tmp21erkc12/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpabnvmk0t/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
-    /tmp/tmp21erkc12/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpabnvmk0t/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmp21erkc12/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpabnvmk0t/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmp21erkc12/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmpabnvmk0t/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
-    /tmp/tmp21erkc12/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpabnvmk0t/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'basey' parameter of __init__() has been renamed 'base' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
-    /tmp/tmp21erkc12/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+    /tmp/tmpabnvmk0t/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/display.py:862: MatplotlibDeprecationWarning: The 'linthreshy' parameter of __init__() has been renamed 'linthresh' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
       scaler(mode, **kwargs)
 
 
