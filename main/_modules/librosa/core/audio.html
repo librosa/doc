@@ -608,7 +608,7 @@
 
 <div class="viewcode-block" id="resample"><a class="viewcode-back" href="../../../generated/librosa.resample.html#librosa.resample">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">resample</span><span class="p">(</span>
-    <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">,</span> <span class="n">fix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">,</span> <span class="n">fix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Resample a time series from orig_sr to target_sr</span>
 
@@ -618,8 +618,8 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    y : np.ndarray [shape=(..., n)]</span>
-<span class="sd">        audio time series.  Multi-channel is supported.</span>
+<span class="sd">    y : np.ndarray [shape=(..., n, ...)]</span>
+<span class="sd">        audio time series, with `n` samples along the specified axis.</span>
 
 <span class="sd">    orig_sr : number &gt; 0 [scalar]</span>
 <span class="sd">        original sampling rate of ``y``</span>
@@ -669,14 +669,17 @@
 <span class="sd">        Scale the resampled signal so that ``y`` and ``y_hat`` have approximately</span>
 <span class="sd">        equal total energy.</span>
 
+<span class="sd">    axis : int</span>
+<span class="sd">        The target axis along which to resample.  Defaults to the trailing axis.</span>
+
 <span class="sd">    **kwargs : additional keyword arguments</span>
 <span class="sd">        If ``fix==True``, additional keyword arguments to pass to</span>
 <span class="sd">        `librosa.util.fix_length`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    y_hat : np.ndarray [shape=(..., n * target_sr / orig_sr)]</span>
-<span class="sd">        ``y`` resampled from ``orig_sr`` to ``target_sr``</span>
+<span class="sd">    y_hat : np.ndarray [shape=(..., n * target_sr / orig_sr, ...)]</span>
+<span class="sd">        ``y`` resampled from ``orig_sr`` to ``target_sr`` along the target axis</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -714,10 +717,10 @@
 
     <span class="n">ratio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">target_sr</span><span class="p">)</span> <span class="o">/</span> <span class="n">orig_sr</span>
 
-    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">))</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">res_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;scipy&quot;</span><span class="p">,</span> <span class="s2">&quot;fft&quot;</span><span class="p">):</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">res_type</span> <span class="o">==</span> <span class="s2">&quot;polyphase&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span> <span class="o">!=</span> <span class="n">orig_sr</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">target_sr</span><span class="p">)</span> <span class="o">!=</span> <span class="n">target_sr</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
@@ -730,7 +733,7 @@
         <span class="n">orig_sr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span>
         <span class="n">target_sr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">target_sr</span><span class="p">)</span>
         <span class="n">gcd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">)</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">resample_poly</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">target_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">orig_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">resample_poly</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">target_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">orig_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">res_type</span> <span class="ow">in</span> <span class="p">(</span>
         <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
         <span class="s2">&quot;zero_order_hold&quot;</span><span class="p">,</span>
@@ -740,18 +743,20 @@
     <span class="p">):</span>
         <span class="kn">import</span> <span class="nn">samplerate</span>
 
-        <span class="c1"># We have to transpose here to match libsamplerate</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">samplerate</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">converter_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="c1"># Use numpy to vectorize the resampler along the target axis</span>
+        <span class="c1"># This is because samplerate does not support ndim&gt;2 generally.</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">samplerate</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">converter_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">res_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;soxr&quot;</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">soxr</span>
 
-        <span class="c1"># We have to transpose here to match soxr</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">soxr</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="c1"># Use numpy to vectorize the resampler along the target axis</span>
+        <span class="c1"># This is because soxr does not support ndim&gt;2 generally.</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">soxr</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">in_rate</span><span class="o">=</span><span class="n">orig_sr</span><span class="p">,</span> <span class="n">out_rate</span><span class="o">=</span><span class="n">target_sr</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">fix</span><span class="p">:</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">fix_length</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">fix_length</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
         <span class="n">y_hat</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
