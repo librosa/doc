@@ -124,7 +124,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.filters.window_bandwidth">
 <span class="sig-prename descclassname"><span class="pre">librosa.filters.</span></span><span class="sig-name descname"><span class="pre">window_bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/filters.html#window_bandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.filters.window_bandwidth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the equivalent noise bandwidth of a window function.</p>
+<dd><p>Get the equivalent noise bandwidth (ENBW) of a window function.</p>
+<p>The ENBW of a window is defined by <a class="footnote-reference brackets" href="#id2" id="id1">1</a> (equation 11) as the normalized
+ratio of the sum of squares to the square of sums:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enbw</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">window</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">window</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Harris, F. J.
+“On the use of windows for harmonic analysis with the discrete Fourier transform.”
+Proceedings of the IEEE, 66(1), 51-83.  1978.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">

@@ -1188,7 +1188,16 @@
 
 <div class="viewcode-block" id="window_bandwidth"><a class="viewcode-back" href="../../generated/librosa.filters.window_bandwidth.html#librosa.filters.window_bandwidth">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">window_bandwidth</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the equivalent noise bandwidth of a window function.</span>
+    <span class="sd">&quot;&quot;&quot;Get the equivalent noise bandwidth (ENBW) of a window function.</span>
+
+<span class="sd">    The ENBW of a window is defined by [#]_ (equation 11) as the normalized</span>
+<span class="sd">    ratio of the sum of squares to the square of sums::</span>
+
+<span class="sd">        enbw = n * sum(window**2) / sum(window)**2</span>
+
+<span class="sd">    .. [#] Harris, F. J.</span>
+<span class="sd">        &quot;On the use of windows for harmonic analysis with the discrete Fourier transform.&quot;</span>
+<span class="sd">        Proceedings of the IEEE, 66(1), 51-83.  1978.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1223,7 +1232,7 @@
 
     <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">WINDOW_BANDWIDTHS</span><span class="p">:</span>
         <span class="n">win</span> <span class="o">=</span> <span class="n">get_window</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-        <span class="n">WINDOW_BANDWIDTHS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">win</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">win</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">WINDOW_BANDWIDTHS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">win</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">win</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">win</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">WINDOW_BANDWIDTHS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
 
