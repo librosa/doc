@@ -384,12 +384,16 @@
             <span class="n">start</span> <span class="o">=</span> <span class="n">start_k</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="o">-</span> <span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span>
             <span class="n">padding</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
+            <span class="c1"># +1 here is to ensure enough samples to fill the window</span>
+            <span class="c1"># fixes bug #1567</span>
             <span class="n">y_pre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span>
-                <span class="n">y</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span> <span class="p">(</span><span class="n">start_k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="o">-</span> <span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">n_fft</span><span class="p">],</span>
+                <span class="n">y</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span> <span class="p">(</span><span class="n">start_k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="o">-</span> <span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">n_fft</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
                 <span class="n">padding</span><span class="p">,</span>
                 <span class="n">mode</span><span class="o">=</span><span class="n">pad_mode</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">y_frames_pre</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">y_pre</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
+            <span class="c1"># Trim this down to the exact number of frames we should have</span>
+            <span class="n">y_frames_pre</span> <span class="o">=</span> <span class="n">y_frames_pre</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">start_k</span><span class="p">]</span>
 
             <span class="c1"># How many extra frames do we have from the head?</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="n">y_frames_pre</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
