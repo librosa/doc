@@ -5,28 +5,28 @@
 
 Computation times
 =================
-**01:28.117** total execution time for **auto_examples** files:
+**01:29.948** total execution time for **auto_examples** files:
 
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_vocal_separation.py` (``plot_vocal_separation.py``) | 00:25.459 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_vocal_separation.py` (``plot_vocal_separation.py``) | 00:27.412 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_chroma.py` (``plot_chroma.py``)                     | 00:24.602 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_chroma.py` (``plot_chroma.py``)                     | 00:25.671 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_display.py` (``plot_display.py``)                   | 00:11.482 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_display.py` (``plot_display.py``)                   | 00:10.355 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_segmentation.py` (``plot_segmentation.py``)         | 00:08.045 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_segmentation.py` (``plot_segmentation.py``)         | 00:07.716 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_hprss.py` (``plot_hprss.py``)                       | 00:04.927 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_hprss.py` (``plot_hprss.py``)                       | 00:05.210 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_music_sync.py` (``plot_music_sync.py``)             | 00:04.431 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_music_sync.py` (``plot_music_sync.py``)             | 00:03.931 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_pcen_stream.py` (``plot_pcen_stream.py``)           | 00:02.729 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_audio_playback.py` (``plot_audio_playback.py``)     | 00:02.944 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_audio_playback.py` (``plot_audio_playback.py``)     | 00:02.627 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_pcen_stream.py` (``plot_pcen_stream.py``)           | 00:02.894 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_viterbi.py` (``plot_viterbi.py``)                   | 00:02.285 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_viterbi.py` (``plot_viterbi.py``)                   | 00:02.386 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)               | 00:00.857 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)               | 00:00.793 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_presets.py` (``plot_presets.py``)                   | 00:00.671 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_presets.py` (``plot_presets.py``)                   | 00:00.636 | 0.0 MB |
 +---------------------------------------------------------------------------------------+-----------+--------+
