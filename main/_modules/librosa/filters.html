@@ -1540,13 +1540,33 @@
 <span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; import scipy.signal</span>
-<span class="sd">    &gt;&gt;&gt; semitone_filterbank, sample_rates = librosa.filters.semitone_filterbank()</span>
-<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; semitone_filterbank, sample_rates = librosa.filters.semitone_filterbank(</span>
+<span class="sd">    ...     center_freqs=librosa.midi_to_hz(np.arange(60, 72)),</span>
+<span class="sd">    ...     sample_rates=np.repeat(4410.0, 12),</span>
+<span class="sd">    ...     flayout=&#39;sos&#39;</span>
+<span class="sd">    ...     )</span>
+<span class="sd">    &gt;&gt;&gt; magnitudes = []</span>
 <span class="sd">    &gt;&gt;&gt; for cur_sr, cur_filter in zip(sample_rates, semitone_filterbank):</span>
-<span class="sd">    ...    w, h = scipy.signal.freqz(cur_filter[0], cur_filter[1], worN=2000)</span>
-<span class="sd">    ...    ax.semilogx((cur_sr / (2 * np.pi)) * w, 20 * np.log10(abs(h)))</span>
-<span class="sd">    &gt;&gt;&gt; ax.set(xlim=[20, 10e3], ylim=[-60, 3], title=&#39;Magnitude Responses of the Pitch Filterbank&#39;,</span>
-<span class="sd">    ...        xlabel=&#39;Log-Frequency (Hz)&#39;, ylabel=&#39;Magnitude (dB)&#39;)</span>
+<span class="sd">    ...     w, h = scipy.signal.sosfreqz(cur_filter,fs=cur_sr, worN=1025)</span>
+<span class="sd">    ...     magnitudes.append(20 * np.log10(np.abs(h)))</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(figsize=(12,6))</span>
+<span class="sd">    &gt;&gt;&gt; img = librosa.display.specshow(</span>
+<span class="sd">    ...     np.array(magnitudes), </span>
+<span class="sd">    ...     x_axis=&quot;hz&quot;, </span>
+<span class="sd">    ...     sr=4410, </span>
+<span class="sd">    ...     y_coords=librosa.midi_to_hz(np.arange(60, 72)), </span>
+<span class="sd">    ...     vmin=-60, </span>
+<span class="sd">    ...     vmax=3, </span>
+<span class="sd">    ...     ax=ax</span>
+<span class="sd">    ...     )</span>
+<span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax, format=&quot;%+2.f dB&quot;, label=&quot;Magnitude (dB)&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; ax.set(</span>
+<span class="sd">    ...     xlim=[200, 600], </span>
+<span class="sd">    ...     yticks=librosa.midi_to_hz(np.arange(60, 72)),</span>
+<span class="sd">    ...     title=&#39;Magnitude Responses of the Pitch Filterbank&#39;, </span>
+<span class="sd">    ...     xlabel=&#39;Frequency (Hz)&#39;, </span>
+<span class="sd">    ...     ylabel=&#39;Semitone filter center frequency (Hz)&#39;</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">center_freqs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sample_rates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>

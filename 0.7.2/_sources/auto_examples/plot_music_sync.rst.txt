@@ -88,7 +88,7 @@ First, let's load a first version of our audio recordings.
 
  .. code-block:: none
 
-    /tmp/tmp2i532fz9/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp1t5puiyo/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -121,7 +121,7 @@ And a second version, slightly faster.
 
  .. code-block:: none
 
-    /tmp/tmp2i532fz9/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
+    /tmp/tmp1t5puiyo/fb33d7c75bda490d063d56db1e7785c7434bc678/librosa/core/audio.py:161: UserWarning: PySoundFile failed. Trying audioread instead.
       warnings.warn('PySoundFile failed. Trying audioread instead.')
 
 
@@ -292,7 +292,7 @@ Springer Verlag, 2015.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.383 seconds)
+   **Total running time of the script:** ( 0 minutes  2.158 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:
