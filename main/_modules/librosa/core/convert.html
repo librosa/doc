@@ -114,6 +114,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">notation</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
+<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">vectorize</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;frames_to_samples&quot;</span><span class="p">,</span>
@@ -677,7 +678,8 @@
     <span class="k">return</span> <span class="n">note_value</span></div>
 
 
-<div class="viewcode-block" id="midi_to_note"><a class="viewcode-back" href="../../../generated/librosa.midi_to_note.html#librosa.midi_to_note">[docs]</a><span class="k">def</span> <span class="nf">midi_to_note</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="midi_to_note"><a class="viewcode-back" href="../../../generated/librosa.midi_to_note.html#librosa.midi_to_note">[docs]</a><span class="nd">@vectorize</span><span class="p">(</span><span class="n">excluded</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;octave&#39;</span><span class="p">,</span> <span class="s1">&#39;cents&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;unicode&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">midi_to_note</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert one or more MIDI numbers to note strings.</span>
 
 <span class="sd">    MIDI numbers will be rounded to the nearest integer.</span>
@@ -704,13 +706,15 @@
 <span class="sd">    &gt;&gt;&gt; librosa.midi_to_note(104.7, cents=True)</span>
 <span class="sd">    &#39;A7-30&#39;</span>
 
-<span class="sd">    &gt;&gt;&gt; librosa.midi_to_note(list(range(12, 24)))</span>
-<span class="sd">    [&#39;C0&#39;, &#39;C♯0&#39;, &#39;D0&#39;, &#39;D♯0&#39;, &#39;E0&#39;, &#39;F0&#39;, &#39;F♯0&#39;, &#39;G0&#39;, &#39;G♯0&#39;, &#39;A0&#39;, &#39;A♯0&#39;, &#39;B0&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; librosa.midi_to_note(np.arange(12, 24)))</span>
+<span class="sd">    array([&#39;C0&#39;, &#39;C♯0&#39;, &#39;D0&#39;, &#39;D♯0&#39;, &#39;E0&#39;, &#39;F0&#39;, &#39;F♯0&#39;, &#39;G0&#39;, &#39;G♯0&#39;, &#39;A0&#39;,</span>
+<span class="sd">           &#39;A♯0&#39;, &#39;B0&#39;], dtype=&#39;&lt;U3&#39;)</span>
 
 <span class="sd">    Use a key signature to resolve enharmonic equivalences</span>
 
 <span class="sd">    &gt;&gt;&gt; librosa.midi_to_note(range(12, 24), key=&#39;F:min&#39;)</span>
-<span class="sd">    [&#39;C0&#39;, &#39;D♭0&#39;, &#39;D0&#39;, &#39;E♭0&#39;, &#39;E0&#39;, &#39;F0&#39;, &#39;G♭0&#39;, &#39;G0&#39;, &#39;A♭0&#39;, &#39;A0&#39;, &#39;B♭0&#39;, &#39;B0&#39;]</span>
+<span class="sd">    array([&#39;C0&#39;, &#39;D♭0&#39;, &#39;D0&#39;, &#39;E♭0&#39;, &#39;E0&#39;, &#39;F0&#39;, &#39;G♭0&#39;, &#39;G0&#39;, &#39;A♭0&#39;, &#39;A0&#39;,</span>
+<span class="sd">           &#39;B♭0&#39;, &#39;B0&#39;], dtype=&#39;&lt;U3&#39;)</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -734,7 +738,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    notes : str or iterable of str</span>
+<span class="sd">    notes : str or np.ndarray of str</span>
 <span class="sd">        Strings describing each midi note.</span>
 
 <span class="sd">    Raises</span>
@@ -752,12 +756,6 @@
 
     <span class="k">if</span> <span class="n">cents</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">octave</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Cannot encode cents without octave information.&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">midi</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">midi_to_note</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="n">cents</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">midi</span>
-        <span class="p">]</span>
 
     <span class="n">note_map</span> <span class="o">=</span> <span class="n">notation</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
 
@@ -848,7 +846,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    notes : list of str</span>
+<span class="sd">    notes : str or np.ndarray of str</span>
 <span class="sd">        ``notes[i]`` is the closest note name to ``frequency[i]``</span>
 <span class="sd">        (or ``frequency`` if the input is scalar)</span>
 
@@ -863,7 +861,7 @@
 <span class="sd">    Get a single note name for a frequency</span>
 
 <span class="sd">    &gt;&gt;&gt; librosa.hz_to_note(440.0)</span>
-<span class="sd">    [&#39;A5&#39;]</span>
+<span class="sd">    &#39;A5&#39;</span>
 
 <span class="sd">    Get multiple notes with cent deviation</span>
 
@@ -1788,7 +1786,8 @@
     <span class="k">return</span> <span class="n">frames_to_samples</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="midi_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h">[docs]</a><span class="k">def</span> <span class="nf">midi_to_svara_h</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="midi_to_svara_h"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h">[docs]</a><span class="nd">@vectorize</span><span class="p">(</span><span class="n">excluded</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sa&#39;</span><span class="p">,</span> <span class="s1">&#39;abbr&#39;</span><span class="p">,</span> <span class="s1">&#39;octave&#39;</span><span class="p">,</span> <span class="s1">&#39;unicode&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">midi_to_svara_h</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert MIDI numbers to Hindustani svara</span>
 
 <span class="sd">    Parameters</span>
@@ -1818,7 +1817,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    svara : str or list of str</span>
+<span class="sd">    svara : str or np.ndarray of str</span>
 <span class="sd">        The svara corresponding to the given MIDI number(s)</span>
 
 <span class="sd">    See Also</span>
@@ -1830,25 +1829,30 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    Convert a single midi number:</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.midi_to_svara_h(65, Sa=60)</span>
+<span class="sd">    &#39;m&#39;</span>
+
 <span class="sd">    The first three svara with Sa at midi number 60:</span>
 
-<span class="sd">    &gt;&gt;&gt; librosa.midi_svara_h([60, 61, 62], Sa=60)</span>
-<span class="sd">    [&#39;S&#39;, &#39;r&#39;, &#39;R&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; librosa.midi_to_svara_h([60, 61, 62], Sa=60)</span>
+<span class="sd">    array([&#39;S&#39;, &#39;r&#39;, &#39;R&#39;], dtype=&#39;&lt;U1&#39;)</span>
 
 <span class="sd">    With Sa=67, midi 60-62 are in the octave below:</span>
 
 <span class="sd">    &gt;&gt;&gt; librosa.midi_to_svara_h([60, 61, 62], Sa=67)</span>
-<span class="sd">    [&#39;ṃ&#39;, &#39;Ṃ&#39;, &#39;P̣&#39;]</span>
+<span class="sd">    array([&#39;ṃ&#39;, &#39;Ṃ&#39;, &#39;P̣&#39;], dtype=&#39;&lt;U2&#39;)</span>
 
 <span class="sd">    Or without unicode decoration:</span>
 
 <span class="sd">    &gt;&gt;&gt; librosa.midi_to_svara_h([60, 61, 62], Sa=67, unicode=False)</span>
-<span class="sd">    [&#39;m,&#39;, &#39;M,&#39;, &#39;P,&#39;]</span>
+<span class="sd">    array([&#39;m,&#39;, &#39;M,&#39;, &#39;P,&#39;], dtype=&#39;&lt;U2&#39;)</span>
 
 <span class="sd">    Or going up an octave, with Sa=60, and using unabbreviated notes</span>
 
 <span class="sd">    &gt;&gt;&gt; librosa.midi_to_svara_h([72, 73, 74], Sa=60, abbr=False)</span>
-<span class="sd">    [&#39;Ṡa&#39;, &#39;ṙe&#39;, &#39;Ṙe&#39;]</span>
+<span class="sd">    array([&#39;Ṡa&#39;, &#39;ṙe&#39;, &#39;Ṙe&#39;], dtype=&#39;&lt;U3&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SVARA_MAP</span> <span class="o">=</span> <span class="p">[</span>
@@ -1867,12 +1871,6 @@
     <span class="p">]</span>
 
     <span class="n">SVARA_MAP_SHORT</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">SVARA_MAP</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">midi</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">midi_to_svara_h</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="n">abbr</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">midi</span>
-        <span class="p">]</span>
 
     <span class="n">svara_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">midi</span> <span class="o">-</span> <span class="n">Sa</span><span class="p">))</span>
 
@@ -1928,7 +1926,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    svara : str or list of str</span>
+<span class="sd">    svara : str or np.ndarray of str</span>
 <span class="sd">        The svara corresponding to the given frequency/frequencies</span>
 
 <span class="sd">    See Also</span>
@@ -1965,7 +1963,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    notes : str or list of str</span>
+<span class="sd">    notes : str or iterable of str</span>
 <span class="sd">        Notes to convert (e.g., `&#39;C#&#39;` or `[&#39;C4&#39;, &#39;Db4&#39;, &#39;D4&#39;]`</span>
 
 <span class="sd">    Sa : str</span>
@@ -1993,7 +1991,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    svara : str or list of str</span>
+<span class="sd">    svara : str or np.ndarray of str</span>
 <span class="sd">        The svara corresponding to the given notes</span>
 
 <span class="sd">    See Also</span>
@@ -2017,7 +2015,8 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="midi_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c">[docs]</a><span class="k">def</span> <span class="nf">midi_to_svara_c</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="midi_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c">[docs]</a><span class="nd">@vectorize</span><span class="p">(</span><span class="n">excluded</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sa&#39;</span><span class="p">,</span> <span class="s1">&#39;mela&#39;</span><span class="p">,</span> <span class="s1">&#39;abbr&#39;</span><span class="p">,</span> <span class="s1">&#39;octave&#39;</span><span class="p">,</span> <span class="s1">&#39;unicode&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">midi_to_svara_c</span><span class="p">(</span><span class="n">midi</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert MIDI numbers to Carnatic svara within a given melakarta raga</span>
 
 <span class="sd">    Parameters</span>
@@ -2051,7 +2050,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    svara : str or list of str</span>
+<span class="sd">    svara : str or np.ndarray of str</span>
 <span class="sd">        The svara corresponding to the given MIDI number(s)</span>
 
 <span class="sd">    See Also</span>
@@ -2062,14 +2061,6 @@
 <span class="sd">    mela_to_svara</span>
 <span class="sd">    list_mela</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">midi</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">midi_to_svara_c</span><span class="p">(</span>
-                <span class="n">m</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="n">abbr</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span>
-            <span class="p">)</span>
-            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">midi</span>
-        <span class="p">]</span>
-
     <span class="n">svara_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">midi</span> <span class="o">-</span> <span class="n">Sa</span><span class="p">))</span>
 
     <span class="n">svara_map</span> <span class="o">=</span> <span class="n">notation</span><span class="o">.</span><span class="n">mela_to_svara</span><span class="p">(</span><span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="n">abbr</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
@@ -2089,6 +2080,7 @@
                 <span class="n">svara</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span>
 
     <span class="k">return</span> <span class="n">svara</span></div>
+
 
 
 <div class="viewcode-block" id="hz_to_svara_c"><a class="viewcode-back" href="../../../generated/librosa.hz_to_svara_c.html#librosa.hz_to_svara_c">[docs]</a><span class="k">def</span> <span class="nf">hz_to_svara_c</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -2126,7 +2118,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    svara : str or list of str</span>
+<span class="sd">    svara : str or np.ndarray of str</span>
 <span class="sd">        The svara corresponding to the given frequency/frequencies</span>
 
 <span class="sd">    See Also</span>
@@ -2164,7 +2156,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    notes : str or list of str</span>
+<span class="sd">    notes : str or iterable of str</span>
 <span class="sd">        Notes to convert (e.g., `&#39;C#&#39;` or `[&#39;C4&#39;, &#39;Db4&#39;, &#39;D4&#39;]`</span>
 
 <span class="sd">    Sa : str</span>
@@ -2195,7 +2187,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    svara : str or list of str</span>
+<span class="sd">    svara : str or np.ndarray of str</span>
 <span class="sd">        The svara corresponding to the given notes</span>
 
 <span class="sd">    See Also</span>

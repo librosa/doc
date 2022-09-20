@@ -171,7 +171,7 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>svara</strong><span class="classifier">str or list of str</span></dt><dd><p>The svara corresponding to the given MIDI number(s)</p>
+<dt><strong>svara</strong><span class="classifier">str or np.ndarray of str</span></dt><dd><p>The svara corresponding to the given MIDI number(s)</p>
 </dd>
 </dl>
 </dd>
@@ -186,24 +186,29 @@
 </dl>
 </div>
 <p class="rubric">Examples</p>
+<p>Convert a single midi number:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_svara_h</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="go">&#39;m&#39;</span>
+</pre></div>
+</div>
 <p>The first three svara with Sa at midi number 60:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_svara_h</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span> <span class="n">Sa</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<span class="go">[&#39;S&#39;, &#39;r&#39;, &#39;R&#39;]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_svara_h</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span> <span class="n">Sa</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="go">array([&#39;S&#39;, &#39;r&#39;, &#39;R&#39;], dtype=&#39;&lt;U1&#39;)</span>
 </pre></div>
 </div>
 <p>With Sa=67, midi 60-62 are in the octave below:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_svara_h</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span> <span class="n">Sa</span><span class="o">=</span><span class="mi">67</span><span class="p">)</span>
-<span class="go">[&#39;ṃ&#39;, &#39;Ṃ&#39;, &#39;P̣&#39;]</span>
+<span class="go">array([&#39;ṃ&#39;, &#39;Ṃ&#39;, &#39;P̣&#39;], dtype=&#39;&lt;U2&#39;)</span>
 </pre></div>
 </div>
 <p>Or without unicode decoration:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_svara_h</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">],</span> <span class="n">Sa</span><span class="o">=</span><span class="mi">67</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">[&#39;m,&#39;, &#39;M,&#39;, &#39;P,&#39;]</span>
+<span class="go">array([&#39;m,&#39;, &#39;M,&#39;, &#39;P,&#39;], dtype=&#39;&lt;U2&#39;)</span>
 </pre></div>
 </div>
 <p>Or going up an octave, with Sa=60, and using unabbreviated notes</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">midi_to_svara_h</span><span class="p">([</span><span class="mi">72</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">74</span><span class="p">],</span> <span class="n">Sa</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">[&#39;Ṡa&#39;, &#39;ṙe&#39;, &#39;Ṙe&#39;]</span>
+<span class="go">array([&#39;Ṡa&#39;, &#39;ṙe&#39;, &#39;Ṙe&#39;], dtype=&#39;&lt;U3&#39;)</span>
 </pre></div>
 </div>
 </dd></dl>

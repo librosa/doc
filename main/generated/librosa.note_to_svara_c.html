@@ -154,7 +154,7 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>notes</strong><span class="classifier">str or list of str</span></dt><dd><p>Notes to convert (e.g., <em class="xref py py-obj">‘C#’</em> or <em class="xref py py-obj">[‘C4’, ‘Db4’, ‘D4’]</em></p>
+<dt><strong>notes</strong><span class="classifier">str or iterable of str</span></dt><dd><p>Notes to convert (e.g., <em class="xref py py-obj">‘C#’</em> or <em class="xref py py-obj">[‘C4’, ‘Db4’, ‘D4’]</em></p>
 </dd>
 <dt><strong>Sa</strong><span class="classifier">str</span></dt><dd><p>Note corresponding to Sa (e.g., <em class="xref py py-obj">‘C’</em> or <em class="xref py py-obj">‘C5’</em>).</p>
 <p>If no octave information is provided, it will default to octave 0
@@ -176,7 +176,7 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>svara</strong><span class="classifier">str or list of str</span></dt><dd><p>The svara corresponding to the given notes</p>
+<dt><strong>svara</strong><span class="classifier">str or np.ndarray of str</span></dt><dd><p>The svara corresponding to the given notes</p>
 </dd>
 </dl>
 </dd>
