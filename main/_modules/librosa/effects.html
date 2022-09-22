@@ -19,6 +19,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -364,7 +365,7 @@
 
 
 <div class="viewcode-block" id="pitch_shift"><a class="viewcode-back" href="../../generated/librosa.effects.pitch_shift.html#librosa.effects.pitch_shift">[docs]</a><span class="k">def</span> <span class="nf">pitch_shift</span><span class="p">(</span>
-    <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Shift the pitch of a waveform by ``n_steps`` steps.</span>
 
@@ -385,7 +386,7 @@
 <span class="sd">        how many steps per octave</span>
 
 <span class="sd">    res_type : string</span>
-<span class="sd">        Resample type. By default, &#39;kaiser_best&#39; is used.</span>
+<span class="sd">        Resample type. By default, &#39;soxr_hq&#39; is used.</span>
 
 <span class="sd">        See `librosa.resample` for more information.</span>
 
@@ -896,7 +897,6 @@
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../../0.9.0/index.html">0.9.0</a></dd>
       <dd><a href="../../../0.9.1/index.html">0.9.1</a></dd>

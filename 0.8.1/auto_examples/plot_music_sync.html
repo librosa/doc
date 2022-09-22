@@ -20,6 +20,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -114,7 +115,7 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="music-synchronization-with-dynamic-time-warping">
-<span id="sphx-glr-auto-examples-plot-music-sync-py"></span><h1>Music Synchronization with Dynamic Time Warping<a class="headerlink" href="#music-synchronization-with-dynamic-time-warping" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-music-sync-py"></span><h1>Music Synchronization with Dynamic Time Warping<a class="headerlink" href="#music-synchronization-with-dynamic-time-warping" title="Permalink to this heading">¶</a></h1>
 <p>In this short tutorial, we demonstrate the use of dynamic time warping (DTW) for music synchronization
 which is implemented in <a class="reference internal" href="../core.html#module-librosa" title="librosa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa</span></code></a>.</p>
 <p>We assume that you are familiar with the algorithm and focus on the application. Further information about
@@ -136,7 +137,7 @@ Our objective is now to find an alignment between these two recordings by using 
 </pre></div>
 </div>
 <section id="load-audio-recordings">
-<h2>Load Audio Recordings<a class="headerlink" href="#load-audio-recordings" title="Permalink to this headline">¶</a></h2>
+<h2>Load Audio Recordings<a class="headerlink" href="#load-audio-recordings" title="Permalink to this heading">¶</a></h2>
 <p>First, let’s load a first version of our audio recordings.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x_1</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fs</span></a> <span class="o">=</span> <a href="../generated/librosa.load.html#librosa.load" title="librosa.load" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="s1">&#39;audio/sir_duke_slow.ogg&#39;</span><span class="p">)</span>
 <span class="c1"># And a second version, slightly faster.</span>
@@ -153,7 +154,7 @@ Our objective is now to find an alignment between these two recordings by using 
 </div>
 <img src="../_images/sphx_glr_plot_music_sync_001.png" srcset="../_images/sphx_glr_plot_music_sync_001.png" alt="Slower Version $X_1$, Faster Version $X_2$" class = "sphx-glr-single-img"/></section>
 <section id="extract-chroma-features">
-<h2>Extract Chroma Features<a class="headerlink" href="#extract-chroma-features" title="Permalink to this headline">¶</a></h2>
+<h2>Extract Chroma Features<a class="headerlink" href="#extract-chroma-features" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hop_length</span></a> <span class="o">=</span> <span class="mi">1024</span>
 
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x_1_chroma</span></a> <span class="o">=</span> <a href="../generated/librosa.feature.chroma_cqt.html#librosa.feature.chroma_cqt" title="librosa.feature.chroma_cqt" class="sphx-glr-backref-module-librosa-feature sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">chroma_cqt</span></a><span class="p">(</span><span class="n">y</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x_1</span></a><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fs</span></a><span class="p">,</span>
@@ -175,7 +176,7 @@ Our objective is now to find an alignment between these two recordings by using 
 </div>
 <img src="../_images/sphx_glr_plot_music_sync_002.png" srcset="../_images/sphx_glr_plot_music_sync_002.png" alt="Chroma Representation of $X_1$, Chroma Representation of $X_2$" class = "sphx-glr-single-img"/></section>
 <section id="align-chroma-sequences">
-<h2>Align Chroma Sequences<a class="headerlink" href="#align-chroma-sequences" title="Permalink to this headline">¶</a></h2>
+<h2>Align Chroma Sequences<a class="headerlink" href="#align-chroma-sequences" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">D</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">wp</span></a> <span class="o">=</span> <a href="../generated/librosa.sequence.dtw.html#librosa.sequence.dtw" title="librosa.sequence.dtw" class="sphx-glr-backref-module-librosa-sequence sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">dtw</span></a><span class="p">(</span><span class="n">X</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x_1_chroma</span></a><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x_2_chroma</span></a><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">wp_s</span></a> <span class="o">=</span> <a href="../generated/librosa.frames_to_time.html#librosa.frames_to_time" title="librosa.frames_to_time" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">frames_to_time</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">wp</span></a><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fs</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hop_length</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hop_length</span></a><span class="p">)</span>
 
@@ -190,7 +191,7 @@ Our objective is now to find an alignment between these two recordings by using 
 </div>
 <img src="../_images/sphx_glr_plot_music_sync_003.png" srcset="../_images/sphx_glr_plot_music_sync_003.png" alt="Warping Path on Acc. Cost Matrix $D$" class = "sphx-glr-single-img"/></section>
 <section id="alternative-visualization-in-the-time-domain">
-<h2>Alternative Visualization in the Time Domain<a class="headerlink" href="#alternative-visualization-in-the-time-domain" title="Permalink to this headline">¶</a></h2>
+<h2>Alternative Visualization in the Time Domain<a class="headerlink" href="#alternative-visualization-in-the-time-domain" title="Permalink to this heading">¶</a></h2>
 <p>We can also visualize the warping path directly on our time domain signals.
 Red lines connect corresponding time positions in the input signals.
 (Thanks to F. Zalkow for the nice visualization.)</p>
@@ -222,7 +223,7 @@ Red lines connect corresponding time positions in the input signals.
 </div>
 <img src="../_images/sphx_glr_plot_music_sync_004.png" srcset="../_images/sphx_glr_plot_music_sync_004.png" alt="Slower Version $X_1$, Faster Version $X_2$" class = "sphx-glr-single-img"/></section>
 <section id="next-steps">
-<h2>Next steps…<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<h2>Next steps…<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <p>Alright, you might ask where to go from here.
 Once we have the warping path between our two signals,
 we could realize different applications.
@@ -233,10 +234,10 @@ e.g. one of Wagner’s symphonies played by an orchestra or in a piano-reduced v
 e.g. speed up the slower signal to the tempo of the faster one.</p>
 </section>
 <section id="literature">
-<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">¶</a></h2>
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this heading">¶</a></h2>
 <p>[1] Meinard Müller, Fundamentals of Music Processing — Audio, Analysis, Algorithms, Applications.
 Springer Verlag, 2015.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.484 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.931 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-music-sync-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/10f311e6654fe762f4f76b50703582b2/plot_music_sync.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_music_sync.py</span></code></a></p>
@@ -285,7 +286,6 @@ Springer Verlag, 2015.</p>
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="plot_music_sync.html">0.8.1</a></dd>
       <dd><a href="../../0.9.0/index.html">0.9.0</a></dd>
       <dd><a href="../../0.9.1/index.html">0.9.1</a></dd>

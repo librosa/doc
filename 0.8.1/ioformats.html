@@ -20,6 +20,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -114,11 +115,11 @@
 
 
   <section id="advanced-i-o-use-cases">
-<span id="ioformats"></span><h1>Advanced I/O Use Cases<a class="headerlink" href="#advanced-i-o-use-cases" title="Permalink to this headline">¶</a></h1>
+<span id="ioformats"></span><h1>Advanced I/O Use Cases<a class="headerlink" href="#advanced-i-o-use-cases" title="Permalink to this heading">¶</a></h1>
 <p>This section covers advanced use cases for input and output which go beyond the I/O
 functionality currently provided by <em>librosa</em>.</p>
 <section id="read-specific-formats">
-<h2>Read specific formats<a class="headerlink" href="#read-specific-formats" title="Permalink to this headline">¶</a></h2>
+<h2>Read specific formats<a class="headerlink" href="#read-specific-formats" title="Permalink to this heading">¶</a></h2>
 <p><em>librosa</em> uses <a class="reference external" href="https://github.com/bastibe/PySoundFile">soundfile</a> and <a class="reference external" href="https://github.com/sampsyo/audioread">audioread</a> for reading audio.
 As of v0.7, librosa uses <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> by default, and falls back on <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> only when dealing with codecs unsupported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> (notably, MP3, and some variants of WAV).
 For a list of codecs supported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>, see the <em>libsndfile</em> <a class="reference external" href="http://www.mega-nerd.com/libsndfile/">documentation</a>.</p>
@@ -142,7 +143,7 @@ Reading audio files using <a class="reference external" href="https://pysoundfil
 </div>
 </section>
 <section id="blockwise-reading">
-<h2>Blockwise Reading<a class="headerlink" href="#blockwise-reading" title="Permalink to this headline">¶</a></h2>
+<h2>Blockwise Reading<a class="headerlink" href="#blockwise-reading" title="Permalink to this heading">¶</a></h2>
 <p>For large audio signals it could be beneficial to not load the whole audio file
 into memory. Librosa 0.7 introduced a streaming interface, which can be used to
 work on short fragments of audio sequentially.  <a class="reference internal" href="generated/librosa.stream.html#librosa.stream" title="librosa.stream"><code class="xref py py-func docutils literal notranslate"><span class="pre">librosa.stream</span></code></a> cuts an input
@@ -180,7 +181,7 @@ sequence was processed in one step (assuming padding / centering is disabled).</
 <p>For more details about the streaming interface, refer to <a class="reference internal" href="generated/librosa.stream.html#librosa.stream" title="librosa.stream"><code class="xref py py-func docutils literal notranslate"><span class="pre">librosa.stream</span></code></a>.</p>
 </section>
 <section id="read-file-like-objects">
-<h2>Read file-like objects<a class="headerlink" href="#read-file-like-objects" title="Permalink to this headline">¶</a></h2>
+<h2>Read file-like objects<a class="headerlink" href="#read-file-like-objects" title="Permalink to this heading">¶</a></h2>
 <p>If you want to read audio from file-like objects (also called <em>virtual files</em>)
 you can use <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> as well.  (This will also work with <a class="reference internal" href="generated/librosa.load.html#librosa.load" title="librosa.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">librosa.load</span></code></a> and <a class="reference internal" href="generated/librosa.stream.html#librosa.stream" title="librosa.stream"><code class="xref py py-func docutils literal notranslate"><span class="pre">librosa.stream</span></code></a>, provided
 that the underlying codec is supported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>.)</p>
@@ -208,7 +209,7 @@ that the underlying codec is supported by <a class="reference external" href="ht
 </div>
 </section>
 <section id="write-out-audio-files">
-<h2>Write out audio files<a class="headerlink" href="#write-out-audio-files" title="Permalink to this headline">¶</a></h2>
+<h2>Write out audio files<a class="headerlink" href="#write-out-audio-files" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/">PySoundFile</a> provides output functionality that can be used directly with numpy array audio buffers:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">soundfile</span> <span class="k">as</span> <span class="nn">sf</span>
@@ -265,7 +266,6 @@ that the underlying codec is supported by <a class="reference external" href="ht
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../0.7.2/ioformats.html">0.7.2</a></dd>
       <dd><a href="ioformats.html">0.8.1</a></dd>
       <dd><a href="../0.9.0/ioformats.html">0.9.0</a></dd>
       <dd><a href="../0.9.1/ioformats.html">0.9.1</a></dd>

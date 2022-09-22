@@ -19,6 +19,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -117,7 +118,7 @@
 <span class="kn">import</span> <span class="nn">audioread</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.signal</span>
-<span class="kn">import</span> <span class="nn">resampy</span>
+<span class="kn">import</span> <span class="nn">soxr</span>
 
 <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
 <span class="kn">from</span> <span class="nn">.fft</span> <span class="kn">import</span> <span class="n">get_fftlib</span>
@@ -143,10 +144,6 @@
     <span class="s2">&quot;mu_expand&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="c1"># Resampling bandwidths as percentage of Nyquist</span>
-<span class="n">BW_BEST</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter</span><span class="p">(</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">BW_FASTEST</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter</span><span class="p">(</span><span class="s2">&quot;kaiser_fast&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
-
 
 <span class="c1"># -- CORE ROUTINES --#</span>
 <span class="c1"># Load should never be cached, since we cannot verify that the contents of</span>
@@ -159,7 +156,7 @@
     <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-    <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">,</span>
+    <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load an audio file as a floating point time series.</span>
 
@@ -206,7 +203,7 @@
 <span class="sd">        resample type (see note)</span>
 
 <span class="sd">        .. note::</span>
-<span class="sd">            By default, this uses `resampy`&#39;s high-quality mode (&#39;kaiser_best&#39;).</span>
+<span class="sd">            By default, this uses `soxr`&#39;s high-quality mode (&#39;HQ&#39;).</span>
 
 <span class="sd">            For alternative resampling modes, see `resample`</span>
 
@@ -608,7 +605,7 @@
 
 <div class="viewcode-block" id="resample"><a class="viewcode-back" href="../../../generated/librosa.resample.html#librosa.resample">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">resample</span><span class="p">(</span>
-    <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;kaiser_best&quot;</span><span class="p">,</span> <span class="n">fix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="n">res_type</span><span class="o">=</span><span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span> <span class="n">fix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Resample a time series from orig_sr to target_sr</span>
 
@@ -627,10 +624,15 @@
 <span class="sd">    target_sr : number &gt; 0 [scalar]</span>
 <span class="sd">        target sampling rate</span>
 
-<span class="sd">    res_type : str</span>
+<span class="sd">    res_type : str (default: `soxr_hq`)</span>
 <span class="sd">        resample type</span>
 
-<span class="sd">        &#39;kaiser_best&#39; (default)</span>
+<span class="sd">        &#39;soxr_vhq&#39;, &#39;soxr_hq&#39;, &#39;soxr_mq&#39; or &#39;soxr_lq&#39;</span>
+<span class="sd">            `soxr` Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.</span>
+<span class="sd">            ``&#39;soxr_hq&#39;`` is the default setting of `soxr`.</span>
+<span class="sd">        &#39;soxr_qq&#39;</span>
+<span class="sd">            `soxr` Quick cubic interpolation (very fast)</span>
+<span class="sd">        &#39;kaiser_best&#39;</span>
 <span class="sd">            `resampy` high-quality mode</span>
 <span class="sd">        &#39;kaiser_fast&#39;</span>
 <span class="sd">            `resampy` faster method</span>
@@ -644,18 +646,13 @@
 <span class="sd">            `samplerate` repeat the last value between samples. (very fast)</span>
 <span class="sd">        &#39;sinc_best&#39;, &#39;sinc_medium&#39; or &#39;sinc_fastest&#39;</span>
 <span class="sd">            `samplerate` high-, medium-, and low-quality sinc interpolation.</span>
-<span class="sd">        &#39;soxr_vhq&#39;, &#39;soxr_hq&#39;, &#39;soxr_mq&#39; or &#39;soxr_lq&#39;</span>
-<span class="sd">            `soxr` Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.</span>
-<span class="sd">            ``&#39;soxr_hq&#39;`` is the default setting of `soxr` (fast)</span>
-<span class="sd">        &#39;soxr_qq&#39;</span>
-<span class="sd">            `soxr` Quick cubic interpolation (very fast)</span>
 
 <span class="sd">        .. note::</span>
-<span class="sd">            `samplerate` and `soxr` are not installed with `librosa`.</span>
-<span class="sd">            To use `samplerate` or `soxr`, they should be installed manually::</span>
+<span class="sd">            `samplerate` and `resampy` are not installed with `librosa`.</span>
+<span class="sd">            To use `samplerate` or `resampy`, they should be installed manually::</span>
 
 <span class="sd">                $ pip install samplerate</span>
-<span class="sd">                $ pip install soxr</span>
+<span class="sd">                $ pip install resampy</span>
 
 <span class="sd">        .. note::</span>
 <span class="sd">            When using ``res_type=&#39;polyphase&#39;``, only integer sampling rates are</span>
@@ -747,12 +744,12 @@
         <span class="c1"># This is because samplerate does not support ndim&gt;2 generally.</span>
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">samplerate</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">converter_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">res_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;soxr&quot;</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">soxr</span>
-
         <span class="c1"># Use numpy to vectorize the resampler along the target axis</span>
         <span class="c1"># This is because soxr does not support ndim&gt;2 generally.</span>
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">soxr</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">in_rate</span><span class="o">=</span><span class="n">orig_sr</span><span class="p">,</span> <span class="n">out_rate</span><span class="o">=</span><span class="n">target_sr</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">resampy</span>
+
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">fix</span><span class="p">:</span>
@@ -1815,7 +1812,6 @@
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../../../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../../../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../../../0.9.0/index.html">0.9.0</a></dd>
       <dd><a href="../../../../0.9.1/index.html">0.9.1</a></dd>

@@ -20,6 +20,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -116,13 +117,13 @@
 
 
   <section id="multi-channel">
-<h1>Multi-channel<a class="headerlink" href="#multi-channel" title="Permalink to this headline">¶</a></h1>
+<h1>Multi-channel<a class="headerlink" href="#multi-channel" title="Permalink to this heading">¶</a></h1>
 <p>This section provides an overview of how multi-channel signals are handled in
 <em>librosa</em>.
 The one-sentence summary is that most of the functions which only supported single-channel
 inputs up to librosa 0.8 now support multi-channel audio with no modification necessary.</p>
 <section id="dimensions">
-<h2>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">¶</a></h2>
+<h2>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading">¶</a></h2>
 <p>Before discussing multi-channel, it is worth reviewing how single-channel (monaural)
 signals are processed.
 Librosa processes all signals and derived data as <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> (N-dimensional array) objects.
@@ -165,7 +166,7 @@ individual channels.
 This is demonstrated in the examples below.</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>As a first example, consider computing a short-time Fourier transform of the stereo
 example signal loaded above.
 This is accomplished in exactly the same way as if the signal was mono, that is:</p>
@@ -197,7 +198,7 @@ channel) provides the entire feature array derived from the second channel, and
 produces an output of shape <code class="docutils literal notranslate"><span class="pre">(N_harmonics,</span> <span class="pre">N_frequencies,</span> <span class="pre">N_frames)</span></code>.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
 <p>When reading the library documentation, you may come across functions like
 <a class="reference internal" href="generated/librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> which describe the input signal parameter as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">[</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">n</span><span class="p">)],</span> <span class="n">real</span><span class="o">-</span><span class="n">valued</span>
@@ -227,7 +228,7 @@ As a general convention, <code class="docutils literal notranslate"><span class=
 corresponds to “frequency” or some other derived feature.</p>
 </section>
 <section id="exceptions">
-<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h2>
 <p>Not all functions in librosa naturally generalize to multi-channel data, though most
 do.
 Similarly, some functions do generalize, but in ways that may not match your
@@ -262,7 +263,7 @@ channel is only used when zoomed out to envelope mode.
 <a class="reference internal" href="generated/librosa.display.specshow.html#librosa.display.specshow" title="librosa.display.specshow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.specshow</span></code></a> does not accept multi-channel input.</p>
 </section>
 <section id="advanced-uses-and-caveats">
-<h2>Advanced uses and caveats<a class="headerlink" href="#advanced-uses-and-caveats" title="Permalink to this headline">¶</a></h2>
+<h2>Advanced uses and caveats<a class="headerlink" href="#advanced-uses-and-caveats" title="Permalink to this heading">¶</a></h2>
 <p>Multi-channel support is relatively flexible in librosa.
 In particular, you may organize channels over two dimensions or more, although a
 single channel dimension is the most common use case.
@@ -320,7 +321,6 @@ Functions which guarantee channel-wise independence are documented accordingly.<
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../0.9.0/multichannel.html">0.9.0</a></dd>
       <dd><a href="multichannel.html">0.9.1</a></dd>

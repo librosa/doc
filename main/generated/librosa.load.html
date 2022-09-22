@@ -20,6 +20,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -133,10 +134,10 @@
 
 
   <section id="librosa-load">
-<h1>librosa.load<a class="headerlink" href="#librosa-load" title="Permalink to this headline">¶</a></h1>
+<h1>librosa.load<a class="headerlink" href="#librosa-load" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.load">
-<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr=22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_type='kaiser_best'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/audio.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.load" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr=22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_type='soxr_hq'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/audio.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load an audio file as a floating point time series.</p>
 <p>Audio will be automatically resampled to the given rate
 (default <code class="docutils literal notranslate"><span class="pre">sr=22050</span></code>).</p>
@@ -168,7 +169,7 @@ than relying upon audioread to select one for you.</p>
 <dt><strong>res_type</strong><span class="classifier">str</span></dt><dd><p>resample type (see note)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>By default, this uses <a class="reference external" href="https://resampy.readthedocs.io/en/stable/api.html#module-resampy" title="(in resampy v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a>’s high-quality mode (‘kaiser_best’).</p>
+<p>By default, this uses <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a>’s high-quality mode (‘HQ’).</p>
 <p>For alternative resampling modes, see <a class="reference internal" href="librosa.resample.html#librosa.resample" title="librosa.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample</span></code></a></p>
 </div>
 <div class="admonition note">
@@ -270,7 +271,6 @@ than relying upon audioread to select one for you.</p>
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../../0.7.2/index.html">0.7.2</a></dd>
       <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../0.9.0/index.html">0.9.0</a></dd>
       <dd><a href="../../0.9.1/index.html">0.9.1</a></dd>
