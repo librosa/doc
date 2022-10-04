@@ -149,18 +149,19 @@
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">get_cmap</span>
-<span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">Formatter</span><span class="p">,</span> <span class="n">ScalarFormatter</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">LogLocator</span><span class="p">,</span> <span class="n">FixedLocator</span><span class="p">,</span> <span class="n">MaxNLocator</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">SymmetricalLogLocator</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">from</span> <span class="nn">packaging.version</span> <span class="kn">import</span> <span class="n">parse</span> <span class="k">as</span> <span class="n">version_parse</span>
-
+<span class="kn">import</span> <span class="nn">lazy_loader</span> <span class="k">as</span> <span class="nn">lazy</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">core</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
+
+
+<span class="n">matplotlib</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
+<span class="n">mcm</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.cm&#39;</span><span class="p">)</span>
+<span class="n">mplaxes</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.axes&#39;</span><span class="p">)</span>
+<span class="n">mplticker</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.ticker&#39;</span><span class="p">)</span>
+<span class="n">plt</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot&#39;</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;specshow&quot;</span><span class="p">,</span>
@@ -175,7 +176,7 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="TimeFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TimeFormatter.html#librosa.display.TimeFormatter">[docs]</a><span class="k">class</span> <span class="nc">TimeFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="TimeFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TimeFormatter.html#librosa.display.TimeFormatter">[docs]</a><span class="k">class</span> <span class="nc">TimeFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A tick formatter for time axes.</span>
 
 <span class="sd">    Automatically switches between seconds, minutes:seconds,</span>
@@ -282,7 +283,7 @@
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:s}{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="NoteFormatter"><a class="viewcode-back" href="../../generated/librosa.display.NoteFormatter.html#librosa.display.NoteFormatter">[docs]</a><span class="k">class</span> <span class="nc">NoteFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="NoteFormatter"><a class="viewcode-back" href="../../generated/librosa.display.NoteFormatter.html#librosa.display.NoteFormatter">[docs]</a><span class="k">class</span> <span class="nc">NoteFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ticker formatter for Notes</span>
 
 <span class="sd">    Parameters</span>
@@ -347,7 +348,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SvaraFormatter"><a class="viewcode-back" href="../../generated/librosa.display.SvaraFormatter.html#librosa.display.SvaraFormatter">[docs]</a><span class="k">class</span> <span class="nc">SvaraFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="SvaraFormatter"><a class="viewcode-back" href="../../generated/librosa.display.SvaraFormatter.html#librosa.display.SvaraFormatter">[docs]</a><span class="k">class</span> <span class="nc">SvaraFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ticker formatter for Svara</span>
 
 <span class="sd">    Parameters</span>
@@ -437,7 +438,7 @@
             <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="LogHzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.LogHzFormatter.html#librosa.display.LogHzFormatter">[docs]</a><span class="k">class</span> <span class="nc">LogHzFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="LogHzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.LogHzFormatter.html#librosa.display.LogHzFormatter">[docs]</a><span class="k">class</span> <span class="nc">LogHzFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ticker formatter for logarithmic frequency</span>
 
 <span class="sd">    Parameters</span>
@@ -482,7 +483,7 @@
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ChromaFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFormatter.html#librosa.display.ChromaFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromaFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFormatter.html#librosa.display.ChromaFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A formatter for chroma axes</span>
 
 <span class="sd">    See also</span>
@@ -510,7 +511,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ChromaSvaraFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaSvaraFormatter.html#librosa.display.ChromaSvaraFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaSvaraFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromaSvaraFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaSvaraFormatter.html#librosa.display.ChromaSvaraFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaSvaraFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A formatter for chroma axes with svara instead of notes.</span>
 
 <span class="sd">    If mela is given, Carnatic svara names will be used.</span>
@@ -550,7 +551,7 @@
             <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TonnetzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TonnetzFormatter.html#librosa.display.TonnetzFormatter">[docs]</a><span class="k">class</span> <span class="nc">TonnetzFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="TonnetzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TonnetzFormatter.html#librosa.display.TonnetzFormatter">[docs]</a><span class="k">class</span> <span class="nc">TonnetzFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A formatter for tonnetz axes</span>
 
 <span class="sd">    See also</span>
@@ -749,7 +750,7 @@
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;bool&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_bool</span><span class="p">,</span> <span class="n">lut</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mcm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_bool</span><span class="p">,</span> <span class="n">lut</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
 
@@ -761,9 +762,9 @@
     <span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="n">min_p</span><span class="p">,</span> <span class="n">max_p</span><span class="p">])</span>
 
     <span class="k">if</span> <span class="n">min_val</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">max_val</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_seq</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mcm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_seq</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_div</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">mcm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_div</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">__envelope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hop</span><span class="p">):</span>
@@ -1121,8 +1122,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
         <span class="n">plt</span><span class="o">.</span><span class="n">sci</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 
 
@@ -1177,10 +1176,8 @@
 <span class="k">def</span> <span class="nf">__check_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check if &quot;axes&quot; is an instance of an axis object. If not, use `gca`.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
         <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">Axes</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
             <span class="s2">&quot;`axes` must be an instance of matplotlib.axes.Axes. &quot;</span>
             <span class="s2">&quot;Found type(axes)=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">axes</span><span class="p">))</span>
@@ -1251,14 +1248,14 @@
 
     <span class="k">if</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;tonnetz&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TonnetzFormatter</span><span class="p">())</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Tonnetz&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;chroma&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ChromaFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">))</span>
         <span class="n">degrees</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">key_to_degrees</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
-            <span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Pitch class&quot;</span><span class="p">)</span>
 
@@ -1274,7 +1271,7 @@
         <span class="c1"># Rotate degrees relative to Sa</span>
         <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">degrees</span> <span class="o">+</span> <span class="n">Sa</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
-            <span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
 
@@ -1288,34 +1285,34 @@
         <span class="c1"># Rotate degrees relative to Sa</span>
         <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">degrees</span> <span class="o">+</span> <span class="n">Sa</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
-            <span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="s2">&quot;fourier_tempo&quot;</span><span class="p">]:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ScalarFormatter</span><span class="p">())</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;BPM&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="n">time_units</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">ax_type</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time (</span><span class="si">{:s}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_units</span><span class="p">[</span><span class="n">ax_type</span><span class="p">]))</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;lag&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ax_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;lag_&quot;</span><span class="p">):</span>
         <span class="n">unit</span> <span class="o">=</span> <span class="n">ax_type</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag (</span><span class="si">{:s}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_units</span><span class="p">[</span><span class="n">unit</span><span class="p">]))</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;cqt_note&quot;</span><span class="p">:</span>
@@ -1323,10 +1320,10 @@
         <span class="c1"># Where is C1 relative to 2**k hz?</span>
         <span class="n">log_C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">))</span>
         <span class="n">C_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_C1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_C1</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">C_offset</span><span class="p">,)))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">C_offset</span><span class="p">,)))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">NoteFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Note&quot;</span><span class="p">)</span>
 
@@ -1335,12 +1332,12 @@
         <span class="c1"># Find the offset of Sa relative to 2**k Hz</span>
         <span class="n">sa_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">Sa</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">Sa</span><span class="p">)))</span>
 
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">sa_offset</span><span class="p">,)))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">sa_offset</span><span class="p">,)))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span>
             <span class="n">SvaraFormatter</span><span class="p">(</span><span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
 
@@ -1348,11 +1345,11 @@
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LogHzFormatter</span><span class="p">())</span>
         <span class="n">log_C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">))</span>
         <span class="n">C_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_C1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_C1</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">C_offset</span><span class="p">,)))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">C_offset</span><span class="p">,)))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">LogHzFormatter</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Hz&quot;</span><span class="p">)</span>
 
@@ -1361,10 +1358,10 @@
         <span class="c1"># Where is C1 relative to 2**k hz?</span>
         <span class="n">log_C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">))</span>
         <span class="n">C_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_C1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_C1</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">NoteFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Note&quot;</span><span class="p">)</span>
 
@@ -1375,23 +1372,23 @@
         <span class="n">sa_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_Sa</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_Sa</span><span class="p">))</span>
 
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
-            <span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(),</span> <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">[</span><span class="n">sa_offset</span><span class="p">])</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(),</span> <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">[</span><span class="n">sa_offset</span><span class="p">])</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span>
             <span class="n">SvaraFormatter</span><span class="p">(</span><span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;mel&quot;</span><span class="p">,</span> <span class="s2">&quot;log&quot;</span><span class="p">]:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ScalarFormatter</span><span class="p">())</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Hz&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;hz&quot;</span><span class="p">,</span> <span class="s2">&quot;fft&quot;</span><span class="p">]:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Hz&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;frames&quot;</span><span class="p">]:</span>

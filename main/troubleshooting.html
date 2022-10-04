@@ -126,7 +126,8 @@ message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">AttributeError</span><span class="p">:</span> <span class="n">module</span> <span class="s1">&#39;librosa&#39;</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;display&#39;</span>
 </pre></div>
 </div>
-<p>it is because the <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> submodule needs to be imported explicitly.
+<p>it is because the <a class="reference internal" href="display.html#module-librosa.display" title="librosa.display"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display</span></code></a> submodule needs to be imported explicitly in librosa versions
+earlier than 0.10.
 This is because <a class="reference external" href="https://matplotlib.org/stable/index.html#module-matplotlib" title="(in Matplotlib v3.6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib</span></code></a> is an optional dependency for librosa, so we do not
 assume that all users have it installed, or want plotting capability.</p>
 <p>To fix the problem, add the line</p>
@@ -134,6 +135,8 @@ assume that all users have it installed, or want plotting capability.</p>
 </pre></div>
 </div>
 <p>to the beginning of your program.</p>
+<p><strong>NOTE</strong>: this is no longer necessary beginning with the 0.10 release, but it won’t hurt to include
+the explicit import statement.</p>
 </section>
 <section id="pysoundfile-failed">
 <h2>PySoundFile failed<a class="headerlink" href="#pysoundfile-failed" title="Permalink to this heading">¶</a></h2>
