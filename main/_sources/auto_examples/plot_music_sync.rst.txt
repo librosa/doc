@@ -176,13 +176,13 @@ We can also visualize the warping path directly on our time domain signals.
 Red lines connect corresponding time positions in the input signals.
 (Thanks to F. Zalkow for the nice visualization.)
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-120
+.. GENERATED FROM PYTHON SOURCE LINES 95-121
 
 .. code-block:: default
 
     from matplotlib.patches import ConnectionPatch
 
-    fig, (ax1, ax2) = plt.subplots(nrows=2, sharex=True, sharey=True, figsize=(8, 4))
+    fig, (ax1, ax2) = plt.subplots(nrows=2, sharex=True, sharey=True, figsize=(8,4))
 
     # Plot x_2
     librosa.display.waveshow(x_2, sr=fs, ax=ax2)
@@ -203,6 +203,7 @@ Red lines connect corresponding time positions in the input signals.
                               coordsA='data', coordsB='data',
                               color='r', linestyle='--',
                               alpha=0.5)
+        con.set_in_layout(False)  # This is needed to preserve layout
         ax2.add_artist(con)
 
 
@@ -217,7 +218,7 @@ Red lines connect corresponding time positions in the input signals.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 121-141
+.. GENERATED FROM PYTHON SOURCE LINES 122-142
 
 -------------
 Next steps...
@@ -243,7 +244,7 @@ Springer Verlag, 2015.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.375 seconds)
+   **Total running time of the script:** ( 0 minutes  3.091 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:
