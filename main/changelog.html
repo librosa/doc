@@ -80,6 +80,10 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10">v0.10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-10-0">v0.10.0</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-9">v0.9</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#v0-9-2">v0.9.2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v0-9-1">v0.9.1</a></li>
@@ -161,6 +165,73 @@
 
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h1>
+<section id="v0-10">
+<h2>v0.10<a class="headerlink" href="#v0-10" title="Permalink to this heading">¶</a></h2>
+<section id="v0-10-0">
+<h3>v0.10.0<a class="headerlink" href="#v0-10-0" title="Permalink to this heading">¶</a></h3>
+<p><em>In development</em></p>
+<p>New features</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1485">#1485</a> Added support for <em class="xref py py-obj">“h”</em> (hours) and <em class="xref py py-obj">“m”</em> (minutes) in <em class="xref py py-obj">TimeFormatter</em>.  <em>Vincent Lostanlen</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1529">#1529</a> Accelerated utility functions for squared magnitude <em class="xref py py-obj">util.abs2</em> and <em class="xref py py-obj">util.phasor</em>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1514">#1514</a> <a class="reference internal" href="generated/librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> support for pre-allocated output arrays.  <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1533">#1533</a> Accelerated <em class="xref py py-obj">util.localmax</em> and <em class="xref py py-obj">util.localmin</em>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1552">#1552</a> <strong>EXPERIMENTAL</strong> Support for just-intonation based variable-Q transforms and functional just system (FJS) notation. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1579">#1579</a> Imports are now done lazily, significantly reducing startup time. It is not longer necessary to explicitly <em class="xref py py-obj">import librosa.display</em>. <em>Brian McFee</em></p></li>
+<li></li>
+</ul>
+</div></blockquote>
+<p>Bug fixes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1560">#1560</a> Corrected an error in bandwidth estimation for window functions that take on negative sample values. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1571">#1571</a> Fixed rounding error in multirate filterbank calculation of sampling rates. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1594">#1594</a> Fixed incorrect use of deprecated numpy numerical types. <em>Mattia Di Gangi</em></p></li>
+</ul>
+</div></blockquote>
+<p>API changes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1561">#1561</a> <a class="reference internal" href="generated/librosa.resample.html#librosa.resample" title="librosa.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.resample</span></code></a> now supports <em class="xref py py-obj">axis=</em> for all sample rate conversion backends. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1572">#1572</a> Notation conversion (e.g., <em class="xref py py-obj">midi_to_note</em>) now vectorizes operations, and produces <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> outputs rather than <em class="xref py py-obj">list</em> when given iterable inputs. <em>Brian McFee</em></p></li>
+</ul>
+</div></blockquote>
+<p>Documentation</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1520">#1520</a> Improved CONTRIBUTING.md documentation. <em>Kian Eliasi</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1531">#1531</a> Updated LICENSE.md documentation. <em>Anton Kostin</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1536">#1536</a> Added keyword argument (<em class="xref py py-obj">kwargs</em>) definitions to docstrings. <em>Emily Halvachs</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1537">#1537</a> Improvements to CONTRIBUTING.md. <em>Juanita Gomez</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1545">#1545</a> Correction to docstring for <em class="xref py py-obj">note_to_midi</em>. <em>Helmin Jinoz</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1563">#1563</a> Improved <em class="xref py py-obj">specshow</em> documentation to explain <em class="xref py py-obj">cmap=</em> parameter. <em>Kian Eliasi</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1586">#1586</a> Fixed figure layout in documentation builds. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1592">#1592</a> Fixed incorrect link to the documentation badge in README. <em>Zvi Baratz</em></p></li>
+</ul>
+</div></blockquote>
+<p>Deprecations</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1521">#1521</a> Removed backward compatibility support for positional arguments that are now keyword-only. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1577">#1577</a> Removed official support for python 3.6. <em>Brian McFee</em></p></li>
+</ul>
+</div></blockquote>
+<p>Other changes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1501">#1501</a> Infer square / equal plot dimensions for compatible x/y axes.  <em>Kian Eliasi</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1535">#1535</a> Standardized integer type checks throughout the library. <em>Alexandre Chabot-Leclerc</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1539">#1539</a> Refactored <em class="xref py py-obj">AdaptiveWaveplot</em> to allow callback disconnection. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1548">#1548</a> Removed deprecated <em class="xref py py-obj">‘hanning’</em> window specification from tests. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1551">#1551</a> Removed dependency on <em class="xref py py-obj">contextlib2</em>. <em>Steve Kowalik</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1565">#1565</a> Efficiency improvements to <em class="xref py py-obj">autocorrelate</em>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1566">#1566</a> Changed the default sample rate conversion method from <em class="xref py py-obj">kaiser_best</em> (resampy) to <em class="xref py py-obj">soxr_hq</em> (soxr). <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1581">#1581</a> Updated tests for numpy 1.23 compatibility. <em>Brian McFee</em></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
 <section id="v0-9">
 <h2>v0.9<a class="headerlink" href="#v0-9" title="Permalink to this heading">¶</a></h2>
 <section id="v0-9-2">

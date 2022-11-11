@@ -25,6 +25,13 @@ Vocal separation
 This notebook demonstrates a simple technique for separating vocals (and
 other sporadic foreground signals) from accompanying instrumentation.
 
+.. warning::
+    This example is primarily of historical interest, and we do not recommend
+    this as a competitive method for vocal source separation.
+    For a more recent treatment of vocal and music source separation, please
+    refer to `Open Source Tools & Data for Music Source Separation <https://source-separation.github.io/tutorial/landing.html>`_
+    (Manilow, Seetharaman, and Salamon 2020).
+
 This is based on the "REPET-SIM" method of `Rafii and Pardo, 2012
 <http://www.cs.northwestern.edu/~zra446/doc/Rafii-Pardo%20-%20Music-Voice%20Separation%20using%20the%20Similarity%20Matrix%20-%20ISMIR%202012.pdf>`_, but includes a couple of modifications and extensions:
 
@@ -34,7 +41,7 @@ This is based on the "REPET-SIM" method of `Rafii and Pardo, 2012
       <http://arrow.dit.ie/cgi/viewcontent.cgi?article=1086&context=argcon>`_,
       but is a bit more numerically stable in practice.
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-33
+.. GENERATED FROM PYTHON SOURCE LINES 26-40
 
 .. code-block:: default
 
@@ -59,11 +66,11 @@ This is based on the "REPET-SIM" method of `Rafii and Pardo, 2012
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-35
+.. GENERATED FROM PYTHON SOURCE LINES 41-42
 
 Load an example with vocals.
 
-.. GENERATED FROM PYTHON SOURCE LINES 35-44
+.. GENERATED FROM PYTHON SOURCE LINES 42-51
 
 .. code-block:: default
 
@@ -94,11 +101,11 @@ Load an example with vocals.
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-46
+.. GENERATED FROM PYTHON SOURCE LINES 52-53
 
 Plot a 5-second slice of the spectrum
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-52
+.. GENERATED FROM PYTHON SOURCE LINES 53-59
 
 .. code-block:: default
 
@@ -120,14 +127,14 @@ Plot a 5-second slice of the spectrum
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-57
+.. GENERATED FROM PYTHON SOURCE LINES 60-64
 
 The wiggly lines above are due to the vocal component.
 Our goal is to separate them from the accompanying
 instrumentation.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-78
+.. GENERATED FROM PYTHON SOURCE LINES 64-85
 
 .. code-block:: default
 
@@ -159,12 +166,12 @@ instrumentation.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-81
+.. GENERATED FROM PYTHON SOURCE LINES 86-88
 
 The raw filter output can be used as a mask,
 but it sounds better if we use soft-masking.
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-102
+.. GENERATED FROM PYTHON SOURCE LINES 88-109
 
 .. code-block:: default
 
@@ -196,11 +203,11 @@ but it sounds better if we use soft-masking.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 103-104
+.. GENERATED FROM PYTHON SOURCE LINES 110-111
 
 Plot the same slice, but separated into its foreground and background
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-124
+.. GENERATED FROM PYTHON SOURCE LINES 111-131
 
 .. code-block:: default
 
@@ -236,13 +243,13 @@ Plot the same slice, but separated into its foreground and background
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 125-128
+.. GENERATED FROM PYTHON SOURCE LINES 132-135
 
 Recover the foreground audio from the masked spectrogram.
 To do this, we'll need to re-introduce the phase information
 that we had previously set aside.
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-132
+.. GENERATED FROM PYTHON SOURCE LINES 135-139
 
 .. code-block:: default
 
@@ -271,7 +278,7 @@ that we had previously set aside.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  21.902 seconds)
+   **Total running time of the script:** ( 0 minutes  22.146 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:
