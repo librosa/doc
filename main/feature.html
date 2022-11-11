@@ -64,6 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.chroma_stft.html">librosa.feature.chroma_stft</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.chroma_cqt.html">librosa.feature.chroma_cqt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.chroma_cens.html">librosa.feature.chroma_cens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.chroma_vqt.html">librosa.feature.chroma_vqt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.melspectrogram.html">librosa.feature.melspectrogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.mfcc.html">librosa.feature.mfcc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.rms.html">librosa.feature.rms</a></li>
@@ -133,8 +134,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Feature extraction</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Feature extraction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/feature.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -165,37 +166,40 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.chroma_cens.html#librosa.feature.chroma_cens" title="librosa.feature.chroma_cens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_cens</span></code></a>(*[, y, sr, C, hop_length, fmin, ...])</p></td>
 <td><p>Computes the chroma variant &quot;Chroma Energy Normalized&quot; (CENS)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.melspectrogram.html#librosa.feature.melspectrogram" title="librosa.feature.melspectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melspectrogram</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.chroma_vqt.html#librosa.feature.chroma_vqt" title="librosa.feature.chroma_vqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_vqt</span></code></a>(*[, y, sr, V, hop_length, fmin, ...])</p></td>
+<td><p>Variable-Q chromagram</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.melspectrogram.html#librosa.feature.melspectrogram" title="librosa.feature.melspectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melspectrogram</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
 <td><p>Compute a mel-scaled spectrogram.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.mfcc.html#librosa.feature.mfcc" title="librosa.feature.mfcc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mfcc</span></code></a>(*[, y, sr, S, n_mfcc, dct_type, norm, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.mfcc.html#librosa.feature.mfcc" title="librosa.feature.mfcc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mfcc</span></code></a>(*[, y, sr, S, n_mfcc, dct_type, norm, ...])</p></td>
 <td><p>Mel-frequency cepstral coefficients (MFCCs)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.rms.html#librosa.feature.rms" title="librosa.feature.rms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rms</span></code></a>(*[, y, S, frame_length, hop_length, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.rms.html#librosa.feature.rms" title="librosa.feature.rms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rms</span></code></a>(*[, y, S, frame_length, hop_length, ...])</p></td>
 <td><p>Compute root-mean-square (RMS) value for each frame, either from the audio samples <code class="docutils literal notranslate"><span class="pre">y</span></code> or from a spectrogram <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_centroid.html#librosa.feature.spectral_centroid" title="librosa.feature.spectral_centroid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_centroid</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_centroid.html#librosa.feature.spectral_centroid" title="librosa.feature.spectral_centroid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_centroid</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
 <td><p>Compute the spectral centroid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_bandwidth.html#librosa.feature.spectral_bandwidth" title="librosa.feature.spectral_bandwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_bandwidth</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_bandwidth.html#librosa.feature.spectral_bandwidth" title="librosa.feature.spectral_bandwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_bandwidth</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
 <td><p>Compute p'th-order spectral bandwidth.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_contrast.html#librosa.feature.spectral_contrast" title="librosa.feature.spectral_contrast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_contrast</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_contrast.html#librosa.feature.spectral_contrast" title="librosa.feature.spectral_contrast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_contrast</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
 <td><p>Compute spectral contrast</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_flatness.html#librosa.feature.spectral_flatness" title="librosa.feature.spectral_flatness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_flatness</span></code></a>(*[, y, S, n_fft, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_flatness.html#librosa.feature.spectral_flatness" title="librosa.feature.spectral_flatness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_flatness</span></code></a>(*[, y, S, n_fft, ...])</p></td>
 <td><p>Compute spectral flatness</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_rolloff.html#librosa.feature.spectral_rolloff" title="librosa.feature.spectral_rolloff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_rolloff</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.spectral_rolloff.html#librosa.feature.spectral_rolloff" title="librosa.feature.spectral_rolloff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_rolloff</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
 <td><p>Compute roll-off frequency.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.poly_features.html#librosa.feature.poly_features" title="librosa.feature.poly_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poly_features</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.poly_features.html#librosa.feature.poly_features" title="librosa.feature.poly_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poly_features</span></code></a>(*[, y, sr, S, n_fft, ...])</p></td>
 <td><p>Get coefficients of fitting an nth-order polynomial to the columns of a spectrogram.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.tonnetz.html#librosa.feature.tonnetz" title="librosa.feature.tonnetz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tonnetz</span></code></a>(*[, y, sr, chroma])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.tonnetz.html#librosa.feature.tonnetz" title="librosa.feature.tonnetz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tonnetz</span></code></a>(*[, y, sr, chroma])</p></td>
 <td><p>Computes the tonal centroid features (tonnetz)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.zero_crossing_rate.html#librosa.feature.zero_crossing_rate" title="librosa.feature.zero_crossing_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_crossing_rate</span></code></a>(y, *[, frame_length, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.zero_crossing_rate.html#librosa.feature.zero_crossing_rate" title="librosa.feature.zero_crossing_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_crossing_rate</span></code></a>(y, *[, frame_length, ...])</p></td>
 <td><p>Compute the zero-crossing rate of an audio time series.</p></td>
 </tr>
 </tbody>

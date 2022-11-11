@@ -94,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>librosa.core.convert</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">librosa.core.convert</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -136,6 +136,7 @@
     <span class="s2">&quot;hz_to_midi&quot;</span><span class="p">,</span>
     <span class="s2">&quot;hz_to_mel&quot;</span><span class="p">,</span>
     <span class="s2">&quot;hz_to_octs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;hz_to_fjs&quot;</span><span class="p">,</span>
     <span class="s2">&quot;mel_to_hz&quot;</span><span class="p">,</span>
     <span class="s2">&quot;octs_to_hz&quot;</span><span class="p">,</span>
     <span class="s2">&quot;A4_to_tuning&quot;</span><span class="p">,</span>
@@ -647,13 +648,8 @@
         <span class="s2">&quot;♮&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
-        <span class="sa">r</span><span class="s2">&quot;^(?P&lt;note&gt;[A-Ga-g])&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯𝄪b!♭𝄫♮]*)&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;(?P&lt;octave&gt;[+-]?\d+)?&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;(?P&lt;cents&gt;[+-]\d+)?$&quot;</span><span class="p">,</span>
-        <span class="n">note</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">notation</span><span class="o">.</span><span class="n">NOTE_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Improper note format: </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
 
@@ -2211,6 +2207,70 @@
     <span class="k">return</span> <span class="n">midi_to_svara_c</span><span class="p">(</span>
         <span class="n">midis</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">note_to_midi</span><span class="p">(</span><span class="n">Sa</span><span class="p">),</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="n">abbr</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span>
     <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="hz_to_fjs"><a class="viewcode-back" href="../../../generated/librosa.hz_to_fjs.html#librosa.hz_to_fjs">[docs]</a><span class="k">def</span> <span class="nf">hz_to_fjs</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unison</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert one or more frequencies (in Hz) from a just intonation</span>
+<span class="sd">    scale to notes in FJS notation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    frequencies : float or iterable of float</span>
+<span class="sd">        Input frequencies, specified in Hz</span>
+<span class="sd">    fmin : float (optional)</span>
+<span class="sd">        The minimum frequency, corresponding to a unison note.</span>
+<span class="sd">        If not provided, it will be inferred as `min(frequencies)`</span>
+<span class="sd">    unison : str (optional)</span>
+<span class="sd">        The name of the unison note.</span>
+<span class="sd">        If not provided, it will be inferred as the scientific pitch</span>
+<span class="sd">        notation name of `fmin`, that is, `hz_to_note(fmin)`</span>
+<span class="sd">    unicode : bool</span>
+<span class="sd">        If `True`, then unicode symbols are used for accidentals.</span>
+<span class="sd">        If `False`, then low-order ASCII symbols are used for accidentals.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    notes : str or np.ndarray(dtype=str)</span>
+<span class="sd">        ``notes[i]`` is the closest note name to ``frequency[i]``</span>
+<span class="sd">        (or ``frequency`` if the input is scalar)</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    hz_to_note</span>
+<span class="sd">    interval_to_fjs</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Get a single note name for a frequency, relative to A=55 Hz</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.hz_to_fjs(66, fmin=55, unicode=True)</span>
+<span class="sd">    &#39;C₅&#39;</span>
+
+<span class="sd">    Get notation for a 5-limit frequency set starting at A=55</span>
+
+<span class="sd">    &gt;&gt;&gt; freqs = librosa.interval_frequencies(24, intervals=&quot;ji5&quot;, fmin=55)</span>
+<span class="sd">    &gt;&gt;&gt; freqs</span>
+<span class="sd">    array([ 55.   ,  58.667,  61.875,  66.   ,  68.75 ,  73.333,  77.344,</span>
+<span class="sd">        82.5  ,  88.   ,  91.667,  99.   , 103.125, 110.   , 117.333,</span>
+<span class="sd">       123.75 , 132.   , 137.5  , 146.667, 154.687, 165.   , 176.   ,</span>
+<span class="sd">       183.333, 198.   , 206.25 ])</span>
+<span class="sd">    &gt;&gt;&gt; librosa.hz_to_fjs(freqs, unicode=True)</span>
+<span class="sd">    array([&#39;A&#39;, &#39;B♭₅&#39;, &#39;B&#39;, &#39;C₅&#39;, &#39;C♯⁵&#39;, &#39;D&#39;, &#39;D♯⁵&#39;, &#39;E&#39;, &#39;F₅&#39;, &#39;F♯⁵&#39;, &#39;G₅&#39;,</span>
+<span class="sd">       &#39;G♯⁵&#39;, &#39;A&#39;, &#39;B♭₅&#39;, &#39;B&#39;, &#39;C₅&#39;, &#39;C♯⁵&#39;, &#39;D&#39;, &#39;D♯⁵&#39;, &#39;E&#39;, &#39;F₅&#39;, &#39;F♯⁵&#39;,</span>
+<span class="sd">       &#39;G₅&#39;, &#39;G♯⁵&#39;], dtype=&#39;&lt;U3&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unison</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">unison</span> <span class="o">=</span> <span class="n">hz_to_note</span><span class="p">(</span><span class="n">fmin</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">frequencies</span><span class="p">):</span>
+        <span class="n">intervals</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">/</span> <span class="n">fmin</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">/</span> <span class="n">fmin</span>
+
+    <span class="k">return</span> <span class="n">notation</span><span class="o">.</span><span class="n">interval_to_fjs</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span></div>
 </pre></div>
 
 

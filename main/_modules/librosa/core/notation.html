@@ -94,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>librosa.core.notation</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">librosa.core.notation</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -114,8 +114,11 @@
 
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">from</span> <span class="nn">.intervals</span> <span class="kn">import</span> <span class="n">INTERVALS</span>
 <span class="kn">from</span> <span class="nn">.._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
+<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">vectorize</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;key_to_degrees&quot;</span><span class="p">,</span>
@@ -125,6 +128,8 @@
     <span class="s2">&quot;thaat_to_degrees&quot;</span><span class="p">,</span>
     <span class="s2">&quot;list_mela&quot;</span><span class="p">,</span>
     <span class="s2">&quot;list_thaat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fifths_to_note&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;interval_to_fjs&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="n">THAAT_MAP</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -221,6 +226,19 @@
         <span class="mi">1</span><span class="p">,</span>
     <span class="p">)</span>
 <span class="p">}</span>
+
+
+<span class="c1"># Pre-compiled regular expressions for note and key parsing</span>
+<span class="n">NOTE_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;^(?P&lt;note&gt;[A-Ga-g])&quot;</span>
+    <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯𝄪b!♭𝄫♮]*)&quot;</span>
+    <span class="sa">r</span><span class="s2">&quot;(?P&lt;octave&gt;[+-]?\d+)?&quot;</span>
+    <span class="sa">r</span><span class="s2">&quot;(?P&lt;cents&gt;[+-]\d+)?$&quot;</span>
+<span class="p">)</span>
+
+<span class="n">KEY_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;^(?P&lt;tonic&gt;[A-Ga-g])&quot;</span> <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯b!♭]?)&quot;</span> <span class="sa">r</span><span class="s2">&quot;:(?P&lt;scale&gt;(maj|min)(or)?)$&quot;</span>
+<span class="p">)</span>
 
 
 <div class="viewcode-block" id="thaat_to_degrees"><a class="viewcode-back" href="../../../generated/librosa.thaat_to_degrees.html#librosa.thaat_to_degrees">[docs]</a><span class="k">def</span> <span class="nf">thaat_to_degrees</span><span class="p">(</span><span class="n">thaat</span><span class="p">):</span>
@@ -640,12 +658,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Parse the key signature</span>
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
-        <span class="sa">r</span><span class="s2">&quot;^(?P&lt;tonic&gt;[A-Ga-g])&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯b!♭]?)&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;:(?P&lt;scale&gt;(maj|min)(or)?)$&quot;</span><span class="p">,</span>
-        <span class="n">key</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">KEY_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Improper key format: </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
@@ -783,12 +797,8 @@
         <span class="n">maj</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]),</span> <span class="nb">min</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
     <span class="p">)</span>
 
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
-        <span class="sa">r</span><span class="s2">&quot;^(?P&lt;tonic&gt;[A-Ga-g])&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯b!♭]?)&quot;</span>
-        <span class="sa">r</span><span class="s2">&quot;:(?P&lt;scale&gt;(maj|min)(or)?)$&quot;</span><span class="p">,</span>
-        <span class="n">key</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">KEY_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Improper key format: </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
@@ -801,6 +811,270 @@
     <span class="n">scale</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">notes</span><span class="p">[</span><span class="n">scale</span><span class="p">]</span> <span class="o">+</span> <span class="n">pitch_map</span><span class="p">[</span><span class="n">tonic</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)</span> <span class="o">%</span> <span class="mi">12</span></div>
+
+
+<div class="viewcode-block" id="fifths_to_note"><a class="viewcode-back" href="../../../generated/librosa.fifths_to_note.html#librosa.fifths_to_note">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fifths_to_note</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">unison</span><span class="p">,</span> <span class="n">fifths</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the note name for a given number of perfect fifths</span>
+<span class="sd">    from a specified unison.</span>
+
+<span class="sd">    This function is primarily intended as a utility routine for</span>
+<span class="sd">    Functional Just System (FJS) notation conversions.</span>
+
+<span class="sd">    This function does not assume the &quot;circle of fifths&quot; or equal temperament,</span>
+<span class="sd">    so 12 fifths will not generally produce a note of the same pitch class</span>
+<span class="sd">    due to the accumulation of accidentals.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    unison : str</span>
+<span class="sd">        The name of the starting (unison) note, e.g., &#39;C&#39; or &#39;Bb&#39;.</span>
+<span class="sd">        Unicode accidentals are supported.</span>
+
+<span class="sd">    fifths : integer</span>
+<span class="sd">        The number of perfect fifths to deviate from unison.</span>
+
+<span class="sd">    unicode : bool</span>
+<span class="sd">        If ``True`` (default), use Unicode symbols (♯𝄪♭𝄫)for accidentals.</span>
+
+<span class="sd">        If ``False``, accidentals will be encoded as low-order ASCII representations::</span>
+
+<span class="sd">            ♯ -&gt; #, 𝄪 -&gt; ##, ♭ -&gt; b, 𝄫 -&gt; bb</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    note : str</span>
+<span class="sd">        The name of the requested note</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; librosa.fifths_to_note(unison=&#39;C&#39;, fifths=6)</span>
+<span class="sd">    &#39;F♯&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.fifths_to_note(unison=&#39;G&#39;, fifths=-3)</span>
+<span class="sd">    &#39;B♭&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.fifths_to_note(unison=&#39;Eb&#39;, fifths=11, unicode=False)</span>
+<span class="sd">    &#39;G#&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Starting the circle of fifths at F makes accidentals easier to count</span>
+    <span class="n">COFMAP</span> <span class="o">=</span> <span class="s2">&quot;FCGDAEB&quot;</span>
+
+    <span class="n">acc_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;𝄪&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;𝄫&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;♮&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">unicode</span><span class="p">:</span>
+        <span class="n">acc_map_inv</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;♯&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;𝄪&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;♭&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;𝄫&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">acc_map_inv</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;##&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+    <span class="n">match</span> <span class="o">=</span> <span class="n">NOTE_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">unison</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper note format: </span><span class="si">{</span><span class="n">unison</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Find unison in the alphabet</span>
+    <span class="n">pitch</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;note&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="c1"># Find the number of accidentals to start from</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">acc_map</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;accidental&quot;</span><span class="p">)])</span>
+
+    <span class="c1"># Find the raw target note</span>
+    <span class="n">circle_idx</span> <span class="o">=</span> <span class="n">COFMAP</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span>
+    <span class="n">raw_output</span> <span class="o">=</span> <span class="n">COFMAP</span><span class="p">[(</span><span class="n">circle_idx</span> <span class="o">+</span> <span class="n">fifths</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span><span class="p">]</span>
+
+    <span class="c1"># Now how many accidentals have we accrued?</span>
+    <span class="c1"># Equivalently, count times we cross a B&lt;-&gt;F boundary</span>
+    <span class="n">acc_index</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="p">(</span><span class="n">circle_idx</span> <span class="o">+</span> <span class="n">fifths</span><span class="p">)</span> <span class="o">//</span> <span class="mi">7</span>
+
+    <span class="c1"># Compress multiple-accidentals as needed</span>
+    <span class="n">acc_str</span> <span class="o">=</span> <span class="n">acc_map_inv</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">acc_index</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">acc_index</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="p">)</span> <span class="o">+</span> <span class="n">acc_map_inv</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">acc_index</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">acc_index</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">raw_output</span> <span class="o">+</span> <span class="n">acc_str</span></div>
+
+
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">__o_fold</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the octave-folded interval.</span>
+
+<span class="sd">    This maps intervals to the range [1, 2).</span>
+
+<span class="sd">    This is part of the FJS notation converter.</span>
+<span class="sd">    It is equivalent to the `red` function described in the FJS</span>
+<span class="sd">    documentation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">d</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">d</span><span class="p">)))</span>
+
+
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">__bo_fold</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the balanced, octave-folded interval.</span>
+
+<span class="sd">    This maps intervals to the range [sqrt(2)/2, sqrt(2)).</span>
+
+<span class="sd">    This is part of the FJS notation converter.</span>
+<span class="sd">    It is equivalent to the `reb` function described in the FJS</span>
+<span class="sd">    documentation, but with a simpler implementation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">d</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">d</span><span class="p">)))</span>
+
+
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">__fifth_search</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Accelerated helper function for finding the number of fifths</span>
+<span class="sd">    to get within tolerance of a given interval.</span>
+
+<span class="sd">    This implementation will give up after 32 fifths</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">log_tolerance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tolerance</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">sign</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">__bo_fold</span><span class="p">(</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">power</span> <span class="o">*</span> <span class="n">sign</span><span class="p">))))</span>
+                <span class="o">&lt;=</span> <span class="n">log_tolerance</span>
+            <span class="p">):</span>
+                <span class="k">return</span> <span class="n">power</span> <span class="o">*</span> <span class="n">sign</span>
+        <span class="n">power</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">power</span>
+
+
+<span class="c1"># Translation grids for superscripts and subscripts</span>
+<span class="n">SUPER_TRANS</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">,</span> <span class="s2">&quot;⁰¹²³⁴⁵⁶⁷⁸⁹&quot;</span><span class="p">)</span>
+<span class="n">SUB_TRANS</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">,</span> <span class="s2">&quot;₀₁₂₃₄₅₆₇₈₉&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="interval_to_fjs"><a class="viewcode-back" href="../../../generated/librosa.interval_to_fjs.html#librosa.interval_to_fjs">[docs]</a><span class="nd">@vectorize</span><span class="p">(</span><span class="n">otypes</span><span class="o">=</span><span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="n">excluded</span><span class="o">=</span><span class="nb">set</span><span class="p">([</span><span class="s2">&quot;unison&quot;</span><span class="p">,</span> <span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="s2">&quot;unicode&quot;</span><span class="p">]))</span>
+<span class="k">def</span> <span class="nf">interval_to_fjs</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unison</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">65.0</span> <span class="o">/</span> <span class="mi">63</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an interval to Functional Just System (FJS) notation.</span>
+
+<span class="sd">    See https://misotanni.github.io/fjs/en/index.html for a thorough overview</span>
+<span class="sd">    of the FJS notation system, and the examples below.</span>
+
+<span class="sd">    FJS conversion works by identifying a Pythagorean interval which is within</span>
+<span class="sd">    a specified tolerance of the target interval, which provides the core note</span>
+<span class="sd">    name.  If the interval is derived from ratios other than perfect fifths,</span>
+<span class="sd">    then the remaining factors are encoded as superscripts for otonal</span>
+<span class="sd">    (increasing) intervals and subscripts for utonal (decreasing) intervals.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    interval : float &gt; 0 or iterable of floats</span>
+<span class="sd">        A (just) interval to notate in FJS.</span>
+
+<span class="sd">    unison : str</span>
+<span class="sd">        The name of the unison note (corresponding to `interval=1`).</span>
+
+<span class="sd">    tolerance : float</span>
+<span class="sd">        The tolerance threshold for identifying the core note name.</span>
+
+<span class="sd">    unicode : bool</span>
+<span class="sd">        If ``True`` (default), use Unicode symbols (♯𝄪♭𝄫)for accidentals,</span>
+<span class="sd">        and superscripts/subscripts for otonal and utonal accidentals.</span>
+
+<span class="sd">        If ``False``, accidentals will be encoded as low-order ASCII representations::</span>
+
+<span class="sd">            ♯ -&gt; #, 𝄪 -&gt; ##, ♭ -&gt; b, 𝄫 -&gt; bb</span>
+
+<span class="sd">        Otonal and utonal accidentals will be denoted by `^##` and `_##`</span>
+<span class="sd">        respectively (see examples below).</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ParameterError</span>
+<span class="sd">        If the provided interval is not positive</span>
+
+<span class="sd">        If the provided interval cannot be identified with a</span>
+<span class="sd">        just intonation prime factorization.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    note_fjs : str or np.ndarray(dtype=str)</span>
+<span class="sd">        The interval(s) relative to the given unison in FJS notation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Pythagorean intervals appear as expected, with no otonal</span>
+<span class="sd">    or utonal extensions:</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs(3/2, unison=&#39;C&#39;)</span>
+<span class="sd">    &#39;G&#39;</span>
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs(4/3, unison=&#39;F&#39;)</span>
+<span class="sd">    &#39;B♭&#39;</span>
+
+<span class="sd">    A ptolemaic major third will appear with an otonal &#39;5&#39;:</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs(5/4, unison=&#39;A&#39;)</span>
+<span class="sd">    &#39;C♯⁵&#39;</span>
+
+<span class="sd">    And a ptolemaic minor third will appear with utonal &#39;5&#39;:</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs(6/5, unison=&#39;A&#39;)</span>
+<span class="sd">    &#39;C₅&#39;</span>
+
+<span class="sd">    More complex intervals will have compound accidentals.</span>
+<span class="sd">    For example:</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs(25/14, unison=&#39;F#&#39;)</span>
+<span class="sd">    &#39;E²⁵₇&#39;</span>
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs(25/14, unison=&#39;F#&#39;, unicode=False)</span>
+<span class="sd">    &#39;E^25_7&#39;</span>
+
+<span class="sd">    Array inputs are also supported:</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.interval_to_fjs([3/2, 4/3, 5/3])</span>
+<span class="sd">    array([&#39;G&#39;, &#39;F&#39;, &#39;A⁵&#39;], dtype=&#39;&lt;U2&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interval=</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s2"> must be strictly positive&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Find the approximate number of fifth-steps to get within tolerance</span>
+    <span class="c1"># of the target interval</span>
+    <span class="n">fifths</span> <span class="o">=</span> <span class="n">__fifth_search</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span>
+
+    <span class="c1"># determine the base note name</span>
+    <span class="n">note_name</span> <span class="o">=</span> <span class="n">fifths_to_note</span><span class="p">(</span><span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span> <span class="n">fifths</span><span class="o">=</span><span class="n">fifths</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
+
+    <span class="c1"># Get the prime factor expansion from the interval table</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Balance the interval into the octave for lookup</span>
+        <span class="n">interval_b</span> <span class="o">=</span> <span class="n">__o_fold</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+        <span class="n">powers</span> <span class="o">=</span> <span class="n">INTERVALS</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">interval_b</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">6</span><span class="p">)]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown interval=</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+    <span class="c1"># Ignore pythagorean spelling</span>
+    <span class="n">powers</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">powers</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">powers</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">}</span>
+
+    <span class="c1"># Split into otonal and utonal accidentals</span>
+    <span class="n">otonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">([</span><span class="n">p</span> <span class="o">**</span> <span class="n">powers</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">powers</span> <span class="k">if</span> <span class="n">powers</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">utonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">([</span><span class="n">p</span> <span class="o">**</span> <span class="o">-</span><span class="n">powers</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">powers</span> <span class="k">if</span> <span class="n">powers</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">otonal</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">unicode</span><span class="p">:</span>
+            <span class="n">suffix</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">otonal</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">SUPER_TRANS</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">suffix</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;^</span><span class="si">{</span><span class="n">otonal</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="n">utonal</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">unicode</span><span class="p">:</span>
+            <span class="n">suffix</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">utonal</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">SUB_TRANS</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">suffix</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">utonal</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">note_name</span> <span class="o">+</span> <span class="n">suffix</span></div>
 </pre></div>
 
 

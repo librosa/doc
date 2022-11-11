@@ -94,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>librosa.core.constantq</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">librosa.core.constantq</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -116,6 +116,7 @@
 <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">audio</span>
+<span class="kn">from</span> <span class="nn">.intervals</span> <span class="kn">import</span> <span class="n">interval_frequencies</span>
 <span class="kn">from</span> <span class="nn">.fft</span> <span class="kn">import</span> <span class="n">get_fftlib</span>
 <span class="kn">from</span> <span class="nn">.convert</span> <span class="kn">import</span> <span class="n">cqt_frequencies</span><span class="p">,</span> <span class="n">note_to_hz</span>
 <span class="kn">from</span> <span class="nn">.spectrum</span> <span class="kn">import</span> <span class="n">stft</span><span class="p">,</span> <span class="n">istft</span>
@@ -281,6 +282,7 @@
         <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
         <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
         <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span>
         <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
         <span class="n">tuning</span><span class="o">=</span><span class="n">tuning</span><span class="p">,</span>
@@ -865,6 +867,7 @@
     <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
     <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">n_bins</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span>
     <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
     <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
@@ -904,6 +907,12 @@
 
 <span class="sd">    n_bins : int &gt; 0 [scalar]</span>
 <span class="sd">        Number of frequency bins, starting at ``fmin``</span>
+
+<span class="sd">    intervals : str or array of floats in [1, 2)</span>
+<span class="sd">        Either a string specification for an interval set, e.g.,</span>
+<span class="sd">        `&#39;equal&#39;`, `&#39;pythagorean&#39;`, `&#39;ji3&#39;`, etc. or an array of</span>
+<span class="sd">        intervals expressed as numbers between 1 and 2.</span>
+<span class="sd">        .. see also:: librosa.interval_frequencies</span>
 
 <span class="sd">    gamma : number &gt; 0 [scalar]</span>
 <span class="sd">        Bandwidth offset for determining filter lengths.</span>
@@ -1007,6 +1016,10 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax, format=&quot;%+2.0f dB&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># If intervals are provided as an array, override BPO</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">bins_per_octave</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+
     <span class="c1"># How many octaves are we dealing with?</span>
     <span class="n">n_octaves</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n_bins</span><span class="p">)</span> <span class="o">/</span> <span class="n">bins_per_octave</span><span class="p">))</span>
     <span class="n">n_filters</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bins_per_octave</span><span class="p">,</span> <span class="n">n_bins</span><span class="p">)</span>
@@ -1025,7 +1038,11 @@
     <span class="n">fmin</span> <span class="o">=</span> <span class="n">fmin</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">tuning</span> <span class="o">/</span> <span class="n">bins_per_octave</span><span class="p">)</span>
 
     <span class="c1"># First thing, get the freqs of the top octave</span>
-    <span class="n">freqs</span> <span class="o">=</span> <span class="n">cqt_frequencies</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">)</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">interval_frequencies</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
+                                 <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+                                 <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                                 <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+                                 <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">freqs_top</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[</span><span class="o">-</span><span class="n">bins_per_octave</span><span class="p">:]</span>
 

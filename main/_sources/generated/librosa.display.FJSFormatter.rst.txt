@@ -1,0 +1,40 @@
+﻿librosa.display.FJSFormatter
+============================
+
+.. currentmodule:: librosa.display
+
+.. autoclass:: FJSFormatter
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FJSFormatter.__init__
+      ~FJSFormatter.create_dummy_axis
+      ~FJSFormatter.fix_minus
+      ~FJSFormatter.format_data
+      ~FJSFormatter.format_data_short
+      ~FJSFormatter.format_ticks
+      ~FJSFormatter.get_offset
+      ~FJSFormatter.set_axis
+      ~FJSFormatter.set_bounds
+      ~FJSFormatter.set_data_interval
+      ~FJSFormatter.set_locs
+      ~FJSFormatter.set_view_interval
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FJSFormatter.axis
+      ~FJSFormatter.locs
+   
+   

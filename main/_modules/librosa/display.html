@@ -94,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>librosa.display</li>
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">librosa.display</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -130,9 +130,11 @@
 <span class="sd">    TimeFormatter</span>
 <span class="sd">    NoteFormatter</span>
 <span class="sd">    SvaraFormatter</span>
+<span class="sd">    FJSFormatter</span>
 <span class="sd">    LogHzFormatter</span>
 <span class="sd">    ChromaFormatter</span>
 <span class="sd">    ChromaSvaraFormatter</span>
+<span class="sd">    ChromaFJSFormatter</span>
 <span class="sd">    TonnetzFormatter</span>
 
 <span class="sd">Miscellaneous</span>
@@ -157,11 +159,11 @@
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 
 
-<span class="n">matplotlib</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">)</span>
-<span class="n">mcm</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.cm&#39;</span><span class="p">)</span>
-<span class="n">mplaxes</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.axes&#39;</span><span class="p">)</span>
-<span class="n">mplticker</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.ticker&#39;</span><span class="p">)</span>
-<span class="n">plt</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot&#39;</span><span class="p">)</span>
+<span class="n">matplotlib</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">)</span>
+<span class="n">mcm</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;matplotlib.cm&quot;</span><span class="p">)</span>
+<span class="n">mplaxes</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;matplotlib.axes&quot;</span><span class="p">)</span>
+<span class="n">mplticker</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;matplotlib.ticker&quot;</span><span class="p">)</span>
+<span class="n">plt</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;matplotlib.pyplot&quot;</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;specshow&quot;</span><span class="p">,</span>
@@ -169,8 +171,11 @@
     <span class="s2">&quot;cmap&quot;</span><span class="p">,</span>
     <span class="s2">&quot;TimeFormatter&quot;</span><span class="p">,</span>
     <span class="s2">&quot;NoteFormatter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FJSFormatter&quot;</span><span class="p">,</span>
     <span class="s2">&quot;LogHzFormatter&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ChromaFormatter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ChromaSvaraFormatter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ChromaFJSFormatter&quot;</span><span class="p">,</span>
     <span class="s2">&quot;TonnetzFormatter&quot;</span><span class="p">,</span>
     <span class="s2">&quot;AdaptiveWaveplot&quot;</span><span class="p">,</span>
 <span class="p">]</span>
@@ -438,6 +443,90 @@
             <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="FJSFormatter"><a class="viewcode-back" href="../../generated/librosa.display.FJSFormatter.html#librosa.display.FJSFormatter">[docs]</a><span class="k">class</span> <span class="nc">FJSFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ticker formatter for Functional Just System (FJS) notation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fmin : float</span>
+<span class="sd">        The unison frequency for this axis</span>
+
+
+<span class="sd">    major : bool</span>
+<span class="sd">        If ``True``, ticks are always labeled.</span>
+
+<span class="sd">        If ``False``, ticks are only labeled if the span is less than 2 octaves</span>
+
+<span class="sd">    unison : str</span>
+<span class="sd">        The unison note name.  If not provided, it will be inferred from fmin.</span>
+
+<span class="sd">    unicode : bool</span>
+<span class="sd">        If ``True``, use unicode symbols for accidentals.</span>
+
+<span class="sd">        If ``False``, use ASCII symbols for accidentals.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    NoteFormatter</span>
+<span class="sd">    hz_to_fjs</span>
+<span class="sd">    matplotlib.ticker.Formatter</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; values = librosa.midi_to_hz(np.arange(48, 72))</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=2)</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].bar(np.arange(len(values)), values)</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].set(ylabel=&#39;Hz&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].bar(np.arange(len(values)), values)</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].yaxis.set_major_formatter(librosa.display.NoteFormatter())</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].set(ylabel=&#39;Note&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="FJSFormatter.__init__"><a class="viewcode-back" href="../../generated/librosa.display.FJSFormatter.html#librosa.display.FJSFormatter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="p">,</span>
+        <span class="n">major</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fmin</span> <span class="o">=</span> <span class="n">fmin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">major</span> <span class="o">=</span> <span class="n">major</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unison</span> <span class="o">=</span> <span class="n">unison</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unicode</span> <span class="o">=</span> <span class="n">unicode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intervals</span> <span class="o">=</span> <span class="n">intervals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span> <span class="o">=</span> <span class="n">n_bins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bins_per_octave</span> <span class="o">=</span> <span class="n">bins_per_octave</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequencies_</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+            <span class="n">n_bins</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># Only use cent precision if our vspan is less than an octave</span>
+        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">get_view_interval</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">major</span> <span class="ow">and</span> <span class="n">vmax</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># Map the given frequency to the nearest JI interval</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">match_events</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequencies_</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">core</span><span class="o">.</span><span class="n">hz_to_fjs</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frequencies_</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span>
+            <span class="n">fmin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fmin</span><span class="p">,</span>
+            <span class="n">unison</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unison</span><span class="p">,</span>
+            <span class="n">unicode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="LogHzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.LogHzFormatter.html#librosa.display.LogHzFormatter">[docs]</a><span class="k">class</span> <span class="nc">LogHzFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ticker formatter for logarithmic frequency</span>
 
@@ -549,6 +638,52 @@
             <span class="k">return</span> <span class="n">core</span><span class="o">.</span><span class="n">midi_to_svara_h</span><span class="p">(</span>
                 <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">Sa</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Sa</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abbr</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unicode</span>
             <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ChromaFJSFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFJSFormatter.html#librosa.display.ChromaFJSFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaFJSFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A formatter for chroma axes with functional just notation</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    matplotlib.ticker.Formatter</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; values = np.arange(12)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; ax.plot(values)</span>
+<span class="sd">    &gt;&gt;&gt; ax.yaxis.set_major_formatter(librosa.display.ChromaFJSFormatter(intervals=&quot;ji5&quot;, bins_per_octave=12))</span>
+<span class="sd">    &gt;&gt;&gt; ax.set(ylabel=&#39;Pitch class&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ChromaFJSFormatter.__init__"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFJSFormatter.html#librosa.display.ChromaFJSFormatter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unison</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unison</span> <span class="o">=</span> <span class="n">unison</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unicode</span> <span class="o">=</span> <span class="n">unicode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intervals</span> <span class="o">=</span> <span class="n">intervals</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">bins_per_octave</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bins_per_octave</span> <span class="o">=</span> <span class="n">bins_per_octave</span>
+            <span class="c1"># Construct the explicit interval set</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intervals_</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+                <span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">fmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;intervals=</span><span class="si">{</span><span class="n">intervals</span><span class="si">}</span><span class="s2"> must be of type str or a collection of numbers between 1 and 2&quot;</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Format for chroma positions&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">core</span><span class="o">.</span><span class="n">interval_to_fjs</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intervals_</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">bins_per_octave</span><span class="p">],</span>
+            <span class="n">unison</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unison</span><span class="p">,</span>
+            <span class="n">unicode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TonnetzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TonnetzFormatter.html#librosa.display.TonnetzFormatter">[docs]</a><span class="k">class</span> <span class="nc">TonnetzFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
@@ -780,6 +915,7 @@
     <span class="s2">&quot;chroma&quot;</span><span class="p">,</span>
     <span class="s2">&quot;chroma_h&quot;</span><span class="p">,</span>
     <span class="s2">&quot;chroma_c&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chroma_fjs&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">_cqt_ax_types</span> <span class="o">=</span> <span class="p">(</span>
     <span class="s2">&quot;cqt_hz&quot;</span><span class="p">,</span>
@@ -848,6 +984,8 @@
     <span class="n">auto_aspect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unison</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
@@ -897,6 +1035,9 @@
 <span class="sd">        - &#39;cqt_hz&#39; : frequencies are determined by the CQT scale.</span>
 <span class="sd">        - &#39;cqt_note&#39; : pitches are determined by the CQT scale.</span>
 <span class="sd">        - &#39;cqt_svara&#39; : like `cqt_note` but using Hindustani or Carnatic svara</span>
+<span class="sd">        - &#39;vqt_fjs&#39; : like `cqt_note` but using Functional Just System (FJS)</span>
+<span class="sd">          notation.  This requires a just intonation-based variable-Q</span>
+<span class="sd">          transform representation.</span>
 
 <span class="sd">        All frequency types are plotted in units of Hz.</span>
 
@@ -913,6 +1054,9 @@
 <span class="sd">        - `chroma_h`, `chroma_c`: pitches are determined by chroma filters,</span>
 <span class="sd">          and labeled as svara in the Hindustani (`chroma_h`) or Carnatic (`chroma_c`)</span>
 <span class="sd">          according to a given thaat (Hindustani) or melakarta raga (Carnatic).</span>
+
+<span class="sd">        - &#39;chroma_fjs&#39;: pitches are determined by chroma filters using just</span>
+<span class="sd">          intonation.  All pitch classes are annotated.</span>
 
 <span class="sd">        - &#39;tonnetz&#39; : axes are labeled by Tonnetz dimensions (0-5)</span>
 <span class="sd">        - &#39;frames&#39; : markers are shown as frame counts.</span>
@@ -950,7 +1094,7 @@
 <span class="sd">        If not provided, they are inferred from ``x_axis`` and ``y_axis``.</span>
 
 <span class="sd">    fmin : float &gt; 0 [scalar] or None</span>
-<span class="sd">        Frequency of the lowest spectrogram bin.  Used for Mel and CQT</span>
+<span class="sd">        Frequency of the lowest spectrogram bin.  Used for Mel, CQT, and VQT</span>
 <span class="sd">        scales.</span>
 
 <span class="sd">        If ``y_axis`` is `cqt_hz` or `cqt_note` and ``fmin`` is not given,</span>
@@ -985,6 +1129,11 @@
 
 <span class="sd">    thaat : str, optional</span>
 <span class="sd">        If using `chroma_h` display mode, specify the parent thaat.</span>
+
+<span class="sd">    unison : str, optional</span>
+<span class="sd">        If using an FJS notation (`chroma_fjs`, `vqt_fjs`), the pitch name of the unison</span>
+<span class="sd">        interval.  If not provided, it will be inferred from `fmin` (for VQT display) or</span>
+<span class="sd">        assumed as `&#39;C&#39;` (for chroma display).</span>
 
 <span class="sd">    auto_aspect : bool</span>
 <span class="sd">        Axes will have &#39;equal&#39; aspect if the horizontal and vertical dimensions</span>
@@ -1083,6 +1232,8 @@
         <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
         <span class="n">htk</span><span class="o">=</span><span class="n">htk</span><span class="p">,</span>
         <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Get the x and y coordinates</span>
@@ -1101,10 +1252,32 @@
 
     <span class="c1"># Construct tickers and locators</span>
     <span class="n">__decorate_axis</span><span class="p">(</span>
-        <span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span> <span class="n">x_axis</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span>
+        <span class="n">x_axis</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+        <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span>
+        <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span>
+        <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span>
+        <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x_coords</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">__decorate_axis</span><span class="p">(</span>
-        <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="p">,</span>
+        <span class="n">y_axis</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+        <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span>
+        <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span>
+        <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span>
+        <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">y_coords</span><span class="p">),</span>
     <span class="p">)</span>
 
     <span class="c1"># If the plot is a self-similarity/covariance etc. plot, square it</span>
@@ -1147,9 +1320,13 @@
         <span class="s2">&quot;cqt_hz&quot;</span><span class="p">:</span> <span class="n">__coord_cqt_hz</span><span class="p">,</span>
         <span class="s2">&quot;cqt_note&quot;</span><span class="p">:</span> <span class="n">__coord_cqt_hz</span><span class="p">,</span>
         <span class="s2">&quot;cqt_svara&quot;</span><span class="p">:</span> <span class="n">__coord_cqt_hz</span><span class="p">,</span>
+        <span class="s2">&quot;vqt_fjs&quot;</span><span class="p">:</span> <span class="n">__coord_vqt_hz</span><span class="p">,</span>
+        <span class="s2">&quot;vqt_hz&quot;</span><span class="p">:</span> <span class="n">__coord_vqt_hz</span><span class="p">,</span>
+        <span class="s2">&quot;vqt_note&quot;</span><span class="p">:</span> <span class="n">__coord_vqt_hz</span><span class="p">,</span>
         <span class="s2">&quot;chroma&quot;</span><span class="p">:</span> <span class="n">__coord_chroma</span><span class="p">,</span>
         <span class="s2">&quot;chroma_c&quot;</span><span class="p">:</span> <span class="n">__coord_chroma</span><span class="p">,</span>
         <span class="s2">&quot;chroma_h&quot;</span><span class="p">:</span> <span class="n">__coord_chroma</span><span class="p">,</span>
+        <span class="s2">&quot;chroma_fjs&quot;</span><span class="p">:</span> <span class="n">__coord_n</span><span class="p">,</span>  <span class="c1"># We can&#39;t use a 12-normalized tick locator here</span>
         <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
         <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="n">__coord_time</span><span class="p">,</span>
@@ -1220,7 +1397,15 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="n">thresh</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1000.0</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 
-    <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;cqt_hz&quot;</span><span class="p">,</span> <span class="s2">&quot;cqt_note&quot;</span><span class="p">,</span> <span class="s2">&quot;cqt_svara&quot;</span><span class="p">]:</span>
+    <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;cqt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cqt_hz&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cqt_note&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cqt_svara&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vqt_hz&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vqt_note&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vqt_fjs&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>
         <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 
@@ -1241,7 +1426,18 @@
 
 
 <span class="k">def</span> <span class="nf">__decorate_axis</span><span class="p">(</span>
-    <span class="n">axis</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thaat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">axis</span><span class="p">,</span>
+    <span class="n">ax_type</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span>
+    <span class="n">Sa</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mela</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">thaat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unison</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Configure axis tickers, locators, and labels&quot;&quot;&quot;</span>
     <span class="n">time_units</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;minutes&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;seconds&quot;</span><span class="p">,</span> <span class="s2">&quot;ms&quot;</span><span class="p">:</span> <span class="s2">&quot;milliseconds&quot;</span><span class="p">}</span>
@@ -1289,6 +1485,49 @@
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
 
+    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;chroma_fjs&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">unison</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">unison</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">hz_to_note</span><span class="p">(</span><span class="n">fmin</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
+            <span class="n">ChromaFJSFormatter</span><span class="p">(</span>
+                <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+                <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">bins_per_octave</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="c1"># If intervals are implicit, generate the first 7 and identify</span>
+            <span class="c1"># them in the sorted set</span>
+            <span class="n">tick_intervals</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+                <span class="mi">7</span><span class="p">,</span>
+                <span class="n">fmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">all_intervals</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+                <span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">fmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">degrees</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">match_events</span><span class="p">(</span><span class="n">tick_intervals</span><span class="p">,</span> <span class="n">all_intervals</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If intervals are explicit, tick them all</span>
+            <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">bins_per_octave</span><span class="p">)</span>
+
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">degrees</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Pitch class&quot;</span><span class="p">)</span>
+
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="s2">&quot;fourier_tempo&quot;</span><span class="p">]:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
@@ -1296,23 +1535,31 @@
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+        <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="n">time_units</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">ax_type</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+        <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Time (</span><span class="si">{:s}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_units</span><span class="p">[</span><span class="n">ax_type</span><span class="p">]))</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;lag&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+        <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ax_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;lag_&quot;</span><span class="p">):</span>
         <span class="n">unit</span> <span class="o">=</span> <span class="n">ax_type</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TimeFormatter</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="n">lag</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">prune</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+        <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Lag (</span><span class="si">{:s}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_units</span><span class="p">[</span><span class="n">unit</span><span class="p">]))</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;cqt_note&quot;</span><span class="p">:</span>
@@ -1323,7 +1570,9 @@
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">C_offset</span><span class="p">,)))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">NoteFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span>
+                <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Note&quot;</span><span class="p">)</span>
 
@@ -1337,9 +1586,87 @@
             <span class="n">SvaraFormatter</span><span class="p">(</span><span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span>
+                <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;vqt_fjs&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
+            <span class="n">FJSFormatter</span><span class="p">(</span>
+                <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+                <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+                <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">log_fmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">fmin</span><span class="p">)</span>
+        <span class="n">fmin_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_fmin</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_fmin</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">fmin_offset</span><span class="p">,)))</span>
+
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span>
+            <span class="n">FJSFormatter</span><span class="p">(</span>
+                <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+                <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+                <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
+                <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span>
+                <span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+                    <span class="n">n_bins</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">//</span> <span class="n">bins_per_octave</span><span class="p">,</span>
+                    <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+                    <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                    <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Note&quot;</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;vqt_hz&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LogHzFormatter</span><span class="p">())</span>
+        <span class="n">log_fmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">fmin</span><span class="p">)</span>
+        <span class="n">fmin_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_fmin</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_fmin</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">fmin_offset</span><span class="p">,)))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">LogHzFormatter</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span>
+                <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+                <span class="n">subs</span><span class="o">=</span><span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+                    <span class="mi">12</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="n">fmin_offset</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Hz&quot;</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;vqt_note&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NoteFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">))</span>
+        <span class="n">log_fmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">fmin</span><span class="p">)</span>
+        <span class="n">fmin_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_fmin</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_fmin</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">(</span><span class="n">fmin_offset</span><span class="p">,)))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">NoteFormatter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span>
+                <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+                <span class="n">subs</span><span class="o">=</span><span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+                    <span class="mi">12</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="n">fmin_offset</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Note&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cqt_hz&quot;</span><span class="p">]:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LogHzFormatter</span><span class="p">())</span>
@@ -1349,7 +1676,9 @@
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">LogHzFormatter</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span>
+                <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">C_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Hz&quot;</span><span class="p">)</span>
 
@@ -1372,13 +1701,17 @@
         <span class="n">sa_offset</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">log_Sa</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">log_Sa</span><span class="p">))</span>
 
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
-            <span class="n">mplticker</span><span class="o">.</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(),</span> <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">[</span><span class="n">sa_offset</span><span class="p">])</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">SymmetricalLogLocator</span><span class="p">(</span>
+                <span class="n">axis</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(),</span> <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="p">[</span><span class="n">sa_offset</span><span class="p">]</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span>
             <span class="n">SvaraFormatter</span><span class="p">(</span><span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span>
-            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span>
+            <span class="n">mplticker</span><span class="o">.</span><span class="n">LogLocator</span><span class="p">(</span>
+                <span class="n">base</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">subs</span><span class="o">=</span><span class="n">sa_offset</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_label_text</span><span class="p">(</span><span class="s2">&quot;Svara&quot;</span><span class="p">)</span>
 
@@ -1437,6 +1770,26 @@
         <span class="n">n</span><span class="p">,</span>
         <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
         <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">freqs</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sr</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;Frequency axis exceeds Nyquist. &quot;</span>
+            <span class="s2">&quot;Did you remember to set all spectrogram parameters in specshow?&quot;</span><span class="p">,</span>
+            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">freqs</span>
+
+
+<span class="k">def</span> <span class="nf">__coord_vqt_hz</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unison</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">interval_frequencies</span><span class="p">(</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span>
     <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">freqs</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sr</span><span class="p">):</span>

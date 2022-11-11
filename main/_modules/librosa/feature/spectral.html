@@ -94,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>librosa.feature.spectral</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">librosa.feature.spectral</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -124,7 +124,7 @@
 <span class="kn">from</span> <span class="nn">..core.convert</span> <span class="kn">import</span> <span class="n">fft_frequencies</span>
 <span class="kn">from</span> <span class="nn">..core.audio</span> <span class="kn">import</span> <span class="n">zero_crossings</span>
 <span class="kn">from</span> <span class="nn">..core.spectrum</span> <span class="kn">import</span> <span class="n">power_to_db</span><span class="p">,</span> <span class="n">_spectrogram</span>
-<span class="kn">from</span> <span class="nn">..core.constantq</span> <span class="kn">import</span> <span class="n">cqt</span><span class="p">,</span> <span class="n">hybrid_cqt</span>
+<span class="kn">from</span> <span class="nn">..core.constantq</span> <span class="kn">import</span> <span class="n">cqt</span><span class="p">,</span> <span class="n">hybrid_cqt</span><span class="p">,</span> <span class="n">vqt</span>
 <span class="kn">from</span> <span class="nn">..core.pitch</span> <span class="kn">import</span> <span class="n">estimate_tuning</span>
 
 
@@ -140,6 +140,7 @@
     <span class="s2">&quot;chroma_stft&quot;</span><span class="p">,</span>
     <span class="s2">&quot;chroma_cqt&quot;</span><span class="p">,</span>
     <span class="s2">&quot;chroma_cens&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chroma_vqt&quot;</span><span class="p">,</span>
     <span class="s2">&quot;melspectrogram&quot;</span><span class="p">,</span>
     <span class="s2">&quot;mfcc&quot;</span><span class="p">,</span>
     <span class="s2">&quot;tonnetz&quot;</span><span class="p">,</span>
@@ -1500,8 +1501,7 @@
         <span class="n">chroma</span><span class="p">[</span><span class="n">chroma</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
     <span class="c1"># Normalize</span>
-    <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">chroma</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">chroma</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">chroma</span></div>
 
@@ -1655,6 +1655,136 @@
 
     <span class="c1"># L2-Normalization</span>
     <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">cens</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="chroma_vqt"><a class="viewcode-back" href="../../../generated/librosa.feature.chroma_vqt.html#librosa.feature.chroma_vqt">[docs]</a><span class="k">def</span> <span class="nf">chroma_vqt</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
+    <span class="n">V</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">norm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">n_octaves</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Variable-Q chromagram</span>
+
+<span class="sd">    This differs from CQT-based chroma by supporting non-equal temperament</span>
+<span class="sd">    intervals.</span>
+
+<span class="sd">    Note: unlike CQT- and STFT-based chroma, VQT chroma does not aggregate energy</span>
+<span class="sd">    from neighboring frequency bands.  As a result, the number of chroma</span>
+<span class="sd">    features produced is equal to the number of intervals used, or equivalently,</span>
+<span class="sd">    the number of bins per octave in the underlying VQT representation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : np.ndarray [shape=(..., n,)]</span>
+<span class="sd">        audio time series. Multi-channel is supported.</span>
+<span class="sd">    sr : number &gt; 0</span>
+<span class="sd">        sampling rate of ``y``</span>
+<span class="sd">    V : np.ndarray [shape=(..., d, t)] [Optional]</span>
+<span class="sd">        a pre-computed variable-Q spectrogram</span>
+<span class="sd">    hop_length : int &gt; 0</span>
+<span class="sd">        number of samples between successive chroma frames</span>
+<span class="sd">    fmin : float &gt; 0</span>
+<span class="sd">        minimum frequency to analyze in the CQT.</span>
+<span class="sd">        Default: `C1 ~= 32.7 Hz`</span>
+<span class="sd">    intervals : str or array of floats in [1, 2)</span>
+<span class="sd">        Either a string specification for an interval set, e.g.,</span>
+<span class="sd">        `&#39;equal&#39;`, `&#39;pythagorean&#39;`, `&#39;ji3&#39;`, etc. or an array of</span>
+<span class="sd">        intervals expressed as numbers between 1 and 2.</span>
+<span class="sd">        .. see also:: librosa.interval_frequencies</span>
+<span class="sd">    norm : int &gt; 0, +-np.inf, or None</span>
+<span class="sd">        Column-wise normalization of the chromagram.</span>
+<span class="sd">    threshold : float</span>
+<span class="sd">        Pre-normalization energy threshold.  Values below the</span>
+<span class="sd">        threshold are discarded, resulting in a sparse chromagram.</span>
+<span class="sd">    n_octaves : int &gt; 0</span>
+<span class="sd">        Number of octaves to analyze above ``fmin``</span>
+<span class="sd">    bins_per_octave : int &gt; 0, optional</span>
+<span class="sd">        Number of bins per octave in the VQT.</span>
+<span class="sd">    gamma : number &gt; 0 [scalar]</span>
+<span class="sd">        Bandwidth offset for determining filter lengths.</span>
+<span class="sd">        .. see also:: librosa.vqt</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    chromagram : np.ndarray [shape=(..., bins_per_octave, t)]</span>
+<span class="sd">        The output chromagram</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    librosa.util.normalize</span>
+<span class="sd">    librosa.vqt</span>
+<span class="sd">    chroma_cqt</span>
+<span class="sd">    librosa.interval_frequencies</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Compare an equal-temperament CQT chromagram to a 5-limit just intonation</span>
+<span class="sd">    chromagram.  Both use 36 bins per octave.</span>
+
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;))</span>
+<span class="sd">    &gt;&gt;&gt; n_bins = 36</span>
+<span class="sd">    &gt;&gt;&gt; chroma_cq = librosa.feature.chroma_cqt(y=y, sr=sr, n_chroma=n_bins)</span>
+<span class="sd">    &gt;&gt;&gt; chroma_vq = librosa.feature.chroma_vqt(y=y, sr=sr,</span>
+<span class="sd">    ...                                        intervals=&#39;ji5&#39;,</span>
+<span class="sd">    ...                                        bins_per_octave=n_bins)</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=2, sharex=True)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.specshow(chroma_cq, y_axis=&#39;chroma&#39;, x_axis=&#39;time&#39;,</span>
+<span class="sd">    ...                          ax=ax[0], bins_per_octave=n_bins)</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].set(ylabel=&#39;chroma_cqt&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; img = librosa.display.specshow(chroma_vq, y_axis=&#39;chroma_fjs&#39;, x_axis=&#39;time&#39;,</span>
+<span class="sd">    ...                                ax=ax[1], bins_per_octave=n_bins,</span>
+<span class="sd">    ...                                intervals=&#39;ji5&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].set(ylabel=&#39;chroma_vqt&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># If intervals are provided as an array, override BPO</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">bins_per_octave</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+
+    <span class="c1"># Build the CQT if we don&#39;t have one already</span>
+    <span class="k">if</span> <span class="n">V</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span>
+            <span class="n">vqt</span><span class="p">(</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+                <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
+                <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+                <span class="n">n_bins</span><span class="o">=</span><span class="n">n_octaves</span> <span class="o">*</span> <span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+                <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Map to chroma</span>
+    <span class="n">vq_to_chr</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">cq_to_chroma</span><span class="p">(</span>
+        <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">n_chroma</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">chroma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;cf,...ft-&gt;...ct&quot;</span><span class="p">,</span> <span class="n">vq_to_chr</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">chroma</span><span class="p">[</span><span class="n">chroma</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># Normalize</span>
+    <span class="n">chroma</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">chroma</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">chroma</span></div>
 
 
 <div class="viewcode-block" id="tonnetz"><a class="viewcode-back" href="../../../generated/librosa.feature.tonnetz.html#librosa.feature.tonnetz">[docs]</a><span class="k">def</span> <span class="nf">tonnetz</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">chroma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
