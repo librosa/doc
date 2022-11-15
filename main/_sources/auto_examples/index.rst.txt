@@ -30,23 +30,6 @@ Advanced examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use Viterbi decoding to impose temporal smoothing on frame-wi...">
-
-.. only:: html
-
-  .. image:: /auto_examples/images/thumb/sphx_glr_plot_viterbi_thumb.png
-    :alt: Viterbi decoding
-
-  :ref:`sphx_glr_auto_examples_plot_viterbi.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Viterbi decoding</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use the presets package to change the default parameters for ...">
 
 .. only:: html
@@ -59,6 +42,23 @@ Advanced examples
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Presets</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use Viterbi decoding to impose temporal smoothing on frame-wi...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_viterbi_thumb.png
+    :alt: Viterbi decoding
+
+  :ref:`sphx_glr_auto_examples_plot_viterbi.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Viterbi decoding</div>
     </div>
 
 
@@ -207,8 +207,8 @@ Advanced examples
    :hidden:
 
    /auto_examples/plot_audio_playback
-   /auto_examples/plot_viterbi
    /auto_examples/plot_presets
+   /auto_examples/plot_viterbi
    /auto_examples/plot_superflux
    /auto_examples/plot_music_sync
    /auto_examples/plot_pcen_stream
