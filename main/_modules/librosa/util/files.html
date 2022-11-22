@@ -226,6 +226,9 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AVAILABLE EXAMPLES&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">68</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">__TRACKMAP</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;pibble&quot;</span><span class="p">:</span>
+            <span class="c1"># Shh... she&#39;s sleeping</span>
+            <span class="k">continue</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:10}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">__TRACKMAP</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s2">&quot;desc&quot;</span><span class="p">]))</span></div>
 
 
