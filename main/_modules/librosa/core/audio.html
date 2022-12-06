@@ -615,9 +615,9 @@
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Resample a time series from orig_sr to target_sr</span>
 
-<span class="sd">    By default, this uses a high-quality (but relatively slow) method (&#39;kaiser_best&#39;)</span>
-<span class="sd">    for band-limited sinc interpolation.  The alternate ``res_type`` values listed below</span>
-<span class="sd">    offer different trade-offs of speed and quality.</span>
+<span class="sd">    By default, this uses a high-quality method (`soxr_hq`) for band-limited sinc</span>
+<span class="sd">    interpolation. The alternate ``res_type`` values listed below offer different</span>
+<span class="sd">    trade-offs of speed and quality.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -637,7 +637,7 @@
 <span class="sd">            `soxr` Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.</span>
 <span class="sd">            ``&#39;soxr_hq&#39;`` is the default setting of `soxr`.</span>
 <span class="sd">        &#39;soxr_qq&#39;</span>
-<span class="sd">            `soxr` Quick cubic interpolation (very fast)</span>
+<span class="sd">            `soxr` Quick cubic interpolation (very fast, but not bandlimited)</span>
 <span class="sd">        &#39;kaiser_best&#39;</span>
 <span class="sd">            `resampy` high-quality mode</span>
 <span class="sd">        &#39;kaiser_fast&#39;</span>
@@ -647,11 +647,15 @@
 <span class="sd">        &#39;polyphase&#39;</span>
 <span class="sd">            `scipy.signal.resample_poly` polyphase filtering. (fast)</span>
 <span class="sd">        &#39;linear&#39;</span>
-<span class="sd">            `samplerate` linear interpolation. (very fast)</span>
+<span class="sd">            `samplerate` linear interpolation. (very fast, but not bandlimited)</span>
 <span class="sd">        &#39;zero_order_hold&#39;</span>
-<span class="sd">            `samplerate` repeat the last value between samples. (very fast)</span>
+<span class="sd">            `samplerate` repeat the last value between samples. (very fast, but not bandlimited)</span>
 <span class="sd">        &#39;sinc_best&#39;, &#39;sinc_medium&#39; or &#39;sinc_fastest&#39;</span>
-<span class="sd">            `samplerate` high-, medium-, and low-quality sinc interpolation.</span>
+<span class="sd">            `samplerate` high-, medium-, and low-quality bandlimited sinc interpolation.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            Not all options yield a bandlimited interpolator. If you use `soxr_qq`, `polyphase`,</span>
+<span class="sd">            `linear`, or `zero_order_hold`, you need to be aware of possible aliasing effects.</span>
 
 <span class="sd">        .. note::</span>
 <span class="sd">            `samplerate` and `resampy` are not installed with `librosa`.</span>
