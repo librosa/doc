@@ -131,23 +131,24 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">tempogram</span><span class="p">,</span> <span class="n">fourier_tempogram</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;beat_track&quot;</span><span class="p">,</span> <span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="s2">&quot;plp&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="beat_track"><a class="viewcode-back" href="../../generated/librosa.beat.beat_track.html#librosa.beat.beat_track">[docs]</a><span class="k">def</span> <span class="nf">beat_track</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">onset_envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">start_bpm</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span>
-    <span class="n">tightness</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">bpm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">units</span><span class="o">=</span><span class="s2">&quot;frames&quot;</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">start_bpm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">120.0</span><span class="p">,</span>
+    <span class="n">tightness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">bpm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prior</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">rv_continuous</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;frames&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dynamic programming beat tracker.</span>
 
 <span class="sd">    Beats are detected in three stages, following the method of [#]_:</span>
@@ -303,17 +304,17 @@
 <div class="viewcode-block" id="tempo"><a class="viewcode-back" href="../../generated/librosa.beat.tempo.html#librosa.beat.tempo">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">tempo</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">onset_envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">start_bpm</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
-    <span class="n">std_bpm</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-    <span class="n">ac_size</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
-    <span class="n">max_tempo</span><span class="o">=</span><span class="mf">320.0</span><span class="p">,</span>
-    <span class="n">aggregate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
-    <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">start_bpm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="n">std_bpm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">ac_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">8.0</span><span class="p">,</span>
+    <span class="n">max_tempo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">320.0</span><span class="p">,</span>
+    <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+    <span class="n">prior</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">rv_continuous</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Estimate the tempo (beats per minute)</span>
 
 <span class="sd">    Parameters</span>
@@ -467,15 +468,15 @@
 
 <div class="viewcode-block" id="plp"><a class="viewcode-back" href="../../generated/librosa.beat.plp.html#librosa.beat.plp">[docs]</a><span class="k">def</span> <span class="nf">plp</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">onset_envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">win_length</span><span class="o">=</span><span class="mi">384</span><span class="p">,</span>
-    <span class="n">tempo_min</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-    <span class="n">tempo_max</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-    <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">384</span><span class="p">,</span>
+    <span class="n">tempo_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">tempo_max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="n">prior</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">rv_continuous</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Predominant local pulse (PLP) estimation. [#]_</span>
 
 <span class="sd">    The PLP method analyzes the onset strength envelope in the frequency domain</span>
@@ -656,7 +657,9 @@
     <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">pulse</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">__beat_tracker</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">bpm</span><span class="p">,</span> <span class="n">fft_res</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">trim</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">__beat_tracker</span><span class="p">(</span>
+    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">bpm</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">fft_res</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tightness</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Internal function that tracks beats in an onset strength envelope.</span>
 
 <span class="sd">    Parameters</span>

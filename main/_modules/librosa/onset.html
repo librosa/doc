@@ -131,22 +131,23 @@
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 
 <span class="kn">from</span> <span class="nn">.feature.spectral</span> <span class="kn">import</span> <span class="n">melspectrogram</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;onset_detect&quot;</span><span class="p">,</span> <span class="s2">&quot;onset_strength&quot;</span><span class="p">,</span> <span class="s2">&quot;onset_strength_multi&quot;</span><span class="p">,</span> <span class="s2">&quot;onset_backtrack&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="onset_detect"><a class="viewcode-back" href="../../generated/librosa.onset.onset_detect.html#librosa.onset.onset_detect">[docs]</a><span class="k">def</span> <span class="nf">onset_detect</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">onset_envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">backtrack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">units</span><span class="o">=</span><span class="s2">&quot;frames&quot;</span><span class="p">,</span>
-    <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">backtrack</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">energy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;frames&quot;</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Locate note onset events by picking peaks in an onset strength envelope.</span>
 
 <span class="sd">    The `peak_pick` parameters were chosen by large-scale hyper-parameter</span>
@@ -297,18 +298,18 @@
 
 <div class="viewcode-block" id="onset_strength"><a class="viewcode-back" href="../../generated/librosa.onset.onset_strength.html#librosa.onset.onset_strength">[docs]</a><span class="k">def</span> <span class="nf">onset_strength</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">lag</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">feature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">aggregate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">lag</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">detrend</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">feature</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute a spectral flux onset strength envelope.</span>
 
 <span class="sd">    Onset strength at time ``t`` is determined by::</span>
@@ -449,7 +450,7 @@
     <span class="k">return</span> <span class="n">odf_all</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span></div>
 
 
-<div class="viewcode-block" id="onset_backtrack"><a class="viewcode-back" href="../../generated/librosa.onset.onset_backtrack.html#librosa.onset.onset_backtrack">[docs]</a><span class="k">def</span> <span class="nf">onset_backtrack</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">energy</span><span class="p">):</span>
+<div class="viewcode-block" id="onset_backtrack"><a class="viewcode-back" href="../../generated/librosa.onset.onset_backtrack.html#librosa.onset.onset_backtrack">[docs]</a><span class="k">def</span> <span class="nf">onset_backtrack</span><span class="p">(</span><span class="n">events</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">energy</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Backtrack detected onset events to the nearest preceding local</span>
 <span class="sd">    minimum of an energy function.</span>
 
@@ -527,21 +528,21 @@
 <div class="viewcode-block" id="onset_strength_multi"><a class="viewcode-back" href="../../generated/librosa.onset.onset_strength_multi.html#librosa.onset.onset_strength_multi">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">onset_strength_multi</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">lag</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">feature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">aggregate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">channels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">lag</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">detrend</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">feature</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">slice</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute a spectral flux onset strength envelope across multiple channels.</span>
 
 <span class="sd">    Onset strength for channel ``i`` at time ``t`` is determined by::</span>

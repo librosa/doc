@@ -111,6 +111,8 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Utility functions for dealing with files&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">glob</span>
@@ -144,11 +146,11 @@
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span>
     <span class="n">resource_filename</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;example_data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;index.json&quot;</span><span class="p">)),</span> <span class="s2">&quot;r&quot;</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">fdesc</span><span class="p">:</span>
-    <span class="n">__TRACKMAP</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fdesc</span><span class="p">)</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">_fdesc</span><span class="p">:</span>
+    <span class="n">__TRACKMAP</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">_fdesc</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="example"><a class="viewcode-back" href="../../../generated/librosa.util.example.html#librosa.util.example">[docs]</a><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hq</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="example"><a class="viewcode-back" href="../../../generated/librosa.util.example.html#librosa.util.example">[docs]</a><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Retrieve the example recording identified by &#39;key&#39;.</span>
 
 <span class="sd">    The first time an example is requested, it will be downloaded from</span>
@@ -210,7 +212,7 @@
 <span class="sd">&quot;&quot;&quot;Alias for example&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="list_examples"><a class="viewcode-back" href="../../../generated/librosa.util.list_examples.html#librosa.util.list_examples">[docs]</a><span class="k">def</span> <span class="nf">list_examples</span><span class="p">():</span>
+<div class="viewcode-block" id="list_examples"><a class="viewcode-back" href="../../../generated/librosa.util.list_examples.html#librosa.util.list_examples">[docs]</a><span class="k">def</span> <span class="nf">list_examples</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;List the available audio recordings included with librosa.</span>
 
 <span class="sd">    Each recording is given a unique identifier (e.g., &quot;brahms&quot; or &quot;nutcracker&quot;),</span>
@@ -232,7 +234,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:10}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">__TRACKMAP</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s2">&quot;desc&quot;</span><span class="p">]))</span></div>
 
 
-<div class="viewcode-block" id="example_info"><a class="viewcode-back" href="../../../generated/librosa.util.example_info.html#librosa.util.example_info">[docs]</a><span class="k">def</span> <span class="nf">example_info</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<div class="viewcode-block" id="example_info"><a class="viewcode-back" href="../../../generated/librosa.util.example_info.html#librosa.util.example_info">[docs]</a><span class="k">def</span> <span class="nf">example_info</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Display licensing and metadata information for the given example recording.</span>
 
 <span class="sd">    The first time an example is requested, it will be downloaded from</span>
@@ -270,8 +272,14 @@
 
 
 <div class="viewcode-block" id="find_files"><a class="viewcode-back" href="../../../generated/librosa.util.find_files.html#librosa.util.find_files">[docs]</a><span class="k">def</span> <span class="nf">find_files</span><span class="p">(</span>
-    <span class="n">directory</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">):</span>
+    <span class="n">directory</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ext</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">case_sensitive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Get a sorted list of (audio) files in a directory or directory sub-tree.</span>
 
 <span class="sd">    Examples</span>

@@ -122,7 +122,9 @@
 
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">__jaccard</span><span class="p">(</span><span class="n">int_a</span><span class="p">,</span> <span class="n">int_b</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="k">def</span> <span class="nf">__jaccard</span><span class="p">(</span>
+    <span class="n">int_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">int_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="p">):</span>  <span class="c1"># pragma: no cover</span>
     <span class="sd">&quot;&quot;&quot;Jaccard similarity between two intervals</span>
 
 <span class="sd">    Parameters</span>
@@ -219,7 +221,9 @@
     <span class="k">return</span> <span class="n">output</span>
 
 
-<div class="viewcode-block" id="match_intervals"><a class="viewcode-back" href="../../../generated/librosa.util.match_intervals.html#librosa.util.match_intervals">[docs]</a><span class="k">def</span> <span class="nf">match_intervals</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="match_intervals"><a class="viewcode-back" href="../../../generated/librosa.util.match_intervals.html#librosa.util.match_intervals">[docs]</a><span class="k">def</span> <span class="nf">match_intervals</span><span class="p">(</span>
+    <span class="n">intervals_from</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Match one set of time intervals to another.</span>
 
 <span class="sd">    This can be useful for tasks such as mapping beat timings</span>
@@ -315,7 +319,12 @@
         <span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
 
 
-<div class="viewcode-block" id="match_events"><a class="viewcode-back" href="../../../generated/librosa.util.match_events.html#librosa.util.match_events">[docs]</a><span class="k">def</span> <span class="nf">match_events</span><span class="p">(</span><span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="match_events"><a class="viewcode-back" href="../../../generated/librosa.util.match_events.html#librosa.util.match_events">[docs]</a><span class="k">def</span> <span class="nf">match_events</span><span class="p">(</span>
+    <span class="n">events_from</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">events_to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">left</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">right</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Match one set of events to another.</span>
 
 <span class="sd">    This is useful for tasks such as matching beats to the nearest</span>

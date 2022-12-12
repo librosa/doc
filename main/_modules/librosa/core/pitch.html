@@ -123,20 +123,23 @@
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">sequence</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_PadMode</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;estimate_tuning&quot;</span><span class="p">,</span> <span class="s2">&quot;pitch_tuning&quot;</span><span class="p">,</span> <span class="s2">&quot;piptrack&quot;</span><span class="p">,</span> <span class="s2">&quot;yin&quot;</span><span class="p">,</span> <span class="s2">&quot;pyin&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="estimate_tuning"><a class="viewcode-back" href="../../../generated/librosa.estimate_tuning.html#librosa.estimate_tuning">[docs]</a><span class="k">def</span> <span class="nf">estimate_tuning</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-    <span class="n">resolution</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-    <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Estimate the tuning of an audio time series or spectrogram input.</span>
 
 <span class="sd">    Parameters</span>
@@ -212,7 +215,9 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="pitch_tuning"><a class="viewcode-back" href="../../../generated/librosa.pitch_tuning.html#librosa.pitch_tuning">[docs]</a><span class="k">def</span> <span class="nf">pitch_tuning</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<div class="viewcode-block" id="pitch_tuning"><a class="viewcode-back" href="../../../generated/librosa.pitch_tuning.html#librosa.pitch_tuning">[docs]</a><span class="k">def</span> <span class="nf">pitch_tuning</span><span class="p">(</span>
+    <span class="n">frequencies</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Given a collection of pitches, estimate its tuning offset</span>
 <span class="sd">    (in fractions of a bin) relative to A440=440.0Hz.</span>
 
@@ -284,20 +289,20 @@
 <div class="viewcode-block" id="piptrack"><a class="viewcode-back" href="../../../generated/librosa.piptrack.html#librosa.piptrack">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">piptrack</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">S</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">fmin</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span>
-    <span class="n">fmax</span><span class="o">=</span><span class="mf">4000.0</span><span class="p">,</span>
-    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">win_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">window</span><span class="o">=</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span>
-    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">pad_mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-    <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">150.0</span><span class="p">,</span>
+    <span class="n">fmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4000.0</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span> <span class="o">=</span> <span class="s2">&quot;hann&quot;</span><span class="p">,</span>
+    <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Pitch tracking on thresholded parabolically-interpolated STFT.</span>
 
 <span class="sd">    This implementation uses the parabolic interpolation method described by [#]_.</span>
@@ -477,8 +482,12 @@
 
 
 <span class="k">def</span> <span class="nf">_cumulative_mean_normalized_difference</span><span class="p">(</span>
-    <span class="n">y_frames</span><span class="p">,</span> <span class="n">frame_length</span><span class="p">,</span> <span class="n">win_length</span><span class="p">,</span> <span class="n">min_period</span><span class="p">,</span> <span class="n">max_period</span>
-<span class="p">):</span>
+    <span class="n">y_frames</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">min_period</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">max_period</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Cumulative mean normalized difference function (equation 8 in [#]_)</span>
 
 <span class="sd">    .. [#] De Cheveigné, Alain, and Hideki Kawahara.</span>
@@ -534,7 +543,7 @@
     <span class="k">return</span> <span class="n">yin_frames</span>
 
 
-<span class="k">def</span> <span class="nf">_parabolic_interpolation</span><span class="p">(</span><span class="n">y_frames</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_parabolic_interpolation</span><span class="p">(</span><span class="n">y_frames</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Piecewise parabolic interpolation for yin and pyin.</span>
 
 <span class="sd">    Parameters</span>
@@ -561,18 +570,18 @@
 
 
 <div class="viewcode-block" id="yin"><a class="viewcode-back" href="../../../generated/librosa.yin.html#librosa.yin">[docs]</a><span class="k">def</span> <span class="nf">yin</span><span class="p">(</span>
-    <span class="n">y</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">fmin</span><span class="p">,</span>
-    <span class="n">fmax</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">frame_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-    <span class="n">win_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">trough_threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">pad_mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">fmax</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">trough_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Fundamental frequency (F0) estimation using the YIN algorithm.</span>
 
 <span class="sd">    YIN is an autocorrelation based method for fundamental frequency estimation [#]_.</span>
@@ -726,25 +735,25 @@
 
 
 <div class="viewcode-block" id="pyin"><a class="viewcode-back" href="../../../generated/librosa.pyin.html#librosa.pyin">[docs]</a><span class="k">def</span> <span class="nf">pyin</span><span class="p">(</span>
-    <span class="n">y</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">fmin</span><span class="p">,</span>
-    <span class="n">fmax</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">frame_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-    <span class="n">win_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_thresholds</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">beta_parameters</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
-    <span class="n">boltzmann_parameter</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">resolution</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">max_transition_rate</span><span class="o">=</span><span class="mf">35.92</span><span class="p">,</span>
-    <span class="n">switch_prob</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-    <span class="n">no_trough_prob</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-    <span class="n">fill_na</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
-    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">pad_mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">fmax</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_thresholds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">beta_parameters</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
+    <span class="n">boltzmann_parameter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">max_transition_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">35.92</span><span class="p">,</span>
+    <span class="n">switch_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">no_trough_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">fill_na</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+    <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Fundamental frequency (F0) estimation using probabilistic YIN (pYIN).</span>
 
 <span class="sd">    pYIN [#]_ is a modificatin of the YIN algorithm [#]_ for fundamental frequency (F0) estimation.</span>

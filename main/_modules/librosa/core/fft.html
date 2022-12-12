@@ -111,6 +111,8 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Fast Fourier Transform (FFT) library container&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">ModuleType</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;get_fftlib&quot;</span><span class="p">,</span> <span class="s2">&quot;set_fftlib&quot;</span><span class="p">]</span>
@@ -119,7 +121,7 @@
 <span class="n">__FFTLIB</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<div class="viewcode-block" id="set_fftlib"><a class="viewcode-back" href="../../../generated/librosa.set_fftlib.html#librosa.set_fftlib">[docs]</a><span class="k">def</span> <span class="nf">set_fftlib</span><span class="p">(</span><span class="n">lib</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="set_fftlib"><a class="viewcode-back" href="../../../generated/librosa.set_fftlib.html#librosa.set_fftlib">[docs]</a><span class="k">def</span> <span class="nf">set_fftlib</span><span class="p">(</span><span class="n">lib</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModuleType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Set the FFT library used by librosa.</span>
 
 <span class="sd">    Parameters</span>
@@ -150,7 +152,7 @@
     <span class="n">__FFTLIB</span> <span class="o">=</span> <span class="n">lib</span></div>
 
 
-<div class="viewcode-block" id="get_fftlib"><a class="viewcode-back" href="../../../generated/librosa.get_fftlib.html#librosa.get_fftlib">[docs]</a><span class="k">def</span> <span class="nf">get_fftlib</span><span class="p">():</span>
+<div class="viewcode-block" id="get_fftlib"><a class="viewcode-back" href="../../../generated/librosa.get_fftlib.html#librosa.get_fftlib">[docs]</a><span class="k">def</span> <span class="nf">get_fftlib</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the FFT library currently used by librosa</span>
 
 <span class="sd">    Returns</span>

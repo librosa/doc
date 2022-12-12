@@ -168,6 +168,9 @@
 
 <span class="kn">from</span> <span class="nn">.core.convert</span> <span class="kn">import</span> <span class="n">note_to_hz</span><span class="p">,</span> <span class="n">hz_to_midi</span><span class="p">,</span> <span class="n">midi_to_hz</span><span class="p">,</span> <span class="n">hz_to_octs</span>
 <span class="kn">from</span> <span class="nn">.core.convert</span> <span class="kn">import</span> <span class="n">fft_frequencies</span><span class="p">,</span> <span class="n">mel_frequencies</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">DTypeLike</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;mel&quot;</span><span class="p">,</span>
@@ -233,15 +236,15 @@
 <div class="viewcode-block" id="mel"><a class="viewcode-back" href="../../generated/librosa.filters.mel.html#librosa.filters.mel">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">mel</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">sr</span><span class="p">,</span>
-    <span class="n">n_fft</span><span class="p">,</span>
-    <span class="n">n_mels</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
-    <span class="n">fmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="n">fmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">norm</span><span class="o">=</span><span class="s2">&quot;slaney&quot;</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">n_mels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">fmax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">htk</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">&quot;slaney&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Create a Mel filter-bank.</span>
 
 <span class="sd">    This produces a linear transformation matrix to project</span>
@@ -369,16 +372,16 @@
 <div class="viewcode-block" id="chroma"><a class="viewcode-back" href="../../generated/librosa.filters.chroma.html#librosa.filters.chroma">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">chroma</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">sr</span><span class="p">,</span>
-    <span class="n">n_fft</span><span class="p">,</span>
-    <span class="n">n_chroma</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="n">ctroct</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
-    <span class="n">octwidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">norm</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">base_c</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">n_chroma</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">ctroct</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
+    <span class="n">octwidth</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">base_c</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Create a chroma filter bank.</span>
 
 <span class="sd">    This creates a linear transformation matrix to project</span>
@@ -542,18 +545,18 @@
 <div class="viewcode-block" id="constant_q"><a class="viewcode-back" href="../../generated/librosa.filters.constant_q.html#librosa.filters.constant_q">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.9.0&quot;</span><span class="p">,</span> <span class="n">version_removed</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">constant_q</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">sr</span><span class="p">,</span>
-    <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_bins</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span>
-    <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">window</span><span class="o">=</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span>
-    <span class="n">filter_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">pad_fft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">norm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">,</span>
-    <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">84</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span> <span class="o">=</span> <span class="s2">&quot;hann&quot;</span><span class="p">,</span>
+    <span class="n">filter_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">pad_fft</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Construct a constant-Q basis.</span>
 
 <span class="sd">    This function constructs a filter bank similar to Morlet wavelets,</span>
@@ -707,8 +710,15 @@
 <div class="viewcode-block" id="constant_q_lengths"><a class="viewcode-back" href="../../generated/librosa.filters.constant_q_lengths.html#librosa.filters.constant_q_lengths">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.9.0&quot;</span><span class="p">,</span> <span class="n">version_removed</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">)</span>
 <span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">constant_q_lengths</span><span class="p">(</span>
-    <span class="o">*</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">fmin</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span> <span class="n">filter_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">):</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">84</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span> <span class="o">=</span> <span class="s2">&quot;hann&quot;</span><span class="p">,</span>
+    <span class="n">filter_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return length of each filter in a constant-Q basis.</span>
 
 <span class="sd">    .. warning:: This function is deprecated as of v0.9 and will be removed in 1.0.</span>
@@ -781,8 +791,14 @@
 
 <div class="viewcode-block" id="wavelet_lengths"><a class="viewcode-back" href="../../generated/librosa.filters.wavelet_lengths.html#librosa.filters.wavelet_lengths">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">wavelet_lengths</span><span class="p">(</span>
-    <span class="o">*</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span> <span class="n">filter_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span>
-<span class="p">):</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">freqs</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span> <span class="o">=</span> <span class="s2">&quot;hann&quot;</span><span class="p">,</span>
+    <span class="n">filter_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Return length of each filter in a wavelet basis.</span>
 
 <span class="sd">    Parameters</span>
@@ -916,17 +932,17 @@
 <div class="viewcode-block" id="wavelet"><a class="viewcode-back" href="../../generated/librosa.filters.wavelet.html#librosa.filters.wavelet">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">wavelet</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">freqs</span><span class="p">,</span>
-    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>
-    <span class="n">window</span><span class="o">=</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span>
-    <span class="n">filter_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">pad_fft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">norm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">,</span>
-    <span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">freqs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span> <span class="o">=</span> <span class="s2">&quot;hann&quot;</span><span class="p">,</span>
+    <span class="n">filter_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">pad_fft</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Construct a wavelet basis using windowed complex sinusoids.</span>
 
 <span class="sd">    This function constructs a wavelet filterbank at a specified set of center</span>
@@ -1064,15 +1080,15 @@
 
 <div class="viewcode-block" id="cq_to_chroma"><a class="viewcode-back" href="../../generated/librosa.filters.cq_to_chroma.html#librosa.filters.cq_to_chroma">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cq_to_chroma</span><span class="p">(</span>
-    <span class="n">n_input</span><span class="p">,</span>
+    <span class="n">n_input</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">n_chroma</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">base_c</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">n_chroma</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">base_c</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Construct a linear transformation matrix to map Constant-Q bins</span>
 <span class="sd">    onto chroma bins (i.e., pitch classes).</span>
 
@@ -1189,7 +1205,7 @@
 
 
 <div class="viewcode-block" id="window_bandwidth"><a class="viewcode-back" href="../../generated/librosa.filters.window_bandwidth.html#librosa.filters.window_bandwidth">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">window_bandwidth</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">window_bandwidth</span><span class="p">(</span><span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the equivalent noise bandwidth (ENBW) of a window function.</span>
 
 <span class="sd">    The ENBW of a window is defined by [#]_ (equation 11) as the normalized</span>
@@ -1240,7 +1256,12 @@
 
 
 <div class="viewcode-block" id="get_window"><a class="viewcode-back" href="../../generated/librosa.filters.get_window.html#librosa.filters.get_window">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_window</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fftbins</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_window</span><span class="p">(</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span><span class="p">,</span>
+    <span class="n">Nx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">fftbins</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute a window function.</span>
 
 <span class="sd">    This is a wrapper for `scipy.signal.get_window` that additionally</span>
@@ -1307,14 +1328,14 @@
 
 <span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_multirate_fb</span><span class="p">(</span>
-    <span class="n">center_freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">sample_rates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">Q</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span>
-    <span class="n">passband_ripple</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">stopband_attenuation</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;ellip&quot;</span><span class="p">,</span>
-    <span class="n">flayout</span><span class="o">=</span><span class="s2">&quot;sos&quot;</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">center_freqs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_rates</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">Q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">25.0</span><span class="p">,</span>
+    <span class="n">passband_ripple</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">stopband_attenuation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="n">ftype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ellip&quot;</span><span class="p">,</span>
+    <span class="n">flayout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sos&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Helper function to construct a multirate filterbank.</span>
 
 <span class="sd">     A filter bank consists of multiple band-pass filters which divide the input signal</span>
@@ -1428,7 +1449,7 @@
 
 
 <div class="viewcode-block" id="mr_frequencies"><a class="viewcode-back" href="../../generated/librosa.filters.mr_frequencies.html#librosa.filters.mr_frequencies">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">mr_frequencies</span><span class="p">(</span><span class="n">tuning</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">mr_frequencies</span><span class="p">(</span><span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Helper function for generating center frequency and sample rate pairs.</span>
 
 <span class="sd">    This function will return center frequency and corresponding sample rates</span>
@@ -1483,8 +1504,13 @@
 
 
 <div class="viewcode-block" id="semitone_filterbank"><a class="viewcode-back" href="../../generated/librosa.filters.semitone_filterbank.html#librosa.filters.semitone_filterbank">[docs]</a><span class="k">def</span> <span class="nf">semitone_filterbank</span><span class="p">(</span>
-    <span class="o">*</span><span class="p">,</span> <span class="n">center_freqs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tuning</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sample_rates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flayout</span><span class="o">=</span><span class="s2">&quot;ba&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="p">):</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">center_freqs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">sample_rates</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">flayout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ba&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Construct a multi-rate bank of infinite-impulse response (IIR)</span>
 <span class="sd">    band-pass filters at user-defined center frequencies and sample rates.</span>
 
@@ -1594,14 +1620,14 @@
 
 <div class="viewcode-block" id="window_sumsquare"><a class="viewcode-back" href="../../generated/librosa.filters.window_sumsquare.html#librosa.filters.window_sumsquare">[docs]</a><span class="k">def</span> <span class="nf">window_sumsquare</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">window</span><span class="p">,</span>
-    <span class="n">n_frames</span><span class="p">,</span>
-    <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">win_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-    <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span><span class="p">,</span>
+    <span class="n">n_frames</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute the sum-square envelope of a window function at a given hop length.</span>
 
 <span class="sd">    This is used to estimate modulation effects induced by windowing observations</span>
@@ -1667,7 +1693,14 @@
 
 
 <div class="viewcode-block" id="diagonal_filter"><a class="viewcode-back" href="../../generated/librosa.filters.diagonal_filter.html#librosa.filters.diagonal_filter">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">diagonal_filter</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zero_mean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">diagonal_filter</span><span class="p">(</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">_WindowSpec</span><span class="p">,</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">slope</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">angle</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">zero_mean</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Build a two-dimensional diagonal filter.</span>
 
 <span class="sd">    This is primarily used for smoothing recurrence or self-similarity matrices.</span>

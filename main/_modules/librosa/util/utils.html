@@ -112,6 +112,8 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Utility functions&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse</span>
 
@@ -122,6 +124,9 @@
 <span class="kn">from</span> <span class="nn">.._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">.deprecation</span> <span class="kn">import</span> <span class="n">Deprecated</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">DTypeLike</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
 
 <span class="c1"># Constrain STFT block sizes to 256 KB</span>
 <span class="n">MAX_MEM_BLOCK</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span>
@@ -161,7 +166,15 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="frame"><a class="viewcode-back" href="../../../generated/librosa.util.frame.html#librosa.util.frame">[docs]</a><span class="k">def</span> <span class="nf">frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frame_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">writeable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">subok</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="frame"><a class="viewcode-back" href="../../../generated/librosa.util.frame.html#librosa.util.frame">[docs]</a><span class="k">def</span> <span class="nf">frame</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">writeable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">subok</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Slice a data array into (overlapping) frames.</span>
 
 <span class="sd">    This implementation uses low-level stride manipulation to avoid</span>
@@ -322,7 +335,7 @@
 
 
 <div class="viewcode-block" id="valid_audio"><a class="viewcode-back" href="../../../generated/librosa.util.valid_audio.html#librosa.util.valid_audio">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="n">Deprecated</span><span class="p">()):</span>
+<span class="k">def</span> <span class="nf">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mono</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Deprecated</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Determine whether a variable contains valid audio data.</span>
 
 <span class="sd">    The following conditions must be satisfied:</span>
@@ -406,7 +419,7 @@
     <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="valid_int"><a class="viewcode-back" href="../../../generated/librosa.util.valid_int.html#librosa.util.valid_int">[docs]</a><span class="k">def</span> <span class="nf">valid_int</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="valid_int"><a class="viewcode-back" href="../../../generated/librosa.util.valid_int.html#librosa.util.valid_int">[docs]</a><span class="k">def</span> <span class="nf">valid_int</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">cast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Ensure that an input value is integer-typed.</span>
 <span class="sd">    This is primarily useful for ensuring integrable-valued</span>
 <span class="sd">    array indices.</span>
@@ -439,7 +452,7 @@
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="is_positive_int"><a class="viewcode-back" href="../../../generated/librosa.util.is_positive_int.html#librosa.util.is_positive_int">[docs]</a><span class="k">def</span> <span class="nf">is_positive_int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="is_positive_int"><a class="viewcode-back" href="../../../generated/librosa.util.is_positive_int.html#librosa.util.is_positive_int">[docs]</a><span class="k">def</span> <span class="nf">is_positive_int</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks that x is a positive integer, i.e. 1 or greater.</span>
 
 <span class="sd">    Parameters</span>
@@ -456,7 +469,7 @@
     <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="valid_intervals"><a class="viewcode-back" href="../../../generated/librosa.util.valid_intervals.html#librosa.util.valid_intervals">[docs]</a><span class="k">def</span> <span class="nf">valid_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">):</span>
+<div class="viewcode-block" id="valid_intervals"><a class="viewcode-back" href="../../../generated/librosa.util.valid_intervals.html#librosa.util.valid_intervals">[docs]</a><span class="k">def</span> <span class="nf">valid_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Ensure that an array is a valid representation of time intervals:</span>
 
 <span class="sd">        - intervals.ndim == 2</span>
@@ -485,7 +498,7 @@
     <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="pad_center"><a class="viewcode-back" href="../../../generated/librosa.util.pad_center.html#librosa.util.pad_center">[docs]</a><span class="k">def</span> <span class="nf">pad_center</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="pad_center"><a class="viewcode-back" href="../../../generated/librosa.util.pad_center.html#librosa.util.pad_center">[docs]</a><span class="k">def</span> <span class="nf">pad_center</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Pad an array to a target length along a target axis.</span>
 
 <span class="sd">    This differs from `np.pad` by centering the data prior to padding,</span>
@@ -558,7 +571,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lengths</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="expand_to"><a class="viewcode-back" href="../../../generated/librosa.util.expand_to.html#librosa.util.expand_to">[docs]</a><span class="k">def</span> <span class="nf">expand_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+<div class="viewcode-block" id="expand_to"><a class="viewcode-back" href="../../../generated/librosa.util.expand_to.html#librosa.util.expand_to">[docs]</a><span class="k">def</span> <span class="nf">expand_to</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">slice</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">slice</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Expand the dimensions of an input array with</span>
 
 <span class="sd">    Parameters</span>
@@ -628,7 +641,7 @@
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="fix_length"><a class="viewcode-back" href="../../../generated/librosa.util.fix_length.html#librosa.util.fix_length">[docs]</a><span class="k">def</span> <span class="nf">fix_length</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="fix_length"><a class="viewcode-back" href="../../../generated/librosa.util.fix_length.html#librosa.util.fix_length">[docs]</a><span class="k">def</span> <span class="nf">fix_length</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Fix the length an array ``data`` to exactly ``size`` along a target axis.</span>
 
 <span class="sd">    If ``data.shape[axis] &lt; n``, pad according to the provided kwargs.</span>
@@ -686,7 +699,13 @@
     <span class="k">return</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="fix_frames"><a class="viewcode-back" href="../../../generated/librosa.util.fix_frames.html#librosa.util.fix_frames">[docs]</a><span class="k">def</span> <span class="nf">fix_frames</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="fix_frames"><a class="viewcode-back" href="../../../generated/librosa.util.fix_frames.html#librosa.util.fix_frames">[docs]</a><span class="k">def</span> <span class="nf">fix_frames</span><span class="p">(</span>
+    <span class="n">frames</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">x_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">x_max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Fix a list of frames to lie within [x_min, x_max]</span>
 
 <span class="sd">    Examples</span>
@@ -767,7 +786,33 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="axis_sort"><a class="viewcode-back" href="../../../generated/librosa.util.axis_sort.html#librosa.util.axis_sort">[docs]</a><span class="k">def</span> <span class="nf">axis_sort</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">axis_sort</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">index</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">axis_sort</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">index</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">],</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<div class="viewcode-block" id="axis_sort"><a class="viewcode-back" href="../../../generated/librosa.util.axis_sort.html#librosa.util.axis_sort">[docs]</a><span class="k">def</span> <span class="nf">axis_sort</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;Sort an array along its rows or columns.</span>
 
 <span class="sd">    Examples</span>
@@ -863,7 +908,14 @@
 
 
 <div class="viewcode-block" id="normalize"><a class="viewcode-back" href="../../../generated/librosa.util.normalize.html#librosa.util.normalize">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Normalize an array along a chosen axis.</span>
 
 <span class="sd">    Given a norm (described below) and a target axis, the input</span>
@@ -1124,7 +1176,7 @@
     <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">_localmin_sten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="localmax"><a class="viewcode-back" href="../../../generated/librosa.util.localmax.html#librosa.util.localmax">[docs]</a><span class="k">def</span> <span class="nf">localmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="localmax"><a class="viewcode-back" href="../../../generated/librosa.util.localmax.html#librosa.util.localmax">[docs]</a><span class="k">def</span> <span class="nf">localmax</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Find local maxima in an array</span>
 
 <span class="sd">    An element ``x[i]`` is considered a local maximum if the following</span>
@@ -1185,7 +1237,7 @@
     <span class="k">return</span> <span class="n">lmax</span></div>
 
 
-<div class="viewcode-block" id="localmin"><a class="viewcode-back" href="../../../generated/librosa.util.localmin.html#librosa.util.localmin">[docs]</a><span class="k">def</span> <span class="nf">localmin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="localmin"><a class="viewcode-back" href="../../../generated/librosa.util.localmin.html#librosa.util.localmin">[docs]</a><span class="k">def</span> <span class="nf">localmin</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Find local minima in an array</span>
 
 <span class="sd">    An element ``x[i]`` is considered a local minimum if the following</span>
@@ -1247,7 +1299,16 @@
     <span class="k">return</span> <span class="n">lmin</span></div>
 
 
-<div class="viewcode-block" id="peak_pick"><a class="viewcode-back" href="../../../generated/librosa.util.peak_pick.html#librosa.util.peak_pick">[docs]</a><span class="k">def</span> <span class="nf">peak_pick</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">pre_max</span><span class="p">,</span> <span class="n">post_max</span><span class="p">,</span> <span class="n">pre_avg</span><span class="p">,</span> <span class="n">post_avg</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">wait</span><span class="p">):</span>
+<div class="viewcode-block" id="peak_pick"><a class="viewcode-back" href="../../../generated/librosa.util.peak_pick.html#librosa.util.peak_pick">[docs]</a><span class="k">def</span> <span class="nf">peak_pick</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">pre_max</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">post_max</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">pre_avg</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">post_avg</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">wait</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Uses a flexible heuristic to pick peaks in a signal.</span>
 
 <span class="sd">    A sample n is selected as an peak if the corresponding ``x[n]``</span>
@@ -1404,7 +1465,9 @@
 
 
 <div class="viewcode-block" id="sparsify_rows"><a class="viewcode-back" href="../../../generated/librosa.util.sparsify_rows.html#librosa.util.sparsify_rows">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">sparsify_rows</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sparsify_rows</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">quantile</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Return a row-sparse matrix approximating the input</span>
 
 <span class="sd">    Parameters</span>
@@ -1502,7 +1565,9 @@
     <span class="k">return</span> <span class="n">x_sparse</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="buf_to_float"><a class="viewcode-back" href="../../../generated/librosa.util.buf_to_float.html#librosa.util.buf_to_float">[docs]</a><span class="k">def</span> <span class="nf">buf_to_float</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_bytes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+<div class="viewcode-block" id="buf_to_float"><a class="viewcode-back" href="../../../generated/librosa.util.buf_to_float.html#librosa.util.buf_to_float">[docs]</a><span class="k">def</span> <span class="nf">buf_to_float</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_bytes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Convert an integer buffer to floating point values.</span>
 <span class="sd">    This is primarily useful when loading integer-valued wav data</span>
 <span class="sd">    into numpy arrays.</span>
@@ -1532,7 +1597,14 @@
     <span class="k">return</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fmt</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="index_to_slice"><a class="viewcode-back" href="../../../generated/librosa.util.index_to_slice.html#librosa.util.index_to_slice">[docs]</a><span class="k">def</span> <span class="nf">index_to_slice</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">idx_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">idx_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="index_to_slice"><a class="viewcode-back" href="../../../generated/librosa.util.index_to_slice.html#librosa.util.index_to_slice">[docs]</a><span class="k">def</span> <span class="nf">index_to_slice</span><span class="p">(</span>
+    <span class="n">idx</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">idx_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">idx_max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">step</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">slice</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Generate a slice array from an index array.</span>
 
 <span class="sd">    Parameters</span>
@@ -1585,7 +1657,14 @@
 
 
 <div class="viewcode-block" id="sync"><a class="viewcode-back" href="../../../generated/librosa.util.sync.html#librosa.util.sync">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">sync</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sync</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">idx</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">slice</span><span class="p">]],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Synchronous aggregation of a multi-dimensional array between boundaries</span>
 
 <span class="sd">    .. note::</span>
@@ -1708,7 +1787,9 @@
     <span class="k">return</span> <span class="n">data_agg</span></div>
 
 
-<div class="viewcode-block" id="softmask"><a class="viewcode-back" href="../../../generated/librosa.util.softmask.html#librosa.util.softmask">[docs]</a><span class="k">def</span> <span class="nf">softmask</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X_ref</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">split_zeros</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="softmask"><a class="viewcode-back" href="../../../generated/librosa.util.softmask.html#librosa.util.softmask">[docs]</a><span class="k">def</span> <span class="nf">softmask</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_ref</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">power</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">split_zeros</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Robustly compute a soft-mask operation.</span>
 
 <span class="sd">        ``M = X**power / (X**power + X_ref**power)``</span>
@@ -1822,7 +1903,7 @@
     <span class="k">return</span> <span class="n">mask</span></div>
 
 
-<div class="viewcode-block" id="tiny"><a class="viewcode-back" href="../../../generated/librosa.util.tiny.html#librosa.util.tiny">[docs]</a><span class="k">def</span> <span class="nf">tiny</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="tiny"><a class="viewcode-back" href="../../../generated/librosa.util.tiny.html#librosa.util.tiny">[docs]</a><span class="k">def</span> <span class="nf">tiny</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute the tiny-value corresponding to an input&#39;s data type.</span>
 
 <span class="sd">    This is the smallest &quot;usable&quot; number representable in ``x.dtype``</span>
@@ -1890,7 +1971,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">tiny</span></div>
 
 
-<span class="k">def</span> <span class="nf">fill_off_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">fill_off_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Sets all cells of a matrix to a given ``value``</span>
 <span class="sd">    if they lie outside a constraint region.</span>
 
@@ -1958,7 +2039,9 @@
     <span class="n">x</span><span class="p">[</span><span class="n">idx_l</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
 
-<div class="viewcode-block" id="cyclic_gradient"><a class="viewcode-back" href="../../../generated/librosa.util.cyclic_gradient.html#librosa.util.cyclic_gradient">[docs]</a><span class="k">def</span> <span class="nf">cyclic_gradient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="cyclic_gradient"><a class="viewcode-back" href="../../../generated/librosa.util.cyclic_gradient.html#librosa.util.cyclic_gradient">[docs]</a><span class="k">def</span> <span class="nf">cyclic_gradient</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">edge_order</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Estimate the gradient of a function over a uniformly sampled,</span>
 <span class="sd">    periodic domain.</span>
 
@@ -2067,8 +2150,11 @@
     <span class="c1"># And convert back to the input format</span>
     <span class="k">return</span> <span class="n">X_shear</span><span class="o">.</span><span class="n">asformat</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
 
+<span class="n">_ArrayOrSparseMatrix</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_ArrayOrSparseMatrix&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">])</span>
 
-<div class="viewcode-block" id="shear"><a class="viewcode-back" href="../../../generated/librosa.util.shear.html#librosa.util.shear">[docs]</a><span class="k">def</span> <span class="nf">shear</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="shear"><a class="viewcode-back" href="../../../generated/librosa.util.shear.html#librosa.util.shear">[docs]</a><span class="k">def</span> <span class="nf">shear</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">:</span> <span class="n">_ArrayOrSparseMatrix</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ArrayOrSparseMatrix</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Shear a matrix by a given factor.</span>
 
 <span class="sd">    The column ``X[:, n]`` will be displaced (rolled)</span>
@@ -2119,7 +2205,7 @@
         <span class="k">return</span> <span class="n">__shear_dense</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="n">factor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="stack"><a class="viewcode-back" href="../../../generated/librosa.util.stack.html#librosa.util.stack">[docs]</a><span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="stack"><a class="viewcode-back" href="../../../generated/librosa.util.stack.html#librosa.util.stack">[docs]</a><span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="n">arrays</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Stack one or more arrays along a target axis.</span>
 
 <span class="sd">    This function is similar to `np.stack`, except that memory contiguity is</span>
@@ -2222,7 +2308,9 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="dtype_r2c"><a class="viewcode-back" href="../../../generated/librosa.util.dtype_r2c.html#librosa.util.dtype_r2c">[docs]</a><span class="k">def</span> <span class="nf">dtype_r2c</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">):</span>
+<div class="viewcode-block" id="dtype_r2c"><a class="viewcode-back" href="../../../generated/librosa.util.dtype_r2c.html#librosa.util.dtype_r2c">[docs]</a><span class="k">def</span> <span class="nf">dtype_r2c</span><span class="p">(</span>
+    <span class="n">d</span><span class="p">:</span> <span class="n">DTypeLike</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex64</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DTypeLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Find the complex numpy dtype corresponding to a real dtype.</span>
 
 <span class="sd">    This is used to maintain numerical precision and memory footprint</span>
@@ -2278,7 +2366,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">default</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="dtype_c2r"><a class="viewcode-back" href="../../../generated/librosa.util.dtype_c2r.html#librosa.util.dtype_c2r">[docs]</a><span class="k">def</span> <span class="nf">dtype_c2r</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+<div class="viewcode-block" id="dtype_c2r"><a class="viewcode-back" href="../../../generated/librosa.util.dtype_c2r.html#librosa.util.dtype_c2r">[docs]</a><span class="k">def</span> <span class="nf">dtype_c2r</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">DTypeLike</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DTypeLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Find the real numpy dtype corresponding to a complex dtype.</span>
 
 <span class="sd">    This is used to maintain numerical precision and memory footprint</span>
@@ -2348,7 +2436,7 @@
     <span class="k">return</span> <span class="n">uniques</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="count_unique"><a class="viewcode-back" href="../../../generated/librosa.util.count_unique.html#librosa.util.count_unique">[docs]</a><span class="k">def</span> <span class="nf">count_unique</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="count_unique"><a class="viewcode-back" href="../../../generated/librosa.util.count_unique.html#librosa.util.count_unique">[docs]</a><span class="k">def</span> <span class="nf">count_unique</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Count the number of unique values in a multi-dimensional array</span>
 <span class="sd">    along a given axis.</span>
 
@@ -2400,7 +2488,7 @@
     <span class="k">return</span> <span class="n">uniques</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
 
 
-<div class="viewcode-block" id="is_unique"><a class="viewcode-back" href="../../../generated/librosa.util.is_unique.html#librosa.util.is_unique">[docs]</a><span class="k">def</span> <span class="nf">is_unique</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="is_unique"><a class="viewcode-back" href="../../../generated/librosa.util.is_unique.html#librosa.util.is_unique">[docs]</a><span class="k">def</span> <span class="nf">is_unique</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Determine if the input array consists of all unique values</span>
 <span class="sd">    along a given axis.</span>
 
@@ -2450,8 +2538,9 @@
     <span class="sd">&quot;&quot;&quot;Helper function for efficiently computing abs2 on complex inputs&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="o">**</span><span class="mi">2</span>
 
-
-<div class="viewcode-block" id="abs2"><a class="viewcode-back" href="../../../generated/librosa.util.abs2.html#librosa.util.abs2">[docs]</a><span class="k">def</span> <span class="nf">abs2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="n">_Number</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="s2">&quot;np.number[Any]&quot;</span><span class="p">]</span>
+<span class="n">_NumberOrArray</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_NumberOrArray&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Union</span><span class="p">[</span><span class="n">_Number</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span>
+<div class="viewcode-block" id="abs2"><a class="viewcode-back" href="../../../generated/librosa.util.abs2.html#librosa.util.abs2">[docs]</a><span class="k">def</span> <span class="nf">abs2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">_NumberOrArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_NumberOrArray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute the squared magnitude of a real or complex array.</span>
 
 <span class="sd">    This function is equivalent to calling `np.abs(x)**2` but it</span>
@@ -2485,11 +2574,18 @@
 <span class="nd">@numba</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">&quot;complex64(float32)&quot;</span><span class="p">,</span> <span class="s2">&quot;complex128(float64)&quot;</span><span class="p">],</span> <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">identity</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">_phasor_angles</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="k">def</span> <span class="nf">_phasor_angles</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
+<span class="n">_Real</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;np.integer[Any]&quot;</span><span class="p">,</span> <span class="s2">&quot;np.floating[Any]&quot;</span><span class="p">]</span>
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">phasor</span><span class="p">(</span><span class="n">angles</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span> <span class="o">...</span>
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">phasor</span><span class="p">(</span><span class="n">angles</span><span class="p">:</span> <span class="n">_Real</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_Number</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">:</span> <span class="o">...</span>
 
-<div class="viewcode-block" id="phasor"><a class="viewcode-back" href="../../../generated/librosa.util.phasor.html#librosa.util.phasor">[docs]</a><span class="k">def</span> <span class="nf">phasor</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="phasor"><a class="viewcode-back" href="../../../generated/librosa.util.phasor.html#librosa.util.phasor">[docs]</a><span class="k">def</span> <span class="nf">phasor</span><span class="p">(</span>
+    <span class="n">angles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_Real</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">mag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_Number</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Construct a complex phasor representation from angles.</span>
 
 <span class="sd">    When `mag` is not provided, this is equivalent to:</span>
