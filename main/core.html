@@ -428,25 +428,25 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.perceptual_weighting.html#librosa.perceptual_weighting" title="librosa.perceptual_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perceptual_weighting</span></code></a>(S, frequencies, *[, kind])</p></td>
 <td><p>Perceptual weighting of a power spectrogram.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.frequency_weighting.html#librosa.frequency_weighting" title="librosa.frequency_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_weighting</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.frequency_weighting.html#librosa.frequency_weighting" title="librosa.frequency_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_weighting</span></code></a>(frequencies, *[, kind])</p></td>
 <td><p>Compute the weighting of a set of frequencies.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.multi_frequency_weighting.html#librosa.multi_frequency_weighting" title="librosa.multi_frequency_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multi_frequency_weighting</span></code></a>(frequencies, *[, ...])</p></td>
 <td><p>Compute multiple weightings of a set of frequencies.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.A_weighting.html#librosa.A_weighting" title="librosa.A_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">A_weighting</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.A_weighting.html#librosa.A_weighting" title="librosa.A_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">A_weighting</span></code></a>(frequencies, *[, min_db])</p></td>
 <td><p>Compute the A-weighting of a set of frequencies.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.B_weighting.html#librosa.B_weighting" title="librosa.B_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_weighting</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.B_weighting.html#librosa.B_weighting" title="librosa.B_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_weighting</span></code></a>(frequencies, *[, min_db])</p></td>
 <td><p>Compute the B-weighting of a set of frequencies.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.C_weighting.html#librosa.C_weighting" title="librosa.C_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C_weighting</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.C_weighting.html#librosa.C_weighting" title="librosa.C_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C_weighting</span></code></a>(frequencies, *[, min_db])</p></td>
 <td><p>Compute the C-weighting of a set of frequencies.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.D_weighting.html#librosa.D_weighting" title="librosa.D_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">D_weighting</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.D_weighting.html#librosa.D_weighting" title="librosa.D_weighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">D_weighting</span></code></a>(frequencies, *[, min_db])</p></td>
 <td><p>Compute the D-weighting of a set of frequencies.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.pcen.html#librosa.pcen" title="librosa.pcen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pcen</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.pcen.html#librosa.pcen" title="librosa.pcen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pcen</span></code></a>(S, *[, sr, hop_length, gain, bias, ...])</p></td>
 <td><p>Per-channel energy normalization (PCEN)</p></td>
 </tr>
 </tbody>
@@ -463,28 +463,28 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.frames_to_samples.html#librosa.frames_to_samples" title="librosa.frames_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames_to_samples</span></code></a>(frames, *[, hop_length, n_fft])</p></td>
 <td><p>Converts frame indices to audio sample indices.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.frames_to_time.html#librosa.frames_to_time" title="librosa.frames_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames_to_time</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.frames_to_time.html#librosa.frames_to_time" title="librosa.frames_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames_to_time</span></code></a>(frames, *[, sr, hop_length, ...])</p></td>
 <td><p>Converts frame counts to time (seconds).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.samples_to_frames.html#librosa.samples_to_frames" title="librosa.samples_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samples_to_frames</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.samples_to_frames.html#librosa.samples_to_frames" title="librosa.samples_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samples_to_frames</span></code></a>(samples, *[, hop_length, ...])</p></td>
 <td><p>Converts sample indices into STFT frames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.samples_to_time.html#librosa.samples_to_time" title="librosa.samples_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samples_to_time</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.samples_to_time.html#librosa.samples_to_time" title="librosa.samples_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samples_to_time</span></code></a>(samples, *[, sr])</p></td>
 <td><p>Convert sample indices to time (in seconds).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.time_to_frames.html#librosa.time_to_frames" title="librosa.time_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_to_frames</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.time_to_frames.html#librosa.time_to_frames" title="librosa.time_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_to_frames</span></code></a>(times, *[, sr, hop_length, n_fft])</p></td>
 <td><p>Converts time stamps into STFT frames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.time_to_samples.html#librosa.time_to_samples" title="librosa.time_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_to_samples</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.time_to_samples.html#librosa.time_to_samples" title="librosa.time_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_to_samples</span></code></a>(times, *[, sr])</p></td>
 <td><p>Convert timestamps (in seconds) to sample indices.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.blocks_to_frames.html#librosa.blocks_to_frames" title="librosa.blocks_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blocks_to_frames</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.blocks_to_frames.html#librosa.blocks_to_frames" title="librosa.blocks_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blocks_to_frames</span></code></a>(blocks, *, block_length)</p></td>
 <td><p>Convert block indices to frame indices</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.blocks_to_samples.html#librosa.blocks_to_samples" title="librosa.blocks_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blocks_to_samples</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.blocks_to_samples.html#librosa.blocks_to_samples" title="librosa.blocks_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blocks_to_samples</span></code></a>(blocks, *, block_length, ...)</p></td>
 <td><p>Convert block indices to sample indices</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.blocks_to_time.html#librosa.blocks_to_time" title="librosa.blocks_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blocks_to_time</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.blocks_to_time.html#librosa.blocks_to_time" title="librosa.blocks_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blocks_to_time</span></code></a>(blocks, *, block_length, ...)</p></td>
 <td><p>Convert block indices to time (in seconds)</p></td>
 </tr>
 </tbody>
@@ -498,61 +498,61 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_note.html#librosa.hz_to_note" title="librosa.hz_to_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_note</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_note.html#librosa.hz_to_note" title="librosa.hz_to_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_note</span></code></a>(frequencies, **kwargs)</p></td>
 <td><p>Convert one or more frequencies (in Hz) to the nearest note names.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.hz_to_midi.html#librosa.hz_to_midi" title="librosa.hz_to_midi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_midi</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.hz_to_midi.html#librosa.hz_to_midi" title="librosa.hz_to_midi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_midi</span></code></a>(frequencies)</p></td>
 <td><p>Get MIDI note number(s) for given frequencies</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_svara_h.html#librosa.hz_to_svara_h" title="librosa.hz_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_svara_h</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_svara_h.html#librosa.hz_to_svara_h" title="librosa.hz_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_svara_h</span></code></a>(frequencies, *, Sa[, abbr, ...])</p></td>
 <td><p>Convert frequencies (in Hz) to Hindustani svara</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.hz_to_svara_c.html#librosa.hz_to_svara_c" title="librosa.hz_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_svara_c</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.hz_to_svara_c.html#librosa.hz_to_svara_c" title="librosa.hz_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_svara_c</span></code></a>(frequencies, *, Sa, mela[, ...])</p></td>
 <td><p>Convert frequencies (in Hz) to Carnatic svara</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_fjs.html#librosa.hz_to_fjs" title="librosa.hz_to_fjs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_fjs</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_fjs.html#librosa.hz_to_fjs" title="librosa.hz_to_fjs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_fjs</span></code></a>(frequencies, *[, fmin, unison, ...])</p></td>
 <td><p>Convert one or more frequencies (in Hz) from a just intonation scale to notes in FJS notation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.midi_to_hz.html#librosa.midi_to_hz" title="librosa.midi_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_hz</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.midi_to_hz.html#librosa.midi_to_hz" title="librosa.midi_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_hz</span></code></a>(notes)</p></td>
 <td><p>Get the frequency (Hz) of MIDI note(s)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.midi_to_note.html#librosa.midi_to_note" title="librosa.midi_to_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_note</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.midi_to_note.html#librosa.midi_to_note" title="librosa.midi_to_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_note</span></code></a>(midi, *[, octave, cents, key, ...])</p></td>
 <td><p>Convert one or more MIDI numbers to note strings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h" title="librosa.midi_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_svara_h</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.midi_to_svara_h.html#librosa.midi_to_svara_h" title="librosa.midi_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_svara_h</span></code></a>(midi, *, Sa[, abbr, octave, ...])</p></td>
 <td><p>Convert MIDI numbers to Hindustani svara</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c" title="librosa.midi_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_svara_c</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.midi_to_svara_c.html#librosa.midi_to_svara_c" title="librosa.midi_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">midi_to_svara_c</span></code></a>(midi, *, Sa, mela[, abbr, ...])</p></td>
 <td><p>Convert MIDI numbers to Carnatic svara within a given melakarta raga</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.note_to_hz.html#librosa.note_to_hz" title="librosa.note_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_hz</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.note_to_hz.html#librosa.note_to_hz" title="librosa.note_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_hz</span></code></a>(note, **kwargs)</p></td>
 <td><p>Convert one or more note names to frequency (Hz)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.note_to_midi.html#librosa.note_to_midi" title="librosa.note_to_midi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_midi</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.note_to_midi.html#librosa.note_to_midi" title="librosa.note_to_midi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_midi</span></code></a>(note, *[, round_midi])</p></td>
 <td><p>Convert one or more spelled notes to MIDI number(s).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.note_to_svara_h.html#librosa.note_to_svara_h" title="librosa.note_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_svara_h</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.note_to_svara_h.html#librosa.note_to_svara_h" title="librosa.note_to_svara_h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_svara_h</span></code></a>(notes, *, Sa[, abbr, ...])</p></td>
 <td><p>Convert western notes to Hindustani svara</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.note_to_svara_c.html#librosa.note_to_svara_c" title="librosa.note_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_svara_c</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.note_to_svara_c.html#librosa.note_to_svara_c" title="librosa.note_to_svara_c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">note_to_svara_c</span></code></a>(notes, *, Sa, mela[, abbr, ...])</p></td>
 <td><p>Convert western notes to Carnatic svara</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.hz_to_mel.html#librosa.hz_to_mel" title="librosa.hz_to_mel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_mel</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.hz_to_mel.html#librosa.hz_to_mel" title="librosa.hz_to_mel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_mel</span></code></a>(frequencies, *[, htk])</p></td>
 <td><p>Convert Hz to Mels</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_octs.html#librosa.hz_to_octs" title="librosa.hz_to_octs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_octs</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.hz_to_octs.html#librosa.hz_to_octs" title="librosa.hz_to_octs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hz_to_octs</span></code></a>(frequencies, *[, tuning, ...])</p></td>
 <td><p>Convert frequencies (Hz) to (fractional) octave numbers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.mel_to_hz.html#librosa.mel_to_hz" title="librosa.mel_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mel_to_hz</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.mel_to_hz.html#librosa.mel_to_hz" title="librosa.mel_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mel_to_hz</span></code></a>(mels, *[, htk])</p></td>
 <td><p>Convert mel bin numbers to frequencies</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.octs_to_hz.html#librosa.octs_to_hz" title="librosa.octs_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">octs_to_hz</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.octs_to_hz.html#librosa.octs_to_hz" title="librosa.octs_to_hz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">octs_to_hz</span></code></a>(octs, *[, tuning, bins_per_octave])</p></td>
 <td><p>Convert octaves numbers to frequencies.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.A4_to_tuning.html#librosa.A4_to_tuning" title="librosa.A4_to_tuning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">A4_to_tuning</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.A4_to_tuning.html#librosa.A4_to_tuning" title="librosa.A4_to_tuning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">A4_to_tuning</span></code></a>(A4, *[, bins_per_octave])</p></td>
 <td><p>Convert a reference pitch frequency (e.g., <code class="docutils literal notranslate"><span class="pre">A4=435</span></code>) to a tuning estimation, in fractions of a bin per octave.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.tuning_to_A4.html#librosa.tuning_to_A4" title="librosa.tuning_to_A4"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuning_to_A4</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.tuning_to_A4.html#librosa.tuning_to_A4" title="librosa.tuning_to_A4"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuning_to_A4</span></code></a>(tuning, *[, bins_per_octave])</p></td>
 <td><p>Convert a tuning deviation (from 0) in fractions of a bin per octave (e.g., <code class="docutils literal notranslate"><span class="pre">tuning=-0.1</span></code>) to a reference pitch frequency relative to A440.</p></td>
 </tr>
 </tbody>
@@ -590,16 +590,16 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.fifths_to_note.html#librosa.fifths_to_note" title="librosa.fifths_to_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fifths_to_note</span></code></a>(*, unison, fifths[, unicode])</p></td>
 <td><p>Calculate the note name for a given number of perfect fifths from a specified unison.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.interval_to_fjs.html#librosa.interval_to_fjs" title="librosa.interval_to_fjs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interval_to_fjs</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.interval_to_fjs.html#librosa.interval_to_fjs" title="librosa.interval_to_fjs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interval_to_fjs</span></code></a>(interval, *[, unison, ...])</p></td>
 <td><p>Convert an interval to Functional Just System (FJS) notation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.interval_frequencies.html#librosa.interval_frequencies" title="librosa.interval_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interval_frequencies</span></code></a>(n_bins, *, fmin, intervals)</p></td>
 <td><p>Construct a set of frequencies from an interval set</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.pythagorean_intervals.html#librosa.pythagorean_intervals" title="librosa.pythagorean_intervals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pythagorean_intervals</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.pythagorean_intervals.html#librosa.pythagorean_intervals" title="librosa.pythagorean_intervals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pythagorean_intervals</span></code></a>(*[, bins_per_octave, ...])</p></td>
 <td><p>Pythagorean intervals</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.plimit_intervals.html#librosa.plimit_intervals" title="librosa.plimit_intervals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plimit_intervals</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.plimit_intervals.html#librosa.plimit_intervals" title="librosa.plimit_intervals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plimit_intervals</span></code></a>(*, primes[, ...])</p></td>
 <td><p>Construct p-limit intervals for a given set of prime factors.</p></td>
 </tr>
 </tbody>
