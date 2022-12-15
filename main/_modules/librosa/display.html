@@ -470,6 +470,10 @@
 <span class="sd">    fmin : float</span>
 <span class="sd">        The unison frequency for this axis</span>
 
+<span class="sd">    intervals : str or array of float in [1, 2)</span>
+<span class="sd">        The interval specification for the frequency axis.</span>
+
+<span class="sd">        See `core.interval_frequencies` for supported values.</span>
 
 <span class="sd">    major : bool</span>
 <span class="sd">        If ``True``, ticks are always labeled.</span>
@@ -504,11 +508,12 @@
 
 <div class="viewcode-block" id="FJSFormatter.__init__"><a class="viewcode-back" href="../../generated/librosa.display.FJSFormatter.html#librosa.display.FJSFormatter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
         <span class="n">fmin</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span>
         <span class="n">major</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">unison</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">intervals</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">bins_per_octave</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">n_bins</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
@@ -684,9 +689,10 @@
 
 <div class="viewcode-block" id="ChromaFJSFormatter.__init__"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFJSFormatter.html#librosa.display.ChromaFJSFormatter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span>
         <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span>
         <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">intervals</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">bins_per_octave</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unison</span> <span class="o">=</span> <span class="n">unison</span>
@@ -1179,6 +1185,11 @@
 <span class="sd">    thaat : str, optional</span>
 <span class="sd">        If using `chroma_h` display mode, specify the parent thaat.</span>
 
+<span class="sd">    intervals : str or array of floats in [1, 2), optional</span>
+<span class="sd">        If using an FJS notation (`chroma_fjs`, `vqt_fjs`), the interval specification.</span>
+
+<span class="sd">        See `core.interval_frequencies` for a description of supported values.</span>
+
 <span class="sd">    unison : str, optional</span>
 <span class="sd">        If using an FJS notation (`chroma_fjs`, `vqt_fjs`), the pitch name of the unison</span>
 <span class="sd">        interval.  If not provided, it will be inferred from `fmin` (for VQT display) or</span>
@@ -1543,9 +1554,9 @@
 
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
             <span class="n">ChromaFJSFormatter</span><span class="p">(</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
                 <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
                 <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
-                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
                 <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
@@ -1646,10 +1657,10 @@
             <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
             <span class="n">FJSFormatter</span><span class="p">(</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
                 <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
                 <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
                 <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
-                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
                 <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
                 <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
             <span class="p">)</span>
@@ -1660,10 +1671,10 @@
 
         <span class="n">axis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span>
             <span class="n">FJSFormatter</span><span class="p">(</span>
+                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
                 <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
                 <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
                 <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
-                <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
                 <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
                 <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
                 <span class="n">major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
