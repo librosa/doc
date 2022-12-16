@@ -123,8 +123,12 @@ functionality currently provided by <em>librosa</em>.</p>
 <section id="read-specific-formats">
 <h2>Read specific formats<a class="headerlink" href="#read-specific-formats" title="Permalink to this heading">¶</a></h2>
 <p><em>librosa</em> uses <a class="reference external" href="https://github.com/bastibe/PySoundFile">soundfile</a> and <a class="reference external" href="https://github.com/sampsyo/audioread">audioread</a> for reading audio.
-As of v0.7, librosa uses <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> by default, and falls back on <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> only when dealing with codecs unsupported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> (notably, MP3, and some variants of WAV).
+As of v0.7, librosa uses <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> by default, and falls back on <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> only when dealing with codecs unsupported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>.
 For a list of codecs supported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>, see the <em>libsndfile</em> <a class="reference external" href="http://www.mega-nerd.com/libsndfile/">documentation</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>audioread support is deprecated as of librosa 0.10.0, and will be removed completely in version 1.0.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>See installation instruction for PySoundFile <a class="reference external" href="http://pysoundfile.readthedocs.io">here</a>.</p>

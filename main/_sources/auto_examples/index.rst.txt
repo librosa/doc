@@ -13,6 +13,23 @@ Advanced examples
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use &quot;Rainbowgrams&quot; to simultaneously  visualize amplitude and...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_rainbowgram_thumb.png
+    :alt: Rainbowgrams
+
+  :ref:`sphx_glr_auto_examples_plot_rainbowgram.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Rainbowgrams</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to use IPython&#x27;s audio playback to play audio signals through yo...">
 
 .. only:: html
@@ -206,6 +223,7 @@ Advanced examples
 .. toctree::
    :hidden:
 
+   /auto_examples/plot_rainbowgram
    /auto_examples/plot_audio_playback
    /auto_examples/plot_presets
    /auto_examples/plot_viterbi

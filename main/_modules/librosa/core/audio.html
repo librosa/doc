@@ -130,6 +130,8 @@
 <span class="kn">from</span> <span class="nn">.._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
+<span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span> <span class="nn">..util.deprecation</span> <span class="kn">import</span> <span class="n">Deprecated</span><span class="p">,</span> <span class="n">rename_kw</span>
 <span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">BinaryIO</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
@@ -193,6 +195,9 @@
 <span class="sd">        Pre-constructed audioread decoders are also supported here, see the example</span>
 <span class="sd">        below.  This can be used, for example, to force a specific decoder rather</span>
 <span class="sd">        than relying upon audioread to select one for you.</span>
+
+<span class="sd">        .. warning:: audioread support is deprecated as of version 0.10.0.</span>
+<span class="sd">            audioread support be removed in version 1.0.</span>
 
 <span class="sd">    sr : number &gt; 0 [scalar]</span>
 <span class="sd">        target sampling rate</span>
@@ -278,7 +283,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">y</span><span class="p">,</span> <span class="n">sr_native</span> <span class="o">=</span> <span class="n">__soundfile_load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
 
-        <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="c1"># If soundfile failed, try audioread instead</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">PurePath</span><span class="p">)):</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -325,6 +330,7 @@
     <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="n">sr_native</span>
 
 
+<span class="nd">@deprecated</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10.0&quot;</span><span class="p">,</span> <span class="n">version_removed</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__audioread_load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load an audio buffer using audioread.</span>
 
@@ -789,7 +795,8 @@
     <span class="n">n_fft</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Deprecated</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Deprecated</span><span class="p">(),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute the duration (in seconds) of an audio time series,</span>
 <span class="sd">    feature matrix, or filename.</span>
@@ -841,7 +848,7 @@
 <span class="sd">        - If ``True``, ``S[:, t]`` is centered at ``y[t * hop_length]``</span>
 <span class="sd">        - If ``False``, then ``S[:, t]`` begins at ``y[t * hop_length]``</span>
 
-<span class="sd">    filename : str</span>
+<span class="sd">    path : str, path, or file-like</span>
 <span class="sd">        If provided, all other parameters are ignored, and the</span>
 <span class="sd">        duration is calculated directly from the audio file.</span>
 <span class="sd">        Note that this avoids loading the contents into memory,</span>
@@ -851,6 +858,12 @@
 <span class="sd">        As in ``load``, this can also be an integer or open file-handle</span>
 <span class="sd">        that can be processed by ``soundfile``.</span>
 
+<span class="sd">    filename : Deprecated</span>
+<span class="sd">        Equivalent to ``path``</span>
+
+<span class="sd">        .. warning:: This parameter has been renamed to ``path`` in 0.10.</span>
+<span class="sd">            Support for ``filename=`` will be removed in 1.0.</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    d : float &gt;= 0</span>
@@ -859,28 +872,40 @@
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 <span class="sd">    ParameterError</span>
-<span class="sd">        if none of ``y``, ``S``, or ``filename`` are provided.</span>
+<span class="sd">        if none of ``y``, ``S``, or ``path`` are provided.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    `get_duration` can be applied to a file (``filename``), a spectrogram (``S``),</span>
+<span class="sd">    `get_duration` can be applied to a file (``path``), a spectrogram (``S``),</span>
 <span class="sd">    or audio buffer (``y, sr``).  Only one of these three options should be</span>
-<span class="sd">    provided.  If you do provide multiple options (e.g., ``filename`` and ``S``),</span>
-<span class="sd">    then ``filename`` takes precedence over ``S``, and ``S`` takes precedence over</span>
+<span class="sd">    provided.  If you do provide multiple options (e.g., ``path`` and ``S``),</span>
+<span class="sd">    then ``path`` takes precedence over ``S``, and ``S`` takes precedence over</span>
 <span class="sd">    ``(y, sr)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">rename_kw</span><span class="p">(</span><span class="n">old_name</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span>
+                     <span class="n">old_value</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                     <span class="n">new_name</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>
+                     <span class="n">new_value</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+                     <span class="n">version_deprecated</span><span class="o">=</span><span class="s1">&#39;0.10.0&#39;</span><span class="p">,</span>
+                     <span class="n">version_removed</span><span class="o">=</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">duration</span>
-        <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
-            <span class="k">with</span> <span class="n">audioread</span><span class="o">.</span><span class="n">audio_open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">fdesc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">duration</span>
+        <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span>
+                          <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">Audioread support is deprecated in librosa 0.10.0&quot;</span>
+                          <span class="s2">&quot; and will be removed in version 1.0.&quot;</span><span class="p">,</span>
+                          <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                          <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">audioread</span><span class="o">.</span><span class="n">audio_open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fdesc</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">duration</span>
 
     <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">S</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                <span class="s2">&quot;At least one of (y, sr), S, or filename must be provided&quot;</span>
+                <span class="s2">&quot;At least one of (y, sr), S, or path must be provided&quot;</span>
             <span class="p">)</span>
 
         <span class="n">n_frames</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -925,7 +950,12 @@
             <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">samplerate</span>
 
         <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">samplerate</span>
-    <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span>
+                      <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">Audioread support is deprecated in librosa 0.10.0&quot;</span>
+                      <span class="s2">&quot; and will be removed in version 1.0.&quot;</span><span class="p">,</span>
+                      <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">audioread</span><span class="o">.</span><span class="n">audio_open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fdesc</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">samplerate</span></div>
 
