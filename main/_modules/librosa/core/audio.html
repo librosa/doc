@@ -132,14 +132,14 @@
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">deprecated</span>
 <span class="kn">from</span> <span class="nn">..util.deprecation</span> <span class="kn">import</span> <span class="n">Deprecated</span><span class="p">,</span> <span class="n">rename_kw</span>
-<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span>
+<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_IntLike_co</span><span class="p">,</span> <span class="n">_SequenceLike</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">BinaryIO</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">BinaryIO</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">DTypeLike</span><span class="p">,</span> <span class="n">ArrayLike</span>
 
 <span class="c1"># Lazy-load optional dependencies</span>
-<span class="n">samplerate</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;samplerate&#39;</span><span class="p">)</span>
-<span class="n">resampy</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;resampy&#39;</span><span class="p">)</span>
+<span class="n">samplerate</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;samplerate&quot;</span><span class="p">)</span>
+<span class="n">resampy</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;resampy&quot;</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;load&quot;</span><span class="p">,</span>
@@ -163,7 +163,9 @@
 <span class="c1"># Load should never be cached, since we cannot verify that the contents of</span>
 <span class="c1"># &#39;path&#39; are unchanged across calls.</span>
 <div class="viewcode-block" id="load"><a class="viewcode-back" href="../../../generated/librosa.load.html#librosa.load">[docs]</a><span class="k">def</span> <span class="nf">load</span><span class="p">(</span>
-    <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">,</span> <span class="n">audioread</span><span class="o">.</span><span class="n">AudioFile</span><span class="p">,</span> <span class="n">BinaryIO</span><span class="p">],</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">,</span> <span class="n">audioread</span><span class="o">.</span><span class="n">AudioFile</span><span class="p">,</span> <span class="n">BinaryIO</span>
+    <span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">sr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
     <span class="n">mono</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -286,7 +288,9 @@
         <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="c1"># If soundfile failed, try audioread instead</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">PurePath</span><span class="p">)):</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span>
+                <span class="p">)</span>
                 <span class="n">y</span><span class="p">,</span> <span class="n">sr_native</span> <span class="o">=</span> <span class="n">__audioread_load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">exc</span>
@@ -337,7 +341,7 @@
 <span class="sd">    This loads one block at a time, and then concatenates the results.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">buf</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">audioread</span><span class="o">.</span><span class="n">available_backends</span><span class="p">())):</span>
         <span class="c1"># If we have an audioread object already, don&#39;t bother opening</span>
@@ -375,17 +379,17 @@
 
             <span class="k">if</span> <span class="n">s_end</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
                 <span class="c1"># the end is in this frame.  crop.</span>
-                <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[:</span> <span class="n">s_end</span> <span class="o">-</span> <span class="n">n_prev</span><span class="p">]</span>
+                <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[:</span> <span class="nb">int</span><span class="p">(</span><span class="n">s_end</span> <span class="o">-</span> <span class="n">n_prev</span><span class="p">)]</span>  <span class="c1"># pragma: no cover</span>
 
             <span class="k">if</span> <span class="n">n_prev</span> <span class="o">&lt;=</span> <span class="n">s_start</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
                 <span class="c1"># beginning is in this frame</span>
                 <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[(</span><span class="n">s_start</span> <span class="o">-</span> <span class="n">n_prev</span><span class="p">)</span> <span class="p">:]</span>
 
             <span class="c1"># tack on the current frame</span>
-            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+            <span class="n">buf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">y</span><span class="p">:</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">buf</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">n_channels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_channels</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
     <span class="k">else</span><span class="p">:</span>
@@ -760,7 +764,9 @@
         <span class="n">orig_sr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span>
         <span class="n">target_sr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">target_sr</span><span class="p">)</span>
         <span class="n">gcd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">)</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">resample_poly</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">target_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">orig_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">resample_poly</span><span class="p">(</span>
+            <span class="n">y</span><span class="p">,</span> <span class="n">target_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">orig_sr</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span>
+        <span class="p">)</span>
     <span class="k">elif</span> <span class="n">res_type</span> <span class="ow">in</span> <span class="p">(</span>
         <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
         <span class="s2">&quot;zero_order_hold&quot;</span><span class="p">,</span>
@@ -770,11 +776,20 @@
     <span class="p">):</span>
         <span class="c1"># Use numpy to vectorize the resampler along the target axis</span>
         <span class="c1"># This is because samplerate does not support ndim&gt;2 generally.</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">samplerate</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">converter_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span>
+            <span class="n">samplerate</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">converter_type</span><span class="o">=</span><span class="n">res_type</span>
+        <span class="p">)</span>
     <span class="k">elif</span> <span class="n">res_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;soxr&quot;</span><span class="p">):</span>
         <span class="c1"># Use numpy to vectorize the resampler along the target axis</span>
         <span class="c1"># This is because soxr does not support ndim&gt;2 generally.</span>
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">soxr</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">in_rate</span><span class="o">=</span><span class="n">orig_sr</span><span class="p">,</span> <span class="n">out_rate</span><span class="o">=</span><span class="n">target_sr</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span>
+            <span class="n">soxr</span><span class="o">.</span><span class="n">resample</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+            <span class="n">arr</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">in_rate</span><span class="o">=</span><span class="n">orig_sr</span><span class="p">,</span>
+            <span class="n">out_rate</span><span class="o">=</span><span class="n">target_sr</span><span class="p">,</span>
+            <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">resampy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">orig_sr</span><span class="p">,</span> <span class="n">target_sr</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
@@ -784,7 +799,8 @@
     <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
         <span class="n">y_hat</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">y_hat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span></div>
+    <span class="c1"># Match dtypes</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_duration"><a class="viewcode-back" href="../../../generated/librosa.get_duration.html#librosa.get_duration">[docs]</a><span class="k">def</span> <span class="nf">get_duration</span><span class="p">(</span>
@@ -883,30 +899,32 @@
 <span class="sd">    ``(y, sr)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">path</span> <span class="o">=</span> <span class="n">rename_kw</span><span class="p">(</span><span class="n">old_name</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span>
-                     <span class="n">old_value</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
-                     <span class="n">new_name</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>
-                     <span class="n">new_value</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
-                     <span class="n">version_deprecated</span><span class="o">=</span><span class="s1">&#39;0.10.0&#39;</span><span class="p">,</span>
-                     <span class="n">version_removed</span><span class="o">=</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">rename_kw</span><span class="p">(</span>
+        <span class="n">old_name</span><span class="o">=</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+        <span class="n">old_value</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+        <span class="n">new_name</span><span class="o">=</span><span class="s2">&quot;path&quot;</span><span class="p">,</span>
+        <span class="n">new_value</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+        <span class="n">version_deprecated</span><span class="o">=</span><span class="s2">&quot;0.10.0&quot;</span><span class="p">,</span>
+        <span class="n">version_removed</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">duration</span>
+            <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">duration</span>  <span class="c1"># type: ignore</span>
         <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span>
-                          <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">Audioread support is deprecated in librosa 0.10.0&quot;</span>
-                          <span class="s2">&quot; and will be removed in version 1.0.&quot;</span><span class="p">,</span>
-                          <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                          <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span>
+                <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">Audioread support is deprecated in librosa 0.10.0&quot;</span>
+                <span class="s2">&quot; and will be removed in version 1.0.&quot;</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="k">with</span> <span class="n">audioread</span><span class="o">.</span><span class="n">audio_open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fdesc</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">duration</span>
+                <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">duration</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">S</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                <span class="s2">&quot;At least one of (y, sr), S, or path must be provided&quot;</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;At least one of (y, sr), S, or path must be provided&quot;</span><span class="p">)</span>
 
         <span class="n">n_frames</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">n_fft</span> <span class="o">+</span> <span class="n">hop_length</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_frames</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
@@ -947,17 +965,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">samplerate</span>
+            <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">samplerate</span>  <span class="c1"># type: ignore</span>
 
-        <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">samplerate</span>
+        <span class="k">return</span> <span class="n">sf</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">samplerate</span>  <span class="c1"># type: ignore</span>
     <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span>
-                      <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">Audioread support is deprecated in librosa 0.10.0&quot;</span>
-                      <span class="s2">&quot; and will be removed in version 1.0.&quot;</span><span class="p">,</span>
-                      <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                      <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;PySoundFile failed. Trying audioread instead.&quot;</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">Audioread support is deprecated in librosa 0.10.0&quot;</span>
+            <span class="s2">&quot; and will be removed in version 1.0.&quot;</span><span class="p">,</span>
+            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">with</span> <span class="n">audioread</span><span class="o">.</span><span class="n">audio_open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fdesc</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">samplerate</span></div>
+            <span class="k">return</span> <span class="n">fdesc</span><span class="o">.</span><span class="n">samplerate</span>  <span class="c1"># type: ignore</span></div>
 
 
 <div class="viewcode-block" id="autocorrelate"><a class="viewcode-back" href="../../../generated/librosa.autocorrelate.html#librosa.autocorrelate">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1034,7 +1054,9 @@
     <span class="n">subslice</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">autocorr</span><span class="o">.</span><span class="n">ndim</span>
     <span class="n">subslice</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">max_size</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">autocorr</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">subslice</span><span class="p">)]</span></div>
+    <span class="n">autocorr_slice</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">autocorr</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">subslice</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">autocorr_slice</span></div>
 
 
 <div class="viewcode-block" id="lpc"><a class="viewcode-back" href="../../../generated/librosa.lpc.html#librosa.lpc">[docs]</a><span class="k">def</span> <span class="nf">lpc</span><span class="p">(</span><span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">order</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -1129,13 +1151,21 @@
     <span class="n">epsilon</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">den</span><span class="p">)</span>
 
     <span class="c1"># Call the helper, and swap the results back to the target axis position</span>
-    <span class="k">return</span> <span class="n">__lpc</span><span class="p">(</span>
-        <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">ar_coeffs</span><span class="p">,</span> <span class="n">ar_coeffs_prev</span><span class="p">,</span> <span class="n">reflect_coeff</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">epsilon</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span>
+        <span class="n">__lpc</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">ar_coeffs</span><span class="p">,</span> <span class="n">ar_coeffs_prev</span><span class="p">,</span> <span class="n">reflect_coeff</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span>
+    <span class="p">)</span></div>
 
 
-<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">__lpc</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">ar_coeffs</span><span class="p">,</span> <span class="n">ar_coeffs_prev</span><span class="p">,</span> <span class="n">reflect_coeff</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">__lpc</span><span class="p">(</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">ar_coeffs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">ar_coeffs_prev</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">reflect_coeff</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">den</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="c1"># This implementation follows the description of Burg&#39;s algorithm given in</span>
     <span class="c1"># section III of Marple&#39;s paper referenced in the docstring.</span>
     <span class="c1">#</span>
@@ -1155,7 +1185,7 @@
     <span class="n">bwd_pred_error</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># DEN_{M} from eqn 16 of Marple.</span>
-    <span class="n">den</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fwd_pred_error</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">bwd_pred_error</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">den</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fwd_pred_error</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">bwd_pred_error</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">order</span><span class="p">):</span>
         <span class="c1"># can be removed if we keep the epsilon bias</span>
@@ -1317,6 +1347,7 @@
 <span class="sd">    (array([ 0,  3,  5,  8, 10, 12, 15, 17, 19]),)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># TODO: drop support for None thresholds, just use 0</span>
     <span class="c1"># Clip within the threshold</span>
     <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -1327,6 +1358,7 @@
     <span class="k">elif</span> <span class="n">ref_magnitude</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">ref_magnitude</span>
 
+    <span class="k">assert</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># because mypy can&#39;t infer we&#39;re float now</span>
     <span class="k">if</span> <span class="n">threshold</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1358,8 +1390,8 @@
 
 <div class="viewcode-block" id="clicks"><a class="viewcode-back" href="../../../generated/librosa.clicks.html#librosa.clicks">[docs]</a><span class="k">def</span> <span class="nf">clicks</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">frames</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_SequenceLike</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">frames</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_SequenceLike</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">click_freq</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1000.0</span><span class="p">,</span>
@@ -1437,6 +1469,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Compute sample positions from time or frames</span>
+    <span class="n">positions</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
     <span class="k">if</span> <span class="n">times</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">frames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s1">&#39;either &quot;times&quot; or &quot;frames&quot; must be provided&#39;</span><span class="p">)</span>
@@ -1557,12 +1590,13 @@
     <span class="k">if</span> <span class="n">length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">duration</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s1">&#39;either &quot;length&quot; or &quot;duration&quot; must be provided&#39;</span><span class="p">)</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="n">duration</span> <span class="o">*</span> <span class="n">sr</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">duration</span> <span class="o">*</span> <span class="n">sr</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">phi</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">0.5</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">/</span> <span class="n">sr</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span></div>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">/</span> <span class="n">sr</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span></div>
 
 
 <div class="viewcode-block" id="chirp"><a class="viewcode-back" href="../../../generated/librosa.chirp.html#librosa.chirp">[docs]</a><span class="k">def</span> <span class="nf">chirp</span><span class="p">(</span>
@@ -1669,17 +1703,20 @@
         <span class="n">phi</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">0.5</span>
 
     <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span> <span class="k">if</span> <span class="n">linear</span> <span class="k">else</span> <span class="s2">&quot;logarithmic&quot;</span>
-    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">chirp</span><span class="p">(</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">period</span><span class="p">),</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">chirp</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">duration</span> <span class="o">*</span> <span class="n">sr</span><span class="p">)))</span> <span class="o">/</span> <span class="n">sr</span><span class="p">,</span>
         <span class="n">fmin</span><span class="p">,</span>
         <span class="n">duration</span><span class="p">,</span>
         <span class="n">fmax</span><span class="p">,</span>
         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
         <span class="n">phi</span><span class="o">=</span><span class="n">phi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">180</span><span class="p">,</span>  <span class="c1"># scipy.signal.chirp uses degrees for phase offset</span>
-    <span class="p">)</span></div>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span></div>
 
 
-<div class="viewcode-block" id="mu_compress"><a class="viewcode-back" href="../../../generated/librosa.mu_compress.html#librosa.mu_compress">[docs]</a><span class="k">def</span> <span class="nf">mu_compress</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">255</span><span class="p">,</span> <span class="n">quantize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="mu_compress"><a class="viewcode-back" href="../../../generated/librosa.mu_compress.html#librosa.mu_compress">[docs]</a><span class="k">def</span> <span class="nf">mu_compress</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">255</span><span class="p">,</span> <span class="n">quantize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;mu-law compression</span>
 
 <span class="sd">    Given an input signal ``-1 &lt;= x &lt;= 1``, the mu-law compression</span>
@@ -1760,20 +1797,24 @@
             <span class="s2">&quot;mu-law input x=</span><span class="si">{}</span><span class="s2"> must be in the &quot;</span> <span class="s2">&quot;range [-1, +1].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="p">)</span>
 
-    <span class="n">x_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">x_comp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">quantize</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span>
+
+        <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span>
                 <span class="n">x_comp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mu</span><span class="p">),</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span>
             <span class="p">)</span>
             <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">mu</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="p">)</span>
+        <span class="k">return</span> <span class="n">y</span>
 
     <span class="k">return</span> <span class="n">x_comp</span></div>
 
 
-<div class="viewcode-block" id="mu_expand"><a class="viewcode-back" href="../../../generated/librosa.mu_expand.html#librosa.mu_expand">[docs]</a><span class="k">def</span> <span class="nf">mu_expand</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">quantize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="mu_expand"><a class="viewcode-back" href="../../../generated/librosa.mu_expand.html#librosa.mu_expand">[docs]</a><span class="k">def</span> <span class="nf">mu_expand</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">quantize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;mu-law expansion</span>
 
 <span class="sd">    This function is the inverse of ``mu_compress``. Given a mu-law compressed</span>
@@ -1855,7 +1896,7 @@
 
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;Inverse mu-law input x=</span><span class="si">{}</span><span class="s2"> must be &quot;</span> <span class="s2">&quot;in the range [-1, +1].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="sa">f</span><span class="s2">&quot;Inverse mu-law input x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> must be in the range [-1, +1].&quot;</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mu</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>

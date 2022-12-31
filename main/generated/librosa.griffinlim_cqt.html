@@ -195,7 +195,7 @@ in FFT.</p>
 in FFT.</p>
 </dd>
 <dt><strong>pad_mode</strong><span class="classifier">string</span></dt><dd><p>Padding mode for centered frame analysis.</p>
-<p>See also: <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.pad</span></code></a>.</p>
+<p>See also: <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v1.24)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.pad</span></code></a>.</p>
 </dd>
 <dt><strong>res_type</strong><span class="classifier">string</span></dt><dd><p>The resampling mode for recursive downsampling.</p>
 <p>See <code class="docutils literal notranslate"><span class="pre">librosa.resample</span></code> for a list of available options.</p>
@@ -217,10 +217,10 @@ a magnitude spectrogram with no initial phase estimates.</p>
 an initial guess for phase can be provided, or when you want to resume
 Griffin-Lim from a previous output.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">None, int, or np.random.RandomState</span></dt><dd><p>If int, random_state is the seed used by the random number generator
+<dt><strong>random_state</strong><span class="classifier">None, int, np.random.RandomState, or np.random.Generator</span></dt><dd><p>If int, random_state is the seed used by the random number generator
 for phase initialization.</p>
-<p>If <em class="xref py py-obj">np.random.RandomState</em> instance, the random number generator itself.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to the current <em class="xref py py-obj">np.random</em> object.</p>
+<p>If <em class="xref py py-obj">np.random.RandomState</em> or <em class="xref py py-obj">np.random.Generator</em> instance, the random number generator itself.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to the <em class="xref py py-obj">np.random.default_rng()</em> object.</p>
 </dd>
 </dl>
 </dd>

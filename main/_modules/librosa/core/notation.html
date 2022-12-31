@@ -456,15 +456,15 @@
     <span class="n">svara_map</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;Sa&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Ri</span><span class="se">\u2081</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Ri2/Ga1</span>
-        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Ri3/Ga2</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Ri2/Ga1</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Ri3/Ga2</span>
         <span class="s2">&quot;Ga</span><span class="se">\u2083</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Ma</span><span class="se">\u2081</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Ma</span><span class="se">\u2082</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Pa&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Dha</span><span class="se">\u2081</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Dha2/Ni1</span>
-        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Dha3/Ni2</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Dha2/Ni1</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Dha3/Ni2</span>
         <span class="s2">&quot;Ni</span><span class="se">\u2083</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="p">]</span>
 
@@ -512,15 +512,12 @@
         <span class="n">svara_map</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Ni</span><span class="se">\u2082</span><span class="s2">&quot;</span>
 
     <span class="k">if</span> <span class="n">abbr</span><span class="p">:</span>
-        <span class="n">svara_map</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">svara_map</span>
-        <span class="p">]</span>
+        <span class="n">t_abbr</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">})</span>
+        <span class="n">svara_map</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">t_abbr</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">svara_map</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">unicode</span><span class="p">:</span>
-        <span class="n">svara_map</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="s2">&quot;</span><span class="se">\u2081</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\u2082</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\u2083</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">}))</span>
-            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">svara_map</span>
-        <span class="p">]</span>
+        <span class="n">t_uni</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="s2">&quot;</span><span class="se">\u2081</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\u2082</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\u2083</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">})</span>
+        <span class="n">svara_map</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">t_uni</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">svara_map</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">svara_map</span><span class="p">)</span></div>
 
@@ -667,7 +664,7 @@
     <span class="n">match</span> <span class="o">=</span> <span class="n">KEY_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Improper key format: </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper key format: </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">pitch_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}</span>
     <span class="n">acc_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
@@ -806,7 +803,7 @@
     <span class="n">match</span> <span class="o">=</span> <span class="n">KEY_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Improper key format: </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper key format: </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">pitch_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}</span>
     <span class="n">acc_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
@@ -959,15 +956,17 @@
 <span class="n">SUPER_TRANS</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">,</span> <span class="s2">&quot;⁰¹²³⁴⁵⁶⁷⁸⁹&quot;</span><span class="p">)</span>
 <span class="n">SUB_TRANS</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;0123456789&quot;</span><span class="p">,</span> <span class="s2">&quot;₀₁₂₃₄₅₆₇₈₉&quot;</span><span class="p">)</span>
 
+
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">interval_to_fjs</span><span class="p">(</span>
     <span class="n">interval</span><span class="p">:</span> <span class="n">_FloatLike_co</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span>
+    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="o">...</span>
+
 
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">interval_to_fjs</span><span class="p">(</span>
@@ -975,9 +974,10 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span>
+    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="o">...</span>
+
 
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">interval_to_fjs</span><span class="p">(</span>
@@ -985,9 +985,10 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span>
+    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="o">...</span>
+
 
 <div class="viewcode-block" id="interval_to_fjs"><a class="viewcode-back" href="../../../generated/librosa.interval_to_fjs.html#librosa.interval_to_fjs">[docs]</a><span class="nd">@vectorize</span><span class="p">(</span><span class="n">otypes</span><span class="o">=</span><span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="n">excluded</span><span class="o">=</span><span class="nb">set</span><span class="p">([</span><span class="s2">&quot;unison&quot;</span><span class="p">,</span> <span class="s2">&quot;tolerance&quot;</span><span class="p">,</span> <span class="s2">&quot;unicode&quot;</span><span class="p">]))</span>
 <span class="k">def</span> <span class="nf">interval_to_fjs</span><span class="p">(</span>
@@ -995,7 +996,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span>
     <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">65.0</span> <span class="o">/</span> <span class="mi">63</span><span class="p">,</span>
-    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Convert an interval to Functional Just System (FJS) notation.</span>
 
@@ -1077,7 +1078,9 @@
 <span class="sd">    array([&#39;G&#39;, &#39;F&#39;, &#39;A⁵&#39;], dtype=&#39;&lt;U2&#39;)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># suppressing the type check here because mypy won&#39;t introspect through</span>
+    <span class="c1"># numpy vectorization</span>
+    <span class="k">if</span> <span class="n">interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># type: ignore</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interval=</span><span class="si">{</span><span class="n">interval</span><span class="si">}</span><span class="s2"> must be strictly positive&quot;</span><span class="p">)</span>
 
     <span class="c1"># Find the approximate number of fifth-steps to get within tolerance</span>

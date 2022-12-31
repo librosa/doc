@@ -117,14 +117,13 @@
 
 <span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">valid_intervals</span>
+<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_SequenceLike</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;match_intervals&quot;</span><span class="p">,</span> <span class="s2">&quot;match_events&quot;</span><span class="p">]</span>
 
 
-<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">__jaccard</span><span class="p">(</span>
-    <span class="n">int_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">int_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
-<span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">__jaccard</span><span class="p">(</span><span class="n">int_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">int_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
     <span class="sd">&quot;&quot;&quot;Jaccard similarity between two intervals</span>
 
 <span class="sd">    Parameters</span>
@@ -169,8 +168,10 @@
     <span class="k">return</span> <span class="n">best_idx</span>
 
 
-<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">__match_intervals</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">__match_intervals</span><span class="p">(</span>
+    <span class="n">intervals_from</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
     <span class="sd">&quot;&quot;&quot;Numba-accelerated interval matching algorithm.&quot;&quot;&quot;</span>
     <span class="c1"># sort index of the interval starts</span>
     <span class="n">start_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">intervals_to</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
@@ -312,16 +313,15 @@
     <span class="n">valid_intervals</span><span class="p">(</span><span class="n">intervals_to</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">__match_intervals</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="n">strict</span><span class="p">)</span>
+        <span class="c1"># Suppress type check because of numba wrapper</span>
+        <span class="k">return</span> <span class="n">__match_intervals</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="n">strict</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="k">except</span> <span class="n">ParameterError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;Unable to match intervals with strict=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">strict</span><span class="p">)</span>
-        <span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to match intervals with strict=</span><span class="si">{</span><span class="n">strict</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
 
 
 <div class="viewcode-block" id="match_events"><a class="viewcode-back" href="../../../generated/librosa.util.match_events.html#librosa.util.match_events">[docs]</a><span class="k">def</span> <span class="nf">match_events</span><span class="p">(</span>
-    <span class="n">events_from</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">events_to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">events_from</span><span class="p">:</span> <span class="n">_SequenceLike</span><span class="p">,</span>
+    <span class="n">events_to</span><span class="p">:</span> <span class="n">_SequenceLike</span><span class="p">,</span>
     <span class="n">left</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">right</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -413,12 +413,17 @@
     <span class="c1"># array of matched items</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">events_from</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">__match_events_helper</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span></div>
+    <span class="c1"># Suppress type check because of numba</span>
+    <span class="k">return</span> <span class="n">__match_events_helper</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
 
 
-<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 <span class="k">def</span> <span class="nf">__match_events_helper</span><span class="p">(</span>
-    <span class="n">output</span><span class="p">,</span> <span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">events_from</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">events_to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">left</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">right</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>  <span class="c1"># pragma: no cover</span>
     <span class="c1"># mock dictionary for events</span>
     <span class="n">from_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">events_from</span><span class="p">)</span>

@@ -153,7 +153,7 @@
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
-<span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span>
+<span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_FloatLike_co</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;cross_similarity&quot;</span><span class="p">,</span>
@@ -165,6 +165,7 @@
     <span class="s2">&quot;subsegment&quot;</span><span class="p">,</span>
     <span class="s2">&quot;path_enhance&quot;</span><span class="p">,</span>
 <span class="p">]</span>
+
 
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">cross_similarity</span><span class="p">(</span>
@@ -179,6 +180,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="o">...</span>
 
+
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">cross_similarity</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -192,6 +194,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">:</span>
     <span class="o">...</span>
 
+
 <div class="viewcode-block" id="cross_similarity"><a class="viewcode-back" href="../../generated/librosa.segment.cross_similarity.html#librosa.segment.cross_similarity">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cross_similarity</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -201,7 +204,7 @@
     <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Compute cross-similarity from one data sequence to a reference sequence.</span>
 
@@ -392,7 +395,7 @@
     <span class="n">xsim</span><span class="o">.</span><span class="n">eliminate_zeros</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span>
-        <span class="n">xsim</span> <span class="o">=</span> <span class="n">xsim</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="n">xsim</span> <span class="o">=</span> <span class="n">xsim</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;affinity&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">xsim</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -423,6 +426,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">:</span>
     <span class="o">...</span>
 
+
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">recurrence_matrix</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -433,11 +437,12 @@
     <span class="n">sym</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="bp">self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="o">...</span>
+
 
 <div class="viewcode-block" id="recurrence_matrix"><a class="viewcode-back" href="../../generated/librosa.segment.recurrence_matrix.html#librosa.segment.recurrence_matrix">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">recurrence_matrix</span><span class="p">(</span>
@@ -449,7 +454,7 @@
     <span class="n">sym</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="bp">self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">]:</span>
@@ -687,7 +692,7 @@
     <span class="n">rec</span><span class="o">.</span><span class="n">eliminate_zeros</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span>
-        <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;affinity&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -706,7 +711,10 @@
     <span class="k">return</span> <span class="n">rec</span></div>
 
 
-<span class="n">_ArrayOrSparseMatrix</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_ArrayOrSparseMatrix&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">])</span>
+<span class="n">_ArrayOrSparseMatrix</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span>
+    <span class="s2">&quot;_ArrayOrSparseMatrix&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">]</span>
+<span class="p">)</span>
+
 
 <div class="viewcode-block" id="recurrence_to_lag"><a class="viewcode-back" href="../../generated/librosa.segment.recurrence_to_lag.html#librosa.segment.recurrence_to_lag">[docs]</a><span class="k">def</span> <span class="nf">recurrence_to_lag</span><span class="p">(</span>
     <span class="n">rec</span><span class="p">:</span> <span class="n">_ArrayOrSparseMatrix</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -788,7 +796,8 @@
     <span class="n">sparse</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
-        <span class="n">fmt</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">format</span>
+        <span class="c1"># suppress type check here, mypy doesn&#39;t know about issparse</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">format</span>  <span class="c1"># type: ignore</span>
 
     <span class="n">t</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
 
@@ -801,14 +810,17 @@
                 <span class="n">rec_fmt</span> <span class="o">=</span> <span class="s2">&quot;csc&quot;</span>
             <span class="n">rec</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">rec_fmt</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">padding</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-            <span class="n">padding</span><span class="p">[(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">axis</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-            <span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
+            <span class="n">padding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+            <span class="n">padding</span><span class="p">[(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">axis</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+            <span class="c1"># Suppress type check, mypy doesn&#39;t know that rec is an ndarray here</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
-    <span class="n">lag</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">shear</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">factor</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">lag</span><span class="p">:</span> <span class="n">_ArrayOrSparseMatrix</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">shear</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">factor</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
-        <span class="n">lag</span> <span class="o">=</span> <span class="n">lag</span><span class="o">.</span><span class="n">asformat</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+        <span class="c1"># Suppress type check, mypy doesn&#39;t know</span>
+        <span class="c1"># that lag is sparse here</span>
+        <span class="n">lag</span> <span class="o">=</span> <span class="n">lag</span><span class="o">.</span><span class="n">asformat</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">return</span> <span class="n">lag</span></div>
 
@@ -888,10 +900,12 @@
 
     <span class="n">sub_slice</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">rec</span><span class="o">.</span><span class="n">ndim</span>
     <span class="n">sub_slice</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">rec</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">sub_slice</span><span class="p">)]</span></div>
+    <span class="n">rec_slice</span><span class="p">:</span> <span class="n">_ArrayOrSparseMatrix</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">sub_slice</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">rec_slice</span></div>
 
 
 <span class="n">_F</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_F&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
+
 
 <div class="viewcode-block" id="timelag_filter"><a class="viewcode-back" href="../../generated/librosa.segment.timelag_filter.html#librosa.segment.timelag_filter">[docs]</a><span class="k">def</span> <span class="nf">timelag_filter</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">_F</span><span class="p">,</span> <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_F</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Filtering in the time-lag domain.</span>
@@ -971,7 +985,7 @@
         <span class="c1"># Map back into time-time and return</span>
         <span class="k">return</span> <span class="n">lag_to_recurrence</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">decorator</span><span class="p">(</span><span class="n">__my_filter</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">decorator</span><span class="p">(</span><span class="n">__my_filter</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
 
 
 <div class="viewcode-block" id="subsegment"><a class="viewcode-back" href="../../generated/librosa.segment.subsegment.html#librosa.segment.subsegment">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -1313,9 +1327,9 @@
 
     <span class="k">if</span> <span class="n">clip</span><span class="p">:</span>
         <span class="c1"># Clip the output in-place</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">R_smooth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">R_smooth</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">R_smooth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">R_smooth</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
-    <span class="k">return</span> <span class="n">R_smooth</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">R_smooth</span><span class="p">)</span></div>
 </pre></div>
 
 

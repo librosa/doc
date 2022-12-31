@@ -153,7 +153,7 @@ By default, DCT type-2 is used.</p>
 DCT basis.
 Normalization is not supported for <code class="docutils literal notranslate"><span class="pre">dct_type=1</span></code>.</p>
 </dd>
-<dt><strong>ref</strong><span class="classifier">number or callable</span></dt><dd><p>Reference power for (inverse) decibel calculation</p>
+<dt><strong>ref</strong><span class="classifier">float</span></dt><dd><p>Reference power for (inverse) decibel calculation</p>
 </dd>
 <dt><strong>lifter</strong><span class="classifier">number &gt;= 0</span></dt><dd><dl class="simple">
 <dt>If <code class="docutils literal notranslate"><span class="pre">lifter&gt;0</span></code>, apply inverse liftering (inverse cepstral filtering)::</dt><dd><p>M[n, :] &lt;- M[n, :] / (1 + sin(pi * (n + 1) / lifter)) * lifter / 2</p>

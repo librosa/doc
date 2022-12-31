@@ -200,11 +200,11 @@ a magnitude spectrogram with no initial phase estimates.</p>
 an initial guess for phase can be provided, or when you want to resume
 Griffin-Lim from a previous output.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">None, int, or np.random.RandomState</span></dt><dd><p>If int, random_state is the seed used by the random number generator
+<dt><strong>random_state</strong><span class="classifier">None, int, np.random.RandomState, or np.random.Generator</span></dt><dd><p>If int, random_state is the seed used by the random number generator
 for phase initialization.</p>
-<p>If <em class="xref py py-obj">np.random.RandomState</em> instance, the random number
+<p>If <em class="xref py py-obj">np.random.RandomState</em> or <em class="xref py py-obj">np.random.Generator</em> instance, the random number
 generator itself.</p>
-<p>If <em class="xref py py-obj">None</em>, defaults to the current <em class="xref py py-obj">np.random</em> object.</p>
+<p>If <em class="xref py py-obj">None</em>, defaults to the <em class="xref py py-obj">np.random.default_rng()</em> object.</p>
 </dd>
 </dl>
 </dd>

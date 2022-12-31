@@ -120,7 +120,7 @@
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">is_unique</span>
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;salience&quot;</span><span class="p">,</span> <span class="s2">&quot;interp_harmonics&quot;</span><span class="p">]</span>
 
@@ -129,7 +129,7 @@
     <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">freqs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">harmonics</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
+    <span class="n">harmonics</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">filter_peaks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -224,6 +224,7 @@
 
     <span class="n">S_harm</span> <span class="o">=</span> <span class="n">interp_harmonics</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="n">freqs</span><span class="p">,</span> <span class="n">harmonics</span><span class="o">=</span><span class="n">harmonics</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
+    <span class="n">S_sal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
     <span class="k">if</span> <span class="n">aggregate</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">:</span>
         <span class="n">S_sal</span> <span class="o">=</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">S_harm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -357,8 +358,8 @@
         <span class="c1"># Set the interpolation points</span>
         <span class="n">f_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">harmonics</span><span class="p">,</span> <span class="n">freqs</span><span class="p">)</span>
 
-        <span class="c1"># Interpolate</span>
-        <span class="k">return</span> <span class="n">f_interp</span><span class="p">(</span><span class="n">f_out</span><span class="p">)</span>
+        <span class="c1"># Interpolate; suppress type checks</span>
+        <span class="k">return</span> <span class="n">f_interp</span><span class="p">(</span><span class="n">f_out</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">elif</span> <span class="n">freqs</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">is_unique</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)):</span>
@@ -384,7 +385,7 @@
         <span class="c1"># Rotate the vectorizing axis to the tail so that we get parallelism over frames</span>
         <span class="c1"># Afterward, we&#39;re swapping (-1, axis-1) instead of (-1,axis)</span>
         <span class="c1"># because a new dimension has been inserted</span>
-        <span class="k">return</span> <span class="p">(</span>
+        <span class="k">return</span> <span class="p">(</span>  <span class="c1"># type: ignore</span>
             <span class="n">xfunc</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
             <span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span>
                 <span class="c1"># Return the original target axis to its place</span>

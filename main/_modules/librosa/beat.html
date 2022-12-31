@@ -290,15 +290,13 @@
     <span class="n">beats</span> <span class="o">=</span> <span class="n">__beat_tracker</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">bpm</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="o">/</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">beats</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;samples&quot;</span><span class="p">:</span>
-        <span class="n">beats</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">))</span>
     <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
-        <span class="n">beats</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Invalid unit type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">beats</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Invalid unit type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="tempo"><a class="viewcode-back" href="../../generated/librosa.beat.tempo.html#librosa.beat.tempo">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -454,7 +452,7 @@
 
     <span class="c1"># Kill everything above the max tempo</span>
     <span class="k">if</span> <span class="n">max_tempo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">bpms</span> <span class="o">&lt;</span> <span class="n">max_tempo</span><span class="p">)</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">bpms</span> <span class="o">&lt;</span> <span class="n">max_tempo</span><span class="p">))</span>
         <span class="n">logprior</span><span class="p">[:</span><span class="n">max_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
     <span class="c1"># explicit axis expansion</span>
     <span class="n">logprior</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">expand_to</span><span class="p">(</span><span class="n">logprior</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="n">tg</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">axes</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
@@ -463,7 +461,8 @@
     <span class="c1"># Using log1p here for numerical stability</span>
     <span class="n">best_period</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="mf">1e6</span> <span class="o">*</span> <span class="n">tg</span><span class="p">)</span> <span class="o">+</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">bpms</span><span class="p">,</span> <span class="n">best_period</span><span class="p">)</span></div>
+    <span class="n">tempo_est</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">bpms</span><span class="p">,</span> <span class="n">best_period</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tempo_est</span></div>
 
 
 <div class="viewcode-block" id="plp"><a class="viewcode-back" href="../../generated/librosa.beat.plp.html#librosa.beat.plp">[docs]</a><span class="k">def</span> <span class="nf">plp</span><span class="p">(</span>
@@ -782,13 +781,13 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">((</span><span class="n">cumscore</span> <span class="o">*</span> <span class="n">maxes</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">med_score</span><span class="p">))</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="n">trim</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">beats</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Final post-processing: throw out spurious leading/trailing beats&quot;&quot;&quot;</span>
 
     <span class="n">smooth_boe</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">localscore</span><span class="p">[</span><span class="n">beats</span><span class="p">],</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">trim</span><span class="p">:</span>
-        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">smooth_boe</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">smooth_boe</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.0</span>
 

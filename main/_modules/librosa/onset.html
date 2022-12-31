@@ -131,7 +131,7 @@
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 
 <span class="kn">from</span> <span class="nn">.feature.spectral</span> <span class="kn">import</span> <span class="n">melspectrogram</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;onset_detect&quot;</span><span class="p">,</span> <span class="s2">&quot;onset_strength&quot;</span><span class="p">,</span> <span class="s2">&quot;onset_strength_multi&quot;</span><span class="p">,</span> <span class="s2">&quot;onset_backtrack&quot;</span><span class="p">]</span>
 
@@ -257,9 +257,14 @@
     <span class="c1"># (a common normalization step to make the threshold more consistent)</span>
     <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
         <span class="c1"># Normalize onset strength function to [0, 1] range</span>
-        <span class="n">onset_envelope</span> <span class="o">=</span> <span class="n">onset_envelope</span> <span class="o">-</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">onset_envelope</span> <span class="o">=</span> <span class="n">onset_envelope</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>
+
+        <span class="c1"># Mypy does not realize that oenv is not None by now</span>
         <span class="c1"># Max-scale with safe division</span>
-        <span class="n">onset_envelope</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>
+        <span class="n">onset_envelope</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+
+    <span class="c1"># help out mypy</span>
+    <span class="k">assert</span> <span class="n">onset_envelope</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
     <span class="c1"># Do we have any onsets to grab?</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)):</span>
@@ -281,7 +286,7 @@
         <span class="k">if</span> <span class="n">backtrack</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">energy</span> <span class="o">=</span> <span class="n">onset_envelope</span>
-
+            <span class="k">assert</span> <span class="n">energy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="n">onsets</span> <span class="o">=</span> <span class="n">onset_backtrack</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
@@ -307,7 +312,7 @@
     <span class="n">detrend</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">feature</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute a spectral flux onset strength envelope.</span>
@@ -429,7 +434,7 @@
 
     <span class="k">if</span> <span class="n">aggregate</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;aggregate=</span><span class="si">{}</span><span class="s2"> cannot be False when computing full-spectrum onset strength.&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;aggregate parameter cannot be False when computing full-spectrum onset strength.&quot;</span>
         <span class="p">)</span>
 
     <span class="n">odf_all</span> <span class="o">=</span> <span class="n">onset_strength_multi</span><span class="p">(</span>
@@ -522,7 +527,8 @@
     <span class="n">minima</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">fix_frames</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">minima</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># Only match going left from the detected events</span>
-    <span class="k">return</span> <span class="n">minima</span><span class="p">[</span><span class="n">util</span><span class="o">.</span><span class="n">match_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">minima</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span></div>
+    <span class="n">results</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">minima</span><span class="p">[</span><span class="n">util</span><span class="o">.</span><span class="n">match_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">minima</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">results</span></div>
 
 
 <div class="viewcode-block" id="onset_strength_multi"><a class="viewcode-back" href="../../generated/librosa.onset.onset_strength_multi.html#librosa.onset.onset_strength_multi">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -540,7 +546,7 @@
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">feature</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">aggregate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">slice</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">slice</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute a spectral flux onset strength envelope across multiple channels.</span>
@@ -699,7 +705,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pad</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">if</span> <span class="n">aggregate</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">aggregate</span><span class="p">):</span>
         <span class="n">onset_env</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span>
             <span class="n">onset_env</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="n">aggregate</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span>
         <span class="p">)</span>
