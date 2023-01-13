@@ -124,7 +124,7 @@
 <span class="kn">import</span> <span class="nn">soxr</span>
 <span class="kn">import</span> <span class="nn">lazy_loader</span> <span class="k">as</span> <span class="nn">lazy</span>
 
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">stencil</span><span class="p">,</span> <span class="n">guvectorize</span>
 <span class="kn">from</span> <span class="nn">.fft</span> <span class="kn">import</span> <span class="n">get_fftlib</span>
 <span class="kn">from</span> <span class="nn">.convert</span> <span class="kn">import</span> <span class="n">frames_to_samples</span><span class="p">,</span> <span class="n">time_to_samples</span>
 <span class="kn">from</span> <span class="nn">.._cache</span> <span class="kn">import</span> <span class="n">cache</span>
@@ -1251,11 +1251,47 @@
     <span class="k">return</span> <span class="n">ar_coeffs</span>
 
 
+<span class="nd">@stencil</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">_zc_stencil</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">zero_pos</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Stencil to compute zero crossings&quot;&quot;&quot;</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="o">-</span><span class="n">threshold</span> <span class="o">&lt;=</span> <span class="n">x0</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="o">-</span><span class="n">threshold</span> <span class="o">&lt;=</span> <span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">zero_pos</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">signbit</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">signbit</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+
+
+<span class="nd">@guvectorize</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;void(float32[:], float32, bool_, bool_[:])&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;void(float64[:], float64, bool_, bool_[:])&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;(n),(),()-&gt;(n)&quot;</span><span class="p">,</span>
+    <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># type: ignore</span>
+<span class="k">def</span> <span class="nf">_zc_wrapper</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">zero_pos</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;Vectorized wrapper for zero crossing stencil&quot;&quot;&quot;</span>
+    <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">_zc_stencil</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">zero_pos</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="zero_crossings"><a class="viewcode-back" href="../../../generated/librosa.zero_crossings.html#librosa.zero_crossings">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">zero_crossings</span><span class="p">(</span>
     <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">threshold</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">ref_magnitude</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">zero_pos</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1272,8 +1308,8 @@
 <span class="sd">    y : np.ndarray</span>
 <span class="sd">        The input array</span>
 
-<span class="sd">    threshold : float &gt; 0 or None</span>
-<span class="sd">        If specified, values where ``-threshold &lt;= y &lt;= threshold`` are</span>
+<span class="sd">    threshold : float &gt;= 0</span>
+<span class="sd">        If non-zero, values where ``-threshold &lt;= y &lt;= threshold`` are</span>
 <span class="sd">        clipped to 0.</span>
 
 <span class="sd">    ref_magnitude : float &gt; 0 or callable</span>
@@ -1347,45 +1383,21 @@
 <span class="sd">    (array([ 0,  3,  5,  8, 10, 12, 15, 17, 19]),)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># TODO: drop support for None thresholds, just use 0</span>
-    <span class="c1"># Clip within the threshold</span>
-    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.0</span>
-
     <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">ref_magnitude</span><span class="p">):</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">ref_magnitude</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
 
     <span class="k">elif</span> <span class="n">ref_magnitude</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">ref_magnitude</span>
 
-    <span class="k">assert</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># because mypy can&#39;t infer we&#39;re float now</span>
-    <span class="k">if</span> <span class="n">threshold</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">yi</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">zi</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
-    <span class="c1"># Extract the sign bit</span>
-    <span class="k">if</span> <span class="n">zero_pos</span><span class="p">:</span>
-        <span class="n">y_sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">signbit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">y_sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">_zc_wrapper</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">zero_pos</span><span class="p">,</span> <span class="n">zi</span><span class="p">)</span>
 
-    <span class="c1"># Find the change-points by slicing</span>
-    <span class="n">slice_pre</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">slice_pre</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">zi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pad</span>
 
-    <span class="n">slice_post</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">slice_post</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># Since we&#39;ve offset the input by one, pad back onto the front</span>
-    <span class="n">padding</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">padding</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">y_sign</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">slice_post</span><span class="p">)]</span> <span class="o">!=</span> <span class="n">y_sign</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">slice_pre</span><span class="p">)]),</span>
-        <span class="n">padding</span><span class="p">,</span>
-        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-        <span class="n">constant_values</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span>
-    <span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">z</span></div>
 
 
 <div class="viewcode-block" id="clicks"><a class="viewcode-back" href="../../../generated/librosa.clicks.html#librosa.clicks">[docs]</a><span class="k">def</span> <span class="nf">clicks</span><span class="p">(</span>

@@ -157,7 +157,7 @@ This is similar to the padding in <a class="reference internal" href="librosa.st
 but uses edge-value copies instead of zero-padding.</p>
 </dd>
 <dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments to pass to <a class="reference internal" href="librosa.zero_crossings.html#librosa.zero_crossings" title="librosa.zero_crossings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.zero_crossings</span></code></a></span></dt><dd></dd>
-<dt><strong>threshold</strong><span class="classifier">float &gt; 0 or None</span></dt><dd><p>If specified, values where <code class="docutils literal notranslate"><span class="pre">-threshold</span> <span class="pre">&lt;=</span> <span class="pre">y</span> <span class="pre">&lt;=</span> <span class="pre">threshold</span></code> are
+<dt><strong>threshold</strong><span class="classifier">float &gt;= 0</span></dt><dd><p>If specified, values where <code class="docutils literal notranslate"><span class="pre">-threshold</span> <span class="pre">&lt;=</span> <span class="pre">y</span> <span class="pre">&lt;=</span> <span class="pre">threshold</span></code> are
 clipped to 0.</p>
 </dd>
 <dt><strong>ref_magnitude</strong><span class="classifier">float &gt; 0 or callable</span></dt><dd><p>If numeric, the threshold is scaled relative to <code class="docutils literal notranslate"><span class="pre">ref_magnitude</span></code>.
