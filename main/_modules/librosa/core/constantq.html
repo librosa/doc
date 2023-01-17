@@ -127,7 +127,7 @@
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">DTypeLike</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">List</span>
-<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_PadMode</span><span class="p">,</span> <span class="n">_FloatLike_co</span>
+<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_PadMode</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_ensure_not_reachable</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;hybrid_cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;pseudo_cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;icqt&quot;</span><span class="p">,</span> <span class="s2">&quot;griffinlim_cqt&quot;</span><span class="p">,</span> <span class="s2">&quot;vqt&quot;</span><span class="p">]</span>
 
@@ -1500,6 +1500,7 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">random_state</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">)):</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">random_state</span>  <span class="c1"># type: ignore</span>
     <span class="k">else</span><span class="p">:</span>
+        <span class="n">_ensure_not_reachable</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported random_state=</span><span class="si">{</span><span class="n">random_state</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">momentum</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>

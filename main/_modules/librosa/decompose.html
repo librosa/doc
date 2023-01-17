@@ -133,7 +133,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">segment</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_IntLike_co</span><span class="p">,</span> <span class="n">_FloatLike_co</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;decompose&quot;</span><span class="p">,</span> <span class="s2">&quot;hpss&quot;</span><span class="p">,</span> <span class="s2">&quot;nn_filter&quot;</span><span class="p">]</span>
@@ -322,10 +322,14 @@
 <span class="k">def</span> <span class="nf">hpss</span><span class="p">(</span>
     <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">kernel_size</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">31</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="n">_IntLike_co</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">,</span> <span class="n">_IntLike_co</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="mi">31</span><span class="p">,</span>
     <span class="n">power</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
     <span class="n">mask</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">margin</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">margin</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Median-filtering harmonic percussive source separation (HPSS).</span>
 
@@ -467,21 +471,19 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">phase</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="c1"># Ignore type checks below because mypy won&#39;t</span>
-    <span class="c1"># introspect through np.isscalar checks</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">):</span>
-        <span class="n">win_harm</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kernel_size</span>  <span class="c1"># type: ignore</span>
-        <span class="n">win_perc</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kernel_size</span>  <span class="c1"># type: ignore</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">win_harm</span> <span class="o">=</span> <span class="n">kernel_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">win_perc</span> <span class="o">=</span> <span class="n">kernel_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">win_harm</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kernel_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
-        <span class="n">win_perc</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">kernel_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="n">win_harm</span> <span class="o">=</span> <span class="n">kernel_size</span>
+        <span class="n">win_perc</span> <span class="o">=</span> <span class="n">kernel_size</span>
 
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">margin</span><span class="p">):</span>
-        <span class="n">margin_harm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">margin</span>  <span class="c1"># type: ignore</span>
-        <span class="n">margin_perc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">margin</span>  <span class="c1"># type: ignore</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">margin</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">margin</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">margin_harm</span> <span class="o">=</span> <span class="n">margin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">margin_perc</span> <span class="o">=</span> <span class="n">margin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">margin_harm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">margin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
-        <span class="n">margin_perc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">margin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="n">margin_harm</span> <span class="o">=</span> <span class="n">margin</span>
+        <span class="n">margin_perc</span> <span class="o">=</span> <span class="n">margin</span>
 
     <span class="c1"># margin minimum is 1.0</span>
     <span class="k">if</span> <span class="n">margin_harm</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">margin_perc</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -490,10 +492,10 @@
         <span class="p">)</span>
 
     <span class="c1"># shape for kernels</span>
-    <span class="n">harm_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="o">.</span><span class="n">ndim</span>
+    <span class="n">harm_shape</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="o">.</span><span class="n">ndim</span>
     <span class="n">harm_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">win_harm</span>
 
-    <span class="n">perc_shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="o">.</span><span class="n">ndim</span>
+    <span class="n">perc_shape</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="o">.</span><span class="n">ndim</span>
     <span class="n">perc_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">win_perc</span>
 
     <span class="c1"># Compute median filters. Pre-allocation here preserves memory layout.</span>
