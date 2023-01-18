@@ -155,6 +155,7 @@
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">core</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">.util.deprecation</span> <span class="kn">import</span> <span class="n">rename_kw</span><span class="p">,</span> <span class="n">Deprecated</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span>
@@ -794,6 +795,9 @@
 <span class="sd">    max_samples : int &gt; 0</span>
 <span class="sd">        The maximum number of samples to use for sample-based display.</span>
 
+<span class="sd">    transpose : bool</span>
+<span class="sd">        If `True`, display the wave vertically instead of horizontally.</span>
+
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    waveshow</span>
@@ -807,6 +811,7 @@
         <span class="n">envelope</span><span class="p">:</span> <span class="n">PolyCollection</span><span class="p">,</span>
         <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
         <span class="n">max_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">11025</span><span class="p">,</span>
+        <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">times</span> <span class="o">=</span> <span class="n">times</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">y</span>
@@ -814,6 +819,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">envelope</span> <span class="o">=</span> <span class="n">envelope</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sr</span> <span class="o">=</span> <span class="n">sr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">=</span> <span class="n">max_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transpose</span> <span class="o">=</span> <span class="n">transpose</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cid</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
 
@@ -883,24 +889,33 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">lims</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">viewLim</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transpose</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">lims</span><span class="o">.</span><span class="n">y1</span>
+            <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">times</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">lims</span><span class="o">.</span><span class="n">x1</span>
+            <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
         <span class="c1"># Does our width cover fewer than max_samples?</span>
         <span class="c1"># If so, then use the sample-based plot</span>
-        <span class="k">if</span> <span class="n">lims</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">envelope</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="c1"># Now check that our viewport</span>
-            <span class="n">xdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">lims</span><span class="o">.</span><span class="n">x0</span> <span class="o">&lt;=</span> <span class="n">xdata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">lims</span><span class="o">.</span><span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">xdata</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="c1"># Now check our viewport</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">end</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
                 <span class="c1"># Viewport expands beyond current data in steps; update</span>
                 <span class="c1"># we want to cover a window of self.max_samples centered on the current viewport</span>
-                <span class="n">midpoint_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">lims</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">lims</span><span class="o">.</span><span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">midpoint_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
                 <span class="n">idx_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">,</span> <span class="n">midpoint_time</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span>
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="n">idx_start</span> <span class="p">:</span> <span class="n">idx_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">],</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx_start</span> <span class="p">:</span> <span class="n">idx_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">],</span>
+                    <span class="n">xdata</span><span class="p">[</span><span class="n">idx_start</span> <span class="p">:</span> <span class="n">idx_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">],</span>
+                    <span class="n">ydata</span><span class="p">[</span><span class="n">idx_start</span> <span class="p">:</span> <span class="n">idx_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">],</span>
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Otherwise, use the envelope plot</span>
@@ -1942,12 +1957,14 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
     <span class="n">max_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">11025</span><span class="p">,</span>
-    <span class="n">x_axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
     <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="n">marker</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MplPath</span><span class="p">,</span> <span class="n">MarkerStyle</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span>
     <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Deprecated</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Deprecated</span><span class="p">(),</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdaptiveWaveplot</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Visualize a waveform in the time domain.</span>
@@ -1992,8 +2009,8 @@
 <span class="sd">        visualized instead.  The parameters of the amplitude envelope are defined so</span>
 <span class="sd">        that the resulting plot cannot produce more than `max_points` frames.</span>
 
-<span class="sd">    x_axis : str or None</span>
-<span class="sd">        Display of the x-axis ticks and tick markers. Accepted values are:</span>
+<span class="sd">    axis : str or None</span>
+<span class="sd">        Display style of the axis ticks and tick markers. Accepted values are:</span>
 
 <span class="sd">        - &#39;time&#39; : markers are shown as milliseconds, seconds, minutes, or hours.</span>
 <span class="sd">                    Values are plotted in units of seconds.</span>
@@ -2018,6 +2035,12 @@
 
 <span class="sd">        - `None`, &#39;none&#39;, or &#39;off&#39;: ticks and tick markers are hidden.</span>
 
+<span class="sd">    x_axis : Deprecated</span>
+<span class="sd">        Equivalent to `axis` parameter, included for backward compatibility.</span>
+
+<span class="sd">        .. warning:: This parameter is deprecated as of 0.10.0 and</span>
+<span class="sd">            will be removed in 1.0.  Use `axis=` instead going forward.</span>
+
 <span class="sd">    ax : matplotlib.axes.Axes or None</span>
 <span class="sd">        Axes to plot on instead of the default `plt.gca()`.</span>
 
@@ -2041,6 +2064,9 @@
 <span class="sd">        The label string applied to this plot.</span>
 <span class="sd">        Note that the label</span>
 
+<span class="sd">    transpose : bool</span>
+<span class="sd">        If `True`, display the wave vertically instead of horizontally.</span>
+
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments to `matplotlib.pyplot.fill_between` and</span>
 <span class="sd">        `matplotlib.pyplot.step`.</span>
@@ -2058,6 +2084,7 @@
 <span class="sd">    AdaptiveWaveplot</span>
 <span class="sd">    matplotlib.pyplot.step</span>
 <span class="sd">    matplotlib.pyplot.fill_between</span>
+<span class="sd">    matplotlib.pyplot.fill_betweenx</span>
 <span class="sd">    matplotlib.markers</span>
 
 <span class="sd">    Examples</span>
@@ -2098,6 +2125,25 @@
 <span class="sd">    &gt;&gt;&gt; ax.legend()</span>
 <span class="sd">    &gt;&gt;&gt; ax2.legend()</span>
 
+<span class="sd">    Plotting a transposed wave along with a self-similarity matrix</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplot_mosaic(&quot;hSSS;hSSS;hSSS;.vvv&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;))</span>
+<span class="sd">    &gt;&gt;&gt; chroma = librosa.feature.chroma_cqt(y=y, sr=sr)</span>
+<span class="sd">    &gt;&gt;&gt; sim = librosa.segment.recurrence_matrix(chroma, mode=&#39;affinity&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.specshow(sim, ax=ax[&#39;S&#39;], sr=sr, </span>
+<span class="sd">    ...                          x_axis=&#39;time&#39;, y_axis=&#39;time&#39;,</span>
+<span class="sd">    ...                          auto_aspect=False)</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;S&#39;].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;S&#39;].sharex(ax[&#39;v&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;S&#39;].sharey(ax[&#39;h&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;S&#39;].set(title=&#39;Self-similarity&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, ax=ax[&#39;v&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;v&#39;].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;v&#39;].set(title=&#39;transpose=False&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, ax=ax[&#39;h&#39;], transpose=True)</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;h&#39;].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax[&#39;h&#39;].set(title=&#39;transpose=True&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -2113,6 +2159,16 @@
     <span class="c1"># Create the adaptive drawing object</span>
     <span class="n">axes</span> <span class="o">=</span> <span class="n">__check_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 
+    <span class="c1"># Handle the x_axis-&gt;axis rename deprecation</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">rename_kw</span><span class="p">(</span>
+        <span class="n">old_name</span><span class="o">=</span><span class="s2">&quot;x_axis&quot;</span><span class="p">,</span>
+        <span class="n">old_value</span><span class="o">=</span><span class="n">x_axis</span><span class="p">,</span>
+        <span class="n">new_name</span><span class="o">=</span><span class="s2">&quot;axis&quot;</span><span class="p">,</span>
+        <span class="n">new_value</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+        <span class="n">version_deprecated</span><span class="o">=</span><span class="s2">&quot;0.10.0&quot;</span><span class="p">,</span>
+        <span class="n">version_removed</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
     <span class="k">if</span> <span class="s2">&quot;color&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">_get_lines</span><span class="o">.</span><span class="n">prop_cycler</span><span class="p">)[</span><span class="s2">&quot;color&quot;</span><span class="p">])</span>
 
@@ -2127,11 +2183,19 @@
     <span class="n">times</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">core</span><span class="o">.</span><span class="n">times_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Only plot up to max_points worth of data here</span>
-    <span class="p">(</span><span class="n">steps</span><span class="p">,)</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
-        <span class="n">times</span><span class="p">[:</span><span class="n">max_points</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="n">max_points</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">)</span>
+    <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="n">times</span><span class="p">[:</span><span class="n">max_points</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="n">max_points</span><span class="p">]</span>
+    <span class="n">filler</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">fill_between</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="s2">&quot;xlim_changed&quot;</span>
+    <span class="n">dec_axis</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span>
+    <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">ydata</span><span class="p">,</span> <span class="n">xdata</span> <span class="o">=</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span>
+        <span class="n">filler</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">fill_betweenx</span>
+        <span class="n">signal</span> <span class="o">=</span> <span class="s2">&quot;ylim_changed&quot;</span>
+        <span class="n">dec_axis</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span>
 
-    <span class="n">envelope</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">steps</span><span class="p">,)</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">envelope</span> <span class="o">=</span> <span class="n">filler</span><span class="p">(</span>
         <span class="n">times</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_top</span><span class="p">)</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="p">:</span> <span class="n">hop_length</span><span class="p">],</span>
         <span class="n">y_bottom</span><span class="p">,</span>
         <span class="n">y_top</span><span class="p">,</span>
@@ -2140,16 +2204,16 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">adaptor</span> <span class="o">=</span> <span class="n">AdaptiveWaveplot</span><span class="p">(</span>
-        <span class="n">times</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">steps</span><span class="p">,</span> <span class="n">envelope</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="n">max_points</span>
+        <span class="n">times</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">steps</span><span class="p">,</span> <span class="n">envelope</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="n">max_points</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="n">transpose</span>
     <span class="p">)</span>
 
-    <span class="n">adaptor</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="s2">&quot;xlim_changed&quot;</span><span class="p">)</span>
+    <span class="n">adaptor</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="n">signal</span><span class="p">)</span>
 
     <span class="c1"># Force an initial update to ensure the state is consistent</span>
     <span class="n">adaptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
 
     <span class="c1"># Construct tickers and locators</span>
-    <span class="n">__decorate_axis</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span> <span class="n">x_axis</span><span class="p">)</span>
+    <span class="n">__decorate_axis</span><span class="p">(</span><span class="n">dec_axis</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">adaptor</span></div>
 </pre></div>
