@@ -79,8 +79,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#rhythm-features">Rhythm features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.tempo.html">librosa.feature.tempo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.tempogram.html">librosa.feature.tempogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.fourier_tempogram.html">librosa.feature.fourier_tempogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/librosa.feature.tempogram_ratio.html">librosa.feature.tempogram_ratio</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#feature-manipulation">Feature manipulation</a><ul>
@@ -213,11 +215,17 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.tempogram.html#librosa.feature.tempogram" title="librosa.feature.tempogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tempogram</span></code></a>(*[, y, sr, onset_envelope, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.tempo.html#librosa.feature.tempo" title="librosa.feature.tempo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tempo</span></code></a>(*[, y, sr, onset_envelope, tg, ...])</p></td>
+<td><p>Estimate the tempo (beats per minute)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.tempogram.html#librosa.feature.tempogram" title="librosa.feature.tempogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tempogram</span></code></a>(*[, y, sr, onset_envelope, ...])</p></td>
 <td><p>Compute the tempogram: local autocorrelation of the onset strength envelope.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.fourier_tempogram.html#librosa.feature.fourier_tempogram" title="librosa.feature.fourier_tempogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier_tempogram</span></code></a>(*[, y, sr, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.fourier_tempogram.html#librosa.feature.fourier_tempogram" title="librosa.feature.fourier_tempogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier_tempogram</span></code></a>(*[, y, sr, ...])</p></td>
 <td><p>Compute the Fourier tempogram: the short-time Fourier transform of the onset strength envelope.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.feature.tempogram_ratio.html#librosa.feature.tempogram_ratio" title="librosa.feature.tempogram_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tempogram_ratio</span></code></a>(*[, y, sr, onset_envelope, ...])</p></td>
+<td><p>Tempogram ratio features, also known as spectral rhythm patterns.</p></td>
 </tr>
 </tbody>
 </table>

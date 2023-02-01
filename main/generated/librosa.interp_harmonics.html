@@ -69,6 +69,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.salience.html">librosa.salience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.f0_harmonics.html">librosa.f0_harmonics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.phase_vocoder.html">librosa.phase_vocoder</a></li>
 </ul>
 </li>
@@ -150,8 +151,11 @@ computation.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">np.ndarray</span></dt><dd><p>The input energy</p>
 </dd>
-<dt><strong>freqs</strong><span class="classifier">np.ndarray, shape=(X.shape[axis])</span></dt><dd><p>The frequency values corresponding to X’s elements along the
-chosen axis.</p>
+<dt><strong>freqs</strong><span class="classifier">np.ndarray, shape=(x.shape[axis]) or shape=x.shape</span></dt><dd><p>The frequency values corresponding to x’s elements along the
+chosen axis.
+Frequencies can also be time-varying, e.g. as computed by
+<a class="reference internal" href="librosa.reassigned_spectrogram.html#librosa.reassigned_spectrogram" title="librosa.reassigned_spectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reassigned_spectrogram</span></code></a>, in which case the shape should
+match <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 </dd>
 <dt><strong>harmonics</strong><span class="classifier">list-like, non-negative</span></dt><dd><p>Harmonics to compute as <code class="docutils literal notranslate"><span class="pre">harmonics[i]</span> <span class="pre">*</span> <span class="pre">freqs</span></code>.
 The first harmonic (1) corresponds to <code class="docutils literal notranslate"><span class="pre">freqs</span></code>.

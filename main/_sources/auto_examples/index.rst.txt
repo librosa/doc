@@ -98,6 +98,23 @@ Advanced examples
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This notebook demonstrates how to extract the harmonic spectrum from an audio signal. The basic...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_spectral_harmonics_thumb.png
+    :alt: Harmonic spectrum
+
+  :ref:`sphx_glr_auto_examples_plot_spectral_harmonics.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Harmonic spectrum</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="In this short tutorial, we demonstrate the use of dynamic time warping (DTW) for music synchron...">
 
 .. only:: html
@@ -228,6 +245,7 @@ Advanced examples
    /auto_examples/plot_presets
    /auto_examples/plot_viterbi
    /auto_examples/plot_superflux
+   /auto_examples/plot_spectral_harmonics
    /auto_examples/plot_music_sync
    /auto_examples/plot_pcen_stream
    /auto_examples/plot_vocal_separation

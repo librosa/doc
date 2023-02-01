@@ -27,7 +27,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="librosa.feature.fourier_tempogram" href="librosa.feature.fourier_tempogram.html" />
-    <link rel="prev" title="librosa.feature.zero_crossing_rate" href="librosa.feature.zero_crossing_rate.html" /> 
+    <link rel="prev" title="librosa.feature.tempo" href="librosa.feature.tempo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,11 +62,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../feature.html">Feature extraction</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../feature.html#spectral-features">Spectral features</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../feature.html#rhythm-features">Rhythm features</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="librosa.feature.tempo.html">librosa.feature.tempo</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">librosa.feature.tempogram</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#librosa.feature.tempogram"><code class="docutils literal notranslate"><span class="pre">tempogram</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.feature.fourier_tempogram.html">librosa.feature.fourier_tempogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.feature.tempogram_ratio.html">librosa.feature.tempogram_ratio</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../feature.html#feature-manipulation">Feature manipulation</a></li>
@@ -199,8 +201,8 @@ If <em class="xref py py-obj">False</em>, windows are left-aligned.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ac_global</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">autocorrelate</span><span class="p">(</span><span class="n">oenv</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="n">tempogram</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ac_global</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">ac_global</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Estimate the global tempo for display purposes</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tempo</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">beat</span><span class="o">.</span><span class="n">tempo</span><span class="p">(</span><span class="n">onset_envelope</span><span class="o">=</span><span class="n">oenv</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
-<span class="gp">... </span>                           <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempo</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">tempo</span><span class="p">(</span><span class="n">onset_envelope</span><span class="o">=</span><span class="n">oenv</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="gp">... </span>                              <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -246,7 +248,7 @@ If <em class="xref py py-obj">False</em>, windows are left-aligned.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="librosa.feature.zero_crossing_rate.html" class="btn btn-neutral float-left" title="librosa.feature.zero_crossing_rate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="librosa.feature.tempo.html" class="btn btn-neutral float-left" title="librosa.feature.tempo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="librosa.feature.fourier_tempogram.html" class="btn btn-neutral float-right" title="librosa.feature.fourier_tempogram" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

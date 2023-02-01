@@ -26,7 +26,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="librosa.phase_vocoder" href="librosa.phase_vocoder.html" />
+    <link rel="next" title="librosa.f0_harmonics" href="librosa.f0_harmonics.html" />
     <link rel="prev" title="librosa.interp_harmonics" href="librosa.interp_harmonics.html" /> 
 </head>
 
@@ -69,6 +69,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#librosa.salience"><code class="docutils literal notranslate"><span class="pre">salience</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="librosa.f0_harmonics.html">librosa.f0_harmonics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="librosa.phase_vocoder.html">librosa.phase_vocoder</a></li>
 </ul>
 </li>
@@ -146,8 +147,11 @@
 <dt><strong>S</strong><span class="classifier">np.ndarray [shape=(…, d, n)]</span></dt><dd><p>input time frequency magnitude representation (e.g. STFT or CQT magnitudes).
 Must be real-valued and non-negative.</p>
 </dd>
-<dt><strong>freqs</strong><span class="classifier">np.ndarray, shape=(S.shape[axis])</span></dt><dd><p>The frequency values corresponding to S’s elements along the
+<dt><strong>freqs</strong><span class="classifier">np.ndarray, shape=(S.shape[axis]) or shape=S.shape</span></dt><dd><p>The frequency values corresponding to S’s elements along the
 chosen axis.</p>
+<p>Frequencies can also be time-varying, e.g. as computed by
+<a class="reference internal" href="librosa.reassigned_spectrogram.html#librosa.reassigned_spectrogram" title="librosa.reassigned_spectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reassigned_spectrogram</span></code></a>, in which case the shape should
+match <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
 </dd>
 <dt><strong>harmonics</strong><span class="classifier">list-like, non-negative</span></dt><dd><p>Harmonics to include in salience computation.  The first harmonic (1)
 corresponds to <code class="docutils literal notranslate"><span class="pre">S</span></code> itself. Values less than one (e.g., 1/2) correspond
@@ -225,7 +229,7 @@ the overall harmonic energy at each frequency.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="librosa.interp_harmonics.html" class="btn btn-neutral float-left" title="librosa.interp_harmonics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="librosa.phase_vocoder.html" class="btn btn-neutral float-right" title="librosa.phase_vocoder" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="librosa.f0_harmonics.html" class="btn btn-neutral float-right" title="librosa.f0_harmonics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
