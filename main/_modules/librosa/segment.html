@@ -176,7 +176,8 @@
     <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="o">...</span>
 
@@ -190,7 +191,8 @@
     <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">:</span>
     <span class="o">...</span>
 
@@ -204,7 +206,8 @@
     <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Compute cross-similarity from one data sequence to a reference sequence.</span>
 
@@ -252,12 +255,57 @@
 <span class="sd">        ``exp( - distance(i, j) / bandwidth)`` where ``bandwidth`` is</span>
 <span class="sd">        as specified below.</span>
 
-<span class="sd">    bandwidth : None or float &gt; 0</span>
+<span class="sd">    bandwidth : None, float &gt; 0, ndarray, or str</span>
+<span class="sd">        str options include ``{&#39;med_k_scalar&#39;, &#39;mean_k&#39;, &#39;gmean_k&#39;, &#39;mean_k_avg&#39;, &#39;gmean_k_avg&#39;, &#39;mean_k_avg_and_pair&#39;}``</span>
+
+<span class="sd">        If ndarray is supplied, use ndarray as bandwidth for each i,j pair.</span>
+
 <span class="sd">        If using ``mode=&#39;affinity&#39;``, this can be used to set the</span>
 <span class="sd">        bandwidth on the affinity kernel.</span>
 
-<span class="sd">        If no value is provided, it is set automatically to the median</span>
+<span class="sd">        If no value is provided or ``None``, default to ``&#39;med_k_scalar&#39;``.</span>
+
+<span class="sd">        If ``bandwidth=&#39;med_k_scalar&#39;``, bandwidth is set automatically to the median</span>
 <span class="sd">        distance to the k&#39;th nearest neighbor of each ``data[:, i]``.</span>
+
+<span class="sd">        If ``bandwidth=&#39;mean_k&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        arithmetic mean between distances to the k-th nearest neighbor for sample i and sample j.</span>
+
+<span class="sd">        If ``bandwidth=&#39;gmean_k&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        geometric mean between distances to the k-th nearest neighbor for sample i and j [#z]_.</span>
+
+<span class="sd">        If ``bandwidth=&#39;mean_k_avg&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        arithmetic mean between the average distances to the first k-th nearest neighbors for</span>
+<span class="sd">        sample i and sample j.</span>
+<span class="sd">        This is similar to the approach in Wang et al. (2014) [#w]_ but does not include the distance</span>
+<span class="sd">        between i and j.</span>
+
+<span class="sd">        If ``bandwidth=&#39;gmean_k_avg&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        geometric mean between the average distances to the first k-th nearest neighbors for</span>
+<span class="sd">        sample i and sample j.</span>
+
+<span class="sd">        If ``bandwidth=&#39;mean_k_avg_and_pair&#39;``, bandwidth is estimated for each sample-pair (i, j) by</span>
+<span class="sd">        taking the arithmetic mean between three terms: the average distances to the first</span>
+<span class="sd">        k-th nearest neighbors for sample i and sample j respectively, as well as</span>
+<span class="sd">        the distance between i and j.</span>
+<span class="sd">        This is similar to the approach in Wang et al. (2014). [#w]_</span>
+
+<span class="sd">        .. [#z] Zelnik-Manor, Lihi, and Pietro Perona. (2004).</span>
+<span class="sd">            &quot;Self-tuning spectral clustering.&quot; Advances in neural information processing systems 17.</span>
+
+<span class="sd">        .. [#w] Wang, Bo, et al. (2014).</span>
+<span class="sd">            &quot;Similarity network fusion for aggregating data types on a genomic scale.&quot; Nat Methods 11, 333–337.</span>
+<span class="sd">            https://doi.org/10.1038/nmeth.2810</span>
+
+<span class="sd">    full : bool</span>
+<span class="sd">        If using ``mode =&#39;affinity&#39;`` or ``mode=&#39;distance&#39;``, this option can be used to compute</span>
+<span class="sd">        the full affinity or distance matrix as opposed a sparse matrix with only none-zero terms</span>
+<span class="sd">        for the first k-neighbors of each sample.</span>
+<span class="sd">        This option has no effect when using ``mode=&#39;connectivity&#39;``.</span>
+
+<span class="sd">        When using ``mode=&#39;distance&#39;``, setting ``full=True`` will ignore ``k`` and ``width``.</span>
+<span class="sd">        When using ``mode=&#39;affinity&#39;``, setting ``full=True`` will use ``k`` exclusively for</span>
+<span class="sd">        bandwidth estimation, and ignore ``width``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -349,11 +397,10 @@
 
     <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">bandwidth</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                <span class="s2">&quot;Invalid bandwidth=</span><span class="si">{}</span><span class="s2">. &quot;</span> <span class="s2">&quot;Must be strictly positive.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)</span>
-            <span class="p">)</span>
+    <span class="c1"># using k for bandwidth estimation also and decouple k for full mode</span>
+    <span class="n">bandwidth_k</span> <span class="o">=</span> <span class="n">k</span>
+    <span class="k">if</span> <span class="n">full</span> <span class="ow">and</span> <span class="p">(</span><span class="n">mode</span> <span class="o">!=</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">n</span>
 
     <span class="c1"># Build the neighbor search object</span>
     <span class="c1"># `auto` mode does not work with some choices of metric.  Rather than special-case</span>
@@ -379,16 +426,17 @@
 
     <span class="n">xsim</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">kneighbors_graph</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">kng_mode</span><span class="p">)</span><span class="o">.</span><span class="n">tolil</span><span class="p">()</span>
 
-    <span class="c1"># Retain only the top-k links per point</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="c1"># Get the links from point i</span>
-        <span class="n">links</span> <span class="o">=</span> <span class="n">xsim</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">full</span><span class="p">:</span>
+        <span class="c1"># Retain only the top-k links per point</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="c1"># Get the links from point i</span>
+            <span class="n">links</span> <span class="o">=</span> <span class="n">xsim</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
-        <span class="c1"># Order them ascending</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">xsim</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">links</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">())][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Order them ascending</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">xsim</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">links</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">())][</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="c1"># Everything past the kth closest gets squashed</span>
-        <span class="n">xsim</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">k</span><span class="p">:]]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Everything past the kth closest gets squashed</span>
+            <span class="n">xsim</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">k</span><span class="p">:]]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># Convert a compressed sparse row (CSR) format</span>
     <span class="n">xsim</span> <span class="o">=</span> <span class="n">xsim</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
@@ -397,9 +445,8 @@
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span>
         <span class="n">xsim</span> <span class="o">=</span> <span class="n">xsim</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;affinity&quot;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">xsim</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">xsim</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">xsim</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">bandwidth</span><span class="p">))</span>
+        <span class="n">aff_bandwidth</span> <span class="o">=</span> <span class="n">__affinity_bandwidth</span><span class="p">(</span><span class="n">xsim</span><span class="p">,</span> <span class="n">bandwidth</span><span class="p">,</span> <span class="n">bandwidth_k</span><span class="p">)</span>
+        <span class="n">xsim</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">xsim</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">aff_bandwidth</span><span class="p">))</span>
 
     <span class="c1"># Transpose to n_ref by n</span>
     <span class="n">xsim</span> <span class="o">=</span> <span class="n">xsim</span><span class="o">.</span><span class="n">T</span>
@@ -420,9 +467,10 @@
     <span class="n">sym</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="bp">self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">:</span>
     <span class="o">...</span>
 
@@ -437,9 +485,10 @@
     <span class="n">sym</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="bp">self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="o">...</span>
 
@@ -454,9 +503,10 @@
     <span class="n">sym</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">,</span>
-    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="bp">self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Compute a recurrence matrix from a data matrix.</span>
 
@@ -519,12 +569,47 @@
 <span class="sd">        ``exp( - distance(i, j) / bandwidth)`` where ``bandwidth`` is</span>
 <span class="sd">        as specified below.</span>
 
-<span class="sd">    bandwidth : None or float &gt; 0</span>
-<span class="sd">        If using ``mode=&#39;affinity&#39;``, this can be used to set the</span>
+<span class="sd">    bandwidth : None, float &gt; 0, ndarray, or str</span>
+<span class="sd">        str options include ``{&#39;med_k_scalar&#39;, &#39;mean_k&#39;, &#39;gmean_k&#39;, &#39;mean_k_avg&#39;, &#39;gmean_k_avg&#39;, &#39;mean_k_avg_and_pair&#39;}``</span>
+
+<span class="sd">        If ndarray is supplied, use ndarray as bandwidth for each i,j pair.</span>
+
+<span class="sd">        If using ``mode=&#39;affinity&#39;``, the ``bandwidth`` option can be used to set the</span>
 <span class="sd">        bandwidth on the affinity kernel.</span>
 
-<span class="sd">        If no value is provided, it is set automatically to the median</span>
-<span class="sd">        distance between furthest nearest neighbors.</span>
+<span class="sd">        If no value is provided or ``None``, default to ``&#39;med_k_scalar&#39;``.</span>
+
+<span class="sd">        If ``bandwidth=&#39;med_k_scalar&#39;``, a scalar bandwidth is set to the median distance</span>
+<span class="sd">        of the k-th nearest neighbor for all samples.</span>
+
+<span class="sd">        If ``bandwidth=&#39;mean_k&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        arithmetic mean between distances to the k-th nearest neighbor for sample i and sample j.</span>
+
+<span class="sd">        If ``bandwidth=&#39;gmean_k&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        geometric mean between distances to the k-th nearest neighbor for sample i and j [#z]_.</span>
+
+<span class="sd">        If ``bandwidth=&#39;mean_k_avg&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        arithmetic mean between the average distances to the first k-th nearest neighbors for</span>
+<span class="sd">        sample i and sample j.</span>
+<span class="sd">        This is similar to the approach in Wang et al. (2014) [#w]_ but does not include the distance</span>
+<span class="sd">        between i and j.</span>
+
+<span class="sd">        If ``bandwidth=&#39;gmean_k_avg&#39;``, bandwidth is estimated for each sample-pair (i, j) by taking the</span>
+<span class="sd">        geometric mean between the average distances to the first k-th nearest neighbors for</span>
+<span class="sd">        sample i and sample j.</span>
+
+<span class="sd">        If ``bandwidth=&#39;mean_k_avg_and_pair&#39;``, bandwidth is estimated for each sample-pair (i, j) by</span>
+<span class="sd">        taking the arithmetic mean between three terms: the average distances to the first</span>
+<span class="sd">        k-th nearest neighbors for sample i and sample j respectively, as well as</span>
+<span class="sd">        the distance between i and j.</span>
+<span class="sd">        This is similar to the approach in Wang et al. (2014). [#w]_</span>
+
+<span class="sd">        .. [#z] Zelnik-Manor, Lihi, and Pietro Perona. (2004).</span>
+<span class="sd">            &quot;Self-tuning spectral clustering.&quot; Advances in neural information processing systems 17.</span>
+
+<span class="sd">        .. [#w] Wang, Bo, et al. (2014).</span>
+<span class="sd">            &quot;Similarity network fusion for aggregating data types on a genomic scale.&quot; Nat Methods 11, 333–337.</span>
+<span class="sd">            https://doi.org/10.1038/nmeth.2810</span>
 
 <span class="sd">    self : bool</span>
 <span class="sd">        If ``True``, then the main diagonal is populated with self-links:</span>
@@ -535,6 +620,16 @@
 <span class="sd">    axis : int</span>
 <span class="sd">        The axis along which to compute recurrence.</span>
 <span class="sd">        By default, the last index (-1) is taken.</span>
+
+<span class="sd">    full : bool</span>
+<span class="sd">        If using ``mode =&#39;affinity&#39;`` or ``mode=&#39;distance&#39;``, this option can be used to compute</span>
+<span class="sd">        the full affinity or distance matrix as opposed a sparse matrix with only none-zero terms</span>
+<span class="sd">        for the first k-neighbors of each sample.</span>
+<span class="sd">        This option has no effect when using ``mode=&#39;connectivity&#39;``.</span>
+
+<span class="sd">        When using ``mode=&#39;distance&#39;``, setting ``full=True`` will ignore ``k`` and ``width``.</span>
+<span class="sd">        When using ``mode=&#39;affinity&#39;``, setting ``full=True`` will use ``k`` exclusively for</span>
+<span class="sd">        bandwidth estimation, and ignore ``width``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -607,10 +702,10 @@
     <span class="c1"># Use F-ordering here to preserve leading axis layout</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">width</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;width=</span><span class="si">{}</span><span class="s2"> must be at least 1 and at most data.shape[</span><span class="si">{}</span><span class="s2">]=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">width</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">t</span>
+            <span class="s2">&quot;width=</span><span class="si">{}</span><span class="s2"> must be at least 1 and at most (data.shape[</span><span class="si">{}</span><span class="s2">] - 1) // 2=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">width</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
             <span class="p">)</span>
         <span class="p">)</span>
 
@@ -623,18 +718,14 @@
             <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
-
-    <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">bandwidth</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                <span class="s2">&quot;Invalid bandwidth=</span><span class="si">{}</span><span class="s2">. &quot;</span> <span class="s2">&quot;Must be strictly positive.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)</span>
-            <span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
     <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="c1"># using k for bandwidth estimation also and decouple k for full mode</span>
+    <span class="n">bandwidth_k</span> <span class="o">=</span> <span class="n">k</span>
+    <span class="k">if</span> <span class="n">full</span> <span class="ow">and</span> <span class="p">(</span><span class="n">mode</span> <span class="o">!=</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">t</span>
 
     <span class="c1"># Build the neighbor search object</span>
     <span class="k">try</span><span class="p">:</span>
@@ -656,20 +747,21 @@
 
     <span class="n">rec</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">kneighbors_graph</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">kng_mode</span><span class="p">)</span><span class="o">.</span><span class="n">tolil</span><span class="p">()</span>
 
-    <span class="c1"># Remove connections within width</span>
-    <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
-        <span class="n">rec</span><span class="o">.</span><span class="n">setdiag</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">full</span><span class="p">:</span>
+        <span class="c1"># Remove connections within width</span>
+        <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">setdiag</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span>
 
-    <span class="c1"># Retain only the top-k links per point</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-        <span class="c1"># Get the links from point i</span>
-        <span class="n">links</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># Retain only the top-k links per point</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="c1"># Get the links from point i</span>
+            <span class="n">links</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
-        <span class="c1"># Order them ascending</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">links</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">())][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Order them ascending</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">links</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">())][</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="c1"># Everything past the kth closest gets squashed</span>
-        <span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">k</span><span class="p">:]]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Everything past the kth closest gets squashed</span>
+            <span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">k</span><span class="p">:]]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span>
@@ -681,6 +773,8 @@
             <span class="c1"># using negative distances here preserves the structure without changing</span>
             <span class="c1"># the statistics of the data</span>
             <span class="n">rec</span><span class="o">.</span><span class="n">setdiag</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rec</span><span class="o">.</span><span class="n">setdiag</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># symmetrize</span>
     <span class="k">if</span> <span class="n">sym</span><span class="p">:</span>
@@ -694,13 +788,12 @@
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span>
         <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;affinity&quot;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">bandwidth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="c1"># Set all the negatives back to 0</span>
         <span class="c1"># Negatives are temporarily inserted above to preserve the sparsity structure</span>
         <span class="c1"># of the matrix without corrupting the bandwidth calculations</span>
         <span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">bandwidth</span><span class="p">))</span>
+        <span class="n">aff_bandwidth</span> <span class="o">=</span> <span class="n">__affinity_bandwidth</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">bandwidth</span><span class="p">,</span> <span class="n">bandwidth_k</span><span class="p">)</span>
+        <span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">aff_bandwidth</span><span class="p">))</span>
 
     <span class="c1"># Transpose to be column-major</span>
     <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">T</span>
@@ -1330,6 +1423,122 @@
         <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">R_smooth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">R_smooth</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">R_smooth</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">__affinity_bandwidth</span><span class="p">(</span>
+    <span class="n">rec</span><span class="p">:</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span>
+    <span class="n">bw_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+    <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="c1"># rec should be a csr_matrix</span>
+
+    <span class="c1"># the api allows users to specify a scalar bandwidth directly, besides the string based options.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bw_mode</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">bandwidth</span> <span class="o">=</span> <span class="n">bw_mode</span>
+        <span class="c1"># check if bw is the right size</span>
+        <span class="k">if</span> <span class="n">bandwidth</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
+                <span class="s2">&quot;Invalid matrix bandwidth with bad shape: </span><span class="si">{}</span><span class="s2">.&quot;</span>
+                <span class="s2">&quot;Should be </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">bandwidth</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
+                <span class="s2">&quot;Invalid bandwidth. All entries must be strictly positive.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()])</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bw_mode</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="n">scalar_bandwidth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bw_mode</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scalar_bandwidth</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
+                <span class="s2">&quot;Invalid scalar bandwidth=</span><span class="si">{}</span><span class="s2">. Must be strictly positive.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">scalar_bandwidth</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">scalar_bandwidth</span>
+
+    <span class="k">if</span> <span class="n">bw_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bw_mode</span> <span class="o">=</span> <span class="s2">&quot;med_k_scalar&quot;</span>
+
+    <span class="k">if</span> <span class="n">bw_mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;med_k_scalar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_k&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gmean_k&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_k_avg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gmean_k_avg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_k_avg_and_pair&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="s2">&quot;Invalid bandwidth=&#39;</span><span class="si">{}</span><span class="s2">&#39;. Must be either a positive scalar or one of &quot;</span>
+                <span class="s2">&quot;[&#39;med_k_scalar&#39;, &#39;mean_k&#39;, &#39;gmean_k&#39;, &#39;mean_k_avg&#39;, &#39;gmean_k_avg&#39;, &#39;mean_k_avg_and_pair&#39;]&quot;</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bw_mode</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># build a list of list that stores the distances to k nearest neighbors for all t points.</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">knn_dists</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="c1"># Get the links from point i</span>
+        <span class="n">links</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># catch empty dists lists in knn_dists</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Disconnected vertices are only a problem for point-wise bandwidth estimation</span>
+            <span class="k">if</span> <span class="n">bw_mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;med_k_scalar&quot;</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The sample at time point </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> has no neighbors&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If we have no links, then there&#39;s no distance</span>
+                <span class="c1"># shove a nan in here</span>
+                <span class="n">knn_dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Compute k nearest neighbors&#39; distance and sort ascending</span>
+            <span class="n">knn_dist_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">links</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">()[</span><span class="mi">0</span><span class="p">])[:</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">knn_dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">knn_dist_row</span><span class="p">)</span>
+
+    <span class="c1"># take the last element of each list for the distance to kth neighbor</span>
+    <span class="n">dist_to_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">dists</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">dists</span> <span class="ow">in</span> <span class="n">knn_dists</span><span class="p">])</span>
+    <span class="n">avg_dist_to_first_ks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span> <span class="k">for</span> <span class="n">dists</span> <span class="ow">in</span> <span class="n">knn_dists</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">bw_mode</span> <span class="o">==</span> <span class="s2">&quot;med_k_scalar&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">dist_to_k</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Cannot estimate bandwidth from an empty graph&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">dist_to_k</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">bw_mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;mean_k&quot;</span><span class="p">,</span> <span class="s2">&quot;gmean_k&quot;</span><span class="p">]:</span>
+        <span class="c1"># building bandwidth components (sigma) using sparse matrix structures and indices</span>
+        <span class="n">sigma_i_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">sigma_j_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="n">sigma_i_data</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dist_to_k</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+            <span class="n">col_idx</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="n">sigma_j_data</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dist_to_k</span><span class="p">[</span><span class="n">col_idx</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">bw_mode</span> <span class="o">==</span> <span class="s2">&quot;mean_k&quot;</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">sigma_i_data</span> <span class="o">+</span> <span class="n">sigma_j_data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bw_mode</span> <span class="o">==</span> <span class="s2">&quot;gmean_k&quot;</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">sigma_i_data</span> <span class="o">*</span> <span class="n">sigma_j_data</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bw_mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;mean_k_avg&quot;</span><span class="p">,</span> <span class="s2">&quot;gmean_k_avg&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_k_avg_and_pair&quot;</span><span class="p">]:</span>
+        <span class="c1"># building bandwidth components (sigma) using sparse matrix structures and indices</span>
+        <span class="n">sigma_i_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">sigma_j_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="n">sigma_i_data</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">avg_dist_to_first_ks</span><span class="p">[</span>
+                <span class="n">row</span>
+            <span class="p">]</span>
+            <span class="n">col_idx</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="n">sigma_j_data</span><span class="p">[</span><span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="p">:</span> <span class="n">rec</span><span class="o">.</span><span class="n">indptr</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">avg_dist_to_first_ks</span><span class="p">[</span>
+                <span class="n">col_idx</span>
+            <span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">bw_mode</span> <span class="o">==</span> <span class="s2">&quot;mean_k_avg&quot;</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">sigma_i_data</span> <span class="o">+</span> <span class="n">sigma_j_data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bw_mode</span> <span class="o">==</span> <span class="s2">&quot;gmean_k_avg&quot;</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">sigma_i_data</span> <span class="o">*</span> <span class="n">sigma_j_data</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bw_mode</span> <span class="o">==</span> <span class="s2">&quot;mean_k_avg_and_pair&quot;</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">sigma_i_data</span> <span class="o">+</span> <span class="n">sigma_j_data</span> <span class="o">+</span> <span class="n">rec</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out</span>
 </pre></div>
 
 

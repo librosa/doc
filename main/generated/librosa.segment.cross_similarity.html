@@ -130,7 +130,7 @@
 <h1>librosa.segment.cross_similarity<a class="headerlink" href="#librosa-segment-cross-similarity" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.segment.cross_similarity">
-<span class="sig-prename descclassname"><span class="pre">librosa.segment.</span></span><span class="sig-name descname"><span class="pre">cross_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_ref</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'connectivity'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/segment.html#cross_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.segment.cross_similarity" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.segment.</span></span><span class="sig-name descname"><span class="pre">cross_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_ref</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'connectivity'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/segment.html#cross_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.segment.cross_similarity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute cross-similarity from one data sequence to a reference sequence.</p>
 <p>The output is a matrix <code class="docutils literal notranslate"><span class="pre">xsim</span></code>, where <code class="docutils literal notranslate"><span class="pre">xsim[i,</span> <span class="pre">j]</span></code> is non-zero
 if <code class="docutils literal notranslate"><span class="pre">data_ref[...,</span> <span class="pre">i]</span></code> is a k-nearest neighbor of <code class="docutils literal notranslate"><span class="pre">data[...,</span> <span class="pre">j]</span></code>.</p>
@@ -166,10 +166,49 @@ points.</p>
 <code class="docutils literal notranslate"><span class="pre">exp(</span> <span class="pre">-</span> <span class="pre">distance(i,</span> <span class="pre">j)</span> <span class="pre">/</span> <span class="pre">bandwidth)</span></code> where <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is
 as specified below.</p>
 </dd>
-<dt><strong>bandwidth</strong><span class="classifier">None or float &gt; 0</span></dt><dd><p>If using <code class="docutils literal notranslate"><span class="pre">mode='affinity'</span></code>, this can be used to set the
+<dt><strong>bandwidth</strong><span class="classifier">None, float &gt; 0, ndarray, or str</span></dt><dd><p>str options include <code class="docutils literal notranslate"><span class="pre">{'med_k_scalar',</span> <span class="pre">'mean_k',</span> <span class="pre">'gmean_k',</span> <span class="pre">'mean_k_avg',</span> <span class="pre">'gmean_k_avg',</span> <span class="pre">'mean_k_avg_and_pair'}</span></code></p>
+<p>If ndarray is supplied, use ndarray as bandwidth for each i,j pair.</p>
+<p>If using <code class="docutils literal notranslate"><span class="pre">mode='affinity'</span></code>, this can be used to set the
 bandwidth on the affinity kernel.</p>
-<p>If no value is provided, it is set automatically to the median
+<p>If no value is provided or <code class="docutils literal notranslate"><span class="pre">None</span></code>, default to <code class="docutils literal notranslate"><span class="pre">'med_k_scalar'</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='med_k_scalar'</span></code>, bandwidth is set automatically to the median
 distance to the k’th nearest neighbor of each <code class="docutils literal notranslate"><span class="pre">data[:,</span> <span class="pre">i]</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='mean_k'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
+arithmetic mean between distances to the k-th nearest neighbor for sample i and sample j.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='gmean_k'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
+geometric mean between distances to the k-th nearest neighbor for sample i and j <a class="footnote-reference brackets" href="#z" id="id1">1</a>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='mean_k_avg'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
+arithmetic mean between the average distances to the first k-th nearest neighbors for
+sample i and sample j.
+This is similar to the approach in Wang et al. (2014) <a class="footnote-reference brackets" href="#w" id="id2">2</a> but does not include the distance
+between i and j.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='gmean_k_avg'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
+geometric mean between the average distances to the first k-th nearest neighbors for
+sample i and sample j.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='mean_k_avg_and_pair'</span></code>, bandwidth is estimated for each sample-pair (i, j) by
+taking the arithmetic mean between three terms: the average distances to the first
+k-th nearest neighbors for sample i and sample j respectively, as well as
+the distance between i and j.
+This is similar to the approach in Wang et al. (2014). <a class="footnote-reference brackets" href="#w" id="id3">2</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="z"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Zelnik-Manor, Lihi, and Pietro Perona. (2004).
+“Self-tuning spectral clustering.” Advances in neural information processing systems 17.</p>
+</dd>
+<dt class="label" id="w"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Wang, Bo, et al. (2014).
+“Similarity network fusion for aggregating data types on a genomic scale.” Nat Methods 11, 333–337.
+<a class="reference external" href="https://doi.org/10.1038/nmeth.2810">https://doi.org/10.1038/nmeth.2810</a></p>
+</dd>
+</dl>
+</dd>
+<dt><strong>full</strong><span class="classifier">bool</span></dt><dd><p>If using <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">='affinity'</span></code> or <code class="docutils literal notranslate"><span class="pre">mode='distance'</span></code>, this option can be used to compute
+the full affinity or distance matrix as opposed a sparse matrix with only none-zero terms
+for the first k-neighbors of each sample.
+This option has no effect when using <code class="docutils literal notranslate"><span class="pre">mode='connectivity'</span></code>.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">mode='distance'</span></code>, setting <code class="docutils literal notranslate"><span class="pre">full=True</span></code> will ignore <code class="docutils literal notranslate"><span class="pre">k</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code>.
+When using <code class="docutils literal notranslate"><span class="pre">mode='affinity'</span></code>, setting <code class="docutils literal notranslate"><span class="pre">full=True</span></code> will use <code class="docutils literal notranslate"><span class="pre">k</span></code> exclusively for
+bandwidth estimation, and ignore <code class="docutils literal notranslate"><span class="pre">width</span></code>.</p>
 </dd>
 </dl>
 </dd>
