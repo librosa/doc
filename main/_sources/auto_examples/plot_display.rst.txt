@@ -47,7 +47,7 @@ All of librosa's plotting functions rely on matplotlib.
 To demonstrate everything we can do, it will help to
 import matplotlib's pyplot API here.
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-26
+.. GENERATED FROM PYTHON SOURCE LINES 20-25
 
 .. code-block:: default
 
@@ -55,7 +55,6 @@ import matplotlib's pyplot API here.
     import matplotlib.pyplot as plt
 
     import librosa
-    import librosa.display
 
 
 
@@ -64,11 +63,11 @@ import matplotlib's pyplot API here.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-28
+.. GENERATED FROM PYTHON SOURCE LINES 26-27
 
 First, we'll load in a demo track
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-32
+.. GENERATED FROM PYTHON SOURCE LINES 27-31
 
 .. code-block:: default
 
@@ -83,7 +82,7 @@ First, we'll load in a demo track
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-39
+.. GENERATED FROM PYTHON SOURCE LINES 32-38
 
 The first thing we might want to do is display an ordinary
 (linear) spectrogram.
@@ -92,7 +91,7 @@ transform, and then mapping the magnitudes to a decibel
 scale.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-43
+.. GENERATED FROM PYTHON SOURCE LINES 38-42
 
 .. code-block:: default
 
@@ -107,7 +106,7 @@ scale.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-50
+.. GENERATED FROM PYTHON SOURCE LINES 43-49
 
 If you're familiar with matplotlib already, you may know
 that there are two ways of using it: the `pyplot` interface
@@ -116,7 +115,7 @@ Both are supported by librosa, as we'll show here.
 
 First, the pyplot interface:
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-55
+.. GENERATED FROM PYTHON SOURCE LINES 49-54
 
 .. code-block:: default
 
@@ -137,11 +136,11 @@ First, the pyplot interface:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-57
+.. GENERATED FROM PYTHON SOURCE LINES 55-56
 
 And now the object-oriented interface
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-62
+.. GENERATED FROM PYTHON SOURCE LINES 56-61
 
 .. code-block:: default
 
@@ -162,7 +161,7 @@ And now the object-oriented interface
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-70
+.. GENERATED FROM PYTHON SOURCE LINES 62-69
 
 Both figures are identical, but they use different programming
 interfaces to construct.  Most people find the pyplot interface
@@ -172,7 +171,7 @@ be a little more flexible for complex figures.
 For the remainder of this example, we'll use the object-oriented
 interface.
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-83
+.. GENERATED FROM PYTHON SOURCE LINES 71-82
 
 Decorating your plot
 --------------------
@@ -186,7 +185,7 @@ and our y-axis corresponds to linearly spaced frequencies produced
 by the discrete Fourier transform.
 We can tell specshow to decorate the axes accordingly:
 
-.. GENERATED FROM PYTHON SOURCE LINES 83-89
+.. GENERATED FROM PYTHON SOURCE LINES 82-88
 
 .. code-block:: default
 
@@ -208,12 +207,12 @@ We can tell specshow to decorate the axes accordingly:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 90-92
+.. GENERATED FROM PYTHON SOURCE LINES 89-91
 
 This is much better already!  Note that we also added a format string
 to the colorbar, so readers know how to read the color scale.
 
-.. GENERATED FROM PYTHON SOURCE LINES 94-102
+.. GENERATED FROM PYTHON SOURCE LINES 93-101
 
 Changing axis scales
 --------------------
@@ -224,7 +223,7 @@ a constant vertical extent.
 
 We can tell specshow to use log-scaled frequency axes just as above:
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-108
+.. GENERATED FROM PYTHON SOURCE LINES 101-107
 
 .. code-block:: default
 
@@ -246,7 +245,7 @@ We can tell specshow to use log-scaled frequency axes just as above:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 109-116
+.. GENERATED FROM PYTHON SOURCE LINES 108-115
 
 Changing the analysis parameters
 --------------------------------
@@ -256,7 +255,7 @@ If you change a parameter from its default value, e.g. when computing an STFT,
 you can pass that same parameter to `specshow`.
 This ensures that axis scales (e.g. time or frequency) are computed correctly.
 
-.. GENERATED FROM PYTHON SOURCE LINES 116-125
+.. GENERATED FROM PYTHON SOURCE LINES 115-124
 
 .. code-block:: default
 
@@ -281,7 +280,7 @@ This ensures that axis scales (e.g. time or frequency) are computed correctly.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 126-132
+.. GENERATED FROM PYTHON SOURCE LINES 125-131
 
 Note that only the parameters which are strictly necessary are supported by
 `specshow`.  For example, without the `hop_length`, we wouldn't know how to
@@ -290,7 +289,7 @@ translate frame indices to time indices.
 A full list of the supported parameters is provided in the
 `librosa.display.specshow` documentation.
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-142
+.. GENERATED FROM PYTHON SOURCE LINES 133-141
 
 Other types of spectral data
 ----------------------------
@@ -301,7 +300,7 @@ Mel-scaled, constant-Q, variable-Q, chromagrams, tempograms, etc.
 specshow can plot these just as well.  For example, a Mel spectrogram
 can be displayed as follows:
 
-.. GENERATED FROM PYTHON SOURCE LINES 142-150
+.. GENERATED FROM PYTHON SOURCE LINES 141-149
 
 .. code-block:: default
 
@@ -325,13 +324,13 @@ can be displayed as follows:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 151-154
+.. GENERATED FROM PYTHON SOURCE LINES 150-153
 
 Constant-Q plots, and other logarithmically scaled frequency representations
 such as Variable-Q or `iirt` can be decorated using either the frequencies (Hz)
 or their note names in scientific pitch notation:
 
-.. GENERATED FROM PYTHON SOURCE LINES 154-166
+.. GENERATED FROM PYTHON SOURCE LINES 153-165
 
 .. code-block:: default
 
@@ -371,18 +370,18 @@ or their note names in scientific pitch notation:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 167-169
+.. GENERATED FROM PYTHON SOURCE LINES 166-168
 
 In the latter case, the underlying data representation is still measured in
 Hz; only the tick labels are changed.
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-174
+.. GENERATED FROM PYTHON SOURCE LINES 170-173
 
 Chroma representations don't have a fixed frequency axis, and instead aggregate
 information across all frequencies corresponding to a given pitch class.
 specshow can plot these too:
 
-.. GENERATED FROM PYTHON SOURCE LINES 174-181
+.. GENERATED FROM PYTHON SOURCE LINES 173-180
 
 .. code-block:: default
 
@@ -405,12 +404,12 @@ specshow can plot these too:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 182-184
+.. GENERATED FROM PYTHON SOURCE LINES 181-183
 
 If you also happen to know the key of the piece being analyzed, you can
 pass this to specshow and it will spell the notes properly:
 
-.. GENERATED FROM PYTHON SOURCE LINES 184-190
+.. GENERATED FROM PYTHON SOURCE LINES 183-189
 
 .. code-block:: default
 
@@ -432,16 +431,16 @@ pass this to specshow and it will spell the notes properly:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 191-192
+.. GENERATED FROM PYTHON SOURCE LINES 190-191
 
 This will also work for 'cqt_note' mode.
 
-.. GENERATED FROM PYTHON SOURCE LINES 194-196
+.. GENERATED FROM PYTHON SOURCE LINES 193-195
 
 Indian notation systems
 -----------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-205
+.. GENERATED FROM PYTHON SOURCE LINES 195-204
 
 .. code-block:: default
 
@@ -461,12 +460,12 @@ Indian notation systems
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 206-208
+.. GENERATED FROM PYTHON SOURCE LINES 205-207
 
 For example, the example above is in Eb:maj (or, more accurately, F:dorian),
 which we can also represent in Hindustani notation as Sa=5 (F) and 'kafi' thaat:
 
-.. GENERATED FROM PYTHON SOURCE LINES 208-215
+.. GENERATED FROM PYTHON SOURCE LINES 207-214
 
 .. code-block:: default
 
@@ -489,13 +488,13 @@ which we can also represent in Hindustani notation as Sa=5 (F) and 'kafi' thaat:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 216-219
+.. GENERATED FROM PYTHON SOURCE LINES 215-218
 
 In Carnatic notation, we would use melakarta #22.
 Note: `thaat` is optional for Hindustani notation, but `mela` is required for
 Carnatic.
 
-.. GENERATED FROM PYTHON SOURCE LINES 219-226
+.. GENERATED FROM PYTHON SOURCE LINES 218-225
 
 .. code-block:: default
 
@@ -518,7 +517,7 @@ Carnatic.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 227-235
+.. GENERATED FROM PYTHON SOURCE LINES 226-234
 
 These notation schemes can also be used in cqt plots by specifying
 `y_axis='cqt_svara'`.
@@ -529,7 +528,7 @@ if `mela` is provided, and Hindustani is used if not.
 Individual svara are only notated if the display range is sufficiently small,
 so we'll zoom into a single octave for this example.
 
-.. GENERATED FROM PYTHON SOURCE LINES 235-247
+.. GENERATED FROM PYTHON SOURCE LINES 234-246
 
 .. code-block:: default
 
@@ -569,7 +568,7 @@ so we'll zoom into a single octave for this example.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 248-253
+.. GENERATED FROM PYTHON SOURCE LINES 247-252
 
 Non-spectral data
 -----------------
@@ -577,7 +576,7 @@ specshow can also be used for data that isn't exactly spectro-temporal.
 One common application is recurrence (self-similarity) plots, which
 are time-by-time, as illustrated below.
 
-.. GENERATED FROM PYTHON SOURCE LINES 253-260
+.. GENERATED FROM PYTHON SOURCE LINES 252-259
 
 .. code-block:: default
 
@@ -600,14 +599,14 @@ are time-by-time, as illustrated below.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 261-265
+.. GENERATED FROM PYTHON SOURCE LINES 260-264
 
 In this example, notice that we used 'time' for both axis labels.
 In general, any of the supported modes can be used for either axis.
 For example, we could also plot the chroma covariance plot with
 chroma decorations on each axis:
 
-.. GENERATED FROM PYTHON SOURCE LINES 265-273
+.. GENERATED FROM PYTHON SOURCE LINES 264-272
 
 .. code-block:: default
 
@@ -631,12 +630,12 @@ chroma decorations on each axis:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 274-276
+.. GENERATED FROM PYTHON SOURCE LINES 273-275
 
 Certain plots (e.g. covariance, self-similarity) are automatically
 squared by `specshow`. To override that, pass `auto_scale=False`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 278-295
+.. GENERATED FROM PYTHON SOURCE LINES 277-294
 
 Color maps
 ----------
@@ -656,7 +655,7 @@ converts gracefully to grayscale.
 You can always override this automatic colormap selection by setting an
 explicit `cmap`:
 
-.. GENERATED FROM PYTHON SOURCE LINES 295-301
+.. GENERATED FROM PYTHON SOURCE LINES 294-300
 
 .. code-block:: default
 
@@ -678,7 +677,7 @@ explicit `cmap`:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 302-307
+.. GENERATED FROM PYTHON SOURCE LINES 301-306
 
 `specshow` uses `matplotlib.pyplot.pcolormesh` to generate the underlying image.
 Any parameters to `pcolormesh` can be passed through from `specshow`, for example,
@@ -686,7 +685,7 @@ to set explicit bounds on the minimum and maximum ranges for colors.
 This can be helpful when centering divergent colormaps around 0 (or some other
 reference point).
 
-.. GENERATED FROM PYTHON SOURCE LINES 307-316
+.. GENERATED FROM PYTHON SOURCE LINES 306-315
 
 .. code-block:: default
 
@@ -711,7 +710,7 @@ reference point).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 317-323
+.. GENERATED FROM PYTHON SOURCE LINES 316-322
 
 Multiple plots
 --------------
@@ -720,7 +719,7 @@ This can be done using matplotlib's `subplot` mechanism and sharing axes.
 There are many examples of this throughout the librosa documentation, but
 here we'll go through it step by step.
 
-.. GENERATED FROM PYTHON SOURCE LINES 323-355
+.. GENERATED FROM PYTHON SOURCE LINES 322-354
 
 .. code-block:: default
 
@@ -768,7 +767,7 @@ here we'll go through it step by step.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 356-369
+.. GENERATED FROM PYTHON SOURCE LINES 355-368
 
 Non-uniform axes
 ----------------
@@ -784,7 +783,7 @@ To specify non-uniform axis sampling, you will need to provide the `x_coords`
 (or `y_coords`) array indicating the position of each sample, as demonstrated
 below.
 
-.. GENERATED FROM PYTHON SOURCE LINES 369-402
+.. GENERATED FROM PYTHON SOURCE LINES 368-401
 
 .. code-block:: default
 
@@ -833,7 +832,7 @@ below.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 403-411
+.. GENERATED FROM PYTHON SOURCE LINES 402-410
 
 Conclusion
 ----------
@@ -847,7 +846,7 @@ effectively.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.792 seconds)
+   **Total running time of the script:** ( 0 minutes  13.615 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_display.py:

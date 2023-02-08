@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.spectrum &mdash; librosa 0.10.0.dev0 documentation</title>
+  <title>librosa.core.spectrum &mdash; librosa 0.10.0rc0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -36,7 +36,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0.dev0
+                0.10.0rc0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -333,9 +333,7 @@
     <span class="k">if</span> <span class="n">hop_length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">hop_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">win_length</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">util</span><span class="o">.</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">hop_length</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;hop_length=</span><span class="si">{}</span><span class="s2"> must be a positive integer&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hop_length</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hop_length=</span><span class="si">{</span><span class="n">hop_length</span><span class="si">}</span><span class="s2"> must be a positive integer&quot;</span><span class="p">)</span>
 
     <span class="c1"># Check audio is valid</span>
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -361,14 +359,12 @@
             <span class="c1"># &gt;&gt;&gt; librosa.stft(..., pad_mode=my_pad_func)</span>
 
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                <span class="s2">&quot;pad_mode=&#39;</span><span class="si">{}</span><span class="s2">&#39; is not supported by librosa.stft&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pad_mode</span><span class="p">)</span>
+                <span class="sa">f</span><span class="s2">&quot;pad_mode=&#39;</span><span class="si">{</span><span class="n">pad_mode</span><span class="si">}</span><span class="s2">&#39; is not supported by librosa.stft&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">n_fft</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="s2">&quot;n_fft=</span><span class="si">{}</span><span class="s2"> is too large for input signal of length=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">n_fft</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="sa">f</span><span class="s2">&quot;n_fft=</span><span class="si">{</span><span class="n">n_fft</span><span class="si">}</span><span class="s2"> is too large for input signal of length=</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="c1"># Set up the padding array to be empty, and we&#39;ll fix the target dimension later</span>
@@ -430,9 +426,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">n_fft</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                <span class="s2">&quot;n_fft=</span><span class="si">{}</span><span class="s2"> is too large for uncentered analysis of input signal of length=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">n_fft</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="sa">f</span><span class="s2">&quot;n_fft=</span><span class="si">{</span><span class="n">n_fft</span><span class="si">}</span><span class="s2"> is too large for uncentered analysis of input signal of length=</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="c1"># &quot;Middle&quot; of the signal starts at sample 0</span>
@@ -699,7 +693,6 @@
 
     <span class="n">frame</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">bl_s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_frame</span><span class="p">,</span> <span class="n">n_frames</span><span class="p">,</span> <span class="n">n_columns</span><span class="p">):</span>
-
         <span class="n">bl_t</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bl_s</span> <span class="o">+</span> <span class="n">n_columns</span><span class="p">,</span> <span class="n">n_frames</span><span class="p">)</span>
 
         <span class="c1"># invert the block and apply the window function</span>
@@ -1563,8 +1556,7 @@
     <span class="n">padding</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time_steps</span><span class="p">):</span>
-
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time_steps</span><span class="p">):</span>
         <span class="n">columns</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">step</span><span class="p">)</span> <span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">step</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)]</span>
 
         <span class="c1"># Weighting for linear magnitude interpolation</span>
@@ -1692,7 +1684,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">flayout</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;ba&quot;</span><span class="p">,</span> <span class="s2">&quot;sos&quot;</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Unsupported flayout=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flayout</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported flayout=</span><span class="si">{</span><span class="n">flayout</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># check audio input</span>
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1734,7 +1726,6 @@
 
     <span class="n">slices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">slice</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">bands_power</span><span class="o">.</span><span class="n">shape</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">cur_sr</span><span class="p">,</span> <span class="n">cur_filter</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sample_rates</span><span class="p">,</span> <span class="n">filterbank_ct</span><span class="p">)):</span>
-
         <span class="n">slices</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
 
         <span class="c1"># filter the signal</span>
@@ -2232,14 +2223,14 @@
     <span class="n">n</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;y.shape[</span><span class="si">{:}</span><span class="s2">]==</span><span class="si">{:}</span><span class="s2"> &lt; 3&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y.shape[</span><span class="si">{</span><span class="n">axis</span><span class="si">}</span><span class="s2">]==</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> &lt; 3&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">t_min</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;t_min must be a positive number&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t_min=</span><span class="si">{</span><span class="n">t_min</span><span class="si">}</span><span class="s2"> must be a positive number&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">n_fmt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">over_sample</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;over_sample must be &gt;= 1&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;over_sample=</span><span class="si">{</span><span class="n">over_sample</span><span class="si">}</span><span class="s2"> must be &gt;= 1&quot;</span><span class="p">)</span>
 
         <span class="c1"># The base is the maximum ratio between adjacent samples</span>
         <span class="c1"># Since the sample spacing is increasing, this is simply the</span>
@@ -2249,7 +2240,7 @@
         <span class="n">n_fmt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">over_sample</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t_min</span><span class="p">))</span> <span class="o">/</span> <span class="n">log_base</span><span class="p">))</span>
 
     <span class="k">elif</span> <span class="n">n_fmt</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;n_fmt==</span><span class="si">{:}</span><span class="s2"> &lt; 3&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_fmt</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_fmt==</span><span class="si">{</span><span class="n">n_fmt</span><span class="si">}</span><span class="s2"> &lt; 3&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">log_base</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n_fmt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n_fmt</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">over_sample</span>
 
@@ -2553,24 +2544,22 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">power</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;power=</span><span class="si">{}</span><span class="s2"> must be nonnegative&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">power</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;power=</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2"> must be nonnegative&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">gain</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;gain=</span><span class="si">{}</span><span class="s2"> must be non-negative&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gain</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gain=</span><span class="si">{</span><span class="n">gain</span><span class="si">}</span><span class="s2"> must be non-negative&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">bias</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;bias=</span><span class="si">{}</span><span class="s2"> must be non-negative&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bias</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bias=</span><span class="si">{</span><span class="n">bias</span><span class="si">}</span><span class="s2"> must be non-negative&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">eps</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;eps=</span><span class="si">{}</span><span class="s2"> must be strictly positive&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eps=</span><span class="si">{</span><span class="n">eps</span><span class="si">}</span><span class="s2"> must be strictly positive&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">time_constant</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;time_constant=</span><span class="si">{}</span><span class="s2"> must be strictly positive&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_constant</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time_constant=</span><span class="si">{</span><span class="n">time_constant</span><span class="si">}</span><span class="s2"> must be strictly positive&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">util</span><span class="o">.</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">max_size</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;max_size=</span><span class="si">{}</span><span class="s2"> must be a positive integer&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_size</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max_size=</span><span class="si">{</span><span class="n">max_size</span><span class="si">}</span><span class="s2"> must be a positive integer&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">t_frames</span> <span class="o">=</span> <span class="n">time_constant</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">hop_length</span><span class="p">)</span>
@@ -2582,7 +2571,7 @@
         <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">t_frames</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t_frames</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;b=</span><span class="si">{}</span><span class="s2"> must be between 0 and 1&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> must be between 0 and 1&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">):</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
@@ -2604,8 +2593,8 @@
             <span class="k">if</span> <span class="n">max_axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">S</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-                        <span class="s2">&quot;Max-filtering a </span><span class="si">{:d}</span><span class="s2">-dimensional spectrogram &quot;</span>
-                        <span class="s2">&quot;requires you to specify max_axis&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+                        <span class="sa">f</span><span class="s2">&quot;Max-filtering a </span><span class="si">{</span><span class="n">S</span><span class="o">.</span><span class="n">ndim</span><span class="si">:</span><span class="s2">d</span><span class="si">}</span><span class="s2">-dimensional spectrogram &quot;</span>
+                        <span class="s2">&quot;requires you to specify max_axis&quot;</span>
                     <span class="p">)</span>
                 <span class="c1"># if axis = 0, max_axis=1</span>
                 <span class="c1"># if axis = +- 1, max_axis = 0</span>
@@ -2661,7 +2650,6 @@
         <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">]</span>
     <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-
     <span class="sd">&quot;&quot;&quot;Approximate magnitude spectrogram inversion using the &quot;fast&quot; Griffin-Lim algorithm.</span>
 
 <span class="sd">    Given a short-time Fourier transform magnitude matrix (``S``), the algorithm randomly</span>
@@ -2816,7 +2804,7 @@
         <span class="c1"># Initialize an all ones complex matrix</span>
         <span class="n">angles</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;init=</span><span class="si">{}</span><span class="s2"> must either None or &#39;random&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">init</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;init=</span><span class="si">{</span><span class="n">init</span><span class="si">}</span><span class="s2"> must either None or &#39;random&#39;&quot;</span><span class="p">)</span>
 
     <span class="c1"># Place-holders for temporary data and reconstructed buffer</span>
     <span class="n">rebuilt</span> <span class="o">=</span> <span class="kc">None</span>
@@ -3006,8 +2994,6 @@
     <dl>
       <dt>Releases</dt>
       <dd><a href="../../../../0.8.1/index.html">0.8.1</a></dd>
-      <dd><a href="../../../../0.9.0/index.html">0.9.0</a></dd>
-      <dd><a href="../../../../0.9.1/index.html">0.9.1</a></dd>
       <dd><a href="../../../../0.9.2/index.html">0.9.2</a></dd>
     </dl>
     <dl>

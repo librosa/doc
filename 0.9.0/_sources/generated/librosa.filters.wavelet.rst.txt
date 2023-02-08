@@ -1,6 +1,0 @@
-﻿librosa.filters.wavelet
-=======================
-
-.. currentmodule:: librosa.filters
-
-.. autofunction:: wavelet

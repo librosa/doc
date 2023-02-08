@@ -379,6 +379,13 @@ Let's use these k components to cluster beats into segments
    :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    /usr/share/miniconda/envs/docs/lib/python3.8/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+      warnings.warn(
+
 
 
 
@@ -457,7 +464,7 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.316 seconds)
+   **Total running time of the script:** ( 0 minutes  9.328 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:

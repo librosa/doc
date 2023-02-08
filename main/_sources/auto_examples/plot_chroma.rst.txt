@@ -38,7 +38,7 @@ enhancements:
       `Cho and Bello, 2011 <http://ismir2011.ismir.net/papers/OS8-4.pdf>`_.
    3. Local median filtering to suppress remaining discontinuities.
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-37
+.. GENERATED FROM PYTHON SOURCE LINES 24-36
 
 .. code-block:: default
 
@@ -52,7 +52,6 @@ enhancements:
     import matplotlib.pyplot as plt
 
     import librosa
-    import librosa.display
 
 
 
@@ -62,12 +61,12 @@ enhancements:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-40
+.. GENERATED FROM PYTHON SOURCE LINES 37-39
 
 We'll use a track that has harmonic, melodic, and percussive elements
  Karissa Hobbs - Let's Go Fishin'
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-43
+.. GENERATED FROM PYTHON SOURCE LINES 39-42
 
 .. code-block:: default
 
@@ -81,11 +80,11 @@ We'll use a track that has harmonic, melodic, and percussive elements
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-45
+.. GENERATED FROM PYTHON SOURCE LINES 43-44
 
 First, let's plot the original chroma
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-66
+.. GENERATED FROM PYTHON SOURCE LINES 44-65
 
 .. code-block:: default
 
@@ -122,12 +121,12 @@ First, let's plot the original chroma
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-69
+.. GENERATED FROM PYTHON SOURCE LINES 66-68
 
 We can do better by isolating the harmonic component of the audio signal.
 We'll use a large margin for separating harmonics from percussives:
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-82
+.. GENERATED FROM PYTHON SOURCE LINES 68-81
 
 .. code-block:: default
 
@@ -156,13 +155,13 @@ We'll use a large margin for separating harmonics from percussives:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 83-86
+.. GENERATED FROM PYTHON SOURCE LINES 82-85
 
 There's still some noise in there though.
 We can clean it up using non-local filtering.
 This effectively removes any sparse additive noise from the features.
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-101
+.. GENERATED FROM PYTHON SOURCE LINES 85-100
 
 .. code-block:: default
 
@@ -193,12 +192,12 @@ This effectively removes any sparse additive noise from the features.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-104
+.. GENERATED FROM PYTHON SOURCE LINES 101-103
 
 Local discontinuities and transients can be suppressed by
 using a horizontal median filter.
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-116
+.. GENERATED FROM PYTHON SOURCE LINES 103-115
 
 .. code-block:: default
 
@@ -226,12 +225,12 @@ using a horizontal median filter.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-119
+.. GENERATED FROM PYTHON SOURCE LINES 116-118
 
 A final comparison between the CQT, original chromagram
 and the result of our filtering.
 
-.. GENERATED FROM PYTHON SOURCE LINES 119-132
+.. GENERATED FROM PYTHON SOURCE LINES 118-131
 
 .. code-block:: default
 
@@ -260,7 +259,7 @@ and the result of our filtering.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-140
+.. GENERATED FROM PYTHON SOURCE LINES 132-139
 
 Chroma variants
 ^^^^^^^^^^^^^^^
@@ -270,7 +269,7 @@ There are three chroma variants implemented in librosa: `chroma_stft`, `chroma_c
 
 A comparison between the STFT and the CQT methods for chromagram.
 
-.. GENERATED FROM PYTHON SOURCE LINES 140-153
+.. GENERATED FROM PYTHON SOURCE LINES 139-152
 
 .. code-block:: default
 
@@ -299,7 +298,7 @@ A comparison between the STFT and the CQT methods for chromagram.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 154-168
+.. GENERATED FROM PYTHON SOURCE LINES 153-167
 
 CENS features (`chroma_cens`) are variants of chroma features introduced in
 `Müller and Ewart, 2011 <http://ismir2011.ismir.net/papers/PS2-8.pdf>`_, in which
@@ -316,7 +315,7 @@ Following steps are additional processing done on the chromagram, and are implem
 
 A comparison between the original constant-Q chromagram and the CENS features.
 
-.. GENERATED FROM PYTHON SOURCE LINES 168-177
+.. GENERATED FROM PYTHON SOURCE LINES 167-176
 
 .. code-block:: default
 
@@ -344,7 +343,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  16.768 seconds)
+   **Total running time of the script:** ( 0 minutes  21.450 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:

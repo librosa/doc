@@ -54,7 +54,7 @@ Imports
   - sklearn.cluster for K-Means
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-35
+.. GENERATED FROM PYTHON SOURCE LINES 26-34
 
 .. code-block:: default
 
@@ -65,7 +65,6 @@ Imports
     import sklearn.cluster
 
     import librosa
-    import librosa.display
 
 
 
@@ -74,11 +73,11 @@ Imports
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-37
+.. GENERATED FROM PYTHON SOURCE LINES 35-36
 
 First, we'll load in a song
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-40
+.. GENERATED FROM PYTHON SOURCE LINES 36-39
 
 .. code-block:: default
 
@@ -92,11 +91,11 @@ First, we'll load in a song
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-42
+.. GENERATED FROM PYTHON SOURCE LINES 40-41
 
 Next, we'll compute and plot a log-power CQT
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-55
+.. GENERATED FROM PYTHON SOURCE LINES 41-54
 
 .. code-block:: default
 
@@ -125,11 +124,11 @@ Next, we'll compute and plot a log-power CQT
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-57
+.. GENERATED FROM PYTHON SOURCE LINES 55-56
 
 To reduce dimensionality, we'll beat-synchronous the CQT
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-72
+.. GENERATED FROM PYTHON SOURCE LINES 56-71
 
 .. code-block:: default
 
@@ -160,14 +159,14 @@ To reduce dimensionality, we'll beat-synchronous the CQT
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-77
+.. GENERATED FROM PYTHON SOURCE LINES 72-76
 
 Let's build a weighted recurrence matrix using beat-synchronous CQT
 (Equation 1)
 width=3 prevents links within the same bar
 mode='affinity' here implements S_rep (after Eq. 8)
 
-.. GENERATED FROM PYTHON SOURCE LINES 77-85
+.. GENERATED FROM PYTHON SOURCE LINES 76-84
 
 .. code-block:: default
 
@@ -186,7 +185,7 @@ mode='affinity' here implements S_rep (after Eq. 8)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-92
+.. GENERATED FROM PYTHON SOURCE LINES 85-91
 
 Now let's build the sequence matrix (S_loc) using mfcc-similarity
 
@@ -195,7 +194,7 @@ Now let's build the sequence matrix (S_loc) using mfcc-similarity
 Here, we take :math:`\sigma` to be the median distance between successive beats.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 92-102
+.. GENERATED FROM PYTHON SOURCE LINES 91-101
 
 .. code-block:: default
 
@@ -216,11 +215,11 @@ Here, we take :math:`\sigma` to be the median distance between successive beats.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 103-104
+.. GENERATED FROM PYTHON SOURCE LINES 102-103
 
 And compute the balanced combination (Equations 6, 7, 9)
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-113
+.. GENERATED FROM PYTHON SOURCE LINES 103-112
 
 .. code-block:: default
 
@@ -240,11 +239,11 @@ And compute the balanced combination (Equations 6, 7, 9)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 114-115
+.. GENERATED FROM PYTHON SOURCE LINES 113-114
 
 Plot the resulting graphs (Figure 1, left and center)
 
-.. GENERATED FROM PYTHON SOURCE LINES 115-130
+.. GENERATED FROM PYTHON SOURCE LINES 114-129
 
 .. code-block:: default
 
@@ -275,11 +274,11 @@ Plot the resulting graphs (Figure 1, left and center)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 131-132
+.. GENERATED FROM PYTHON SOURCE LINES 130-131
 
 Now let's compute the normalized Laplacian (Eq. 10)
 
-.. GENERATED FROM PYTHON SOURCE LINES 132-169
+.. GENERATED FROM PYTHON SOURCE LINES 131-168
 
 .. code-block:: default
 
@@ -332,16 +331,16 @@ Now let's compute the normalized Laplacian (Eq. 10)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 170-172
+.. GENERATED FROM PYTHON SOURCE LINES 169-171
 
 Let's use these k components to cluster beats into segments
 (Algorithm 1)
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-201
+.. GENERATED FROM PYTHON SOURCE LINES 171-200
 
 .. code-block:: default
 
-    KM = sklearn.cluster.KMeans(n_clusters=k)
+    KM = sklearn.cluster.KMeans(n_clusters=k, n_init="auto")
 
     seg_ids = KM.fit_predict(X)
 
@@ -382,11 +381,11 @@ Let's use these k components to cluster beats into segments
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 202-203
+.. GENERATED FROM PYTHON SOURCE LINES 201-202
 
 Locate segment boundaries from the label sequence
 
-.. GENERATED FROM PYTHON SOURCE LINES 203-219
+.. GENERATED FROM PYTHON SOURCE LINES 202-218
 
 .. code-block:: default
 
@@ -413,11 +412,11 @@ Locate segment boundaries from the label sequence
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 220-221
+.. GENERATED FROM PYTHON SOURCE LINES 219-220
 
 And plot the final segmentation over original CQT
 
-.. GENERATED FROM PYTHON SOURCE LINES 221-242
+.. GENERATED FROM PYTHON SOURCE LINES 220-241
 
 .. code-block:: default
 
@@ -457,7 +456,7 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.337 seconds)
+   **Total running time of the script:** ( 0 minutes  8.197 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:

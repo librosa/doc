@@ -36,7 +36,7 @@ in memory usage when processing audio streams.
 
 We'll need numpy and matplotlib for this example
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-31
+.. GENERATED FROM PYTHON SOURCE LINES 22-30
 
 .. code-block:: default
 
@@ -45,8 +45,7 @@ We'll need numpy and matplotlib for this example
 
     import soundfile as sf
 
-    import librosa as librosa
-    import librosa.display as display
+    import librosa
 
 
 
@@ -56,11 +55,11 @@ We'll need numpy and matplotlib for this example
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-33
+.. GENERATED FROM PYTHON SOURCE LINES 31-32
 
 First, we'll start with an audio file that we want to stream
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-35
+.. GENERATED FROM PYTHON SOURCE LINES 32-34
 
 .. code-block:: default
 
@@ -73,12 +72,12 @@ First, we'll start with an audio file that we want to stream
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-38
+.. GENERATED FROM PYTHON SOURCE LINES 35-37
 
 Next, we'll set up the block reader to work on short segments of
 audio at a time.
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-56
+.. GENERATED FROM PYTHON SOURCE LINES 37-55
 
 .. code-block:: default
 
@@ -107,12 +106,12 @@ audio at a time.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-59
+.. GENERATED FROM PYTHON SOURCE LINES 56-58
 
 For this example, we'll compute PCEN on each block, find the maximum
 response over frequency, and store the results in a list.
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-88
+.. GENERATED FROM PYTHON SOURCE LINES 58-87
 
 .. code-block:: default
 
@@ -152,12 +151,12 @@ response over frequency, and store the results in a list.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 89-91
+.. GENERATED FROM PYTHON SOURCE LINES 88-90
 
 For the sake of comparison, let's see how it would look had we
 run PCEN on the entire spectrum without block-wise processing
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-104
+.. GENERATED FROM PYTHON SOURCE LINES 90-103
 
 .. code-block:: default
 
@@ -181,11 +180,11 @@ run PCEN on the entire spectrum without block-wise processing
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 105-106
+.. GENERATED FROM PYTHON SOURCE LINES 104-105
 
 Plot the PCEN spectrum and the resulting magnitudes
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-123
+.. GENERATED FROM PYTHON SOURCE LINES 105-122
 
 .. code-block:: default
 
@@ -221,7 +220,7 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.898 seconds)
+   **Total running time of the script:** ( 0 minutes  3.395 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_pcen_stream.py:

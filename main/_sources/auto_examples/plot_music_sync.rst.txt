@@ -26,14 +26,14 @@ In this short tutorial, we demonstrate the use of dynamic time warping (DTW) for
 which is implemented in `librosa`.
 
 We assume that you are familiar with the algorithm and focus on the application. Further information about
-the algorithm can be found in the literature, e. g. [1].
+the algorithm can be found in the literature, e. g. [1]_.
 
 Our example consists of two recordings of the first bars of the famous
 brass section lick in Stevie Wonder's rendition of "Sir Duke".
 Due to differences in tempo, the first recording lasts for ca. 7 seconds and the second recording for ca. 5 seconds.
 Our objective is now to find an alignment between these two recordings by using DTW.
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-32
+.. GENERATED FROM PYTHON SOURCE LINES 19-31
 
 .. code-block:: default
 
@@ -47,7 +47,6 @@ Our objective is now to find an alignment between these two recordings by using 
     import matplotlib.pyplot as plt
 
     import librosa
-    import librosa.display
 
 
 
@@ -57,14 +56,14 @@ Our objective is now to find an alignment between these two recordings by using 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-37
+.. GENERATED FROM PYTHON SOURCE LINES 32-36
 
 ---------------------
 Load Audio Recordings
 ---------------------
 First, let's load a first version of our audio recordings.
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-49
+.. GENERATED FROM PYTHON SOURCE LINES 36-48
 
 .. code-block:: default
 
@@ -92,13 +91,13 @@ First, let's load a first version of our audio recordings.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-53
+.. GENERATED FROM PYTHON SOURCE LINES 49-52
 
 -----------------------
 Extract Chroma Features
 -----------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-72
+.. GENERATED FROM PYTHON SOURCE LINES 52-71
 
 .. code-block:: default
 
@@ -133,13 +132,13 @@ Extract Chroma Features
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-76
+.. GENERATED FROM PYTHON SOURCE LINES 72-75
 
 ----------------------
 Align Chroma Sequences
 ----------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-87
+.. GENERATED FROM PYTHON SOURCE LINES 75-86
 
 .. code-block:: default
 
@@ -166,7 +165,7 @@ Align Chroma Sequences
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-95
+.. GENERATED FROM PYTHON SOURCE LINES 87-94
 
 --------------------------------------------
 Alternative Visualization in the Time Domain
@@ -176,7 +175,7 @@ We can also visualize the warping path directly on our time domain signals.
 Red lines connect corresponding time positions in the input signals.
 (Thanks to F. Zalkow for the nice visualization.)
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-121
+.. GENERATED FROM PYTHON SOURCE LINES 94-120
 
 .. code-block:: default
 
@@ -218,7 +217,7 @@ Red lines connect corresponding time positions in the input signals.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 122-142
+.. GENERATED FROM PYTHON SOURCE LINES 121-141
 
 -------------
 Next steps...
@@ -238,13 +237,13 @@ e.g. speed up the slower signal to the tempo of the faster one.
 Literature
 ----------
 
-[1] Meinard Müller, Fundamentals of Music Processing — Audio, Analysis, Algorithms, Applications.
-Springer Verlag, 2015.
+.. [1] Meinard Müller, Fundamentals of Music Processing — Audio, Analysis, Algorithms, Applications.
+    Springer Verlag, 2015.
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.112 seconds)
+   **Total running time of the script:** ( 0 minutes  4.644 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:

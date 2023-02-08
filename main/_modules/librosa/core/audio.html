@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.audio &mdash; librosa 0.10.0.dev0 documentation</title>
+  <title>librosa.core.audio &mdash; librosa 0.10.0rc0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -36,7 +36,7 @@
             <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0.dev0
+                0.10.0rc0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -1800,19 +1800,15 @@
 
     <span class="k">if</span> <span class="n">mu</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;mu-law compression parameter mu=</span><span class="si">{}</span><span class="s2"> &quot;</span>
-            <span class="s2">&quot;must be strictly positive.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+            <span class="sa">f</span><span class="s2">&quot;mu-law compression parameter mu=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s2"> must be strictly positive.&quot;</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;mu-law input x=</span><span class="si">{}</span><span class="s2"> must be in the &quot;</span> <span class="s2">&quot;range [-1, +1].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu-law input x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> must be in the range [-1, +1].&quot;</span><span class="p">)</span>
 
     <span class="n">x_comp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">quantize</span><span class="p">:</span>
-
         <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span>
                 <span class="n">x_comp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mu</span><span class="p">),</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span>
@@ -1899,8 +1895,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">mu</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;Inverse mu-law compression parameter &quot;</span>
-            <span class="s2">&quot;mu=</span><span class="si">{}</span><span class="s2"> must be strictly positive.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+            <span class="sa">f</span><span class="s2">&quot;Inverse mu-law compression parameter mu=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s2"> must be strictly positive.&quot;</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">quantize</span><span class="p">:</span>
@@ -1947,8 +1942,6 @@
     <dl>
       <dt>Releases</dt>
       <dd><a href="../../../../0.8.1/index.html">0.8.1</a></dd>
-      <dd><a href="../../../../0.9.0/index.html">0.9.0</a></dd>
-      <dd><a href="../../../../0.9.1/index.html">0.9.1</a></dd>
       <dd><a href="../../../../0.9.2/index.html">0.9.2</a></dd>
     </dl>
     <dl>

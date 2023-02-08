@@ -23,12 +23,18 @@ Superflux onsets
 ================
 
 This notebook demonstrates how to recover the Superflux onset detection algorithm of
-`Boeck and Widmer, 2013 <http://dafx13.nuim.ie/papers/09.dafx2013_submission_12.pdf>`_
+`Boeck and Widmer, 2013
+<http://dafx13.nuim.ie/papers/09.dafx2013_submission_12.pdf>`_ [1]_
 from librosa.
 
 This algorithm improves onset detection accuracy in the presence of vibrato.
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-17
+.. [1] Böck, Sebastian, and Gerhard Widmer. 
+    Maximum filter vibrato suppression for onset detection.
+    In Proc. of the 16th Int. Conf. on Digital Audio Effects (DAFx).
+    Maynooth, Ireland (Sept 2013), vol. 7, p. 4. 2013.
+
+.. GENERATED FROM PYTHON SOURCE LINES 19-23
 
 .. code-block:: default
 
@@ -43,11 +49,11 @@ This algorithm improves onset detection accuracy in the presence of vibrato.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-19
+.. GENERATED FROM PYTHON SOURCE LINES 24-25
 
 We'll need numpy and matplotlib for this example
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-25
+.. GENERATED FROM PYTHON SOURCE LINES 25-30
 
 .. code-block:: default
 
@@ -55,7 +61,6 @@ We'll need numpy and matplotlib for this example
     import matplotlib.pyplot as plt
 
     import librosa
-    import librosa.display
 
 
 
@@ -64,12 +69,12 @@ We'll need numpy and matplotlib for this example
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-28
+.. GENERATED FROM PYTHON SOURCE LINES 31-33
 
 The method works fine for longer signals, but the
 results are harder to visualize.
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-32
+.. GENERATED FROM PYTHON SOURCE LINES 33-37
 
 .. code-block:: default
 
@@ -84,11 +89,11 @@ results are harder to visualize.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-34
+.. GENERATED FROM PYTHON SOURCE LINES 38-39
 
 These parameters are taken directly from the paper
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-43
+.. GENERATED FROM PYTHON SOURCE LINES 39-48
 
 .. code-block:: default
 
@@ -108,12 +113,12 @@ These parameters are taken directly from the paper
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-46
+.. GENERATED FROM PYTHON SOURCE LINES 49-51
 
 The paper uses a log-frequency representation, but for
 simplicity, we'll use a Mel spectrogram instead.
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-59
+.. GENERATED FROM PYTHON SOURCE LINES 51-64
 
 .. code-block:: default
 
@@ -142,12 +147,12 @@ simplicity, we'll use a Mel spectrogram instead.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-62
+.. GENERATED FROM PYTHON SOURCE LINES 65-67
 
 Now we'll compute the onset strength envelope and onset events
 using the librosa defaults.
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-67
+.. GENERATED FROM PYTHON SOURCE LINES 67-72
 
 .. code-block:: default
 
@@ -163,11 +168,11 @@ using the librosa defaults.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-69
+.. GENERATED FROM PYTHON SOURCE LINES 73-74
 
 And similarly with the superflux method
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-80
+.. GENERATED FROM PYTHON SOURCE LINES 74-85
 
 .. code-block:: default
 
@@ -189,7 +194,7 @@ And similarly with the superflux method
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-87
+.. GENERATED FROM PYTHON SOURCE LINES 86-92
 
 If you look carefully, the default onset detector (top sub-plot) has
 several false positives in high-vibrato regions, eg around 0.62s or
@@ -198,7 +203,7 @@ several false positives in high-vibrato regions, eg around 0.62s or
 The superflux method (middle plot) is less susceptible to vibrato, and
 does not detect onset events at those points.
 
-.. GENERATED FROM PYTHON SOURCE LINES 87-112
+.. GENERATED FROM PYTHON SOURCE LINES 92-117
 
 .. code-block:: default
 
@@ -218,12 +223,12 @@ does not detect onset events at those points.
 
 
     ax[0].plot(frame_time, odf_default, label='Spectral flux')
-    ax[0].vlines(onset_default, 0, odf_default.max(), label='Onsets')
+    ax[0].vlines(onset_default, 0, odf_default.max(), color='r', label='Onsets')
     ax[0].legend()
     ax[0].label_outer()
 
     ax[1].plot(frame_time, odf_sf, color='g', label='Superflux')
-    ax[1].vlines(onset_sf, 0, odf_sf.max(), label='Onsets')
+    ax[1].vlines(onset_sf, 0, odf_sf.max(), color='r', label='Onsets')
     ax[1].legend()
     ax[0].label_outer()
 
@@ -242,7 +247,7 @@ does not detect onset events at those points.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.782 seconds)
+   **Total running time of the script:** ( 0 minutes  1.040 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_superflux.py:

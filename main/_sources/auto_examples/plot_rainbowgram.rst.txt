@@ -24,9 +24,13 @@ Rainbowgrams
 
 This notebook demonstrates how to use "Rainbowgrams" to simultaneously 
 visualize amplitude and (unwrapped) phase (differential) as demonstrated in the
-`NSynth paper <https://proceedings.mlr.press/v70/engel17a/engel17a.pdf>`_.
+`NSynth paper <https://proceedings.mlr.press/v70/engel17a/engel17a.pdf>`_ [1]_.
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-15
+.. [1] Engel, Jesse, Cinjon Resnick, Adam Roberts, Sander Dieleman, Mohammad Norouzi, Douglas Eck, and Karen Simonyan.
+    "Neural audio synthesis of musical notes with wavenet autoencoders."
+    In International Conference on Machine Learning, pp. 1068-1077. PMLR, 2017.
+
+.. GENERATED FROM PYTHON SOURCE LINES 16-19
 
 .. code-block:: default
 
@@ -40,11 +44,11 @@ visualize amplitude and (unwrapped) phase (differential) as demonstrated in the
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-17
+.. GENERATED FROM PYTHON SOURCE LINES 20-21
 
 Standard imports
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-23
+.. GENERATED FROM PYTHON SOURCE LINES 21-26
 
 .. code-block:: default
 
@@ -52,7 +56,6 @@ Standard imports
     import matplotlib.pyplot as plt
     import librosa
 
-    import librosa.display
 
 
 
@@ -61,12 +64,12 @@ Standard imports
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-26
+.. GENERATED FROM PYTHON SOURCE LINES 27-29
 
 We implemented a stft method to visualize the rainbowgram and demonstrated the result with a chirp signal.
 A chirp signal starts at a low frequency and gradually increases in frequency over time. We then separated the magnitude and phase components of the signal
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-31
+.. GENERATED FROM PYTHON SOURCE LINES 29-34
 
 .. code-block:: default
 
@@ -82,12 +85,12 @@ A chirp signal starts at a low frequency and gradually increases in frequency ov
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-34
+.. GENERATED FROM PYTHON SOURCE LINES 35-37
 
 We should be visualizing the demodulated phase differential derived by subtracting 2π*f*t 
 from each phase estimate prior to unwrapping, where f and t are the frequency and time.
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-38
+.. GENERATED FROM PYTHON SOURCE LINES 37-41
 
 .. code-block:: default
 
@@ -102,11 +105,11 @@ from each phase estimate prior to unwrapping, where f and t are the frequency an
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-40
+.. GENERATED FROM PYTHON SOURCE LINES 42-43
 
 Plot the spectrum.
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-52
+.. GENERATED FROM PYTHON SOURCE LINES 43-55
 
 .. code-block:: default
 
@@ -134,13 +137,13 @@ Plot the spectrum.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-56
+.. GENERATED FROM PYTHON SOURCE LINES 56-59
 
 The above uses HSV colormap for phase fading to a black background. The twilight colormap 
 can also work here, with the caveat that it uses black to code the extremes of the map (ie 0). 
 We can sidestep this by using a neutral axis facecolor:
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-66
+.. GENERATED FROM PYTHON SOURCE LINES 59-69
 
 .. code-block:: default
 
@@ -169,7 +172,7 @@ We can sidestep this by using a neutral axis facecolor:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.044 seconds)
+   **Total running time of the script:** ( 0 minutes  8.364 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_rainbowgram.py:
