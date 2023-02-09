@@ -2591,7 +2591,7 @@
 <span class="n">_NumberOrArray</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_NumberOrArray&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Union</span><span class="p">[</span><span class="n">_Number</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span>
 
 
-<div class="viewcode-block" id="abs2"><a class="viewcode-back" href="../../../generated/librosa.util.abs2.html#librosa.util.abs2">[docs]</a><span class="k">def</span> <span class="nf">abs2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">_NumberOrArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_NumberOrArray</span><span class="p">:</span>
+<div class="viewcode-block" id="abs2"><a class="viewcode-back" href="../../../generated/librosa.util.abs2.html#librosa.util.abs2">[docs]</a><span class="k">def</span> <span class="nf">abs2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">_NumberOrArray</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_NumberOrArray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute the squared magnitude of a real or complex array.</span>
 
 <span class="sd">    This function is equivalent to calling `np.abs(x)**2` but it</span>
@@ -2601,6 +2601,9 @@
 <span class="sd">    ----------</span>
 <span class="sd">    x : np.ndarray or scalar, real or complex typed</span>
 <span class="sd">        The input data, either real (float32, float64) or complex (complex64, complex128) typed</span>
+<span class="sd">    dtype : np.dtype, optional</span>
+<span class="sd">        The data type of the output array.</span>
+<span class="sd">        If not provided, it will be inferred from `x`</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -2618,10 +2621,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="c1"># suppress type check, mypy doesn&#39;t like vectorization</span>
-        <span class="k">return</span> <span class="n">_cabs2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">_cabs2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">y</span>  <span class="c1"># type: ignore</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># suppress type check, mypy doesn&#39;t know this is real</span>
-        <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># type: ignore</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
 
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span>

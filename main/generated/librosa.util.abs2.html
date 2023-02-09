@@ -138,7 +138,7 @@
 <h1>librosa.util.abs2<a class="headerlink" href="#librosa-util-abs2" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.util.abs2">
-<span class="sig-prename descclassname"><span class="pre">librosa.util.</span></span><span class="sig-name descname"><span class="pre">abs2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/util/utils.html#abs2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.util.abs2" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.util.</span></span><span class="sig-name descname"><span class="pre">abs2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/util/utils.html#abs2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.util.abs2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the squared magnitude of a real or complex array.</p>
 <p>This function is equivalent to calling <em class="xref py py-obj">np.abs(x)**2</em> but it
 is slightly more efficient.</p>
@@ -146,6 +146,9 @@ is slightly more efficient.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">np.ndarray or scalar, real or complex typed</span></dt><dd><p>The input data, either real (float32, float64) or complex (complex64, complex128) typed</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">np.dtype, optional</span></dt><dd><p>The data type of the output array.
+If not provided, it will be inferred from <em class="xref py py-obj">x</em></p>
 </dd>
 </dl>
 </dd>

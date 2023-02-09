@@ -127,6 +127,7 @@
 <span class="kn">from</span> <span class="nn">..core.constantq</span> <span class="kn">import</span> <span class="n">cqt</span><span class="p">,</span> <span class="n">hybrid_cqt</span><span class="p">,</span> <span class="n">vqt</span>
 <span class="kn">from</span> <span class="nn">..core.pitch</span> <span class="kn">import</span> <span class="n">estimate_tuning</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Collection</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">DTypeLike</span>
 <span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_PadMode</span><span class="p">,</span> <span class="n">_PadModeSTFT</span>
 
 
@@ -917,6 +918,7 @@
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Compute root-mean-square (RMS) value for each frame, either from the</span>
 <span class="sd">    audio samples ``y`` or from a spectrogram ``S``.</span>
@@ -944,6 +946,8 @@
 <span class="sd">    pad_mode : str</span>
 <span class="sd">        Padding mode for centered analysis.  See `numpy.pad` for valid</span>
 <span class="sd">        values.</span>
+<span class="sd">    dtype : np.dtype, optional</span>
+<span class="sd">        Data type of the output array.  Defaults to float32.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -990,7 +994,7 @@
         <span class="n">x</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
 
         <span class="c1"># Calculate power</span>
-        <span class="n">power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">S</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Check the frame length</span>
         <span class="k">if</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="n">frame_length</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
@@ -1003,7 +1007,7 @@
             <span class="p">)</span>
 
         <span class="c1"># power spectrogram</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
         <span class="c1"># Adjust the DC and sr/2 component</span>
         <span class="n">x</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*=</span> <span class="mf">0.5</span>
