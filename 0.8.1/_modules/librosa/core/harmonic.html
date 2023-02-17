@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -93,7 +94,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.core.harmonic</li>
       <li class="wy-breadcrumbs-aside">
@@ -130,7 +131,7 @@
     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span>
     <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Harmonic salience function.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Harmonic salience function.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -234,7 +235,7 @@
 
 
 <div class="viewcode-block" id="interp_harmonics"><a class="viewcode-back" href="../../../generated/librosa.interp_harmonics.html#librosa.interp_harmonics">[docs]</a><span class="k">def</span> <span class="nf">interp_harmonics</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">h_range</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the energy at harmonics of time-frequency representation.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the energy at harmonics of time-frequency representation.</span>
 
 <span class="sd">    Given a frequency-based energy representation such as a spectrogram</span>
 <span class="sd">    or tempogram, this function computes the energy at the chosen harmonics</span>
@@ -348,7 +349,7 @@
 
 
 <span class="k">def</span> <span class="nf">harmonics_1d</span><span class="p">(</span><span class="n">harmonic_out</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">h_range</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Populate a harmonic tensor from a time-frequency representation.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate a harmonic tensor from a time-frequency representation.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -456,7 +457,7 @@
 
 
 <span class="k">def</span> <span class="nf">harmonics_2d</span><span class="p">(</span><span class="n">harmonic_out</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">h_range</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Populate a harmonic tensor from a time-frequency representation with</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate a harmonic tensor from a time-frequency representation with</span>
 <span class="sd">    time-varying frequencies.</span>
 
 <span class="sd">    Parameters</span>

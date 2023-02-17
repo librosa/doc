@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../index.html">
-            <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.beat</li>
       <li class="wy-breadcrumbs-aside">
@@ -150,7 +151,7 @@
     <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">units</span><span class="o">=</span><span class="s2">&quot;frames&quot;</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dynamic programming beat tracker.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dynamic programming beat tracker.</span>
 
 <span class="sd">    Beats are detected in three stages, following the method of [#]_:</span>
 
@@ -317,7 +318,7 @@
     <span class="n">aggregate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
     <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Estimate the tempo (beats per minute)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate the tempo (beats per minute)</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -480,7 +481,7 @@
     <span class="n">tempo_max</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
     <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Predominant local pulse (PLP) estimation. [#]_</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Predominant local pulse (PLP) estimation. [#]_</span>
 
 <span class="sd">    The PLP method analyzes the onset strength envelope in the frequency domain</span>
 <span class="sd">    to find a locally stable tempo for each frame.  These local periodicities</span>
@@ -661,7 +662,7 @@
 
 
 <span class="k">def</span> <span class="nf">__beat_tracker</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">bpm</span><span class="p">,</span> <span class="n">fft_res</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">trim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Internal function that tracks beats in an onset strength envelope.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Internal function that tracks beats in an onset strength envelope.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -713,7 +714,7 @@
 
 <span class="c1"># -- Helper functions for beat tracking</span>
 <span class="k">def</span> <span class="nf">__normalize_onsets</span><span class="p">(</span><span class="n">onsets</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Maps onset strength function into the range [0, 1]&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Maps onset strength function into the range [0, 1]&quot;&quot;&quot;</span>
 
     <span class="n">norm</span> <span class="o">=</span> <span class="n">onsets</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -722,14 +723,14 @@
 
 
 <span class="k">def</span> <span class="nf">__beat_local_score</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct the local score for an onset envlope and given period&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the local score for an onset envlope and given period&quot;&quot;&quot;</span>
 
     <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">period</span><span class="p">,</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">32.0</span> <span class="o">/</span> <span class="n">period</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">__normalize_onsets</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">),</span> <span class="n">window</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">__beat_track_dp</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">tightness</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Core dynamic program for beat tracking&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Core dynamic program for beat tracking&quot;&quot;&quot;</span>
 
     <span class="n">backlink</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">cumscore</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">localscore</span><span class="p">)</span>
@@ -774,7 +775,7 @@
 
 
 <span class="k">def</span> <span class="nf">__last_beat</span><span class="p">(</span><span class="n">cumscore</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the last beat from the cumulative score array&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the last beat from the cumulative score array&quot;&quot;&quot;</span>
 
     <span class="n">maxes</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">localmax</span><span class="p">(</span><span class="n">cumscore</span><span class="p">)</span>
     <span class="n">med_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">cumscore</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">maxes</span><span class="p">)])</span>
@@ -784,7 +785,7 @@
 
 
 <span class="k">def</span> <span class="nf">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="n">trim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Final post-processing: throw out spurious leading/trailing beats&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Final post-processing: throw out spurious leading/trailing beats&quot;&quot;&quot;</span>
 
     <span class="n">smooth_boe</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">localscore</span><span class="p">[</span><span class="n">beats</span><span class="p">],</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
 

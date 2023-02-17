@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.feature.spectral_contrast &mdash; librosa 0.8.1 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -121,7 +122,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../feature.html">Feature extraction</a></li>
       <li class="breadcrumb-item active">librosa.feature.spectral_contrast</li>
       <li class="wy-breadcrumbs-aside">
@@ -146,19 +147,20 @@ For each sub-band, the energy contrast is estimated by comparing
 the mean energy in the top quantile (peak energy) to that of the
 bottom quantile (valley energy).  High contrast values generally
 correspond to clear, narrow-band signals, while low contrast values
-correspond to broad-band noise. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Jiang, Dan-Ning, Lie Lu, Hong-Jiang Zhang, Jian-Hua Tao,
+correspond to broad-band noise. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Jiang, Dan-Ning, Lie Lu, Hong-Jiang Zhang, Jian-Hua Tao,
 and Lian-Hong Cai.
 “Music type classification by spectral contrast feature.”
 In Multimedia and Expo, 2002. ICME’02. Proceedings.
 2002 IEEE International Conference on, vol. 1, pp. 113-116.
 IEEE, 2002.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(n,)] or None</span></dt><dd><p>audio time series</p>
 </dd>
@@ -209,7 +211,7 @@ Subsequent bins will cover <code class="docutils literal notranslate"><span clas
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>contrast</strong><span class="classifier">np.ndarray [shape=(n_bands + 1, t)]</span></dt><dd><p>each row of spectral contrast values corresponds to a given
 octave-based frequency</p>

@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../index.html">
-            <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -93,7 +94,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.sequence</li>
       <li class="wy-breadcrumbs-aside">
@@ -176,7 +177,7 @@
     <span class="n">band_rad</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
     <span class="n">return_steps</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Dynamic time warping (DTW).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dynamic time warping (DTW).</span>
 
 <span class="sd">    This function performs a DTW and path backtracking on two sequences.</span>
 <span class="sd">    We follow the nomenclature and algorithmic approach as described in [#]_.</span>
@@ -450,7 +451,7 @@
 <span class="k">def</span> <span class="nf">__dtw_calc_accu_cost</span><span class="p">(</span>
     <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">step_sizes_sigma</span><span class="p">,</span> <span class="n">weights_mul</span><span class="p">,</span> <span class="n">weights_add</span><span class="p">,</span> <span class="n">max_0</span><span class="p">,</span> <span class="n">max_1</span>
 <span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Calculate the accumulated cost matrix D.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the accumulated cost matrix D.</span>
 
 <span class="sd">    Use dynamic programming to calculate the accumulated costs.</span>
 
@@ -522,7 +523,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__dtw_backtracking</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">step_sizes_sigma</span><span class="p">,</span> <span class="n">subseq</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Backtrack optimal warping path.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Backtrack optimal warping path.</span>
 
 <span class="sd">    Uses the saved step sizes from the cost accumulation</span>
 <span class="sd">    step to backtrack the index pairs for an optimal</span>
@@ -589,7 +590,7 @@
 
 
 <span class="k">def</span> <span class="nf">dtw_backtracking</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">step_sizes_sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subseq</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Backtrack a warping path.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Backtrack a warping path.</span>
 
 <span class="sd">    Uses the saved step sizes from the cost accumulation</span>
 <span class="sd">    step to backtrack the index pairs for a warping path.</span>
@@ -642,7 +643,7 @@
 
 
 <div class="viewcode-block" id="rqa"><a class="viewcode-back" href="../../generated/librosa.sequence.rqa.html#librosa.sequence.rqa">[docs]</a><span class="k">def</span> <span class="nf">rqa</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">gap_onset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap_extend</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">knight_moves</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">backtrack</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Recurrence quantification analysis (RQA)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recurrence quantification analysis (RQA)</span>
 
 <span class="sd">    This function implements different forms of RQA as described by</span>
 <span class="sd">    Serra, Serra, and Andrzejak (SSA). [#]_  These methods take as input</span>
@@ -786,7 +787,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__rqa_dp</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">gap_onset</span><span class="p">,</span> <span class="n">gap_extend</span><span class="p">,</span> <span class="n">knight</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;RQA dynamic programming implementation&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;RQA dynamic programming implementation&quot;&quot;&quot;</span>
 
     <span class="c1"># The output array</span>
     <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
@@ -938,7 +939,7 @@
 
 
 <span class="k">def</span> <span class="nf">__rqa_backtrack</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">pointers</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;RQA path backtracking</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;RQA path backtracking</span>
 
 <span class="sd">    Given the score matrix and backtracking index array,</span>
 <span class="sd">    reconstruct the optimal path.</span>
@@ -991,7 +992,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_viterbi</span><span class="p">(</span><span class="n">log_prob</span><span class="p">,</span> <span class="n">log_trans</span><span class="p">,</span> <span class="n">log_p_init</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">ptr</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Core Viterbi algorithm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Core Viterbi algorithm.</span>
 
 <span class="sd">    This is intended for internal use only.</span>
 
@@ -1056,7 +1057,7 @@
 
 
 <div class="viewcode-block" id="viterbi"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi.html#librosa.sequence.viterbi">[docs]</a><span class="k">def</span> <span class="nf">viterbi</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Viterbi decoding from observation likelihoods.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Viterbi decoding from observation likelihoods.</span>
 
 <span class="sd">    Given a sequence of observation likelihoods ``prob[s, t]``,</span>
 <span class="sd">    indicating the conditional likelihood of seeing the observation</span>
@@ -1185,7 +1186,7 @@
 <div class="viewcode-block" id="viterbi_discriminative"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi_discriminative.html#librosa.sequence.viterbi_discriminative">[docs]</a><span class="k">def</span> <span class="nf">viterbi_discriminative</span><span class="p">(</span>
     <span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="n">p_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Viterbi decoding from discriminative state predictions.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Viterbi decoding from discriminative state predictions.</span>
 
 <span class="sd">    Given a sequence of conditional state predictions ``prob[s, t]``,</span>
 <span class="sd">    indicating the conditional likelihood of state ``s`` given the</span>
@@ -1374,7 +1375,7 @@
 
 
 <div class="viewcode-block" id="viterbi_binary"><a class="viewcode-back" href="../../generated/librosa.sequence.viterbi_binary.html#librosa.sequence.viterbi_binary">[docs]</a><span class="k">def</span> <span class="nf">viterbi_binary</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">transition</span><span class="p">,</span> <span class="n">p_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_logp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Viterbi decoding from binary (multi-label), discriminative state predictions.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Viterbi decoding from binary (multi-label), discriminative state predictions.</span>
 
 <span class="sd">    Given a sequence of conditional state predictions ``prob[s, t]``,</span>
 <span class="sd">    indicating the conditional likelihood of state ``s`` being active</span>
@@ -1531,7 +1532,7 @@
 
 
 <div class="viewcode-block" id="transition_uniform"><a class="viewcode-back" href="../../generated/librosa.sequence.transition_uniform.html#librosa.sequence.transition_uniform">[docs]</a><span class="k">def</span> <span class="nf">transition_uniform</span><span class="p">(</span><span class="n">n_states</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct a uniform transition matrix over ``n_states``.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a uniform transition matrix over ``n_states``.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1561,7 +1562,7 @@
 
 
 <div class="viewcode-block" id="transition_loop"><a class="viewcode-back" href="../../generated/librosa.sequence.transition_loop.html#librosa.sequence.transition_loop">[docs]</a><span class="k">def</span> <span class="nf">transition_loop</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">prob</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct a self-loop transition matrix over ``n_states``.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a self-loop transition matrix over ``n_states``.</span>
 
 <span class="sd">    The transition matrix will have the following properties:</span>
 
@@ -1629,7 +1630,7 @@
 
 
 <div class="viewcode-block" id="transition_cycle"><a class="viewcode-back" href="../../generated/librosa.sequence.transition_cycle.html#librosa.sequence.transition_cycle">[docs]</a><span class="k">def</span> <span class="nf">transition_cycle</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">prob</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct a cyclic transition matrix over ``n_states``.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a cyclic transition matrix over ``n_states``.</span>
 
 <span class="sd">    The transition matrix will have the following properties:</span>
 
@@ -1696,7 +1697,7 @@
 
 
 <div class="viewcode-block" id="transition_local"><a class="viewcode-back" href="../../generated/librosa.sequence.transition_local.html#librosa.sequence.transition_local">[docs]</a><span class="k">def</span> <span class="nf">transition_local</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct a localized transition matrix.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a localized transition matrix.</span>
 
 <span class="sd">    The transition matrix will have the following properties:</span>
 

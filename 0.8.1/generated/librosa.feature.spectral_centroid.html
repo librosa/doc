@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.feature.spectral_centroid &mdash; librosa 0.8.1 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -121,7 +122,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../feature.html">Feature extraction</a></li>
       <li class="breadcrumb-item active">librosa.feature.spectral_centroid</li>
       <li class="wy-breadcrumbs-aside">
@@ -144,21 +145,22 @@
 <p>Each frame of a magnitude spectrogram is normalized and treated as a
 distribution over frequency bins, from which the mean (centroid) is
 extracted per frame.</p>
-<p>More precisely, the centroid at frame <code class="docutils literal notranslate"><span class="pre">t</span></code> is defined as <a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
+<p>More precisely, the centroid at frame <code class="docutils literal notranslate"><span class="pre">t</span></code> is defined as <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centroid</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_k</span> <span class="n">S</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">freq</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">sum_j</span> <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">t</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">S</span></code> is a magnitude spectrogram, and <code class="docutils literal notranslate"><span class="pre">freq</span></code> is the array of
 frequencies (e.g., FFT frequencies in Hz) of the rows of <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Klapuri, A., &amp; Davy, M. (Eds.). (2007). Signal processing
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Klapuri, A., &amp; Davy, M. (Eds.). (2007). Signal processing
 methods for music transcription, chapter 5.
 Springer Science &amp; Business Media.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(n,)] or None</span></dt><dd><p>audio time series</p>
 </dd>
@@ -199,7 +201,7 @@ By default, STFT uses reflection padding.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>centroid</strong><span class="classifier">np.ndarray [shape=(1, t)]</span></dt><dd><p>centroid frequencies</p>
 </dd>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.spectrum &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.core.spectrum &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.core.spectrum</li>
       <li class="wy-breadcrumbs-aside">
@@ -165,7 +166,7 @@
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadModeSTFT</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Short-time Fourier transform (STFT).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Short-time Fourier transform (STFT).</span>
 
 <span class="sd">    The STFT represents a signal in the time-frequency domain by</span>
 <span class="sd">    computing discrete Fourier transforms (DFT) over short overlapping</span>
@@ -503,7 +504,7 @@
     <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inverse short-time Fourier transform (ISTFT).</span>
 
 <span class="sd">    Converts a complex-valued spectrogram ``stft_matrix`` to time-series ``y``</span>
@@ -756,7 +757,7 @@
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadModeSTFT</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Instantaneous frequencies based on a spectrogram representation.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantaneous frequencies based on a spectrogram representation.</span>
 
 <span class="sd">    The reassignment vector is calculated using equation 5.20 in Flandrin,</span>
 <span class="sd">    Auger, &amp; Chassande-Mottin 2002::</span>
@@ -919,7 +920,7 @@
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadModeSTFT</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Time reassignments based on a spectrogram representation.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Time reassignments based on a spectrogram representation.</span>
 
 <span class="sd">    The reassignment vector is calculated using equation 5.23 in Flandrin,</span>
 <span class="sd">    Auger, &amp; Chassande-Mottin 2002::</span>
@@ -1106,7 +1107,7 @@
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadModeSTFT</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Time-frequency reassigned spectrogram.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Time-frequency reassigned spectrogram.</span>
 
 <span class="sd">    The reassignment vectors are calculated using equations 5.20 and 5.23 in</span>
 <span class="sd">    [#]_::</span>
@@ -1396,7 +1397,7 @@
 
 
 <div class="viewcode-block" id="magphase"><a class="viewcode-back" href="../../../generated/librosa.magphase.html#librosa.magphase">[docs]</a><span class="k">def</span> <span class="nf">magphase</span><span class="p">(</span><span class="n">D</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">power</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Separate a complex-valued spectrogram D into its magnitude (S)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Separate a complex-valued spectrogram D into its magnitude (S)</span>
 <span class="sd">    and phase (P) components, so that ``D = S * P``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1473,7 +1474,7 @@
     <span class="n">hop_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Phase vocoder.  Given an STFT matrix D, speed up by a factor of ``rate``</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Phase vocoder.  Given an STFT matrix D, speed up by a factor of ``rate``</span>
 
 <span class="sd">    Based on the implementation provided by [#]_.</span>
 
@@ -1592,7 +1593,7 @@
     <span class="n">res_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Time-frequency representation using IIR filters</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Time-frequency representation using IIR filters</span>
 
 <span class="sd">    This function will return a time-frequency representation</span>
 <span class="sd">    using a multirate filter bank consisting of IIR filters. [#]_</span>
@@ -1778,7 +1779,7 @@
     <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a power spectrogram (amplitude squared) to decibel (dB) units</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a power spectrogram (amplitude squared) to decibel (dB) units</span>
 
 <span class="sd">    This computes the scaling ``10 * log10(S / ref)`` in a numerically</span>
 <span class="sd">    stable way.</span>
@@ -1901,7 +1902,7 @@
 
 <div class="viewcode-block" id="db_to_power"><a class="viewcode-back" href="../../../generated/librosa.db_to_power.html#librosa.db_to_power">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a dB-scale spectrogram to a power spectrogram.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a dB-scale spectrogram to a power spectrogram.</span>
 
 <span class="sd">    This effectively inverts ``power_to_db``::</span>
 
@@ -1934,7 +1935,7 @@
     <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
     <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert an amplitude spectrogram to dB-scaled spectrogram.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert an amplitude spectrogram to dB-scaled spectrogram.</span>
 
 <span class="sd">    This is equivalent to ``power_to_db(S**2, ref=ref**2, amin=amin**2, top_db=top_db)``,</span>
 <span class="sd">    but is provided for convenience.</span>
@@ -1997,7 +1998,7 @@
 
 <div class="viewcode-block" id="db_to_amplitude"><a class="viewcode-back" href="../../../generated/librosa.db_to_amplitude.html#librosa.db_to_amplitude">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span><span class="n">S_db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a dB-scaled spectrogram to an amplitude spectrogram.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a dB-scaled spectrogram to an amplitude spectrogram.</span>
 
 <span class="sd">    This effectively inverts `amplitude_to_db`::</span>
 
@@ -2026,7 +2027,7 @@
 <span class="k">def</span> <span class="nf">perceptual_weighting</span><span class="p">(</span>
     <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">frequencies</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Perceptual weighting of a power spectrogram::</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Perceptual weighting of a power spectrogram::</span>
 
 <span class="sd">        S_p[..., f, :] = frequency_weighting(f, &#39;A&#39;) + 10*log(S[..., f, :] / ref)</span>
 
@@ -2107,7 +2108,7 @@
     <span class="n">over_sample</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;The fast Mellin transform (FMT)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The fast Mellin transform (FMT)</span>
 
 <span class="sd">    The Mellin of a signal `y` is performed by interpolating `y` on an exponential time</span>
 <span class="sd">    axis, applying a polynomial window, and then taking the discrete Fourier transform.</span>
@@ -2381,7 +2382,7 @@
     <span class="n">zi</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">return_zf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
-    <span class="sd">&quot;&quot;&quot;Per-channel energy normalization (PCEN)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Per-channel energy normalization (PCEN)</span>
 
 <span class="sd">    This function normalizes a time-frequency representation ``S`` by</span>
 <span class="sd">    performing automatic gain control, followed by nonlinear compression [#]_ ::</span>
@@ -2650,7 +2651,7 @@
         <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">]</span>
     <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Approximate magnitude spectrogram inversion using the &quot;fast&quot; Griffin-Lim algorithm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Approximate magnitude spectrogram inversion using the &quot;fast&quot; Griffin-Lim algorithm.</span>
 
 <span class="sd">    Given a short-time Fourier transform magnitude matrix (``S``), the algorithm randomly</span>
 <span class="sd">    initializes phase estimates, and then alternates forward- and inverse-STFT</span>
@@ -2874,7 +2875,7 @@
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadModeSTFT</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Helper function to retrieve a magnitude spectrogram.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to retrieve a magnitude spectrogram.</span>
 
 <span class="sd">    This is primarily used in feature extraction functions that can operate on</span>
 <span class="sd">    either audio time-series or spectrogram input.</span>

@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../index.html">
-            <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -93,7 +94,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.display</li>
       <li class="wy-breadcrumbs-aside">
@@ -182,7 +183,7 @@
 
 
 <div class="viewcode-block" id="TimeFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TimeFormatter.html#librosa.display.TimeFormatter">[docs]</a><span class="k">class</span> <span class="nc">TimeFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A tick formatter for time axes.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A tick formatter for time axes.</span>
 
 <span class="sd">    Automatically switches between seconds, minutes:seconds,</span>
 <span class="sd">    or hours:minutes:seconds.</span>
@@ -248,7 +249,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lag</span> <span class="o">=</span> <span class="n">lag</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the time format as pos&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the time format as pos&quot;&quot;&quot;</span>
 
         <span class="n">_</span><span class="p">,</span> <span class="n">dmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">get_data_interval</span><span class="p">()</span>
         <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">get_view_interval</span><span class="p">()</span>
@@ -291,7 +292,7 @@
 
 
 <div class="viewcode-block" id="NoteFormatter"><a class="viewcode-back" href="../../generated/librosa.display.NoteFormatter.html#librosa.display.NoteFormatter">[docs]</a><span class="k">class</span> <span class="nc">NoteFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Ticker formatter for Notes</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ticker formatter for Notes</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -345,7 +346,7 @@
 
 
 <div class="viewcode-block" id="SvaraFormatter"><a class="viewcode-back" href="../../generated/librosa.display.SvaraFormatter.html#librosa.display.SvaraFormatter">[docs]</a><span class="k">class</span> <span class="nc">SvaraFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Ticker formatter for Svara</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ticker formatter for Svara</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -420,7 +421,7 @@
 
 
 <div class="viewcode-block" id="LogHzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.LogHzFormatter.html#librosa.display.LogHzFormatter">[docs]</a><span class="k">class</span> <span class="nc">LogHzFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Ticker formatter for logarithmic frequency</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ticker formatter for logarithmic frequency</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -465,7 +466,7 @@
 
 
 <div class="viewcode-block" id="ChromaFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFormatter.html#librosa.display.ChromaFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A formatter for chroma axes</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A formatter for chroma axes</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
@@ -485,12 +486,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Format for chroma positions&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format for chroma positions&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">core</span><span class="o">.</span><span class="n">midi_to_note</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">octave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ChromaSvaraFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaSvaraFormatter.html#librosa.display.ChromaSvaraFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaSvaraFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A formatter for chroma axes with svara instead of notes.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A formatter for chroma axes with svara instead of notes.</span>
 
 <span class="sd">    If mela is given, Carnatic svara names will be used.</span>
 
@@ -512,7 +513,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">abbr</span> <span class="o">=</span> <span class="n">abbr</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Format for chroma positions&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format for chroma positions&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mela</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">core</span><span class="o">.</span><span class="n">midi_to_svara_c</span><span class="p">(</span>
                 <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">Sa</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Sa</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mela</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abbr</span>
@@ -524,7 +525,7 @@
 
 
 <div class="viewcode-block" id="TonnetzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TonnetzFormatter.html#librosa.display.TonnetzFormatter">[docs]</a><span class="k">class</span> <span class="nc">TonnetzFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A formatter for tonnetz axes</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A formatter for tonnetz axes</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
@@ -541,12 +542,12 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Format for tonnetz positions&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format for tonnetz positions&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;5$_x$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;5$_y$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;m3$_x$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;m3$_y$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;M3$_x$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;M3$_y$&quot;</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></div>
 
 
 <div class="viewcode-block" id="AdaptiveWaveplot"><a class="viewcode-back" href="../../generated/librosa.display.AdaptiveWaveplot.html#librosa.display.AdaptiveWaveplot">[docs]</a><span class="k">class</span> <span class="nc">AdaptiveWaveplot</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;A helper class for managing adaptive wave visualizations.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A helper class for managing adaptive wave visualizations.</span>
 
 <span class="sd">    This object is used to dynamically switch between sample-based and envelope-based</span>
 <span class="sd">    visualizations of waveforms.</span>
@@ -594,7 +595,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">=</span> <span class="n">max_samples</span></div>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Update the matplotlib display according to the current viewport limits.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the matplotlib display according to the current viewport limits.</span>
 
 <span class="sd">        This is a callback function, and should not be used directly.</span>
 
@@ -633,7 +634,7 @@
 
 
 <div class="viewcode-block" id="cmap"><a class="viewcode-back" href="../../generated/librosa.display.cmap.html#librosa.display.cmap">[docs]</a><span class="k">def</span> <span class="nf">cmap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap_seq</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">,</span> <span class="n">cmap_bool</span><span class="o">=</span><span class="s2">&quot;gray_r&quot;</span><span class="p">,</span> <span class="n">cmap_div</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get a default colormap from the given data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a default colormap from the given data.</span>
 
 <span class="sd">    If the data is boolean, use a black and white colormap.</span>
 
@@ -691,7 +692,7 @@
 
 
 <span class="k">def</span> <span class="nf">__envelope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hop</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the max-envelope of non-overlapping frames of x at length hop</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the max-envelope of non-overlapping frames of x at length hop</span>
 
 <span class="sd">    x is assumed to be multi-channel, of shape (n_channels, n_samples).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -710,7 +711,7 @@
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot the amplitude envelope of a waveform.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the amplitude envelope of a waveform.</span>
 
 <span class="sd">    If ``y`` is monophonic, a filled curve is drawn between ``[-abs(y), abs(y)]``.</span>
 
@@ -873,7 +874,7 @@
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Display a spectrogram/chromagram/cqt/etc.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display a spectrogram/chromagram/cqt/etc.</span>
 
 <span class="sd">    For a detailed overview of this function, see :ref:`sphx_glr_auto_examples_plot_display.py`</span>
 
@@ -1108,7 +1109,7 @@
 
 
 <span class="k">def</span> <span class="nf">__set_current_image</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper to set the current image in pyplot mode.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper to set the current image in pyplot mode.</span>
 
 <span class="sd">    If the provided ``ax`` is not `None`, then we assume that the user is using the object API.</span>
 <span class="sd">    In this case, the pyplot current image is not set.</span>
@@ -1121,7 +1122,7 @@
 
 
 <span class="k">def</span> <span class="nf">__mesh_coords</span><span class="p">(</span><span class="n">ax_type</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute axis coordinates&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute axis coordinates&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">coords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
@@ -1165,7 +1166,7 @@
 
 
 <span class="k">def</span> <span class="nf">__check_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if &quot;axes&quot; is an instance of an axis object. If not, use `gca`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if &quot;axes&quot; is an instance of an axis object. If not, use `gca`.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -1179,7 +1180,7 @@
 
 
 <span class="k">def</span> <span class="nf">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">which</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Set the axis scaling&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the axis scaling&quot;&quot;&quot;</span>
 
     <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span>
@@ -1234,7 +1235,7 @@
 
 
 <span class="k">def</span> <span class="nf">__decorate_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;C:maj&quot;</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mela</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thaat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Configure axis tickers, locators, and labels&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure axis tickers, locators, and labels&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">ax_type</span> <span class="o">==</span> <span class="s2">&quot;tonnetz&quot;</span><span class="p">:</span>
         <span class="n">axis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">TonnetzFormatter</span><span class="p">())</span>
@@ -1400,7 +1401,7 @@
 
 
 <span class="k">def</span> <span class="nf">__coord_fft_hz</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the frequencies for FFT bins&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the frequencies for FFT bins&quot;&quot;&quot;</span>
     <span class="n">n_fft</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="c1"># The following code centers the FFT bins at their frequencies</span>
     <span class="c1"># and clips to the non-negative frequency range [0, nyquist]</span>
@@ -1412,7 +1413,7 @@
 
 
 <span class="k">def</span> <span class="nf">__coord_mel_hz</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the frequencies for Mel bins&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the frequencies for Mel bins&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fmin</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1426,7 +1427,7 @@
 
 
 <span class="k">def</span> <span class="nf">__coord_cqt_hz</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get CQT bin frequencies&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get CQT bin frequencies&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fmin</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">note_to_hz</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
 
@@ -1450,19 +1451,19 @@
 
 
 <span class="k">def</span> <span class="nf">__coord_chroma</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get chroma bin numbers&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get chroma bin numbers&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">12.0</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">bins_per_octave</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">__coord_tempo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Tempo coordinates&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tempo coordinates&quot;&quot;&quot;</span>
     <span class="n">basis</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">tempo_frequencies</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
     <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">basis</span> <span class="o">*</span> <span class="p">(</span><span class="n">edges</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">edges</span>
 
 
 <span class="k">def</span> <span class="nf">__coord_fourier_tempo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fourier tempogram coordinates&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fourier tempogram coordinates&quot;&quot;&quot;</span>
 
     <span class="n">n_fft</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="c1"># The following code centers the FFT bins at their frequencies</span>
@@ -1477,17 +1478,17 @@
 
 
 <span class="k">def</span> <span class="nf">__coord_n</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get bare positions&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get bare positions&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">__coord_time</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get time coordinates from frames&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get time coordinates from frames&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">__same_axes</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if two axes are the same, used to determine squared plots&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if two axes are the same, used to determine squared plots&quot;&quot;&quot;</span>
     <span class="n">axes_same_and_not_none</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_axis</span> <span class="o">==</span> <span class="n">y_axis</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x_axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
     <span class="n">axes_same_lim</span> <span class="o">=</span> <span class="n">xlim</span> <span class="o">==</span> <span class="n">ylim</span>
     <span class="k">return</span> <span class="n">axes_same_and_not_none</span> <span class="ow">and</span> <span class="n">axes_same_lim</span>
@@ -1505,7 +1506,7 @@
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Visualize a waveform in the time domain.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Visualize a waveform in the time domain.</span>
 
 <span class="sd">    This function constructs a plot which adaptively switches between a raw</span>
 <span class="sd">    samples-based view of the signal (`matplotlib.pyplot.step`) and an</span>

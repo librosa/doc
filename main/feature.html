@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feature extraction &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>Feature extraction &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="index.html">
-            <img src="_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -136,7 +137,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Feature extraction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/feature.rst.txt" rel="nofollow"> View page source</a>
@@ -154,10 +155,6 @@
 <section id="spectral-features">
 <h2>Spectral features<a class="headerlink" href="#spectral-features" title="Permalink to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.chroma_stft.html#librosa.feature.chroma_stft" title="librosa.feature.chroma_stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chroma_stft</span></code></a>(*[, y, sr, S, norm, n_fft, ...])</p></td>
 <td><p>Compute a chromagram from a waveform or power spectrogram.</p></td>
@@ -210,10 +207,6 @@
 <section id="rhythm-features">
 <h2>Rhythm features<a class="headerlink" href="#rhythm-features" title="Permalink to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.tempo.html#librosa.feature.tempo" title="librosa.feature.tempo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tempo</span></code></a>(*[, y, sr, onset_envelope, tg, ...])</p></td>
 <td><p>Estimate the tempo (beats per minute)</p></td>
@@ -233,10 +226,6 @@
 <section id="feature-manipulation">
 <h2>Feature manipulation<a class="headerlink" href="#feature-manipulation" title="Permalink to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.delta.html#librosa.feature.delta" title="librosa.feature.delta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta</span></code></a>(data, *[, width, order, axis, mode])</p></td>
 <td><p>Compute delta features: local estimate of the derivative of the input data along the selected axis.</p></td>
@@ -250,10 +239,6 @@
 <section id="feature-inversion">
 <h2>Feature inversion<a class="headerlink" href="#feature-inversion" title="Permalink to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.feature.inverse.mel_to_stft.html#librosa.feature.inverse.mel_to_stft" title="librosa.feature.inverse.mel_to_stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse.mel_to_stft</span></code></a>(M, *[, sr, n_fft, power])</p></td>
 <td><p>Approximate STFT magnitude from a Mel power spectrogram.</p></td>

@@ -21,10 +21,7 @@
       ~FJSFormatter.format_ticks
       ~FJSFormatter.get_offset
       ~FJSFormatter.set_axis
-      ~FJSFormatter.set_bounds
-      ~FJSFormatter.set_data_interval
       ~FJSFormatter.set_locs
-      ~FJSFormatter.set_view_interval
    
    
 

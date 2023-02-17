@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.decompose.hpss &mdash; librosa 0.8.1 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -104,7 +105,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../decompose.html">Spectrogram decomposition</a></li>
       <li class="breadcrumb-item active">librosa.decompose.hpss</li>
       <li class="wy-breadcrumbs-aside">
@@ -129,23 +130,25 @@ where <code class="docutils literal notranslate"><span class="pre">H</span></cod
 and <code class="docutils literal notranslate"><span class="pre">P</span></code> contains the percussive components.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">margin</span> <span class="pre">&gt;</span> <span class="pre">1.0</span></code>, decomposes an input spectrogram <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">H</span> <span class="pre">+</span> <span class="pre">P</span> <span class="pre">+</span> <span class="pre">R</span></code>
 where <code class="docutils literal notranslate"><span class="pre">R</span></code> contains residual components not included in <code class="docutils literal notranslate"><span class="pre">H</span></code> or <code class="docutils literal notranslate"><span class="pre">P</span></code>.</p>
-<p>This implementation is based upon the algorithm described by <a class="footnote-reference brackets" href="#id3" id="id1">1</a> and <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Fitzgerald, Derry.
+<p>This implementation is based upon the algorithm described by <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Fitzgerald, Derry.
 “Harmonic/percussive separation using median filtering.”
 13th International Conference on Digital Audio Effects (DAFX10),
 Graz, Austria, 2010.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Driedger, Müller, Disch.
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Driedger, Müller, Disch.
 “Extending harmonic-percussive separation of audio.”
 15th International Society for Music Information Retrieval Conference (ISMIR 2014),
 Taipei, Taiwan, 2014.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>S</strong><span class="classifier">np.ndarray [shape=(d, n)]</span></dt><dd><p>input spectrogram. May be real (magnitude) or complex.</p>
 </dd>
@@ -166,7 +169,7 @@ into harmonic or percussive components.</p>
 <p>Components can be recovered by multiplying <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">*</span> <span class="pre">mask_H</span></code>
 or <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">*</span> <span class="pre">mask_P</span></code>.</p>
 </dd>
-<dt><strong>margin</strong><span class="classifier">float or tuple (margin_harmonic, margin_percussive)</span></dt><dd><p>margin size(s) for the masks (as described in <a class="footnote-reference brackets" href="#id4" id="id5">2</a>)</p>
+<dt><strong>margin</strong><span class="classifier">float or tuple (margin_harmonic, margin_percussive)</span></dt><dd><p>margin size(s) for the masks (as described in <a class="footnote-reference brackets" href="#id4" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>)</p>
 <ul class="simple">
 <li><p>If scalar, the same size is used for both harmonic and percussive.</p></li>
 <li><p>If tuple, the first value specifies the margin of the
@@ -176,7 +179,7 @@ of the percussive mask.</p></li>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>harmonic</strong><span class="classifier">np.ndarray [shape=(d, n)]</span></dt><dd><p>harmonic component (or mask)</p>
 </dd>

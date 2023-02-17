@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.griffinlim &mdash; librosa 0.9.2 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -119,7 +120,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../core.html">Core IO and DSP</a></li>
       <li class="breadcrumb-item active">librosa.griffinlim</li>
       <li class="wy-breadcrumbs-aside">
@@ -141,26 +142,28 @@
 <dd><p>Approximate magnitude spectrogram inversion using the “fast” Griffin-Lim algorithm.</p>
 <p>Given a short-time Fourier transform magnitude matrix (<code class="docutils literal notranslate"><span class="pre">S</span></code>), the algorithm randomly
 initializes phase estimates, and then alternates forward- and inverse-STFT
-operations. <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
+operations. <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 <p>Note that this assumes reconstruction of a real-valued time-domain signal, and
 that <code class="docutils literal notranslate"><span class="pre">S</span></code> contains only the non-negative frequencies (as computed by
 <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stft</span></code></a>).</p>
-<p>The “fast” GL method <a class="footnote-reference brackets" href="#id4" id="id2">2</a> uses a momentum parameter to accelerate convergence.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>D. W. Griffin and J. S. Lim,
+<p>The “fast” GL method <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> uses a momentum parameter to accelerate convergence.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>D. W. Griffin and J. S. Lim,
 “Signal estimation from modified short-time Fourier transform,”
 IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Perraudin, N., Balazs, P., &amp; Søndergaard, P. L.
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Perraudin, N., Balazs, P., &amp; Søndergaard, P. L.
 “A fast Griffin-Lim algorithm,”
 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (pp. 1-4),
 Oct. 2013.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>S</strong><span class="classifier">np.ndarray [shape=(…, n_fft // 2 + 1, t), non-negative]</span></dt><dd><p>An array of short-time Fourier transform magnitudes as produced by
 <a class="reference internal" href="librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stft</span></code></a>.</p>
@@ -190,7 +193,7 @@ samples.</p>
 By default, STFT uses zero padding.</p>
 </dd>
 <dt><strong>momentum</strong><span class="classifier">number &gt;= 0</span></dt><dd><p>The momentum parameter for fast Griffin-Lim.
-Setting this to 0 recovers the original Griffin-Lim method <a class="footnote-reference brackets" href="#id3" id="id5">1</a>.
+Setting this to 0 recovers the original Griffin-Lim method <a class="footnote-reference brackets" href="#id3" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 Values near 1 can lead to faster convergence, but above 1 may not converge.</p>
 </dd>
 <dt><strong>init</strong><span class="classifier">None or ‘random’ [default]</span></dt><dd><p>If ‘random’ (the default), then phase values are initialized randomly
@@ -208,7 +211,7 @@ generator itself.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)]</span></dt><dd><p>time-domain signal reconstructed from <code class="docutils literal notranslate"><span class="pre">S</span></code></p>
 </dd>

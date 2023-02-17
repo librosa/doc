@@ -21,10 +21,7 @@
       ~SvaraFormatter.format_ticks
       ~SvaraFormatter.get_offset
       ~SvaraFormatter.set_axis
-      ~SvaraFormatter.set_bounds
-      ~SvaraFormatter.set_data_interval
       ~SvaraFormatter.set_locs
-      ~SvaraFormatter.set_view_interval
    
    
 

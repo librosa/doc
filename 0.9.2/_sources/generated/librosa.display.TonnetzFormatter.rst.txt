@@ -21,10 +21,7 @@
       ~TonnetzFormatter.format_ticks
       ~TonnetzFormatter.get_offset
       ~TonnetzFormatter.set_axis
-      ~TonnetzFormatter.set_bounds
-      ~TonnetzFormatter.set_data_interval
       ~TonnetzFormatter.set_locs
-      ~TonnetzFormatter.set_view_interval
    
    
 

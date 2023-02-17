@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.sequence.rqa &mdash; librosa 0.9.2 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,7 +110,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../sequence.html">Sequential modeling</a></li>
       <li class="breadcrumb-item active">librosa.sequence.rqa</li>
       <li class="wy-breadcrumbs-aside">
@@ -130,14 +131,14 @@
 <span class="sig-prename descclassname"><span class="pre">librosa.sequence.</span></span><span class="sig-name descname"><span class="pre">rqa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_onset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knight_moves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/sequence.html#rqa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.sequence.rqa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recurrence quantification analysis (RQA)</p>
 <p>This function implements different forms of RQA as described by
-Serra, Serra, and Andrzejak (SSA). <a class="footnote-reference brackets" href="#id3" id="id1">1</a>  These methods take as input
+Serra, Serra, and Andrzejak (SSA). <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>  These methods take as input
 a self- or cross-similarity matrix <code class="docutils literal notranslate"><span class="pre">sim</span></code>, and calculate the value
 of path alignments by dynamic programming.</p>
 <p>Note that unlike dynamic time warping (<a class="reference internal" href="librosa.sequence.dtw.html#librosa.sequence.dtw" title="librosa.sequence.dtw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtw</span></code></a>), alignment paths here are
 maximized, not minimized, so the input should measure similarity rather
 than distance.</p>
 <p>The simplest RQA method, denoted as <em class="xref py py-obj">L</em> (SSA equation 3) and equivalent
-to the method described by Eckman, Kamphorst, and Ruelle <a class="footnote-reference brackets" href="#id4" id="id2">2</a>, accumulates
+to the method described by Eckman, Kamphorst, and Ruelle <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, accumulates
 the length of diagonal paths with positive values in the input:</p>
 <blockquote>
 <div><ul class="simple">
@@ -163,20 +164,22 @@ which are subtracted from the value of the alignment path every time a gap
 is introduced or extended (respectively).</p>
 <p>Note that setting <code class="docutils literal notranslate"><span class="pre">gap_onset</span></code> and <code class="docutils literal notranslate"><span class="pre">gap_extend</span></code> to <code class="xref py py-obj docutils literal notranslate"><span class="pre">np.inf</span></code> recovers the second
 method, and disabling knight moves recovers the first.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Serrà, Joan, Xavier Serra, and Ralph G. Andrzejak.
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Serrà, Joan, Xavier Serra, and Ralph G. Andrzejak.
 “Cross recurrence quantification for cover song identification.”
 New Journal of Physics 11, no. 9 (2009): 093017.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Eckmann, J. P., S. Oliffson Kamphorst, and D. Ruelle.
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Eckmann, J. P., S. Oliffson Kamphorst, and D. Ruelle.
 “Recurrence plots of dynamical systems.”
 World Scientific Series on Nonlinear Science Series A 16 (1995): 441-446.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>sim</strong><span class="classifier">np.ndarray [shape=(N, M), non-negative]</span></dt><dd><p>The similarity matrix to use as input.</p>
 <p>This can either be a recurrence matrix (self-similarity)
@@ -195,7 +198,7 @@ e.g., <code class="docutils literal notranslate"><span class="pre">(n,</span> <s
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt><strong>score</strong><span class="classifier">np.ndarray [shape=(N, M)]</span></dt><dd><p>The alignment score matrix.  <code class="docutils literal notranslate"><span class="pre">score[n,</span> <span class="pre">m]</span></code> is the cumulative value of
 the best alignment sequence ending in frames <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>

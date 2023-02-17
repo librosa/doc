@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.filters.mr_frequencies &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.filters.mr_frequencies &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -113,7 +114,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../filters.html">Filters</a></li>
       <li class="breadcrumb-item active">librosa.filters.mr_frequencies</li>
       <li class="wy-breadcrumbs-aside">
@@ -134,24 +135,25 @@
 <span class="sig-prename descclassname"><span class="pre">librosa.filters.</span></span><span class="sig-name descname"><span class="pre">mr_frequencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tuning</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/filters.html#mr_frequencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.filters.mr_frequencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function for generating center frequency and sample rate pairs.</p>
 <p>This function will return center frequency and corresponding sample rates
-to obtain similar pitch filterbank settings as described in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.
+to obtain similar pitch filterbank settings as described in <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 Instead of starting with MIDI pitch <em class="xref py py-obj">A0</em>, we start with <em class="xref py py-obj">C0</em>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Müller, Meinard.
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Müller, Meinard.
 “Information Retrieval for Music and Motion.”
 Springer Verlag. 2007.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>tuning</strong><span class="classifier">float [scalar]</span></dt><dd><p>Tuning deviation from A440, measure as a fraction of the equally
 tempered semitone (1/12 of an octave).</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>center_freqs</strong><span class="classifier">np.ndarray [shape=(n,), dtype=float]</span></dt><dd><p>Center frequencies of the filter kernels.
 Also defines the number of filters in the filterbank.</p>

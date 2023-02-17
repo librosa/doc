@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.segment.recurrence_to_lag &mdash; librosa 0.9.2 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -112,7 +113,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../segment.html">Temporal segmentation</a></li>
       <li class="breadcrumb-item active">librosa.segment.recurrence_to_lag</li>
       <li class="wy-breadcrumbs-aside">
@@ -138,17 +139,18 @@
 <p>This transformation turns diagonal structures in the recurrence matrix
 into horizontal structures in the lag matrix.
 These horizontal structures can be used to infer changes in the repetition
-structure of a piece, e.g., the beginning of a new section as done in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Serra, J., Müller, M., Grosche, P., &amp; Arcos, J. L. (2014).
+structure of a piece, e.g., the beginning of a new section as done in <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Serra, J., Müller, M., Grosche, P., &amp; Arcos, J. L. (2014).
 Unsupervised music structure annotation by time series structure
 features and segment similarity.
 IEEE Transactions on Multimedia, 16(5), 1229-1240.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>rec</strong><span class="classifier">np.ndarray, or scipy.sparse.spmatrix [shape=(n, n)]</span></dt><dd><p>A (binary) recurrence matrix, as returned by <a class="reference internal" href="librosa.segment.recurrence_matrix.html#librosa.segment.recurrence_matrix" title="librosa.segment.recurrence_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recurrence_matrix</span></code></a></p>
 </dd>
@@ -162,14 +164,14 @@ The alternate axis will be converted to lag coordinates.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>lag</strong><span class="classifier">np.ndarray</span></dt><dd><p>The recurrence matrix in (lag, time) (if <code class="docutils literal notranslate"><span class="pre">axis=1</span></code>)
 or (time, lag) (if <code class="docutils literal notranslate"><span class="pre">axis=0</span></code>) coordinates</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>ParameterError</strong><span class="classifier">if <code class="docutils literal notranslate"><span class="pre">rec</span></code> is non-square</span></dt><dd></dd>
 </dl>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.notation &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.core.notation &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.core.notation</li>
       <li class="wy-breadcrumbs-aside">
@@ -245,7 +246,7 @@
 
 
 <div class="viewcode-block" id="thaat_to_degrees"><a class="viewcode-back" href="../../../generated/librosa.thaat_to_degrees.html#librosa.thaat_to_degrees">[docs]</a><span class="k">def</span> <span class="nf">thaat_to_degrees</span><span class="p">(</span><span class="n">thaat</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Construct the svara indices (degrees) for a given thaat</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the svara indices (degrees) for a given thaat</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -276,7 +277,7 @@
 
 
 <div class="viewcode-block" id="mela_to_degrees"><a class="viewcode-back" href="../../../generated/librosa.mela_to_degrees.html#librosa.mela_to_degrees">[docs]</a><span class="k">def</span> <span class="nf">mela_to_degrees</span><span class="p">(</span><span class="n">mela</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Construct the svara indices (degrees) for a given melakarta raga</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the svara indices (degrees) for a given melakarta raga</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -378,7 +379,7 @@
 <span class="k">def</span> <span class="nf">mela_to_svara</span><span class="p">(</span>
     <span class="n">mela</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">abbr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Spell the Carnatic svara names for a given melakarta raga</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Spell the Carnatic svara names for a given melakarta raga</span>
 
 <span class="sd">    This function exists to resolve enharmonic equivalences between</span>
 <span class="sd">    pitch classes:</span>
@@ -522,7 +523,7 @@
 
 
 <div class="viewcode-block" id="list_mela"><a class="viewcode-back" href="../../../generated/librosa.list_mela.html#librosa.list_mela">[docs]</a><span class="k">def</span> <span class="nf">list_mela</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;List melakarta ragas by name and index.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List melakarta ragas by name and index.</span>
 
 <span class="sd">    Melakarta raga names are transcribed from [#]_, with the exception of #45</span>
 <span class="sd">    (subhapanthuvarali).</span>
@@ -555,7 +556,7 @@
 
 
 <div class="viewcode-block" id="list_thaat"><a class="viewcode-back" href="../../../generated/librosa.list_thaat.html#librosa.list_thaat">[docs]</a><span class="k">def</span> <span class="nf">list_thaat</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;List supported thaats by name.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List supported thaats by name.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -586,7 +587,7 @@
 
 <div class="viewcode-block" id="key_to_notes"><a class="viewcode-back" href="../../../generated/librosa.key_to_notes.html#librosa.key_to_notes">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">key_to_notes</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Lists all 12 note names in the chromatic scale, as spelled according to</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lists all 12 note names in the chromatic scale, as spelled according to</span>
 <span class="sd">    a given key (major or minor).</span>
 
 <span class="sd">    This function exists to resolve enharmonic equivalences between different</span>
@@ -760,7 +761,7 @@
 
 
 <div class="viewcode-block" id="key_to_degrees"><a class="viewcode-back" href="../../../generated/librosa.key_to_degrees.html#librosa.key_to_degrees">[docs]</a><span class="k">def</span> <span class="nf">key_to_degrees</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Construct the diatonic scale degrees for a given key.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the diatonic scale degrees for a given key.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -817,7 +818,7 @@
 
 <div class="viewcode-block" id="fifths_to_note"><a class="viewcode-back" href="../../../generated/librosa.fifths_to_note.html#librosa.fifths_to_note">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fifths_to_note</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fifths</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Calculate the note name for a given number of perfect fifths</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the note name for a given number of perfect fifths</span>
 <span class="sd">    from a specified unison.</span>
 
 <span class="sd">    This function is primarily intended as a utility routine for</span>
@@ -908,7 +909,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__o_fold</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the octave-folded interval.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the octave-folded interval.</span>
 
 <span class="sd">    This maps intervals to the range [1, 2).</span>
 
@@ -921,7 +922,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__bo_fold</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the balanced, octave-folded interval.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the balanced, octave-folded interval.</span>
 
 <span class="sd">    This maps intervals to the range [sqrt(2)/2, sqrt(2)).</span>
 
@@ -934,7 +935,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__fifth_search</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Accelerated helper function for finding the number of fifths</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Accelerated helper function for finding the number of fifths</span>
 <span class="sd">    to get within tolerance of a given interval.</span>
 
 <span class="sd">    This implementation will give up after 32 fifths</span>
@@ -997,7 +998,7 @@
     <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">65.0</span> <span class="o">/</span> <span class="mi">63</span><span class="p">,</span>
     <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Convert an interval to Functional Just System (FJS) notation.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert an interval to Functional Just System (FJS) notation.</span>
 
 <span class="sd">    See https://misotanni.github.io/fjs/en/index.html for a thorough overview</span>
 <span class="sd">    of the FJS notation system, and the examples below.</span>

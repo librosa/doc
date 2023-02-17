@@ -21,10 +21,7 @@
       ~NoteFormatter.format_ticks
       ~NoteFormatter.get_offset
       ~NoteFormatter.set_axis
-      ~NoteFormatter.set_bounds
-      ~NoteFormatter.set_data_interval
       ~NoteFormatter.set_locs
-      ~NoteFormatter.set_view_interval
    
    
 

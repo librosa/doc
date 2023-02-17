@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.pitch &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.core.pitch &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.core.pitch</li>
       <li class="wy-breadcrumbs-aside">
@@ -141,7 +142,7 @@
     <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Estimate the tuning of an audio time series or spectrogram input.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate the tuning of an audio time series or spectrogram input.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -219,7 +220,7 @@
 <div class="viewcode-block" id="pitch_tuning"><a class="viewcode-back" href="../../../generated/librosa.pitch_tuning.html#librosa.pitch_tuning">[docs]</a><span class="k">def</span> <span class="nf">pitch_tuning</span><span class="p">(</span>
     <span class="n">frequencies</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Given a collection of pitches, estimate its tuning offset</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given a collection of pitches, estimate its tuning offset</span>
 <span class="sd">    (in fractions of a bin) relative to A440=440.0Hz.</span>
 
 <span class="sd">    Parameters</span>
@@ -305,7 +306,7 @@
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadModeSTFT</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
     <span class="n">ref</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Pitch tracking on thresholded parabolically-interpolated STFT.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pitch tracking on thresholded parabolically-interpolated STFT.</span>
 
 <span class="sd">    This implementation uses the parabolic interpolation method described by [#]_.</span>
 
@@ -480,7 +481,7 @@
     <span class="n">min_period</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">max_period</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Cumulative mean normalized difference function (equation 8 in [#]_)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cumulative mean normalized difference function (equation 8 in [#]_)</span>
 
 <span class="sd">    .. [#] De Cheveigné, Alain, and Hideki Kawahara.</span>
 <span class="sd">        &quot;YIN, a fundamental frequency estimator for speech and music.&quot;</span>
@@ -539,7 +540,7 @@
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">stencil</span>  <span class="c1"># type: ignore</span>
 <span class="k">def</span> <span class="nf">_pi_stencil</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Stencil to compute local parabolic interpolation&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stencil to compute local parabolic interpolation&quot;&quot;&quot;</span>
 
     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
@@ -559,12 +560,12 @@
     <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>  <span class="c1"># type: ignore</span>
 <span class="k">def</span> <span class="nf">_pi_wrapper</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Vectorized wrapper for the parabolic interpolation stencil&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vectorized wrapper for the parabolic interpolation stencil&quot;&quot;&quot;</span>
     <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">_pi_stencil</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_parabolic_interpolation</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Piecewise parabolic interpolation for yin and pyin.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Piecewise parabolic interpolation for yin and pyin.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -611,7 +612,7 @@
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Fundamental frequency (F0) estimation using the YIN algorithm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fundamental frequency (F0) estimation using the YIN algorithm.</span>
 
 <span class="sd">    YIN is an autocorrelation based method for fundamental frequency estimation [#]_.</span>
 <span class="sd">    First, a normalized difference function is computed over short (overlapping) frames of audio.</span>
@@ -781,7 +782,7 @@
     <span class="n">center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Fundamental frequency (F0) estimation using probabilistic YIN (pYIN).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fundamental frequency (F0) estimation using probabilistic YIN (pYIN).</span>
 
 <span class="sd">    pYIN [#]_ is a modificatin of the YIN algorithm [#]_ for fundamental frequency (F0) estimation.</span>
 <span class="sd">    In the first step of pYIN, F0 candidates and their probabilities are computed using the YIN algorithm.</span>

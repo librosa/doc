@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>Changelog &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="index.html">
-            <img src="_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -150,7 +151,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Changelog</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/changelog.rst.txt" rel="nofollow"> View page source</a>
@@ -170,42 +171,36 @@
 <section id="v0-10-0">
 <h3>v0.10.0<a class="headerlink" href="#v0-10-0" title="Permalink to this heading">¶</a></h3>
 <p><em>rc0: 2023-02-07</em></p>
-<p>New features</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="simple">
+<dt>New features</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1485">#1485</a> Added support for <em class="xref py py-obj">“h”</em> (hours) and <em class="xref py py-obj">“m”</em> (minutes) in <a class="reference internal" href="generated/librosa.display.TimeFormatter.html#librosa.display.TimeFormatter" title="librosa.display.TimeFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.TimeFormatter</span></code></a>.  <em>Vincent Lostanlen</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1495">#1495</a> Expanded options for bandwidth calculation in <a class="reference internal" href="generated/librosa.segment.recurrence_matrix.html#librosa.segment.recurrence_matrix" title="librosa.segment.recurrence_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.segment.recurrence_matrix</span></code></a> and <a class="reference internal" href="generated/librosa.segment.cross_similarity.html#librosa.segment.cross_similarity" title="librosa.segment.cross_similarity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.segment.cross_similarity</span></code></a>. <em>Tom Xi</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1529">#1529</a> Accelerated utility functions for squared magnitude <a class="reference internal" href="generated/librosa.util.abs2.html#librosa.util.abs2" title="librosa.util.abs2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.abs2</span></code></a> and <a class="reference internal" href="generated/librosa.util.phasor.html#librosa.util.phasor" title="librosa.util.phasor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.phasor</span></code></a>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1514">#1514</a> <a class="reference internal" href="generated/librosa.stft.html#librosa.stft" title="librosa.stft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.stft</span></code></a> support for pre-allocated output arrays.  <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1533">#1533</a> Accelerated <a class="reference internal" href="generated/librosa.util.localmax.html#librosa.util.localmax" title="librosa.util.localmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.localmax</span></code></a> and <a class="reference internal" href="generated/librosa.util.localmin.html#librosa.util.localmin" title="librosa.util.localmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.localmin</span></code></a>. <em>Brian McFee</em></p></li>
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1552">#1552</a> <strong>EXPERIMENTAL</strong> Support for just-intonation based variable-Q transforms <a class="reference internal" href="generated/librosa.vqt.html#librosa.vqt" title="librosa.vqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.vqt</span></code></a> and functional just system (FJS) notation. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1552">#1552</a> <strong>EXPERIMENTAL</strong> Support for just-intonation based variable-Q transforms <a class="reference internal" href="generated/librosa.vqt.html#librosa.vqt" title="librosa.vqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.vqt</span></code></a> and functional just system (FJS) notation. <em>Brian McFee, Vincent Lostanlen</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1579">#1579</a> Imports are now done lazily, significantly reducing startup time. It is not longer necessary to explicitly <em class="xref py py-obj">import librosa.display</em>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1587">#1587</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1632">#1632</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1637">#1637</a> Type annotations. <em>Matan Gover, Brian McFee, Fabian Keller</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1647">#1647</a> Harmonic spectrum interpolation <a class="reference internal" href="generated/librosa.f0_harmonics.html#librosa.f0_harmonics" title="librosa.f0_harmonics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.f0_harmonics</span></code></a> and tempogram ratio features <a class="reference internal" href="generated/librosa.feature.tempogram_ratio.html#librosa.feature.tempogram_ratio" title="librosa.feature.tempogram_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.tempogram_ratio</span></code></a>. <em>Brian McFee</em></p></li>
 </ul>
-</div></blockquote>
-<p>Bug fixes</p>
-<blockquote>
-<div><ul class="simple">
+</dd>
+<dt>Bug fixes</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1560">#1560</a> Corrected an error in bandwidth estimation for window functions that take on negative sample values. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1571">#1571</a> Fixed rounding error in multirate filterbank calculation of sampling rates. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1594">#1594</a> Fixed incorrect use of deprecated numpy numerical types. <em>Mattia Di Gangi</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1596">#1596</a> Fixed harmonic interpolation for recent scipy releases. <em>Brian McFee</em></p></li>
 </ul>
-</div></blockquote>
-<p>API changes</p>
-<blockquote>
-<div><ul class="simple">
+</dd>
+<dt>API changes</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1561">#1561</a> <a class="reference internal" href="generated/librosa.resample.html#librosa.resample" title="librosa.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.resample</span></code></a> now supports <em class="xref py py-obj">axis=</em> for all sample rate conversion backends. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1572">#1572</a> Notation conversion (e.g., <a class="reference internal" href="generated/librosa.midi_to_note.html#librosa.midi_to_note" title="librosa.midi_to_note"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.midi_to_note</span></code></a>) now vectorizes operations, and produces <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> outputs rather than <em class="xref py py-obj">list</em> when given iterable inputs. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1625">#1625</a> Deprecations now raise <em class="xref py py-obj">FutureWarning</em> instead of <em class="xref py py-obj">DeprecationWarning</em>.</p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1625">#1625</a> <a class="reference internal" href="generated/librosa.get_duration.html#librosa.get_duration" title="librosa.get_duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.get_duration</span></code></a> parameter <em class="xref py py-obj">filename</em> has been renamed to <em class="xref py py-obj">path</em>. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1643">#1643</a> Removed support for <em class="xref py py-obj">threshold=None</em> in <a class="reference internal" href="generated/librosa.zero_crossings.html#librosa.zero_crossings" title="librosa.zero_crossings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.zero_crossings</span></code></a>. <em>Brian McFee</em></p></li>
+<li><p><a href="#id361"><span class="problematic" id="id362">`#1665`_</span></a> Fixed overflow bug in <a class="reference internal" href="generated/librosa.feature.rms.html#librosa.feature.rms" title="librosa.feature.rms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.feature.rms</span></code></a> on integer inputs. <em>Brian McFee</em></p></li>
 </ul>
-</div></blockquote>
-<p>Documentation</p>
-<blockquote>
-<div><ul class="simple">
+</dd>
+<dt>Documentation</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1520">#1520</a> Improved CONTRIBUTING.md documentation. <em>Kian Eliasi</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1531">#1531</a> Updated LICENSE.md documentation. <em>Anton Kostin</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1536">#1536</a> Added keyword argument (<em class="xref py py-obj">kwargs</em>) definitions to docstrings. <em>Emily Halvachs</em></p></li>
@@ -217,18 +212,14 @@
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1592">#1592</a> Fixed incorrect link to the documentation badge in README. <em>Zvi Baratz</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1614">#1614</a> Improved documentation for resampling. <em>Jon Petter Åsen</em></p></li>
 </ul>
-</div></blockquote>
-<p>Deprecations</p>
-<blockquote>
-<div><ul class="simple">
+</dd>
+<dt>Deprecations</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1521">#1521</a> Removed backward compatibility support for positional arguments that are now keyword-only. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1577">#1577</a> Removed official support for python 3.6. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1625">#1625</a> The <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> backend is now deprecated and will be removed in a future release. <em>Brian McFee</em></p></li>
 </ul>
-</div></blockquote>
-<p>Other changes</p>
-<blockquote>
-<div><ul class="simple">
+</dd>
+<dt>Other changes</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1501">#1501</a> Infer square / equal plot dimensions for compatible x/y axes in <a class="reference internal" href="generated/librosa.display.specshow.html#librosa.display.specshow" title="librosa.display.specshow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.specshow</span></code></a>.  <em>Kian Eliasi</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1535">#1535</a> Standardized integer type checks throughout the library. <em>Alexandre Chabot-Leclerc</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1539">#1539</a> Refactored <a class="reference internal" href="generated/librosa.display.AdaptiveWaveplot.html#librosa.display.AdaptiveWaveplot" title="librosa.display.AdaptiveWaveplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.AdaptiveWaveplot</span></code></a> to allow callback disconnection. <em>Brian McFee</em></p></li>
@@ -242,7 +233,8 @@
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1643">#1643</a> Accelerated <a class="reference internal" href="generated/librosa.zero_crossings.html#librosa.zero_crossings" title="librosa.zero_crossings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.zero_crossings</span></code></a> implementation. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1646">#1646</a> Added support for transposed (vertical) display of waveforms. <em>Brian McFee</em></p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </section>
 </section>
 <section id="v0-9">

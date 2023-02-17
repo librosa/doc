@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.segment.path_enhance &mdash; librosa 0.9.2 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -112,7 +113,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../segment.html">Temporal segmentation</a></li>
       <li class="breadcrumb-item active">librosa.segment.path_enhance</li>
       <li class="wy-breadcrumbs-aside">
@@ -144,17 +145,18 @@ orientation theta.</p>
 when there are changes in tempo.</p>
 <p>Smoothing filters are generated at evenly spaced orientations between min_ratio and
 max_ratio.</p>
-<p>This function is inspired by the multi-angle path enhancement of <a class="footnote-reference brackets" href="#id2" id="id1">1</a>, but differs by
+<p>This function is inspired by the multi-angle path enhancement of <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, but differs by
 modeling tempo differences in the space of similarity matrices rather than re-sampling
 the underlying features prior to generating the self-similarity matrix.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Müller, Meinard and Frank Kurth.
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Müller, Meinard and Frank Kurth.
 “Enhancing similarity matrices for music audio analysis.”
 2006 IEEE International Conference on Acoustics Speech and Signal Processing Proceedings.
 Vol. 5. IEEE, 2006.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>if using recurrence_matrix to construct the input similarity matrix, be sure to include the main
@@ -162,7 +164,7 @@ diagonal by setting <code class="docutils literal notranslate"><span class="pre"
 produce discontinuities which will pollute the smoothing filter response.</p>
 </div>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>R</strong><span class="classifier">np.ndarray</span></dt><dd><p>The self- or cross-similarity matrix to be smoothed.
 Note: sparse inputs are not supported.</p>
@@ -197,7 +199,7 @@ negative entries.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>R_smooth</strong><span class="classifier">np.ndarray, shape=R.shape</span></dt><dd><p>The smoothed self- or cross-similarity matrix</p>
 </dd>

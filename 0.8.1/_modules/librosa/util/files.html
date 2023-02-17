@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -93,7 +94,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.util.files</li>
       <li class="wy-breadcrumbs-aside">
@@ -150,7 +151,7 @@
 
 
 <div class="viewcode-block" id="example"><a class="viewcode-back" href="../../../generated/librosa.util.example.html#librosa.util.example">[docs]</a><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">hq</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Retrieve the example recording identified by &#39;key&#39;.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve the example recording identified by &#39;key&#39;.</span>
 
 <span class="sd">    The first time an example is requested, it will be downloaded from</span>
 <span class="sd">    the remote repository over HTTPS.</span>
@@ -214,7 +215,7 @@
 
 
 <div class="viewcode-block" id="list_examples"><a class="viewcode-back" href="../../../generated/librosa.util.list_examples.html#librosa.util.list_examples">[docs]</a><span class="k">def</span> <span class="nf">list_examples</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;List the available audio recordings included with librosa.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List the available audio recordings included with librosa.</span>
 
 <span class="sd">    Each recording is given a unique identifier (e.g., &quot;brahms&quot; or &quot;nutcracker&quot;),</span>
 <span class="sd">    listed in the first column of the output.</span>
@@ -233,7 +234,7 @@
 
 
 <div class="viewcode-block" id="example_info"><a class="viewcode-back" href="../../../generated/librosa.util.example_info.html#librosa.util.example_info">[docs]</a><span class="k">def</span> <span class="nf">example_info</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Display licensing and metadata information for the given example recording.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display licensing and metadata information for the given example recording.</span>
 
 <span class="sd">    The first time an example is requested, it will be downloaded from</span>
 <span class="sd">    the remote repository over HTTPS.</span>
@@ -271,7 +272,7 @@
 
 <div class="viewcode-block" id="example_audio_file"><a class="viewcode-back" href="../../../generated/librosa.util.example_audio_file.html#librosa.util.example_audio_file">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.8&quot;</span><span class="p">,</span> <span class="s2">&quot;0.9&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">example_audio_file</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Get the path to an included audio example file.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the path to an included audio example file.</span>
 
 <span class="sd">    .. warning:: This function is deprecated in 0.8, and will be removed in 0.9.</span>
 <span class="sd">                 Instead, use `librosa.util.example`.</span>
@@ -306,7 +307,7 @@
 <div class="viewcode-block" id="find_files"><a class="viewcode-back" href="../../../generated/librosa.util.find_files.html#librosa.util.find_files">[docs]</a><span class="k">def</span> <span class="nf">find_files</span><span class="p">(</span>
     <span class="n">directory</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get a sorted list of (audio) files in a directory or directory sub-tree.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a sorted list of (audio) files in a directory or directory sub-tree.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -395,7 +396,7 @@
 
 
 <span class="k">def</span> <span class="nf">__get_files</span><span class="p">(</span><span class="n">dir_name</span><span class="p">,</span> <span class="n">extensions</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper function to get files in a single directory&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to get files in a single directory&quot;&quot;&quot;</span>
 
     <span class="c1"># Expand out the directory</span>
     <span class="n">dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">dir_name</span><span class="p">))</span>

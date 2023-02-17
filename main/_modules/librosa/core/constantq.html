@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.constantq &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.core.constantq &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.core.constantq</li>
       <li class="wy-breadcrumbs-aside">
@@ -153,7 +154,7 @@
     <span class="n">res_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Compute the constant-Q transform of an audio signal.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the constant-Q transform of an audio signal.</span>
 
 <span class="sd">    This implementation is based on the recursive sub-sampling method</span>
 <span class="sd">    described by [#]_.</span>
@@ -319,7 +320,7 @@
     <span class="n">res_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Compute the hybrid constant-Q transform of an audio signal.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the hybrid constant-Q transform of an audio signal.</span>
 
 <span class="sd">    Here, the hybrid CQT uses the pseudo CQT for higher frequencies where</span>
 <span class="sd">    the hop_length is longer than half the filter length and the full CQT</span>
@@ -501,7 +502,7 @@
     <span class="n">pad_mode</span><span class="p">:</span> <span class="n">_PadMode</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Compute the pseudo constant-Q transform of an audio signal.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the pseudo constant-Q transform of an audio signal.</span>
 
 <span class="sd">    This uses a single fft size that is the smallest power of 2 that is greater</span>
 <span class="sd">    than or equal to the max of:</span>
@@ -657,7 +658,7 @@
     <span class="n">res_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Compute the inverse constant-Q transform.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the inverse constant-Q transform.</span>
 
 <span class="sd">    Given a constant-Q transform representation ``C`` of an audio signal ``y``,</span>
 <span class="sd">    this function produces an approximation ``y_hat``.</span>
@@ -885,7 +886,7 @@
     <span class="n">res_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;soxr_hq&quot;</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DTypeLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Compute the variable-Q transform of an audio signal.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the variable-Q transform of an audio signal.</span>
 
 <span class="sd">    This implementation is based on the recursive sub-sampling method</span>
 <span class="sd">    described by [#]_.</span>
@@ -1163,7 +1164,7 @@
     <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex64</span><span class="p">,</span>
     <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate the frequency domain variable-Q filter basis.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate the frequency domain variable-Q filter basis.&quot;&quot;&quot;</span>
 
     <span class="n">basis</span><span class="p">,</span> <span class="n">lengths</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">wavelet</span><span class="p">(</span>
         <span class="n">freqs</span><span class="o">=</span><span class="n">freqs</span><span class="p">,</span>
@@ -1198,7 +1199,7 @@
 <span class="k">def</span> <span class="nf">__trim_stack</span><span class="p">(</span>
     <span class="n">cqt_resp</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Helper function to trim and stack a collection of CQT responses&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to trim and stack a collection of CQT responses&quot;&quot;&quot;</span>
 
     <span class="n">max_col</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">c_i</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">c_i</span> <span class="ow">in</span> <span class="n">cqt_resp</span><span class="p">)</span>
     <span class="c1"># Grab any leading dimensions</span>
@@ -1227,7 +1228,7 @@
 <span class="k">def</span> <span class="nf">__cqt_response</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">fft_basis</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s2">&quot;ones&quot;</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the filter response with a target STFT hop.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the filter response with a target STFT hop.&quot;&quot;&quot;</span>
 
     <span class="c1"># Compute the STFT matrix</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">stft</span><span class="p">(</span>
@@ -1255,7 +1256,7 @@
 
 
 <span class="k">def</span> <span class="nf">__early_downsample_count</span><span class="p">(</span><span class="n">nyquist</span><span class="p">,</span> <span class="n">filter_cutoff</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">n_octaves</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the number of early downsampling operations&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the number of early downsampling operations&quot;&quot;&quot;</span>
 
     <span class="n">downsample_count1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nyquist</span> <span class="o">/</span> <span class="n">filter_cutoff</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -1268,7 +1269,7 @@
 <span class="k">def</span> <span class="nf">__early_downsample</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">res_type</span><span class="p">,</span> <span class="n">n_octaves</span><span class="p">,</span> <span class="n">nyquist</span><span class="p">,</span> <span class="n">filter_cutoff</span><span class="p">,</span> <span class="n">scale</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Perform early downsampling on an audio signal, if it applies.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform early downsampling on an audio signal, if it applies.&quot;&quot;&quot;</span>
 
     <span class="n">downsample_count</span> <span class="o">=</span> <span class="n">__early_downsample_count</span><span class="p">(</span>
         <span class="n">nyquist</span><span class="p">,</span> <span class="n">filter_cutoff</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">n_octaves</span>
@@ -1302,7 +1303,7 @@
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__num_two_factors</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return how many times integer x can be evenly divided by 2.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return how many times integer x can be evenly divided by 2.</span>
 
 <span class="sd">    Returns 0 for non-positive integers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1340,7 +1341,7 @@
         <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">]</span>
     <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Approximate constant-Q magnitude spectrogram inversion using the &quot;fast&quot; Griffin-Lim</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Approximate constant-Q magnitude spectrogram inversion using the &quot;fast&quot; Griffin-Lim</span>
 <span class="sd">    algorithm.</span>
 
 <span class="sd">    Given the magnitude of a constant-Q spectrogram (``C``), the algorithm randomly initializes</span>
@@ -1589,7 +1590,7 @@
 
 
 <span class="k">def</span> <span class="nf">__bpo_to_alpha</span><span class="p">(</span><span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Compute the alpha coefficient for a given number of bins per octave</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the alpha coefficient for a given number of bins per octave</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

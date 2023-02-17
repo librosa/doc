@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.segment.cross_similarity &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.segment.cross_similarity &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -112,7 +113,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../segment.html">Temporal segmentation</a></li>
       <li class="breadcrumb-item active">librosa.segment.cross_similarity</li>
       <li class="wy-breadcrumbs-aside">
@@ -135,7 +136,7 @@
 <p>The output is a matrix <code class="docutils literal notranslate"><span class="pre">xsim</span></code>, where <code class="docutils literal notranslate"><span class="pre">xsim[i,</span> <span class="pre">j]</span></code> is non-zero
 if <code class="docutils literal notranslate"><span class="pre">data_ref[...,</span> <span class="pre">i]</span></code> is a k-nearest neighbor of <code class="docutils literal notranslate"><span class="pre">data[...,</span> <span class="pre">j]</span></code>.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>data</strong><span class="classifier">np.ndarray [shape=(…, d, n)]</span></dt><dd><p>A feature matrix for the comparison sequence.
 If the data has more than two dimensions (e.g., for multi-channel inputs),
@@ -176,11 +177,11 @@ distance to the k’th nearest neighbor of each <code class="docutils literal no
 <p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='mean_k'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
 arithmetic mean between distances to the k-th nearest neighbor for sample i and sample j.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='gmean_k'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
-geometric mean between distances to the k-th nearest neighbor for sample i and j <a class="footnote-reference brackets" href="#z" id="id1">1</a>.</p>
+geometric mean between distances to the k-th nearest neighbor for sample i and j <a class="footnote-reference brackets" href="#z" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='mean_k_avg'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
 arithmetic mean between the average distances to the first k-th nearest neighbors for
 sample i and sample j.
-This is similar to the approach in Wang et al. (2014) <a class="footnote-reference brackets" href="#w" id="id2">2</a> but does not include the distance
+This is similar to the approach in Wang et al. (2014) <a class="footnote-reference brackets" href="#w" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> but does not include the distance
 between i and j.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">bandwidth='gmean_k_avg'</span></code>, bandwidth is estimated for each sample-pair (i, j) by taking the
 geometric mean between the average distances to the first k-th nearest neighbors for
@@ -189,18 +190,21 @@ sample i and sample j.</p>
 taking the arithmetic mean between three terms: the average distances to the first
 k-th nearest neighbors for sample i and sample j respectively, as well as
 the distance between i and j.
-This is similar to the approach in Wang et al. (2014). <a class="footnote-reference brackets" href="#w" id="id3">2</a></p>
-<dl class="footnote brackets">
-<dt class="label" id="z"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Zelnik-Manor, Lihi, and Pietro Perona. (2004).
+This is similar to the approach in Wang et al. (2014). <a class="footnote-reference brackets" href="#w" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="z" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Zelnik-Manor, Lihi, and Pietro Perona. (2004).
 “Self-tuning spectral clustering.” Advances in neural information processing systems 17.</p>
-</dd>
-<dt class="label" id="w"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
-<dd><p>Wang, Bo, et al. (2014).
+</aside>
+<aside class="footnote brackets" id="w" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>Wang, Bo, et al. (2014).
 “Similarity network fusion for aggregating data types on a genomic scale.” Nat Methods 11, 333–337.
 <a class="reference external" href="https://doi.org/10.1038/nmeth.2810">https://doi.org/10.1038/nmeth.2810</a></p>
-</dd>
-</dl>
+</aside>
+</aside>
 </dd>
 <dt><strong>full</strong><span class="classifier">bool</span></dt><dd><p>If using <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">='affinity'</span></code> or <code class="docutils literal notranslate"><span class="pre">mode='distance'</span></code>, this option can be used to compute
 the full affinity or distance matrix as opposed a sparse matrix with only none-zero terms
@@ -212,7 +216,7 @@ bandwidth estimation, and ignore <code class="docutils literal notranslate"><spa
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>xsim</strong><span class="classifier">np.ndarray or scipy.sparse.csc_matrix, [shape=(n_ref, n)]</span></dt><dd><p>Cross-similarity matrix</p>
 </dd>

@@ -21,10 +21,7 @@
       ~LogHzFormatter.format_ticks
       ~LogHzFormatter.get_offset
       ~LogHzFormatter.set_axis
-      ~LogHzFormatter.set_bounds
-      ~LogHzFormatter.set_data_interval
       ~LogHzFormatter.set_locs
-      ~LogHzFormatter.set_view_interval
    
    
 

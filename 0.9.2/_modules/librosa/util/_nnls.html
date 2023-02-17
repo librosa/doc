@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.util._nnls</li>
       <li class="wy-breadcrumbs-aside">
@@ -128,7 +129,7 @@
 
 
 <span class="k">def</span> <span class="nf">_nnls_obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the objective and gradient for NNLS&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the objective and gradient for NNLS&quot;&quot;&quot;</span>
 
     <span class="c1"># Scipy&#39;s lbfgs flattens all arrays, so we first reshape</span>
     <span class="c1"># the iterate x</span>
@@ -148,7 +149,7 @@
 
 
 <span class="k">def</span> <span class="nf">_nnls_lbfgs_block</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">x_init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Solve the constrained problem over a single block</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve the constrained problem over a single block</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -189,7 +190,7 @@
 
 
 <div class="viewcode-block" id="nnls"><a class="viewcode-back" href="../../../generated/librosa.util.nnls.html#librosa.util.nnls">[docs]</a><span class="k">def</span> <span class="nf">nnls</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Non-negative least squares.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Non-negative least squares.</span>
 
 <span class="sd">    Given two matrices A and B, find a non-negative matrix X</span>
 <span class="sd">    that minimizes the sum squared error::</span>

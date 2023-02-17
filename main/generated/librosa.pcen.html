@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.pcen &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.pcen &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -129,7 +130,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../core.html">Core IO and DSP</a></li>
       <li class="breadcrumb-item active">librosa.pcen</li>
       <li class="wy-breadcrumbs-aside">
@@ -150,7 +151,7 @@
 <span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">pcen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_zf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#pcen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.pcen" title="Permalink to this definition">¶</a></dt>
 <dd><p>Per-channel energy normalization (PCEN)</p>
 <p>This function normalizes a time-frequency representation <code class="docutils literal notranslate"><span class="pre">S</span></code> by
-performing automatic gain control, followed by nonlinear compression <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
+performing automatic gain control, followed by nonlinear compression <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="p">[</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">S</span> <span class="o">/</span> <span class="p">(</span><span class="n">eps</span> <span class="o">+</span> <span class="n">M</span><span class="p">[</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">])</span><span class="o">**</span><span class="n">gain</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span><span class="o">**</span><span class="n">power</span> <span class="o">-</span> <span class="n">bias</span><span class="o">**</span><span class="n">power</span>
 </pre></div>
 </div>
@@ -169,7 +170,7 @@ to <code class="docutils literal notranslate"><span class="pre">S</span></code>:
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span> <span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">time_constant</span> <span class="pre">*</span> <span class="pre">sr</span> <span class="pre">/</span> <span class="pre">hop_length</span></code>. <a class="footnote-reference brackets" href="#id4" id="id2">2</a></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">time_constant</span> <span class="pre">*</span> <span class="pre">sr</span> <span class="pre">/</span> <span class="pre">hop_length</span></code>. <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p>This normalization is designed to suppress background noise and
 emphasize foreground signals, and can be used as an alternative to
 decibel scaling (<a class="reference internal" href="librosa.amplitude_to_db.html#librosa.amplitude_to_db" title="librosa.amplitude_to_db"><code class="xref py py-obj docutils literal notranslate"><span class="pre">amplitude_to_db</span></code></a>).</p>
@@ -187,21 +188,23 @@ the SuperFlux algorithm implemented in <a class="reference internal" href="libro
 <p>This can be used to perform automatic gain control on signals that cross
 or span multiple frequency bans, which may be desirable for spectrograms
 with high frequency resolution.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Wang, Y., Getreuer, P., Hughes, T., Lyon, R. F., &amp; Saurous, R. A.
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Wang, Y., Getreuer, P., Hughes, T., Lyon, R. F., &amp; Saurous, R. A.
 (2017, March). Trainable frontend for robust and far-field keyword spotting.
 In Acoustics, Speech and Signal Processing (ICASSP), 2017
 IEEE International Conference on (pp. 5670-5674). IEEE.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Lostanlen, V., Salamon, J., McFee, B., Cartwright, M., Farnsworth, A.,
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Lostanlen, V., Salamon, J., McFee, B., Cartwright, M., Farnsworth, A.,
 Kelling, S., and Bello, J. P. Per-Channel Energy Normalization: Why and How.
 IEEE Signal Processing Letters, 26(1), 39-43.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>S</strong><span class="classifier">np.ndarray (non-negative)</span></dt><dd><p>The input (magnitude) spectrogram</p>
 </dd>
@@ -249,7 +252,7 @@ block of processing should be used to initialize the next block.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>P</strong><span class="classifier">np.ndarray, non-negative [shape=(n, m)]</span></dt><dd><p>The per-channel energy normalized version of <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
 </dd>

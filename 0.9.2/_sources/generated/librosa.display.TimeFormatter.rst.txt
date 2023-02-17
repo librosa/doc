@@ -21,10 +21,7 @@
       ~TimeFormatter.format_ticks
       ~TimeFormatter.get_offset
       ~TimeFormatter.set_axis
-      ~TimeFormatter.set_bounds
-      ~TimeFormatter.set_data_interval
       ~TimeFormatter.set_locs
-      ~TimeFormatter.set_view_interval
    
    
 

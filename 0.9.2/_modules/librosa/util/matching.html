@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.util.matching</li>
       <li class="wy-breadcrumbs-aside">
@@ -123,7 +124,7 @@
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__jaccard</span><span class="p">(</span><span class="n">int_a</span><span class="p">,</span> <span class="n">int_b</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Jaccard similarity between two intervals</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Jaccard similarity between two intervals</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -155,7 +156,7 @@
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__match_interval_overlaps</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">candidates</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Find the best Jaccard match from query to candidates&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the best Jaccard match from query to candidates&quot;&quot;&quot;</span>
 
     <span class="n">best_score</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">best_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -169,7 +170,7 @@
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__match_intervals</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;Numba-accelerated interval matching algorithm.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Numba-accelerated interval matching algorithm.&quot;&quot;&quot;</span>
     <span class="c1"># sort index of the interval starts</span>
     <span class="n">start_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">intervals_to</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
 
@@ -220,7 +221,7 @@
 
 
 <div class="viewcode-block" id="match_intervals"><a class="viewcode-back" href="../../../generated/librosa.util.match_intervals.html#librosa.util.match_intervals">[docs]</a><span class="k">def</span> <span class="nf">match_intervals</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Match one set of time intervals to another.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Match one set of time intervals to another.</span>
 
 <span class="sd">    This can be useful for tasks such as mapping beat timings</span>
 <span class="sd">    to segments.</span>
@@ -316,7 +317,7 @@
 
 
 <div class="viewcode-block" id="match_events"><a class="viewcode-back" href="../../../generated/librosa.util.match_events.html#librosa.util.match_events">[docs]</a><span class="k">def</span> <span class="nf">match_events</span><span class="p">(</span><span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Match one set of events to another.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Match one set of events to another.</span>
 
 <span class="sd">    This is useful for tasks such as matching beats to the nearest</span>
 <span class="sd">    detected onsets, or frame-aligned events to the nearest zero-crossing.</span>

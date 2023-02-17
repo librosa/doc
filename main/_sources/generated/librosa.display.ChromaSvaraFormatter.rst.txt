@@ -21,10 +21,7 @@
       ~ChromaSvaraFormatter.format_ticks
       ~ChromaSvaraFormatter.get_offset
       ~ChromaSvaraFormatter.set_axis
-      ~ChromaSvaraFormatter.set_bounds
-      ~ChromaSvaraFormatter.set_data_interval
       ~ChromaSvaraFormatter.set_locs
-      ~ChromaSvaraFormatter.set_view_interval
    
    
 

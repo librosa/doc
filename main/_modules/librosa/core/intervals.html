@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.core.intervals &mdash; librosa 0.10.0rc0 documentation</title>
+  <title>librosa.core.intervals &mdash; librosa 0.10.0rc1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
@@ -17,9 +17,6 @@
   <![endif]-->
   
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -32,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../../../index.html">
-            <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0rc0
+                0.10.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,7 +95,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">librosa.core.intervals</li>
       <li class="wy-breadcrumbs-aside">
@@ -137,7 +138,7 @@
     <span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="n">sort</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Construct a set of frequencies from an interval set</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a set of frequencies from an interval set</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -266,7 +267,7 @@
 <span class="k">def</span> <span class="nf">pythagorean_intervals</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span> <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">sort</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_factors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
-    <span class="sd">&quot;&quot;&quot;Pythagorean intervals</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pythagorean intervals</span>
 
 <span class="sd">    Intervals are constructed by stacking ratios of 3/2 (i.e.,</span>
 <span class="sd">    just perfect fifths) and folding down to a single octave::</span>
@@ -368,7 +369,7 @@
 
 
 <span class="k">def</span> <span class="nf">__harmonic_distance</span><span class="p">(</span><span class="n">logs</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute the harmonic distance between ratios a and b.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the harmonic distance between ratios a and b.</span>
 
 <span class="sd">    Harmonic distance is defined as `log2(a * b) - 2*log2(gcd(a, b))` [#]_.</span>
 
@@ -400,7 +401,7 @@
 
 
 <span class="k">def</span> <span class="nf">_crystal_tie_break</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">logs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Given two tuples of prime powers, break ties.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given two tuples of prime powers, break ties.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">logs</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">logs</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 
 
@@ -445,7 +446,7 @@
     <span class="n">sort</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">return_factors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
-    <span class="sd">&quot;&quot;&quot;Construct p-limit intervals for a given set of prime factors.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct p-limit intervals for a given set of prime factors.</span>
 
 <span class="sd">    This function is based on the &quot;harmonic crystal growth&quot; algorithm</span>
 <span class="sd">    of [#1]_ [#2]_.</span>

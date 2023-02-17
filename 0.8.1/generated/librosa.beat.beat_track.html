@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.beat.beat_track &mdash; librosa 0.8.1 documentation</title>
@@ -18,9 +18,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-            <a href="../index.html">
-            <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.8.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -104,7 +105,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../beat.html">Beat and tempo</a></li>
       <li class="breadcrumb-item active">librosa.beat.beat_track</li>
       <li class="wy-breadcrumbs-aside">
@@ -124,7 +125,7 @@
 <dt class="sig sig-object py" id="librosa.beat.beat_track">
 <span class="sig-prename descclassname"><span class="pre">librosa.beat.</span></span><span class="sig-name descname"><span class="pre">beat_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#beat_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.beat_track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dynamic programming beat tracker.</p>
-<p>Beats are detected in three stages, following the method of <a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
+<p>Beats are detected in three stages, following the method of <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Measure onset strength</p></li>
@@ -133,15 +134,16 @@
 tempo</p></li>
 </ol>
 </div></blockquote>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Ellis, Daniel PW. “Beat tracking by dynamic programming.”
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Ellis, Daniel PW. “Beat tracking by dynamic programming.”
 Journal of New Music Research 36.1 (2007): 51-60.
 <a class="reference external" href="http://labrosa.ee.columbia.edu/projects/beattrack/">http://labrosa.ee.columbia.edu/projects/beattrack/</a></p>
-</dd>
-</dl>
+</aside>
+</aside>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray [shape=(n,)] or None</span></dt><dd><p>audio time series</p>
 </dd>
@@ -168,7 +170,7 @@ By default, ‘frames’ are used.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>tempo</strong><span class="classifier">float [scalar, non-negative]</span></dt><dd><p>estimated global tempo (in beats per minute)</p>
 </dd>
@@ -182,7 +184,7 @@ By default, ‘frames’ are used.</p>
 and returns an empty list.</p>
 </div>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>ParameterError</dt><dd><p>if neither <code class="docutils literal notranslate"><span class="pre">y</span></code> nor <code class="docutils literal notranslate"><span class="pre">onset_envelope</span></code> are provided,
 or if <code class="docutils literal notranslate"><span class="pre">units</span></code> is not one of ‘frames’, ‘samples’, or ‘time’</p>
