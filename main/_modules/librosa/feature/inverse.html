@@ -189,7 +189,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;))</span>
-<span class="sd">    &gt;&gt;&gt; S = np.abs(librosa.stft(y))</span>
+<span class="sd">    &gt;&gt;&gt; S = librosa.util.abs2(librosa.stft(y))</span>
 <span class="sd">    &gt;&gt;&gt; mel_spec = librosa.feature.melspectrogram(S=S, sr=sr)</span>
 <span class="sd">    &gt;&gt;&gt; S_inv = librosa.feature.inverse.mel_to_stft(mel_spec, sr=sr)</span>
 
