@@ -127,6 +127,18 @@
            <div itemprop="articleBody">
              
 
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        
+            You're reading an old version of this documentation.
+            If you want up-to-date information, please have a look at <a href="../../0.10.0/index.html">0.10.0</a>.
+        
+    
+  </p>
+</div>
+
 
   <section id="librosa-filters-semitone-filterbank">
 <h1>librosa.filters.semitone_filterbank<a class="headerlink" href="#librosa-filters-semitone-filterbank" title="Permalink to this heading">¶</a></h1>
@@ -165,9 +177,9 @@ in equal temperament).</p>
 <dt><strong>sample_rates</strong><span class="classifier">np.ndarray [shape=(n,), dtype=float]</span></dt><dd><p>Sample rates of each filter in the multirate filterbank.</p>
 </dd>
 <dt><strong>flayout</strong><span class="classifier">string</span></dt><dd><ul class="simple">
-<li><p>If <em class="xref py py-obj">ba</em>, the standard difference equation is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a>.
+<li><p>If <em class="xref py py-obj">ba</em>, the standard difference equation is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a>.
 Can be unstable for high-order filters.</p></li>
-<li><p>If <em class="xref py py-obj">sos</em>, a series of second-order filters is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a>.
+<li><p>If <em class="xref py py-obj">sos</em>, a series of second-order filters is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a>.
 Minimizes numerical precision errors for high-order filters, but is slower.</p></li>
 </ul>
 </dd>
@@ -190,7 +202,7 @@ Minimizes numerical precision errors for high-order filters, but is slower.</p><
 <dt><a class="reference internal" href="librosa.cqt.html#librosa.cqt" title="librosa.cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.cqt</span></code></a></dt><dd></dd>
 <dt><a class="reference internal" href="librosa.iirt.html#librosa.iirt" title="librosa.iirt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.iirt</span></code></a></dt><dd></dd>
 <dt><a class="reference internal" href="librosa.filters.mr_frequencies.html#librosa.filters.mr_frequencies" title="librosa.filters.mr_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.mr_frequencies</span></code></a></dt><dd></dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.iirdesign.html#scipy.signal.iirdesign" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.iirdesign</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
@@ -249,6 +261,7 @@ Minimizes numerical precision errors for high-order filters, but is slower.</p><
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
+      <dd><a href="../../0.10.0/index.html">0.10.0</a></dd>
       <dd><a href="librosa.filters.semitone_filterbank.html">0.8.1</a></dd>
       <dd><a href="../../0.9.2/index.html">0.9.2</a></dd>
     </dl>

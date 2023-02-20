@@ -146,6 +146,16 @@
            <div itemprop="articleBody">
              
 
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
+
 
   <section id="librosa-pcen">
 <h1>librosa.pcen<a class="headerlink" href="#librosa-pcen" title="Permalink to this heading">¶</a></h1>
@@ -246,7 +256,7 @@ will be raised.</p>
 </dd>
 <dt><strong>zi</strong><span class="classifier">np.ndarray</span></dt><dd><p>The initial filter delay values.</p>
 <p>This may be the <code class="docutils literal notranslate"><span class="pre">zf</span></code> (final delay values) of a previous call to <code class="docutils literal notranslate"><span class="pre">pcen</span></code>, or
-computed by <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter_zi.html#scipy.signal.lfilter_zi" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.lfilter_zi</span></code></a>.</p>
+computed by <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter_zi.html#scipy.signal.lfilter_zi" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.lfilter_zi</span></code></a>.</p>
 </dd>
 <dt><strong>return_zf</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return the final filter delay values along with the PCEN output <code class="docutils literal notranslate"><span class="pre">P</span></code>.
 This is primarily useful in streaming contexts, where the final state of one
@@ -350,6 +360,7 @@ block of processing should be used to initialize the next block.</p>
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
+      <dd><a href="../../0.10.0/index.html">0.10.0</a></dd>
       <dd><a href="../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../0.9.2/index.html">0.9.2</a></dd>
     </dl>
