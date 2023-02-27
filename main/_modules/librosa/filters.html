@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.filters &mdash; librosa 0.10.0 documentation</title>
+  <title>librosa.filters &mdash; librosa 0.10.1dev documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -40,7 +40,7 @@
               <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.0
+                0.10.1dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -109,16 +109,6 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<div class="admonition danger">
-    <p class="admonition-title"> Caution </p>
-  <p>
-    
-        You're reading the documentation for a development version.
-        For the latest released version, please have a look at <a href="../../../0.10.0/index.html">0.10.0</a>.
-    
-  </p>
-</div>
 
 
   <h1>Source code for librosa.filters</h1><div class="highlight"><pre>
@@ -869,11 +859,11 @@
 <span class="sd">            Hearing research 47.1-2 (1990): 103-138.</span>
 
 <span class="sd">    alpha : number &gt; 0 [optional]</span>
-<span class="sd">        If only one frequency is provided (``len(freqs)==1``), then filter bandwidth</span>
-<span class="sd">        cannot be computed.  In that case, the ``alpha`` parameter described above</span>
-<span class="sd">        can be explicitly specified here.</span>
-
-<span class="sd">        If two or more frequencies are provided, this parameter is ignored.</span>
+<span class="sd">        Optional pre-computed relative bandwidth parameter.</span>
+<span class="sd">        Note that this must be provided if ``len(freqs)==1`` because bandwidth cannot be</span>
+<span class="sd">        inferred from a single frequency.</span>
+<span class="sd">        Otherwise, if left unspecified, it will be automatically derived by the rules</span>
+<span class="sd">        specified above.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -916,20 +906,10 @@
             <span class="sa">f</span><span class="s2">&quot;Frequency array=</span><span class="si">{</span><span class="n">freqs</span><span class="si">}</span><span class="s2"> must be in strictly ascending order&quot;</span>
         <span class="p">)</span>
 
-    <span class="c1"># We need at least 2 frequencies to infer alpha</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c1"># Approximate the local octave resolution</span>
-        <span class="n">bpo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">))</span>
-        <span class="n">logf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
-        <span class="n">bpo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">logf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">logf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">bpo</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">logf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">logf</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
-        <span class="n">bpo</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">logf</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">logf</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
-
-        <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">bpo</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">bpo</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">alpha</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-            <span class="s2">&quot;Cannot construct a wavelet basis for a single frequency if alpha is not provided&quot;</span>
-        <span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">_relative_bandwidth</span><span class="p">(</span><span class="n">freqs</span><span class="o">=</span><span class="n">freqs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 
     <span class="n">gamma_</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">gamma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -947,6 +927,40 @@
     <span class="n">lengths</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">*</span> <span class="n">sr</span> <span class="o">/</span> <span class="p">(</span><span class="n">freqs</span> <span class="o">+</span> <span class="n">gamma_</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">lengths</span><span class="p">,</span> <span class="n">f_cutoff</span></div>
+
+
+<span class="k">def</span> <span class="nf">_relative_bandwidth</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">freqs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the relative bandwidth for each of a set of specified frequencies.</span>
+
+<span class="sd">    This function is used as a helper in wavelet basis construction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    freqs : np.ndarray</span>
+<span class="sd">        The array of frequencies</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    alpha : np.ndarray</span>
+<span class="sd">        Relative bandwidth</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2 or more frequencies are required to compute bandwidths. Given freqs=</span><span class="si">{</span><span class="n">freqs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Approximate the local octave resolution around each frequency</span>
+    <span class="n">bpo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
+    <span class="n">logf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
+    <span class="c1"># Reflect at the lowest and highest frequencies</span>
+    <span class="n">bpo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">logf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">logf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">bpo</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">logf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">logf</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># For everything else, do a centered difference</span>
+    <span class="n">bpo</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">logf</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">logf</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># Compute relative bandwidths</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">bpo</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">bpo</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">alpha</span>
 
 
 <div class="viewcode-block" id="wavelet"><a class="viewcode-back" href="../../generated/librosa.filters.wavelet.html#librosa.filters.wavelet">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -1002,11 +1016,11 @@
 <span class="sd">        By default, uses 64-bit (single precision) complex floating point.</span>
 
 <span class="sd">    alpha : number &gt; 0 [optional]</span>
-<span class="sd">        If only one frequency is provided (``len(freqs)==1``), then filter bandwidth</span>
-<span class="sd">        cannot be computed.  In that case, the ``alpha`` parameter described above</span>
-<span class="sd">        can be explicitly specified here.</span>
-
-<span class="sd">        If two or more frequencies are provided, this parameter is ignored.</span>
+<span class="sd">        Optional pre-computed relative bandwidth parameter.</span>
+<span class="sd">        Note that this must be provided if ``len(freqs)==1`` because bandwidth cannot be</span>
+<span class="sd">        inferred from a single frequency.</span>
+<span class="sd">        Otherwise, if left unspecified, it will be automatically derived by the rules</span>
+<span class="sd">        specified above.</span>
 
 <span class="sd">    **kwargs : additional keyword arguments</span>
 <span class="sd">        Arguments to `np.pad()` when ``pad==True``.</span>
