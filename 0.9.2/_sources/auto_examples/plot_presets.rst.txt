@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_auto_examples_plot_presets.py>`
+        :ref:`Go to the end <sphx_glr_download_auto_examples_plot_presets.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -172,7 +172,7 @@ Now we can load in a file and do some analysis with the new defaults
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.448 seconds)
+   **Total running time of the script:** ( 0 minutes  1.094 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_presets.py:
@@ -180,6 +180,8 @@ Now we can load in a file and do some analysis with the new defaults
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python

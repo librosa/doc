@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_auto_examples_plot_vocal_separation.py>`
+        :ref:`Go to the end <sphx_glr_download_auto_examples_plot_vocal_separation.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -243,7 +243,7 @@ that we had previously set aside.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  24.782 seconds)
+   **Total running time of the script:** ( 0 minutes  22.388 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:
@@ -251,6 +251,8 @@ that we had previously set aside.
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+
 
 
     .. container:: sphx-glr-download sphx-glr-download-python
