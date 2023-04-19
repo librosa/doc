@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -148,10 +147,10 @@
 
 
   <section id="librosa-db-to-power">
-<h1>librosa.db_to_power<a class="headerlink" href="#librosa-db-to-power" title="Permalink to this heading">¶</a></h1>
+<h1>librosa.db_to_power<a class="headerlink" href="#librosa-db-to-power" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.db_to_power">
-<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">db_to_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S_db</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#db_to_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.db_to_power" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">db_to_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S_db</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#db_to_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.db_to_power" title="Permalink to this definition"></a></dt>
 <dd><p>Convert a dB-scale spectrogram to a power spectrogram.</p>
 <p>This effectively inverts <code class="docutils literal notranslate"><span class="pre">power_to_db</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">)</span> <span class="o">~=</span> <span class="n">ref</span> <span class="o">*</span> <span class="mf">10.0</span><span class="o">**</span><span class="p">(</span><span class="n">S_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>

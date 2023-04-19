@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -131,10 +130,10 @@
 
 
   <section id="librosa-effects-preemphasis">
-<h1>librosa.effects.preemphasis<a class="headerlink" href="#librosa-effects-preemphasis" title="Permalink to this heading">¶</a></h1>
+<h1>librosa.effects.preemphasis<a class="headerlink" href="#librosa-effects-preemphasis" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.effects.preemphasis">
-<span class="sig-prename descclassname"><span class="pre">librosa.effects.</span></span><span class="sig-name descname"><span class="pre">preemphasis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.97</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_zf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/effects.html#preemphasis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.effects.preemphasis" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.effects.</span></span><span class="sig-name descname"><span class="pre">preemphasis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.97</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_zf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/effects.html#preemphasis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.effects.preemphasis" title="Permalink to this definition"></a></dt>
 <dd><p>Pre-emphasize an audio signal with a first-order differencing filter:</p>
 <blockquote>
 <div><p>y[n] -&gt; y[n] - coef * y[n-1]</p>

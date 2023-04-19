@@ -16,10 +16,9 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -707,7 +706,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pad</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">aggregate</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">aggregate</span><span class="p">):</span>
         <span class="n">onset_env</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span>
             <span class="n">onset_env</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="n">aggregate</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span>
         <span class="p">)</span>

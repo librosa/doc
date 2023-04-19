@@ -16,10 +16,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -1292,7 +1291,7 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax, format=&quot;%+2.f dB&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">ref_power</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ref_power</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">ref_power</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ref_power</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;ref_power must be non-negative or callable.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">reassign_frequencies</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">reassign_times</span><span class="p">:</span>
@@ -1359,7 +1358,7 @@
 
     <span class="c1"># find bins below the power threshold</span>
     <span class="c1"># reassigned bins with zero power will already be NaN</span>
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">ref_power</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">ref_power</span><span class="p">):</span>
         <span class="n">ref_p</span> <span class="o">=</span> <span class="n">ref_power</span><span class="p">(</span><span class="n">mags</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ref_p</span> <span class="o">=</span> <span class="n">ref_power</span>
@@ -1886,7 +1885,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">magnitude</span> <span class="o">=</span> <span class="n">S</span>
 
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">ref</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">ref</span><span class="p">):</span>
         <span class="c1"># User supplied a function to calculate reference power</span>
         <span class="n">ref_value</span> <span class="o">=</span> <span class="n">ref</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -1988,7 +1987,7 @@
 
     <span class="n">magnitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">ref</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">ref</span><span class="p">):</span>
         <span class="c1"># User supplied a function to calculate reference power</span>
         <span class="n">ref_value</span> <span class="o">=</span> <span class="n">ref</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>

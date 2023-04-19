@@ -17,10 +17,9 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -114,42 +113,42 @@
 
 
   <section id="glossary">
-<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this heading">¶</a></h1>
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this heading"></a></h1>
 <dl class="simple glossary">
-<dt id="term-time-series">time series<a class="headerlink" href="#term-time-series" title="Permalink to this term">¶</a></dt><dd><p>Typically an audio signal, denoted by <em class="xref py py-obj">y</em>, and represented as a
+<dt id="term-time-series">time series<a class="headerlink" href="#term-time-series" title="Permalink to this term"></a></dt><dd><p>Typically an audio signal, denoted by <em class="xref py py-obj">y</em>, and represented as a
 one-dimensional <em>numpy.ndarray</em> of floating-point values.  <em class="xref py py-obj">y[t]</em>
 corresponds to amplitude of the waveform at sample <em class="xref py py-obj">t</em>.</p>
 </dd>
-<dt id="term-sampling-rate">sampling rate<a class="headerlink" href="#term-sampling-rate" title="Permalink to this term">¶</a></dt><dd><p>The (positive integer) number of samples per second of a time series.
+<dt id="term-sampling-rate">sampling rate<a class="headerlink" href="#term-sampling-rate" title="Permalink to this term"></a></dt><dd><p>The (positive integer) number of samples per second of a time series.
 This is denoted by an integer variable <em class="xref py py-obj">sr</em>.</p>
 </dd>
-<dt id="term-frame">frame<a class="headerlink" href="#term-frame" title="Permalink to this term">¶</a></dt><dd><p>A short slice of a <a class="reference internal" href="#term-time-series"><span class="xref std std-term">time series</span></a> used for analysis purposes.  This
+<dt id="term-frame">frame<a class="headerlink" href="#term-frame" title="Permalink to this term"></a></dt><dd><p>A short slice of a <a class="reference internal" href="#term-time-series"><span class="xref std std-term">time series</span></a> used for analysis purposes.  This
 usually corresponds to a single column of a spectrogram matrix.</p>
 </dd>
-<dt id="term-window">window<a class="headerlink" href="#term-window" title="Permalink to this term">¶</a></dt><dd><p>A vector or function used to weight samples within a frame when computing
+<dt id="term-window">window<a class="headerlink" href="#term-window" title="Permalink to this term"></a></dt><dd><p>A vector or function used to weight samples within a frame when computing
 a spectrogram.</p>
 </dd>
-<dt id="term-frame-length">frame length<a class="headerlink" href="#term-frame-length" title="Permalink to this term">¶</a></dt><dd><p>The (positive integer) number of samples in an analysis window (or
+<dt id="term-frame-length">frame length<a class="headerlink" href="#term-frame-length" title="Permalink to this term"></a></dt><dd><p>The (positive integer) number of samples in an analysis window (or
 <a class="reference internal" href="#term-frame"><span class="xref std std-term">frame</span></a>).
 This is denoted by an integer variable <em class="xref py py-obj">n_fft</em>.</p>
 </dd>
-<dt id="term-hop-length">hop length<a class="headerlink" href="#term-hop-length" title="Permalink to this term">¶</a></dt><dd><p>The number of samples between successive frames, e.g., the columns
+<dt id="term-hop-length">hop length<a class="headerlink" href="#term-hop-length" title="Permalink to this term"></a></dt><dd><p>The number of samples between successive frames, e.g., the columns
 of a spectrogram.  This is denoted as a positive integer <em class="xref py py-obj">hop_length</em>.</p>
 </dd>
-<dt id="term-window-length">window length<a class="headerlink" href="#term-window-length" title="Permalink to this term">¶</a></dt><dd><p>The length (width) of the window function (e.g., Hann window).  Note that this
+<dt id="term-window-length">window length<a class="headerlink" href="#term-window-length" title="Permalink to this term"></a></dt><dd><p>The length (width) of the window function (e.g., Hann window).  Note that this
 can be smaller than the <a class="reference internal" href="#term-frame-length"><span class="xref std std-term">frame length</span></a> used in a short-time Fourier
 transform.  Typically denoted as a positive integer variable <em class="xref py py-obj">win_length</em>.</p>
 </dd>
-<dt id="term-spectrogram">spectrogram<a class="headerlink" href="#term-spectrogram" title="Permalink to this term">¶</a></dt><dd><p>A matrix <em class="xref py py-obj">S</em> where the rows index frequency bins, and the columns index
+<dt id="term-spectrogram">spectrogram<a class="headerlink" href="#term-spectrogram" title="Permalink to this term"></a></dt><dd><p>A matrix <em class="xref py py-obj">S</em> where the rows index frequency bins, and the columns index
 frames (time).  Spectrograms can be either real-valued or complex-valued.  By
 convention, real-valued spectrograms are denoted as <em>numpy.ndarray</em>s <em class="xref py py-obj">S</em>,
 while complex-valued STFT matrices are denoted as <em class="xref py py-obj">D</em>.</p>
 </dd>
-<dt id="term-onset-strength-envelope">onset (strength) envelope<a class="headerlink" href="#term-onset-strength-envelope" title="Permalink to this term">¶</a></dt><dd><p>An onset envelope <em class="xref py py-obj">onset_env[t]</em> measures the strength of note onsets at
+<dt id="term-onset-strength-envelope">onset (strength) envelope<a class="headerlink" href="#term-onset-strength-envelope" title="Permalink to this term"></a></dt><dd><p>An onset envelope <em class="xref py py-obj">onset_env[t]</em> measures the strength of note onsets at
 frame <em class="xref py py-obj">t</em>.  Typically stored as a one-dimensional <em>numpy.ndarray</em> of
 floating-point values <em class="xref py py-obj">onset_envelope</em>.</p>
 </dd>
-<dt id="term-chroma">chroma<a class="headerlink" href="#term-chroma" title="Permalink to this term">¶</a></dt><dd><p>Also known as pitch class profile (PCP).  Chroma representations measure the
+<dt id="term-chroma">chroma<a class="headerlink" href="#term-chroma" title="Permalink to this term"></a></dt><dd><p>Also known as pitch class profile (PCP).  Chroma representations measure the
 amount of relative energy in each pitch class (e.g., the 12 notes in the
 chromatic scale) at a given frame/time.</p>
 </dd>
