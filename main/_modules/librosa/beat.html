@@ -39,7 +39,7 @@
               <img src="../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.1dev
+                0.10
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -108,6 +108,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
+
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
 
 
   <h1>Source code for librosa.beat</h1><div class="highlight"><pre>
@@ -328,7 +338,7 @@
 <span class="sd">    The local maxima of the pulse curve can be taken as estimated beat positions.</span>
 
 <span class="sd">    This method may be preferred over the dynamic programming method of `beat_track`</span>
-<span class="sd">    when either the tempo is expected to vary significantly over time.  Additionally,</span>
+<span class="sd">    when the tempo is expected to vary significantly over time.  Additionally,</span>
 <span class="sd">    since `plp` does not require the entire signal to make predictions, it may be</span>
 <span class="sd">    preferable when beat-tracking long recordings in a streaming setting.</span>
 

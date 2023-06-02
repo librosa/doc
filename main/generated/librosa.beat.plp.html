@@ -42,7 +42,7 @@
               <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.1dev
+                0.10
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -120,6 +120,16 @@
            <div itemprop="articleBody">
              
 
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
+
 
   <section id="librosa-beat-plp">
 <h1>librosa.beat.plp<a class="headerlink" href="#librosa-beat-plp" title="Permalink to this heading"></a></h1>
@@ -133,7 +143,7 @@ are used to synthesize local half-waves, which are combined such that peaks
 coincide with rhythmically salient frames (e.g. onset events on a musical time grid).
 The local maxima of the pulse curve can be taken as estimated beat positions.</p>
 <p>This method may be preferred over the dynamic programming method of <a class="reference internal" href="librosa.beat.beat_track.html#librosa.beat.beat_track" title="librosa.beat.beat_track"><code class="xref py py-obj docutils literal notranslate"><span class="pre">beat_track</span></code></a>
-when either the tempo is expected to vary significantly over time.  Additionally,
+when the tempo is expected to vary significantly over time.  Additionally,
 since <a class="reference internal" href="#librosa.beat.plp" title="librosa.beat.plp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plp</span></code></a> does not require the entire signal to make predictions, it may be
 preferable when beat-tracking long recordings in a streaming setting.</p>
 <aside class="footnote-list brackets">

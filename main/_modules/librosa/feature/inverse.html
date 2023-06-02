@@ -39,7 +39,7 @@
               <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.1dev
+                0.10
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -109,6 +109,16 @@
            <div itemprop="articleBody">
              
 
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
+
 
   <h1>Source code for librosa.feature.inverse</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
@@ -153,8 +163,6 @@
 <span class="sd">    power : float &gt; 0 [scalar]</span>
 <span class="sd">        Exponent for the magnitude melspectrogram</span>
 <span class="sd">    **kwargs : additional keyword arguments for Mel filter bank parameters</span>
-<span class="sd">    n_mels : int &gt; 0 [scalar]</span>
-<span class="sd">        number of Mel bands to generate</span>
 <span class="sd">    fmin : float &gt;= 0 [scalar]</span>
 <span class="sd">        lowest frequency (in Hz)</span>
 <span class="sd">    fmax : float &gt;= 0 [scalar]</span>
@@ -276,8 +284,6 @@
 <span class="sd">    dtype : np.dtype</span>
 <span class="sd">        Real numeric type for the time-domain signal.  Default is 32-bit float.</span>
 <span class="sd">    **kwargs : additional keyword arguments for Mel filter bank parameters</span>
-<span class="sd">    n_mels : int &gt; 0 [scalar]</span>
-<span class="sd">        number of Mel bands to generate</span>
 <span class="sd">    fmin : float &gt;= 0 [scalar]</span>
 <span class="sd">        lowest frequency (in Hz)</span>
 <span class="sd">    fmax : float &gt;= 0 [scalar]</span>

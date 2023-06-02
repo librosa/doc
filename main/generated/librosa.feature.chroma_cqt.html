@@ -42,7 +42,7 @@
               <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.1dev
+                0.10
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -139,6 +139,16 @@
            <div itemprop="articleBody">
              
 
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
+
 
   <section id="librosa-feature-chroma-cqt">
 <h1>librosa.feature.chroma_cqt<a class="headerlink" href="#librosa-feature-chroma-cqt" title="Permalink to this heading"></a></h1>
@@ -165,7 +175,7 @@ Default: <em class="xref py py-obj">C1 ~= 32.7 Hz</em></p>
 <dt><strong>threshold</strong><span class="classifier">float</span></dt><dd><p>Pre-normalization energy threshold.  Values below the
 threshold are discarded, resulting in a sparse chromagram.</p>
 </dd>
-<dt><strong>tuning</strong><span class="classifier">float</span></dt><dd><p>Deviation (in fractions of a CQT bin) from A440 tuning</p>
+<dt><strong>tuning</strong><span class="classifier">float [scalar] or None.</span></dt><dd><p>Deviation (in fractions of a CQT bin) from A440 tuning</p>
 </dd>
 <dt><strong>n_chroma</strong><span class="classifier">int &gt; 0</span></dt><dd><p>Number of chroma bins to produce</p>
 </dd>

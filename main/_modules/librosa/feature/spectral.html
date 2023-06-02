@@ -39,7 +39,7 @@
               <img src="../../../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.1dev
+                0.10
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -108,6 +108,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
+
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
 
 
   <h1>Source code for librosa.feature.spectral</h1><div class="highlight"><pre>
@@ -1441,7 +1451,7 @@
 <span class="sd">    threshold : float</span>
 <span class="sd">        Pre-normalization energy threshold.  Values below the</span>
 <span class="sd">        threshold are discarded, resulting in a sparse chromagram.</span>
-<span class="sd">    tuning : float</span>
+<span class="sd">    tuning : float [scalar] or None.</span>
 <span class="sd">        Deviation (in fractions of a CQT bin) from A440 tuning</span>
 <span class="sd">    n_chroma : int &gt; 0</span>
 <span class="sd">        Number of chroma bins to produce</span>
@@ -1585,7 +1595,7 @@
 <span class="sd">        Default: `C1 ~= 32.7 Hz`</span>
 <span class="sd">    norm : int &gt; 0, +-np.inf, or None</span>
 <span class="sd">        Column-wise normalization of the chromagram.</span>
-<span class="sd">    tuning : float</span>
+<span class="sd">    tuning : float [scalar] or None.</span>
 <span class="sd">        Deviation (in fractions of a CQT bin) from A440 tuning</span>
 <span class="sd">    n_chroma : int &gt; 0</span>
 <span class="sd">        Number of chroma bins to produce</span>
@@ -1860,7 +1870,7 @@
 <span class="sd">    threshold : float</span>
 <span class="sd">        Pre-normalization energy threshold.  Values below the</span>
 <span class="sd">        threshold are discarded, resulting in a sparse chromagram.</span>
-<span class="sd">    tuning : float</span>
+<span class="sd">    tuning : float [scalar] or None.</span>
 <span class="sd">        Deviation (in fractions of a CQT bin) from A440 tuning</span>
 <span class="sd">    n_chroma : int &gt; 0</span>
 <span class="sd">        Number of chroma bins to produce</span>
@@ -2020,8 +2030,8 @@
 <span class="sd">        If ``center=True``, the padding mode to use at the edges of the signal.</span>
 <span class="sd">        By default, STFT uses zero padding.</span>
 <span class="sd">    power : float &gt; 0 [scalar]</span>
-<span class="sd">        Exponent for the magnitude melspectrogram.</span>
-<span class="sd">        e.g., 1 for energy, 2 for power, etc.</span>
+<span class="sd">        Exponent applied to the spectrum before calculating the melspectrogram when the input is a time signal,</span>
+<span class="sd">        e.g. 1 for magnitude, 2 for power **(default)**, etc.</span>
 <span class="sd">    **kwargs : additional keyword arguments for Mel filter bank parameters</span>
 <span class="sd">    n_mels : int &gt; 0 [scalar]</span>
 <span class="sd">        number of Mel bands to generate</span>

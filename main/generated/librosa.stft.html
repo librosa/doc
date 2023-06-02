@@ -42,7 +42,7 @@
               <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.10.1dev
+                0.10
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -144,6 +144,16 @@
            <div itemprop="articleBody">
              
 
+<div class="admonition danger">
+    <p class="admonition-title"> Caution </p>
+  <p>
+    
+        You're reading the documentation for a development version.
+        For the latest released version, please have a look at <a href="../../0.10.0/index.html">0.10.0</a>.
+    
+  </p>
+</div>
+
 
   <section id="librosa-stft">
 <h1>librosa.stft<a class="headerlink" href="#librosa-stft" title="Permalink to this heading"></a></h1>
@@ -184,7 +194,9 @@ affecting the frequency resolution of the STFT.</p>
 <p>If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">win_length</span> <span class="pre">//</span> <span class="pre">4</span></code> (see below).</p>
 </dd>
 <dt><strong>win_length</strong><span class="classifier">int &lt;= n_fft [scalar]</span></dt><dd><p>Each frame of audio is windowed by <code class="docutils literal notranslate"><span class="pre">window</span></code> of length <code class="docutils literal notranslate"><span class="pre">win_length</span></code>
-and then padded with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.</p>
+and then padded with zeros to match <code class="docutils literal notranslate"><span class="pre">n_fft</span></code>.  Padding is added on
+both the left- and the right-side of the window so that the window
+is centered within the frame.</p>
 <p>Smaller values improve the temporal resolution of the STFT (i.e. the
 ability to discriminate impulses that are closely spaced in time)
 at the expense of frequency resolution (i.e. the ability to discriminate
