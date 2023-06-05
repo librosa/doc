@@ -224,6 +224,10 @@ instrumentation.</p>
 <span class="n">S_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">S_full</span><span class="p">,</span> <span class="n">S_filter</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda/envs/docs/lib/python3.8/site-packages/sklearn/utils/extmath.py:189: RuntimeWarning: invalid value encountered in matmul
+  ret = a @ b
+</pre></div>
+</div>
 <p>The raw filter output can be used as a mask,
 but it sounds better if we use soft-masking.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can also use a margin to reduce bleed between the vocals and instrumentation masks.</span>
@@ -283,7 +287,7 @@ that we had previously set aside.</p>
 
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.906 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  22.259 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-vocal-separation-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/c9d6a26603bb5d66c0973897988dbb3e/plot_vocal_separation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vocal_separation.py</span></code></a></p>

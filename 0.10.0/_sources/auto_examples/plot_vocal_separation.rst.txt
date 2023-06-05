@@ -175,6 +175,13 @@ instrumentation.
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    /usr/share/miniconda/envs/docs/lib/python3.8/site-packages/sklearn/utils/extmath.py:189: RuntimeWarning: invalid value encountered in matmul
+      ret = a @ b
+
 
 
 
@@ -290,7 +297,7 @@ that we had previously set aside.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  21.906 seconds)
+   **Total running time of the script:** ( 0 minutes  22.259 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:
