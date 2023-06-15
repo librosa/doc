@@ -23,7 +23,7 @@ Laplacian segmentation
 ======================
 
 This notebook implements the laplacian segmentation method of
-`McFee and Ellis, 2014 <http://bmcfee.github.io/papers/ismir2014_spectral.pdf>`_,
+`McFee and Ellis, 2014 <https://zenodo.org/record/1415778>`_,
 with a couple of minor stability improvements.
 
 Throughout the example, we will refer to equations in the paper by number, so it will be
@@ -456,7 +456,7 @@ And plot the final segmentation over original CQT
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.988 seconds)
+   **Total running time of the script:** ( 0 minutes  7.822 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_segmentation.py:

@@ -289,7 +289,6 @@
 <span class="sd">    &gt;&gt;&gt; aro = audioread.ffdec.FFmpegAudioFile(librosa.ex(&#39;brahms&#39;))</span>
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(aro)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">audioread</span><span class="o">.</span><span class="n">available_backends</span><span class="p">())):</span>
         <span class="c1"># Force the audioread loader if we have a reader object already</span>
         <span class="n">y</span><span class="p">,</span> <span class="n">sr_native</span> <span class="o">=</span> <span class="n">__audioread_load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
@@ -353,7 +352,6 @@
 
 <span class="sd">    This loads one block at a time, and then concatenates the results.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">buf</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">audioread</span><span class="o">.</span><span class="n">available_backends</span><span class="p">())):</span>
@@ -552,9 +550,7 @@
 <span class="sd">    ...                                              n_fft=2048,</span>
 <span class="sd">    ...                                              hop_length=2048,</span>
 <span class="sd">    ...                                              center=False)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="n">util</span><span class="o">.</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">block_length</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;block_length=</span><span class="si">{</span><span class="n">block_length</span><span class="si">}</span><span class="s2"> must be a positive integer&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">util</span><span class="o">.</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">frame_length</span><span class="p">):</span>
@@ -626,9 +622,7 @@
 <span class="sd">    &gt;&gt;&gt; y_mono = librosa.to_mono(y)</span>
 <span class="sd">    &gt;&gt;&gt; y_mono.shape</span>
 <span class="sd">    (117601,)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Validate the buffer.  Stereo is ok here.</span>
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -752,7 +746,6 @@
 <span class="sd">    &gt;&gt;&gt; y.shape, y_8k.shape</span>
 <span class="sd">    ((117601,), (42668,))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># First, validate the audio buffer</span>
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -911,7 +904,6 @@
 <span class="sd">    then ``path`` takes precedence over ``S``, and ``S`` takes precedence over</span>
 <span class="sd">    ``(y, sr)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">path</span> <span class="o">=</span> <span class="n">rename_kw</span><span class="p">(</span>
         <span class="n">old_name</span><span class="o">=</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span>
         <span class="n">old_value</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
@@ -1038,7 +1030,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.plot(ac)</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;Auto-correlation&#39;, xlabel=&#39;Lag (frames)&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">max_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">max_size</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
 
@@ -1395,7 +1386,6 @@
 <span class="sd">    &gt;&gt;&gt; np.nonzero(z)</span>
 <span class="sd">    (array([ 0,  3,  5,  8, 10, 12, 15, 17, 19]),)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">ref_magnitude</span><span class="p">):</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span> <span class="o">*</span> <span class="n">ref_magnitude</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
 
@@ -1492,7 +1482,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[0].label_outer()</span>
 <span class="sd">    &gt;&gt;&gt; ax[0].set_title(None)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Compute sample positions from time or frames</span>
     <span class="n">positions</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
     <span class="k">if</span> <span class="n">times</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1607,7 +1596,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.display.specshow(librosa.power_to_db(S, ref=np.max),</span>
 <span class="sd">    ...                          x_axis=&#39;time&#39;, y_axis=&#39;mel&#39;, ax=ax)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">frequency</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s1">&#39;&quot;frequency&quot; must be provided&#39;</span><span class="p">)</span>
 
@@ -1712,7 +1700,6 @@
 <span class="sd">    ...                          x_axis=&#39;time&#39;, y_axis=&#39;linear&#39;, ax=ax[1])</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;Linear chirp&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s1">&#39;both &quot;fmin&quot; and &quot;fmax&quot; must be provided&#39;</span><span class="p">)</span>
 
@@ -1808,9 +1795,7 @@
 <span class="sd">    &gt;&gt;&gt; y = librosa.mu_compress(x, mu=15, quantize=True)</span>
 <span class="sd">    &gt;&gt;&gt; y</span>
 <span class="sd">    array([-8, -7, -7, -6, -6, -5, -4, -2,  2,  4,  5,  6,  6,  7,  7,  7])</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">mu</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;mu-law compression parameter mu=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s2"> must be strictly positive.&quot;</span>

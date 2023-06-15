@@ -258,7 +258,6 @@
 <span class="sd">    ...            linestyle=&#39;--&#39;, label=&#39;Onsets&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># First, get the frame-&gt;beat strength profile if we don&#39;t already have one</span>
     <span class="k">if</span> <span class="n">onset_envelope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -444,7 +443,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(ylabel=&#39;Normalized strength&#39;, yticks=[])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">aggregate</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;aggregate parameter cannot be False when computing full-spectrum onset strength.&quot;</span>
@@ -529,7 +527,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[2].vlines(librosa.frames_to_time(onset_bt_rms), 0, rms.max(), label=&#39;Backtracked (RMS)&#39;, color=&#39;r&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[2].legend()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Find points where energy is non-increasing</span>
     <span class="c1"># all points:  energy[i] &lt;= energy[i-1]</span>
     <span class="c1"># tail points: energy[i] &lt; energy[i+1]</span>
@@ -666,7 +663,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].set(ylabel=&#39;Sub-bands&#39;, title=&#39;Sub-band onset strength&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img2, ax=[ax[1]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">feature</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">feature</span> <span class="o">=</span> <span class="n">melspectrogram</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;fmax&quot;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sr</span><span class="p">)</span>

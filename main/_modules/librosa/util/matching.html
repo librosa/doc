@@ -170,7 +170,6 @@
 <span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">__match_interval_overlaps</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">intervals_to</span><span class="p">,</span> <span class="n">candidates</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the best Jaccard match from query to candidates&quot;&quot;&quot;</span>
-
     <span class="n">best_score</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">best_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
@@ -317,7 +316,6 @@
 <span class="sd">    &gt;&gt;&gt; # [4, 5] =&gt; [4, 5]  (ints_from[2])</span>
 <span class="sd">    &gt;&gt;&gt; # [6, 7] =&gt; [4, 5]  (ints_from[2])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals_from</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals_to</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Attempting to match empty interval list&quot;</span><span class="p">)</span>
 

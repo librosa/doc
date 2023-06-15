@@ -260,7 +260,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[3].set(xlabel=&#39;BPM&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[3].grid(True)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="kn">from</span> <span class="nn">..onset</span> <span class="kn">import</span> <span class="n">onset_strength</span>
 
     <span class="k">if</span> <span class="n">win_length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -384,7 +383,6 @@
 <span class="sd">    ...                          ax=ax[2])</span>
 <span class="sd">    &gt;&gt;&gt; ax[2].set(title=&#39;Autocorrelation tempogram&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="kn">from</span> <span class="nn">..onset</span> <span class="kn">import</span> <span class="n">onset_strength</span>
 
     <span class="k">if</span> <span class="n">win_length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -531,7 +529,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;Dynamic tempo estimation&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax.legend()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">start_bpm</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;start_bpm must be strictly positive&quot;</span><span class="p">)</span>
 
@@ -736,7 +733,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[0].set(title=&quot;Tempogram&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&quot;Tempogram ratio&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Get a tempogram and time-varying tempo estimate</span>
     <span class="k">if</span> <span class="n">tg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">tg</span> <span class="o">=</span> <span class="n">tempogram</span><span class="p">(</span>

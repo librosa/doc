@@ -703,7 +703,6 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(imgsim, ax=ax[0], orientation=&#39;horizontal&#39;, ticks=[0, 1])</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(imgaff, ax=ax[1], orientation=&#39;horizontal&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="c1"># Swap observations to the first dimension and flatten the rest</span>
@@ -887,7 +886,6 @@
 <span class="sd">    ...                          hop_length=hop_length, ax=ax[1])</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;Lag (no padding)&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
@@ -982,7 +980,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1, 1].set(title=&#39;Recurrence (without padding)&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1, 1].label_outer()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">axis</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid target axis: </span><span class="si">{</span><span class="n">axis</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -1008,7 +1005,7 @@
 
 
 <div class="viewcode-block" id="timelag_filter"><a class="viewcode-back" href="../../generated/librosa.segment.timelag_filter.html#librosa.segment.timelag_filter">[docs]</a><span class="k">def</span> <span class="nf">timelag_filter</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">_F</span><span class="p">,</span> <span class="n">pad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_F</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filtering in the time-lag domain.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply a filter in the time-lag domain.</span>
 
 <span class="sd">    This is primarily useful for adapting image filters to operate on</span>
 <span class="sd">    `recurrence_to_lag` output.</span>
@@ -1071,9 +1068,8 @@
 <span class="sd">    &gt;&gt;&gt; ax[1, 1].set(title=&#39;Filtered affinity matrix&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1, 1].label_outer()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">def</span> <span class="nf">__my_filter</span><span class="p">(</span><span class="n">wrapped_f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decorator to wrap the filter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrap the filter with lag conversions&quot;&quot;&quot;</span>
         <span class="c1"># Map the input data into time-lag space</span>
         <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
@@ -1156,7 +1152,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.legend()</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;CQT + Beat and sub-beat markers&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">frames</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">fix_frames</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">],</span> <span class="n">pad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">n_segments</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -1239,7 +1234,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.legend()</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;Power spectrogram&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Make sure we have at least two dimensions</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
@@ -1391,7 +1385,6 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax[0], orientation=&#39;horizontal&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(imgpe, ax=ax[1], orientation=&#39;horizontal&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">min_ratio</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">min_ratio</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">max_ratio</span>
     <span class="k">elif</span> <span class="n">min_ratio</span> <span class="o">&gt;</span> <span class="n">max_ratio</span><span class="p">:</span>

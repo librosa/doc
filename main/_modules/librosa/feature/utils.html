@@ -226,7 +226,6 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img2, ax=[ax[1]])</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img3, ax=[ax[2]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;interp&quot;</span> <span class="ow">and</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]:</span>
@@ -349,7 +348,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.text(1.0, 5/6, &quot;Lag=2&quot;, transform=ax.transAxes, rotation=-90, ha=&quot;left&quot;, va=&quot;center&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;Time-lagged chroma&#39;, ylabel=&quot;&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">n_steps</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;n_steps must be a positive integer&quot;</span><span class="p">)</span>
 

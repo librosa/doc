@@ -211,7 +211,6 @@
 <span class="sd">    ...                         fmax=librosa.note_to_hz(&#39;G#9&#39;))</span>
 <span class="sd">    -0.08000000000000002</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">pitch</span><span class="p">,</span> <span class="n">mag</span> <span class="o">=</span> <span class="n">piptrack</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="c1"># Only count magnitude where frequency is &gt; 0</span>
@@ -270,9 +269,7 @@
 <span class="sd">    &gt;&gt;&gt; freqs = freqs[mags &gt; np.median(mags)]</span>
 <span class="sd">    &gt;&gt;&gt; librosa.pitch_tuning(freqs)</span>
 <span class="sd">    -0.07</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
 
     <span class="c1"># Trim out any DC components</span>
@@ -424,9 +421,7 @@
 
 <span class="sd">    &gt;&gt;&gt; pitches, magnitudes = librosa.piptrack(S=S, sr=sr, threshold=1,</span>
 <span class="sd">    ...                                        ref=np.mean)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Check that we received an audio time series or STFT</span>
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
@@ -553,7 +548,6 @@
 <span class="nd">@numba</span><span class="o">.</span><span class="n">stencil</span>  <span class="c1"># type: ignore</span>
 <span class="k">def</span> <span class="nf">_pi_stencil</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stencil to compute local parabolic interpolation&quot;&quot;&quot;</span>
-
     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
 
@@ -697,7 +691,6 @@
 <span class="sd">    array([442.66354675, 441.95299983, 441.58010963, ...,</span>
 <span class="sd">        871.161732  , 873.99001454, 877.04297681])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s1">&#39;both &quot;fmin&quot; and &quot;fmax&quot; must be provided&#39;</span><span class="p">)</span>
 
@@ -899,7 +892,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.plot(times, f0, label=&#39;f0&#39;, color=&#39;cyan&#39;, linewidth=3)</span>
 <span class="sd">    &gt;&gt;&gt; ax.legend(loc=&#39;upper right&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s1">&#39;both &quot;fmin&quot; and &quot;fmax&quot; must be provided&#39;</span><span class="p">)</span>
 
@@ -1082,7 +1074,6 @@
 <span class="sd">    1. 0 &lt; fmin &lt; fmax &lt;= sr/2</span>
 <span class="sd">    2. frame_length - win_length - 1 &gt; sr/fmax</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">fmax</span> <span class="o">&gt;</span> <span class="n">sr</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fmax=</span><span class="si">{</span><span class="n">fmax</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> cannot exceed Nyquist frequency </span><span class="si">{</span><span class="n">sr</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">fmin</span> <span class="o">&gt;=</span> <span class="n">fmax</span><span class="p">:</span>

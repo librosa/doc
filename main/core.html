@@ -358,7 +358,7 @@
 <td><p>Time-frequency representation using IIR filters</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.fmt.html#librosa.fmt" title="librosa.fmt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fmt</span></code></a>(y, *[, t_min, n_fmt, kind, beta, ...])</p></td>
-<td><p>The fast Mellin transform (FMT)</p></td>
+<td><p>Fast Mellin transform (FMT)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.magphase.html#librosa.magphase" title="librosa.magphase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magphase</span></code></a>(D, *[, power])</p></td>
 <td><p>Separate a complex-valued spectrogram D into its magnitude (S) and phase (P) components, so that <code class="docutils literal notranslate"><span class="pre">D</span> <span class="pre">=</span> <span class="pre">S</span> <span class="pre">*</span> <span class="pre">P</span></code>.</p></td>
@@ -446,19 +446,19 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.frames_to_samples.html#librosa.frames_to_samples" title="librosa.frames_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames_to_samples</span></code></a>(frames, *[, hop_length, n_fft])</p></td>
-<td><p>Converts frame indices to audio sample indices.</p></td>
+<td><p>Convert frame indices to audio sample indices.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.frames_to_time.html#librosa.frames_to_time" title="librosa.frames_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames_to_time</span></code></a>(frames, *[, sr, hop_length, ...])</p></td>
-<td><p>Converts frame counts to time (seconds).</p></td>
+<td><p>Convert frame counts to time (seconds).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.samples_to_frames.html#librosa.samples_to_frames" title="librosa.samples_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samples_to_frames</span></code></a>(samples, *[, hop_length, ...])</p></td>
-<td><p>Converts sample indices into STFT frames.</p></td>
+<td><p>Convert sample indices into STFT frames.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.samples_to_time.html#librosa.samples_to_time" title="librosa.samples_to_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samples_to_time</span></code></a>(samples, *[, sr])</p></td>
 <td><p>Convert sample indices to time (in seconds).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.time_to_frames.html#librosa.time_to_frames" title="librosa.time_to_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_to_frames</span></code></a>(times, *[, sr, hop_length, n_fft])</p></td>
-<td><p>Converts time stamps into STFT frames.</p></td>
+<td><p>Convert time stamps into STFT frames.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.time_to_samples.html#librosa.time_to_samples" title="librosa.time_to_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_to_samples</span></code></a>(times, *[, sr])</p></td>
 <td><p>Convert timestamps (in seconds) to sample indices.</p></td>
@@ -544,7 +544,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/librosa.key_to_notes.html#librosa.key_to_notes" title="librosa.key_to_notes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key_to_notes</span></code></a>(key, *[, unicode])</p></td>
-<td><p>Lists all 12 note names in the chromatic scale, as spelled according to a given key (major or minor).</p></td>
+<td><p>List all 12 note names in the chromatic scale, as spelled according to a given key (major or minor).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/librosa.key_to_degrees.html#librosa.key_to_degrees" title="librosa.key_to_degrees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key_to_degrees</span></code></a>(key)</p></td>
 <td><p>Construct the diatonic scale degrees for a given key.</p></td>

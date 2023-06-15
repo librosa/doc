@@ -214,9 +214,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # Get a more isolated percussive component by widening its margin</span>
 <span class="sd">    &gt;&gt;&gt; y_harmonic, y_percussive = librosa.effects.hpss(y, margin=(1.0,5.0))</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Compute the STFT matrix</span>
     <span class="n">stft</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
@@ -259,9 +257,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # Use a margin &gt; 1.0 for greater harmonic separation</span>
 <span class="sd">    &gt;&gt;&gt; y_harmonic = librosa.effects.harmonic(y, margin=3.0)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Compute the STFT matrix</span>
     <span class="n">stft</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
@@ -303,9 +299,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # Use a margin &gt; 1.0 for greater percussive separation</span>
 <span class="sd">    &gt;&gt;&gt; y_percussive = librosa.effects.percussive(y, margin=3.0)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Compute the STFT matrix</span>
     <span class="n">stft</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
@@ -355,9 +349,7 @@
 <span class="sd">    Or half the original speed</span>
 
 <span class="sd">    &gt;&gt;&gt; y_slow = librosa.effects.time_stretch(y, rate=0.5)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">rate</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;rate must be a positive number&quot;</span><span class="p">)</span>
 
@@ -451,7 +443,6 @@
 <span class="sd">    &gt;&gt;&gt; y_three_qt = librosa.effects.pitch_shift(y, sr=sr, n_steps=3,</span>
 <span class="sd">    ...                                          bins_per_octave=24)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="n">util</span><span class="o">.</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">bins_per_octave</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;bins_per_octave=</span><span class="si">{</span><span class="n">bins_per_octave</span><span class="si">}</span><span class="s2"> must be a positive integer.&quot;</span>
@@ -519,7 +510,6 @@
 
 <span class="sd">    &gt;&gt;&gt; y_out = librosa.effects.remix(y, intervals[::-1])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">y_out</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">if</span> <span class="n">align_zeros</span><span class="p">:</span>
@@ -577,7 +567,6 @@
 <span class="sd">    non_silent : np.ndarray, shape=(m,), dtype=bool</span>
 <span class="sd">        Indicator of non-silent frames</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Compute the MSE for the signal</span>
     <span class="n">mse</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
 
@@ -641,7 +630,6 @@
 <span class="sd">    &gt;&gt;&gt; print(librosa.get_duration(y), librosa.get_duration(yt))</span>
 <span class="sd">    25.025986394557822 25.007891156462584</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">non_silent</span> <span class="o">=</span> <span class="n">_signal_to_frame_nonsilent</span><span class="p">(</span>
         <span class="n">y</span><span class="p">,</span>
         <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span>
@@ -705,9 +693,7 @@
 <span class="sd">    intervals : np.ndarray, shape=(m, 2)</span>
 <span class="sd">        ``intervals[i] == (start_i, end_i)`` are the start and end time</span>
 <span class="sd">        (in samples) of non-silent interval ``i``.</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">non_silent</span> <span class="o">=</span> <span class="n">_signal_to_frame_nonsilent</span><span class="p">(</span>
         <span class="n">y</span><span class="p">,</span>
         <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span>
@@ -803,7 +789,7 @@
 <span class="sd">        The default (0.97) matches the pre-emphasis filter used in the HTK</span>
 <span class="sd">        implementation of MFCCs [#]_.</span>
 
-<span class="sd">        .. [#] http://htk.eng.cam.ac.uk/</span>
+<span class="sd">        .. [#] https://htk.eng.cam.ac.uk/</span>
 
 <span class="sd">    zi : number</span>
 <span class="sd">        Initial filter state.  When making successive calls to non-overlapping</span>
@@ -924,7 +910,7 @@
 <span class="sd">        The default (0.97) matches the pre-emphasis filter used in the HTK</span>
 <span class="sd">        implementation of MFCCs [#]_.</span>
 
-<span class="sd">        .. [#] http://htk.eng.cam.ac.uk/</span>
+<span class="sd">        .. [#] https://htk.eng.cam.ac.uk/</span>
 
 <span class="sd">    zi : number</span>
 <span class="sd">        Initial filter state. If inverting a previous preemphasis(), the same value should be used.</span>
@@ -959,7 +945,6 @@
 <span class="sd">    --------</span>
 <span class="sd">    preemphasis</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="n">coef</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 

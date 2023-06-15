@@ -273,7 +273,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.legend(loc=&#39;upper right&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;log Power spectrogram&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># input is time domain:y or spectrogram:s</span>
     <span class="c1">#</span>
 
@@ -426,7 +425,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].plot(times, centroid[0], label=&#39;Spectral centroid&#39;, color=&#39;w&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].legend(loc=&#39;lower right&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>
@@ -576,7 +574,6 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img2, ax=[ax[1]])</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(ylabel=&#39;Frequency bands&#39;, title=&#39;Spectral contrast&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>
@@ -756,7 +753,6 @@
 <span class="sd">    &gt;&gt;&gt; ax.legend(loc=&#39;lower right&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;log Power spectrogram&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">roll_percent</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;roll_percent must lie in the range (0, 1)&quot;</span><span class="p">)</span>
 
@@ -1142,7 +1138,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max),</span>
 <span class="sd">    ...                          y_axis=&#39;log&#39;, x_axis=&#39;time&#39;, ax=ax[3])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>
@@ -1234,9 +1229,7 @@
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;))</span>
 <span class="sd">    &gt;&gt;&gt; librosa.feature.zero_crossing_rate(y)</span>
 <span class="sd">    array([[0.044, 0.074, ..., 0.488, 0.355]])</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># check if audio is valid</span>
     <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -1279,7 +1272,7 @@
 
 <span class="sd">    .. [#] Ellis, Daniel P.W.  &quot;Chroma feature analysis and synthesis&quot;</span>
 <span class="sd">           2007/04/21</span>
-<span class="sd">           http://labrosa.ee.columbia.edu/matlab/chroma-ansyn/</span>
+<span class="sd">           https://www.ee.columbia.edu/~dpwe/resources/matlab/chroma-ansyn/</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1387,7 +1380,6 @@
 <span class="sd">    &gt;&gt;&gt; img = librosa.display.specshow(chroma, y_axis=&#39;chroma&#39;, x_axis=&#39;time&#39;, ax=ax[1])</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=[ax[1]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>
@@ -1497,7 +1489,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;chroma_cqt&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">cqt_func</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;full&quot;</span><span class="p">:</span> <span class="n">cqt</span><span class="p">,</span> <span class="s2">&quot;hybrid&quot;</span><span class="p">:</span> <span class="n">hybrid_cqt</span><span class="p">}</span>
 
     <span class="k">if</span> <span class="n">bins_per_octave</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1563,7 +1554,7 @@
     <span class="n">win_len_smooth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">41</span><span class="p">,</span>
     <span class="n">smoothing_window</span><span class="p">:</span> <span class="n">_WindowSpec</span> <span class="o">=</span> <span class="s2">&quot;hann&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes the chroma variant &quot;Chroma Energy Normalized&quot; (CENS)</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the chroma variant &quot;Chroma Energy Normalized&quot; (CENS)</span>
 
 <span class="sd">    To compute CENS features, following steps are taken after obtaining chroma vectors</span>
 <span class="sd">    using `chroma_cqt`: [#]_.</span>
@@ -1643,7 +1634,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;chroma_cens&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
         <span class="p">(</span><span class="n">win_len_smooth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
         <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">win_len_smooth</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">))</span> <span class="ow">and</span> <span class="n">win_len_smooth</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
@@ -1786,7 +1776,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].set(ylabel=&#39;chroma_vqt&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># If intervals are provided as an array, override BPO</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">bins_per_octave</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
@@ -1836,7 +1825,7 @@
     <span class="n">chroma</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the tonal centroid features (tonnetz)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the tonal centroid features (tonnetz)</span>
 
 <span class="sd">    This representation uses the method of [#]_ to project chroma features</span>
 <span class="sd">    onto a 6-dimensional basis representing the perfect fifth, minor third,</span>
@@ -1932,7 +1921,6 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img1, ax=[ax[0]])</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img2, ax=[ax[1]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">chroma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
             <span class="s2">&quot;Either the audio samples or the chromagram must be &quot;</span>
@@ -2119,7 +2107,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;HTK-style (dct_type=3)&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img2, ax=[ax[1]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">S</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># multichannel behavior may be different due to relative noise floor differences between channels</span>
         <span class="n">S</span> <span class="o">=</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">melspectrogram</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
@@ -2263,7 +2250,6 @@
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax, format=&#39;%+2.0f dB&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax.set(title=&#39;Mel-frequency spectrogram&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>

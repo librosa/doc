@@ -145,7 +145,6 @@
     <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">shape</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the objective and gradient for NNLS&quot;&quot;&quot;</span>
-
     <span class="c1"># Scipy&#39;s lbfgs flattens all arrays, so we first reshape</span>
     <span class="c1"># the iterate x</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
@@ -184,7 +183,6 @@
 <span class="sd">    x : np.ndarray [shape=(d, N)]</span>
 <span class="sd">        Non-negative matrix such that Ax ~= B</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># If we don&#39;t have an initial point, start at the projected</span>
     <span class="c1"># least squares solution</span>
     <span class="k">if</span> <span class="n">x_init</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -263,7 +261,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax, format=&quot;%+2.0f dB&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># If B is a single vector, punt up to the scipy method</span>
     <span class="k">if</span> <span class="n">B</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">nnls</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore</span>

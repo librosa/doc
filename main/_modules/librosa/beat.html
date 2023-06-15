@@ -281,7 +281,6 @@
 <span class="sd">    ...            linestyle=&#39;--&#39;, label=&#39;Beats&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># First, get the frame-&gt;beat strength profile if we don&#39;t already have one</span>
     <span class="k">if</span> <span class="n">onset_envelope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -451,9 +450,7 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(title=&#39;librosa.beat.plp&#39;, xlim=[5, 20])</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].xaxis.set_major_formatter(librosa.display.TimeFormatter())</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># Step 1: get the onset envelope</span>
     <span class="k">if</span> <span class="n">onset_envelope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">onset_envelope</span> <span class="o">=</span> <span class="n">onset</span><span class="o">.</span><span class="n">onset_strength</span><span class="p">(</span>
@@ -512,7 +509,7 @@
 <span class="k">def</span> <span class="nf">__beat_tracker</span><span class="p">(</span>
     <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">bpm</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">fft_res</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tightness</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Internal function that tracks beats in an onset strength envelope.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tracks beats in an onset strength envelope.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -532,7 +529,6 @@
 <span class="sd">    beats : np.ndarray [shape=(n,)]</span>
 <span class="sd">        frame numbers of beat events</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">bpm</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;bpm must be strictly positive&quot;</span><span class="p">)</span>
 
@@ -564,8 +560,7 @@
 
 <span class="c1"># -- Helper functions for beat tracking</span>
 <span class="k">def</span> <span class="nf">__normalize_onsets</span><span class="p">(</span><span class="n">onsets</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Maps onset strength function into the range [0, 1]&quot;&quot;&quot;</span>
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map onset strength function into the range [0, 1]&quot;&quot;&quot;</span>
     <span class="n">norm</span> <span class="o">=</span> <span class="n">onsets</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">onsets</span> <span class="o">=</span> <span class="n">onsets</span> <span class="o">/</span> <span class="n">norm</span>
@@ -574,14 +569,12 @@
 
 <span class="k">def</span> <span class="nf">__beat_local_score</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the local score for an onset envlope and given period&quot;&quot;&quot;</span>
-
     <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">period</span><span class="p">,</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">32.0</span> <span class="o">/</span> <span class="n">period</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">__normalize_onsets</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">),</span> <span class="n">window</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">__beat_track_dp</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">tightness</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Core dynamic program for beat tracking&quot;&quot;&quot;</span>
-
     <span class="n">backlink</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">cumscore</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">localscore</span><span class="p">)</span>
 
@@ -625,7 +618,6 @@
 
 <span class="k">def</span> <span class="nf">__last_beat</span><span class="p">(</span><span class="n">cumscore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the last beat from the cumulative score array&quot;&quot;&quot;</span>
-
     <span class="n">maxes</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">localmax</span><span class="p">(</span><span class="n">cumscore</span><span class="p">)</span>
     <span class="n">med_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">cumscore</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">maxes</span><span class="p">)])</span>
 
@@ -634,8 +626,7 @@
 
 
 <span class="k">def</span> <span class="nf">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">beats</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Final post-processing: throw out spurious leading/trailing beats&quot;&quot;&quot;</span>
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove spurious leading and trailing beats&quot;&quot;&quot;</span>
     <span class="n">smooth_boe</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">localscore</span><span class="p">[</span><span class="n">beats</span><span class="p">],</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">trim</span><span class="p">:</span>

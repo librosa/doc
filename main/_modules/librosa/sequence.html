@@ -999,7 +999,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">gap_onset</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;gap_onset=</span><span class="si">{}</span><span class="s2"> must be strictly positive&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">gap_extend</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -1020,7 +1019,6 @@
     <span class="n">sim</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">gap_onset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">gap_extend</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">knight</span><span class="p">:</span> <span class="nb">bool</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;RQA dynamic programming implementation&quot;&quot;&quot;</span>
-
     <span class="c1"># The output array</span>
     <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
@@ -1176,7 +1174,6 @@
 <span class="sd">    Given the score matrix and backtracking index array,</span>
 <span class="sd">    reconstruct the optimal path.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># backtracking rubric:</span>
     <span class="c1">#   0 ==&gt; diagonal move</span>
     <span class="c1">#   1 ==&gt; knight move up</span>
@@ -1388,7 +1385,6 @@
 <span class="sd">    &gt;&gt;&gt; print(logp, path)</span>
 <span class="sd">    -4.19173690823075 [0 0 1]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">n_states</span><span class="p">,</span> <span class="n">n_steps</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
 
     <span class="k">if</span> <span class="n">transition</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_states</span><span class="p">):</span>
@@ -1610,7 +1606,6 @@
 <span class="sd">    ...        yticklabels=[labels[i] for i in np.unique(chords_vit)])</span>
 <span class="sd">    &gt;&gt;&gt; ax.legend()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">n_states</span><span class="p">,</span> <span class="n">n_steps</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
 
     <span class="k">if</span> <span class="n">transition</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_states</span><span class="p">):</span>
@@ -1830,7 +1825,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.sequence.viterbi_binary(prob, trans, p_state=0.5, p_init=0.5)</span>
 <span class="sd">    array([[0, 0, 0, 0, 1, 1, 1, 0, 0, 0]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span>
 
     <span class="n">n_states</span><span class="p">,</span> <span class="n">n_steps</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
@@ -1926,7 +1920,6 @@
 <span class="sd">           [0.333, 0.333, 0.333],</span>
 <span class="sd">           [0.333, 0.333, 0.333]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive_int</span><span class="p">(</span><span class="n">n_states</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_states=</span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2"> must be a positive integer&quot;</span><span class="p">)</span>
 
@@ -1974,7 +1967,6 @@
 <span class="sd">           [0.25 , 0.5  , 0.25 ],</span>
 <span class="sd">           [0.375, 0.375, 0.25 ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">n_states</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_states=</span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2"> must be a positive integer &gt; 1&quot;</span><span class="p">)</span>
 
@@ -2039,7 +2031,6 @@
 <span class="sd">           [0. , 0. , 0.9, 0.1],</span>
 <span class="sd">           [0.1, 0. , 0. , 0.9]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n_states</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_states=</span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2"> must be a positive integer &gt; 1&quot;</span><span class="p">)</span>
 
@@ -2144,7 +2135,6 @@
 <span class="sd">           [0.   , 0.   , 0.333, 0.333, 0.333],</span>
 <span class="sd">           [0.   , 0.   , 0.   , 0.   , 1.   ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_positive_int</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n_states</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_states=</span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2"> must be a positive integer &gt; 1&quot;</span><span class="p">)</span>
 

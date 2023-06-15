@@ -234,14 +234,13 @@
 <span class="sd">        `&quot;s&quot;` between 1 and 60 seconds; and to `&quot;ms&quot;` below 1 second.</span>
 
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
 
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-
 <span class="sd">    For normal time</span>
 
 <span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
@@ -280,7 +279,6 @@
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the time format as pos&quot;&quot;&quot;</span>
-
         <span class="n">_</span><span class="p">,</span> <span class="n">dmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">get_data_interval</span><span class="p">()</span>
         <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">get_view_interval</span><span class="p">()</span>
 
@@ -339,7 +337,7 @@
 
 <span class="sd">        If ``False``, use ASCII symbols for accidentals.</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    LogHzFormatter</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
@@ -369,6 +367,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">unicode</span> <span class="o">=</span> <span class="n">unicode</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the formatter to position&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
@@ -413,7 +412,7 @@
 
 <span class="sd">        If ``False``, use ASCII symbols for accidentals.</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    NoteFormatter</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
@@ -505,7 +504,7 @@
 
 <span class="sd">        If ``False``, use ASCII symbols for accidentals.</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    NoteFormatter</span>
 <span class="sd">    hz_to_fjs</span>
@@ -546,6 +545,7 @@
         <span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the formatter to position&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
@@ -577,7 +577,7 @@
 
 <span class="sd">        If ``False``, ticks are only labeled if the span is less than 2 octaves</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    NoteFormatter</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
@@ -599,6 +599,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">major</span> <span class="o">=</span> <span class="n">major</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the formatter to position&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
@@ -613,7 +614,7 @@
 <div class="viewcode-block" id="ChromaFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFormatter.html#librosa.display.ChromaFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A formatter for chroma axes</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
 
@@ -687,7 +688,7 @@
 <div class="viewcode-block" id="ChromaFJSFormatter"><a class="viewcode-back" href="../../generated/librosa.display.ChromaFJSFormatter.html#librosa.display.ChromaFJSFormatter">[docs]</a><span class="k">class</span> <span class="nc">ChromaFJSFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A formatter for chroma axes with functional just notation</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
 
@@ -745,7 +746,7 @@
 <div class="viewcode-block" id="TonnetzFormatter"><a class="viewcode-back" href="../../generated/librosa.display.TonnetzFormatter.html#librosa.display.TonnetzFormatter">[docs]</a><span class="k">class</span> <span class="nc">TonnetzFormatter</span><span class="p">(</span><span class="n">mplticker</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A formatter for tonnetz axes</span>
 
-<span class="sd">    See also</span>
+<span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    matplotlib.ticker.Formatter</span>
 
@@ -828,6 +829,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disconnect callback methods on delete&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span>
@@ -969,7 +971,6 @@
 <span class="sd">    --------</span>
 <span class="sd">    matplotlib.pyplot.colormaps</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;bool&quot;</span><span class="p">:</span>
@@ -1299,7 +1300,6 @@
 <span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
 <span class="sd">    &gt;&gt;&gt; fig.colorbar(img, ax=ax, format=&quot;%+2.f dB&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">):</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="s2">&quot;Trying to display complex-valued input. &quot;</span> <span class="s2">&quot;Showing magnitude instead.&quot;</span><span class="p">,</span>
@@ -1381,19 +1381,18 @@
 
 
 <span class="k">def</span> <span class="nf">__set_current_image</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper to set the current image in pyplot mode.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set the current image when working in pyplot mode.</span>
 
 <span class="sd">    If the provided ``ax`` is not `None`, then we assume that the user is using the object API.</span>
 <span class="sd">    In this case, the pyplot current image is not set.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">sci</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">__mesh_coords</span><span class="p">(</span><span class="n">ax_type</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute axis coordinates&quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">coords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
@@ -1457,7 +1456,6 @@
 
 <span class="k">def</span> <span class="nf">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">which</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the axis scaling&quot;&quot;&quot;</span>
-
     <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">thresh</span> <span class="o">=</span> <span class="s2">&quot;linthresh&quot;</span>
     <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;base&quot;</span>
@@ -1835,7 +1833,6 @@
     <span class="o">**</span><span class="n">_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the frequencies for Mel bins&quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">fmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fmin</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">if</span> <span class="n">fmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -2054,7 +2051,7 @@
 <span class="sd">    marker : string</span>
 <span class="sd">        Marker symbol to use for sample values. (default: no markers)</span>
 
-<span class="sd">        See also: `matplotlib.markers`.</span>
+<span class="sd">        See Also: `matplotlib.markers`.</span>
 
 <span class="sd">    where : string, {&#39;pre&#39;, &#39;mid&#39;, &#39;post&#39;}</span>
 <span class="sd">        This setting determines how both waveform and envelope plots interpolate</span>

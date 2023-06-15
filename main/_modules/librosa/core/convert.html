@@ -208,7 +208,7 @@
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts frame indices to audio sample indices.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert frame indices to audio sample indices.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -239,7 +239,6 @@
 <span class="sd">    &gt;&gt;&gt; tempo, beats = librosa.beat.beat_track(y=y, sr=sr)</span>
 <span class="sd">    &gt;&gt;&gt; beat_samples = librosa.frames_to_samples(beats)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">n_fft</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
@@ -280,7 +279,7 @@
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts sample indices into STFT frames.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert sample indices into STFT frames.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -321,7 +320,6 @@
 <span class="sd">    samples_to_time : convert sample indices to time values</span>
 <span class="sd">    frames_to_samples : convert frame indices to sample indices</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">n_fft</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
@@ -370,7 +368,7 @@
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts frame counts to time (seconds).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert frame counts to time (seconds).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -403,7 +401,6 @@
 <span class="sd">    &gt;&gt;&gt; tempo, beats = librosa.beat.beat_track(y=y, sr=sr)</span>
 <span class="sd">    &gt;&gt;&gt; beat_times = librosa.frames_to_time(beats, sr=sr)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">samples</span> <span class="o">=</span> <span class="n">frames_to_samples</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">samples_to_time</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span></div>
@@ -449,7 +446,7 @@
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">n_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts time stamps into STFT frames.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert time stamps into STFT frames.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -488,9 +485,7 @@
 <span class="sd">    &gt;&gt;&gt; librosa.time_to_frames(np.arange(0, 1, 0.1),</span>
 <span class="sd">    ...                         sr=22050, hop_length=512)</span>
 <span class="sd">    array([ 0,  4,  8, 12, 17, 21, 25, 30, 34, 38])</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">samples</span> <span class="o">=</span> <span class="n">time_to_samples</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">samples_to_frames</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">)</span></div>
@@ -542,9 +537,7 @@
 <span class="sd">    &gt;&gt;&gt; librosa.time_to_samples(np.arange(0, 1, 0.1), sr=22050)</span>
 <span class="sd">    array([    0,  2205,  4410,  6615,  8820, 11025, 13230, 15435,</span>
 <span class="sd">           17640, 19845])</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">*</span> <span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
@@ -602,7 +595,6 @@
 <span class="sd">            0.813,  0.836,  0.859,  0.882,  0.906,  0.929,  0.952,</span>
 <span class="sd">            0.975,  0.998])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span></div>
 
 
@@ -939,7 +931,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.note_to_midi([&#39;C&#39;, &#39;E&#39;, &#39;G&#39;])</span>
 <span class="sd">    array([12, 16, 19])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">note_to_midi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">round_midi</span><span class="o">=</span><span class="n">round_midi</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">note</span><span class="p">])</span>
 
@@ -1110,7 +1101,6 @@
 <span class="sd">    hz_to_note</span>
 <span class="sd">    key_to_notes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">cents</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">octave</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;Cannot encode cents without octave information.&quot;</span><span class="p">)</span>
 
@@ -1177,7 +1167,6 @@
 <span class="sd">    hz_to_midi</span>
 <span class="sd">    note_to_hz</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">return</span> <span class="mf">440.0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span> <span class="o">-</span> <span class="mf">69.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">))</span></div>
 
 
@@ -1226,7 +1215,6 @@
 <span class="sd">    note_to_midi</span>
 <span class="sd">    hz_to_note</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">midi</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">frequencies</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">440.0</span><span class="p">))</span> <span class="o">+</span> <span class="mi">69</span>
     <span class="k">return</span> <span class="n">midi</span></div>
 
@@ -1341,7 +1329,6 @@
 <span class="sd">    --------</span>
 <span class="sd">    mel_to_hz</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">htk</span><span class="p">:</span>
@@ -1417,7 +1404,6 @@
 <span class="sd">    --------</span>
 <span class="sd">    hz_to_mel</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">mels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">mels</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">htk</span><span class="p">:</span>
@@ -1504,7 +1490,6 @@
 <span class="sd">    --------</span>
 <span class="sd">    octs_to_hz</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">A440</span> <span class="o">=</span> <span class="mf">440.0</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">tuning</span> <span class="o">/</span> <span class="n">bins_per_octave</span><span class="p">)</span>
 
     <span class="n">octs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">A440</span><span class="p">)</span> <span class="o">/</span> <span class="mi">16</span><span class="p">))</span>
@@ -1742,9 +1727,7 @@
 <span class="sd">    &gt;&gt;&gt; librosa.fft_frequencies(sr=22050, n_fft=16)</span>
 <span class="sd">    array([     0.   ,   1378.125,   2756.25 ,   4134.375,</span>
 <span class="sd">             5512.5  ,   6890.625,   8268.75 ,   9646.875,  11025.   ])</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">sr</span><span class="p">)</span></div>
 
 
@@ -1778,7 +1761,6 @@
 <span class="sd">    frequencies : np.ndarray [shape=(n_bins,)]</span>
 <span class="sd">        Center frequency for each CQT bin</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">correction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">tuning</span><span class="p">)</span> <span class="o">/</span> <span class="n">bins_per_octave</span><span class="p">)</span>
     <span class="n">frequencies</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_bins</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">bins_per_octave</span>
@@ -1861,7 +1843,6 @@
 <span class="sd">             8467.272,   9246.028,  10096.408,  11025.   ])</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># &#39;Center freqs&#39; of mel bands - uniformly spaced between limits</span>
     <span class="n">min_mel</span> <span class="o">=</span> <span class="n">hz_to_mel</span><span class="p">(</span><span class="n">fmin</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="n">htk</span><span class="p">)</span>
     <span class="n">max_mel</span> <span class="o">=</span> <span class="n">hz_to_mel</span><span class="p">(</span><span class="n">fmax</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="n">htk</span><span class="p">)</span>
@@ -1902,7 +1883,6 @@
 <span class="sd">    array([      inf,  2583.984,  1291.992, ...,     6.782,</span>
 <span class="sd">               6.764,     6.747])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">bin_frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_bins</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 
     <span class="n">bin_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
@@ -1937,9 +1917,7 @@
 
 <span class="sd">    &gt;&gt;&gt; librosa.fourier_tempo_frequencies(win_length=384)</span>
 <span class="sd">    array([ 0.   ,  0.117,  0.234, ..., 22.266, 22.383, 22.5  ])</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># sr / hop_length gets the frame rate</span>
     <span class="c1"># multiplying by 60 turns frames / sec into frames / minute</span>
     <span class="k">return</span> <span class="n">fft_frequencies</span><span class="p">(</span><span class="n">sr</span><span class="o">=</span><span class="n">sr</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">hop_length</span><span class="p">),</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">win_length</span><span class="p">)</span></div>
@@ -2257,8 +2235,40 @@
 <span class="k">def</span> <span class="nf">Z_weighting</span><span class="p">(</span>
     <span class="n">frequencies</span><span class="p">:</span> <span class="n">Sized</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">min_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>  <span class="c1"># pylint: disable=invalid-name</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply no weighting curve (aka Z-weighting).</span>
+
+<span class="sd">    This function behaves similarly to `A_weighting`, `B_weighting`, etc.,</span>
+<span class="sd">    but all frequencies are equally weighted.</span>
+<span class="sd">    An optional threshold `min_db` can still be used to clip energies.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    frequencies : scalar or np.ndarray [shape=(n,)]</span>
+<span class="sd">        One or more frequencies (in Hz)</span>
+<span class="sd">    min_db : float [scalar] or None</span>
+<span class="sd">        Clip weights below this threshold.</span>
+<span class="sd">        If `None`, no clipping is performed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Z_weighting : scalar or np.ndarray [shape=(n,)]</span>
+<span class="sd">        ``Z_weighting[i]`` is the Z-weighting of ``frequencies[i]``</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    perceptual_weighting</span>
+<span class="sd">    frequency_weighting</span>
+<span class="sd">    multi_frequency_weighting</span>
+<span class="sd">    A_weighting</span>
+<span class="sd">    B_weighting</span>
+<span class="sd">    C_weighting</span>
+<span class="sd">    D_weighting</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frequencies</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">weights</span> <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">min_db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">weights</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">min_db</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
 
 <span class="n">WEIGHTING_FUNCTIONS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
@@ -2620,7 +2630,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.midi_to_svara_h([72, 73, 74], Sa=60, abbr=False)</span>
 <span class="sd">    array([&#39;Ṡa&#39;, &#39;ṙe&#39;, &#39;Ṙe&#39;], dtype=&#39;&lt;U3&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">SVARA_MAP</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;Sa&quot;</span><span class="p">,</span>
         <span class="s2">&quot;re&quot;</span><span class="p">,</span>
@@ -2759,7 +2768,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.hz_to_svara_h(freqs, Sa=freqs[0], abbr=False)</span>
 <span class="sd">    [&#39;Sa&#39;, &#39;re&#39;, &#39;Re&#39;, &#39;ga&#39;, &#39;Ga&#39;, &#39;ma&#39;, &#39;Ma&#39;, &#39;Pa&#39;, &#39;dha&#39;, &#39;Dha&#39;, &#39;ni&#39;, &#39;Ni&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">midis</span> <span class="o">=</span> <span class="n">hz_to_midi</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">midi_to_svara_h</span><span class="p">(</span>
         <span class="n">midis</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">hz_to_midi</span><span class="p">(</span><span class="n">Sa</span><span class="p">),</span> <span class="n">abbr</span><span class="o">=</span><span class="n">abbr</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span>
@@ -2855,7 +2863,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.note_to_svara_h([&#39;C4&#39;, &#39;G4&#39;, &#39;C5&#39;, &#39;G5&#39;], Sa=&#39;C5&#39;)</span>
 <span class="sd">    [&#39;Ṣ&#39;, &#39;P̣&#39;, &#39;S&#39;, &#39;P&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">midis</span> <span class="o">=</span> <span class="n">note_to_midi</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="n">round_midi</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">midi_to_svara_h</span><span class="p">(</span>
@@ -3083,7 +3090,6 @@
 <span class="sd">    &gt;&gt;&gt; librosa.hz_to_svara_c(freqs, Sa=freqs[0], mela=36)</span>
 <span class="sd">    [&#39;S&#39;, &#39;R₁&#39;, &#39;R₂&#39;, &#39;R₃&#39;, &#39;G₃&#39;, &#39;M₁&#39;, &#39;M₂&#39;, &#39;P&#39;, &#39;D₁&#39;, &#39;D₂&#39;, &#39;D₃&#39;, &#39;N₃&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">midis</span> <span class="o">=</span> <span class="n">hz_to_midi</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">midi_to_svara_c</span><span class="p">(</span>
         <span class="n">midis</span><span class="p">,</span> <span class="n">Sa</span><span class="o">=</span><span class="n">hz_to_midi</span><span class="p">(</span><span class="n">Sa</span><span class="p">),</span> <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span> <span class="n">abbr</span><span class="o">=</span><span class="n">abbr</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span>
