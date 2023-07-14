@@ -595,7 +595,7 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 </ul>
 </dd>
 <dt>Removed features (deprecated in v0.6)</dt><dd><ul class="simple">
-<li><p>Discrete cosine transform. We recommend using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.dct.html#scipy.fftpack.dct" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.fftpack.dct</span></code></a></p></li>
+<li><p>Discrete cosine transform. We recommend using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.dct.html#scipy.fftpack.dct" title="(in SciPy v1.11.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.fftpack.dct</span></code></a></p></li>
 <li><p>The <em class="xref py py-obj">delta</em> function no longer support the <em class="xref py py-obj">trim</em> keyword argument.</p></li>
 <li><p>Root mean square error (<em class="xref py py-obj">rmse</em>) has been renamed to <em class="xref py py-obj">rms</em>.</p></li>
 <li><p><em class="xref py py-obj">iirt</em> now uses <em class="xref py py-obj">sos</em> mode by default.</p></li>
@@ -615,7 +615,7 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 <dt>Other changes</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/917">#917</a> The <em class="xref py py-obj">output</em> module is now deprecated, and will be removed in version 0.8.</p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/878">#878</a> More informative exception handling. <em>Jack Mason</em></p></li>
-<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/857">#857</a> <em class="xref py py-obj">librosa.resample()</em> now supports <em class="xref py py-obj">mode=’fft’</em>, equivalent to the previous <a class="reference external" href="https://docs.scipy.org/doc/scipy/index.html#module-scipy" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy</span></code></a> mode. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/857">#857</a> <em class="xref py py-obj">librosa.resample()</em> now supports <em class="xref py py-obj">mode=’fft’</em>, equivalent to the previous <a class="reference external" href="https://docs.scipy.org/doc/scipy/index.html#module-scipy" title="(in SciPy v1.11.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy</span></code></a> mode. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/854">#854</a> More efficient length-aware ISTFT and ICQT. <em>Vincent Lostanlen</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/846">#846</a> Nine librosa functions now store jit-compiled, numba-accelerated caches across sessions. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/841">#841</a> <a class="reference internal" href="generated/librosa.load.html#librosa.load" title="librosa.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.load</span></code></a> no longer relies on <em class="xref py py-obj">realpath()</em>. <em>Brian McFee</em></p></li>
@@ -928,7 +928,7 @@ McFee</em></p></li>
 </dl>
 </li>
 <li><p><a class="reference internal" href="generated/librosa.decompose.hpss.html#librosa.decompose.hpss" title="librosa.decompose.hpss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.decompose.hpss</span></code></a> with <em class="xref py py-obj">mask=True</em> now returns soft masks, rather than binary masks.</p></li>
-<li><p><a class="reference internal" href="generated/librosa.filters.get_window.html#librosa.filters.get_window" title="librosa.filters.get_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.get_window</span></code></a> wraps <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.get_window.html#scipy.signal.get_window" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.get_window</span></code></a>, and handles generic callables as well pre-registered
+<li><p><a class="reference internal" href="generated/librosa.filters.get_window.html#librosa.filters.get_window" title="librosa.filters.get_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.get_window</span></code></a> wraps <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.get_window.html#scipy.signal.get_window" title="(in SciPy v1.11.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.get_window</span></code></a>, and handles generic callables as well pre-registered
 window functions.  All windowed analyses (e.g., <em class="xref py py-obj">stft</em>, <em class="xref py py-obj">cqt</em>, or <em class="xref py py-obj">tempogram</em>) now support the full range
 of window functions and parameteric windows via tuple parameters, e.g., <em class="xref py py-obj">window=(‘kaiser’, 4.0)</em>.</p></li>
 <li><p><em class="xref py py-obj">stft</em> windows are now explicitly asymmetric by default, which breaks backwards compatibility with the 0.4 series.</p></li>
@@ -1128,7 +1128,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 <li><p><em class="xref py py-obj">filters.constant_q</em> now returns filter lengths</p></li>
 <li><p>Chroma now starts at <em class="xref py py-obj">C</em> by default, instead of <em class="xref py py-obj">A</em></p></li>
 <li><p><em class="xref py py-obj">pad_center</em> supports multi-dimensional input and <em class="xref py py-obj">axis</em> parameter</p></li>
-<li><p>switched from <em class="xref py py-obj">np.fft</em> to <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/fftpack.html#module-scipy.fftpack" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.fftpack</span></code></a> for FFT operations</p></li>
+<li><p>switched from <em class="xref py py-obj">np.fft</em> to <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/fftpack.html#module-scipy.fftpack" title="(in SciPy v1.11.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.fftpack</span></code></a> for FFT operations</p></li>
 <li><p>changed all librosa-generated exception to a new class librosa.ParameterError</p></li>
 </ul>
 </dd>
