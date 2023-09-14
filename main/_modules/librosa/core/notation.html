@@ -16,11 +16,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=5e3b122e"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -128,12 +128,13 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 <span class="kn">from</span> <span class="nn">.intervals</span> <span class="kn">import</span> <span class="n">INTERVALS</span>
 <span class="kn">from</span> <span class="nn">.._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
 <span class="kn">from</span> <span class="nn">..util.decorators</span> <span class="kn">import</span> <span class="n">vectorize</span>
-<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_ScalarOrSequence</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_SequenceLike</span>
+<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_ScalarOrSequence</span><span class="p">,</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_SequenceLike</span><span class="p">,</span> <span class="n">_IterableLike</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
@@ -245,6 +246,9 @@
 
 
 <span class="c1"># Pre-compiled regular expressions for note and key parsing</span>
+<span class="n">KEY_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;^(?P&lt;tonic&gt;[A-Ga-g])&quot;</span> <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;([#♯b!♭𝄪𝄫♮]*))&quot;</span> <span class="sa">r</span><span class="s2">&quot;:(?P&lt;scale&gt;(maj|min)(or)?)$&quot;</span>
+<span class="p">)</span>
 <span class="n">NOTE_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
     <span class="sa">r</span><span class="s2">&quot;^(?P&lt;note&gt;[A-Ga-g])&quot;</span>
     <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯𝄪b!♭𝄫♮]*)&quot;</span>
@@ -252,9 +256,7 @@
     <span class="sa">r</span><span class="s2">&quot;(?P&lt;cents&gt;[+-]\d+)?$&quot;</span>
 <span class="p">)</span>
 
-<span class="n">KEY_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="sa">r</span><span class="s2">&quot;^(?P&lt;tonic&gt;[A-Ga-g])&quot;</span> <span class="sa">r</span><span class="s2">&quot;(?P&lt;accidental&gt;[#♯b!♭]?)&quot;</span> <span class="sa">r</span><span class="s2">&quot;:(?P&lt;scale&gt;(maj|min)(or)?)$&quot;</span>
-<span class="p">)</span>
+<span class="n">ACC_MAP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♮&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;𝄪&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;𝄫&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">}</span>
 
 
 <div class="viewcode-block" id="thaat_to_degrees"><a class="viewcode-back" href="../../../generated/librosa.thaat_to_degrees.html#librosa.thaat_to_degrees">[docs]</a><span class="k">def</span> <span class="nf">thaat_to_degrees</span><span class="p">(</span><span class="n">thaat</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -594,6 +596,93 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">THAAT_MAP</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">__note_to_degree</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">__note_to_degree</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">_IterableLike</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">__note_to_degree</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_IterableLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
+<span class="k">def</span> <span class="nf">__note_to_degree</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_IterableLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Take a note name and spit out the degree of that note (e.g. &#39;C#&#39; -&gt; 1). We allow possibilities like &quot;C#b&quot;.</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.__note_to_degree(&#39;B#&#39;)</span>
+<span class="sd">    0</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.__note_to_degree(&#39;D♮##b&#39;)</span>
+<span class="sd">    3</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.__note_to_degree([&#39;B#&#39;,&#39;D♮##b&#39;])</span>
+<span class="sd">    array([0,3])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">__note_to_degree</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">key</span><span class="p">])</span>
+
+
+    <span class="n">match</span> <span class="o">=</span> <span class="n">NOTE_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper key format: </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">letter</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;note&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">accidental</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;accidental&#39;</span><span class="p">)</span>
+    <span class="n">pitch_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">accidental</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">pitch_map</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span><span class="o">+</span><span class="nb">sum</span><span class="p">([</span><span class="n">ACC_MAP</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span> <span class="o">*</span> <span class="n">counter</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">ACC_MAP</span><span class="p">]))</span><span class="o">%</span><span class="mi">12</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">__simplify_note</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">additional_acc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=...</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">__simplify_note</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">_IterableLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">additional_acc</span><span class="p">:</span> <span class="nb">str</span><span class="o">=...</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">__simplify_note</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_IterableLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">additional_acc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=...</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">__simplify_note</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_IterableLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">additional_acc</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Take in a note name and simplify by canceling sharp-flat pairs, and doubling accidentals as appropriate.</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.__simplify_note(&#39;C♭♯&#39;)</span>
+<span class="sd">    &#39;C&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.__simplify_note(&#39;C♭♭♭&#39;)</span>
+<span class="sd">    &#39;C♭𝄫&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; librosa.__simplify_note([&#39;C♭♯&#39;, &#39;C♭♭♭&#39;])</span>
+<span class="sd">    array([&#39;C&#39;, &#39;C♭𝄫&#39;])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">__simplify_note</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">additional_acc</span><span class="p">,</span> <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">key</span><span class="p">])</span>
+
+    <span class="n">match</span> <span class="o">=</span> <span class="n">NOTE_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="o">+</span><span class="n">additional_acc</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper key format: </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">letter</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;note&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">accidental</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;accidental&#39;</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">accidental</span><span class="p">)</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">ACC_MAP</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span> <span class="o">*</span> <span class="n">counter</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">ACC_MAP</span><span class="p">])</span>
+
+    <span class="n">simplified_note</span> <span class="o">=</span> <span class="n">letter</span>
+    <span class="k">if</span> <span class="n">offset</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">simplified_note</span> <span class="o">+=</span> <span class="s2">&quot;♯&quot;</span><span class="o">*</span><span class="p">(</span><span class="n">offset</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span> <span class="s2">&quot;𝄪&quot;</span><span class="o">*</span><span class="p">(</span><span class="n">offset</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">simplified_note</span> <span class="o">+=</span> <span class="s2">&quot;♭&quot;</span><span class="o">*</span><span class="p">(</span><span class="n">offset</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span> <span class="s2">&quot;𝄫&quot;</span><span class="o">*</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unicode</span><span class="p">:</span>
+        <span class="n">translations</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;𝄪&quot;</span><span class="p">:</span> <span class="s2">&quot;##&quot;</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;𝄫&quot;</span><span class="p">:</span> <span class="s2">&quot;bb&quot;</span><span class="p">})</span>
+        <span class="n">simplified_note</span> <span class="o">=</span> <span class="n">simplified_note</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translations</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">simplified_note</span>
+    
 
 <div class="viewcode-block" id="key_to_notes"><a class="viewcode-back" href="../../../generated/librosa.key_to_notes.html#librosa.key_to_notes">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">key_to_notes</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -674,15 +763,36 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper key format: </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
+    
     <span class="n">pitch_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}</span>
-    <span class="n">acc_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
 
     <span class="n">tonic</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;tonic&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
     <span class="n">accidental</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;accidental&quot;</span><span class="p">)</span>
-    <span class="n">offset</span> <span class="o">=</span> <span class="n">acc_map</span><span class="p">[</span><span class="n">accidental</span><span class="p">]</span>
+
+    <span class="n">offset</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">ACC_MAP</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">accidental</span><span class="p">])</span>
 
     <span class="n">scale</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="n">multiple</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">2</span>
+
+    <span class="c1">#If multiple accidentals, we use recursion, then cycle through so that the enharmonic equivalent of C is at the beginning again.</span>
+
+    <span class="k">if</span> <span class="n">multiple</span><span class="p">:</span>
+        <span class="n">sign_map</span> <span class="o">=</span> <span class="p">{</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;♯&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;♭&quot;</span><span class="p">}</span>
+        <span class="n">additional_acc</span> <span class="o">=</span> <span class="n">sign_map</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">offset</span><span class="p">)]</span>
+        <span class="n">intermediate_notes</span> <span class="o">=</span> <span class="n">key_to_notes</span><span class="p">(</span><span class="n">tonic</span><span class="o">+</span><span class="n">additional_acc</span><span class="o">*</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span><span class="n">scale</span><span class="p">)</span>
+        <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="n">__simplify_note</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">additional_acc</span><span class="p">)</span> <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">intermediate_notes</span><span class="p">]</span>
+        <span class="n">degrees</span> <span class="o">=</span> <span class="n">__note_to_degree</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+        <span class="n">notes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="n">shift</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">degrees</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="n">notes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">unicode</span><span class="p">:</span>
+            <span class="n">translations</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;𝄪&quot;</span><span class="p">:</span> <span class="s2">&quot;##&quot;</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;𝄫&quot;</span><span class="p">:</span> <span class="s2">&quot;bb&quot;</span><span class="p">})</span>
+            <span class="n">notes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translations</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">notes</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">notes</span>
+            
 
     <span class="c1"># Determine major or minor</span>
     <span class="n">major</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">==</span> <span class="s2">&quot;maj&quot;</span>
@@ -768,6 +878,7 @@
 
     <span class="k">return</span> <span class="n">notes</span></div>
 
+<span class="c1"># I made this work even for key signatures like &#39;C#b#:min&#39;</span>
 
 <div class="viewcode-block" id="key_to_degrees"><a class="viewcode-back" href="../../../generated/librosa.key_to_degrees.html#librosa.key_to_degrees">[docs]</a><span class="k">def</span> <span class="nf">key_to_degrees</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the diatonic scale degrees for a given key.</span>
@@ -804,6 +915,9 @@
 <span class="sd">    &gt;&gt;&gt; librosa.key_to_degrees(&#39;A:min&#39;)</span>
 <span class="sd">    array([ 9, 11,  0,  2,  4,  5,  7])</span>
 
+<span class="sd">    &gt;&gt;&gt; librosa.key_to_degrees(&#39;A:min&#39;)</span>
+<span class="sd">    array([ 9, 11,  0,  2,  4,  5,  7])</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">notes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">maj</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]),</span> <span class="nb">min</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
@@ -815,10 +929,10 @@
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper key format: </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">pitch_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}</span>
-    <span class="n">acc_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♯&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;♭&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
     <span class="n">tonic</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;tonic&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
     <span class="n">accidental</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;accidental&quot;</span><span class="p">)</span>
-    <span class="n">offset</span> <span class="o">=</span> <span class="n">acc_map</span><span class="p">[</span><span class="n">accidental</span><span class="p">]</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">accidental</span><span class="p">)</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">ACC_MAP</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span><span class="o">*</span><span class="n">counts</span><span class="p">[</span><span class="n">acc</span><span class="p">]</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">ACC_MAP</span><span class="p">])</span>
 
     <span class="n">scale</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
@@ -871,7 +985,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Starting the circle of fifths at F makes accidentals easier to count</span>
     <span class="n">COFMAP</span> <span class="o">=</span> <span class="s2">&quot;FCGDAEB&quot;</span>
-
+    
     <span class="n">acc_map</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
