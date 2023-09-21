@@ -172,7 +172,7 @@ We can sidestep this by using a neutral axis facecolor:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.110 seconds)
+   **Total running time of the script:** (0 minutes 7.176 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_rainbowgram.py:

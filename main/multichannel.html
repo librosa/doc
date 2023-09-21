@@ -140,7 +140,7 @@ inputs up to librosa 0.8 now support multi-channel audio with no modification ne
 <h2>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading"></a></h2>
 <p>Before discussing multi-channel, it is worth reviewing how single-channel (monaural)
 signals are processed.
-Librosa processes all signals and derived data as <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> (N-dimensional array) objects.
+Librosa processes all signals and derived data as <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> (N-dimensional array) objects.
 By default, when librosa loads a multichannel signal, it averages all channels to produce a mono mixture.
 The resulting object is a 1-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N_samples,)</span></code> which
 represents the time-series of sample values.
@@ -220,7 +220,7 @@ produces an output of shape <code class="docutils literal notranslate"><span cla
 </div>
 <p>The “…” here is analogous to Python’s <em class="xref py py-obj">Ellipsis</em> object, and in this context, it acts as a place-holder for “0 or more dimensions”.
 This is analogous to numpy’s use of <em class="xref py py-obj">Ellipsis</em> to bypass variable numbers of
-dimensions in <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> objects.
+dimensions in <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> objects.
 For example, to slice a single frame <code class="docutils literal notranslate"><span class="pre">n</span></code> out of the multi-channel harmonic spectrogram
 above, you could do either:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">n</span><span class="p">]</span>
@@ -251,7 +251,7 @@ This section briefly summarizes places where multi-channel support is limited.</
 <p><strong>Detectors</strong> with ragged output, for example beat tracking (<a class="reference internal" href="beat.html#module-librosa.beat" title="librosa.beat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.beat</span></code></a>) and
 onset detection (<a class="reference internal" href="generated/librosa.onset.onset_detect.html#librosa.onset.onset_detect" title="librosa.onset.onset_detect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.onset.onset_detect</span></code></a>) do not support multi-channel inputs.
 This is because the output may have differing numbers of events in each channel, and
-therefore cannot be consistently stored in a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> output object.
+therefore cannot be consistently stored in a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> output object.
 In these cases, it is best to either process each channel separately (if they are
 truly independent) or aggregate representations across channels (e.g., by averaging
 features) if they are strongly related.</p>
