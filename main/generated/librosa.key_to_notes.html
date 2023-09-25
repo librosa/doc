@@ -162,7 +162,7 @@
 <dt class="sig sig-object py" id="librosa.key_to_notes">
 <span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">key_to_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/notation.html#key_to_notes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.key_to_notes" title="Permalink to this definition"></a></dt>
 <dd><p>List all 12 note names in the chromatic scale, as spelled according to
-a given key (major or minor).</p>
+a given key (major or minor) or mode (ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian). The following abbreviations are accepted for the modes: either the first three letters of the mode name (e.g. “mix”) or the mode name without “ian” (e.g. “mixolyd”).</p>
 <p>This function exists to resolve enharmonic equivalences between different
 spellings for the same pitch (e.g. C♯ vs D♭), and is primarily useful when producing
 human-readable outputs (e.g. plotting) for pitch content.</p>
@@ -229,6 +229,11 @@ included.</p>
 <p><em class="xref py py-obj">F♭:min</em> will use double-flats</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;Fb:min&#39;</span><span class="p">)</span>
 <span class="go">[&#39;D𝄫&#39;, &#39;D♭&#39;, &#39;E𝄫&#39;, &#39;E♭&#39;, &#39;F♭&#39;, &#39;F&#39;, &#39;G♭&#39;, &#39;A𝄫&#39;, &#39;A♭&#39;, &#39;B𝄫&#39;, &#39;B♭&#39;, &#39;C♭&#39;]</span>
+</pre></div>
+</div>
+<p><em class="xref py py-obj">G:loc</em> uses flats</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;G:loc&#39;</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;D♭&#39;, &#39;D&#39;, &#39;E♭&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G♭&#39;, &#39;G&#39;, &#39;A♭&#39;, &#39;A&#39;, &#39;B♭&#39;, &#39;B&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>

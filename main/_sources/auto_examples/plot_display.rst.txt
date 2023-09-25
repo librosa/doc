@@ -415,15 +415,15 @@ pass this to specshow and it will spell the notes properly:
 
     fig, ax = plt.subplots()
     img = librosa.display.specshow(chroma, y_axis='chroma', x_axis='time',
-                                   key='Eb:maj', ax=ax)
-    ax.set(title='Chromagram explicitly in Eb:maj')
+                                   key='F:dor', ax=ax)
+    ax.set(title='Chromagram explicitly in F:dor')
     fig.colorbar(img, ax=ax)
 
 
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_display_010.png
-   :alt: Chromagram explicitly in Eb:maj
+   :alt: Chromagram explicitly in F:dor
    :srcset: /auto_examples/images/sphx_glr_plot_display_010.png
    :class: sphx-glr-single-img
 
@@ -846,7 +846,7 @@ effectively.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 11.609 seconds)
+   **Total running time of the script:** (0 minutes 11.154 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_display.py:
