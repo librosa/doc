@@ -166,9 +166,13 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>key</strong><span class="classifier">str</span></dt><dd><p>Must be in the form TONIC:key.  Tonic must be upper case (<code class="docutils literal notranslate"><span class="pre">CDEFGAB</span></code>),
-key must be lower-case (<code class="docutils literal notranslate"><span class="pre">maj</span></code> or <code class="docutils literal notranslate"><span class="pre">min</span></code>).</p>
-<p>Single accidentals (<code class="docutils literal notranslate"><span class="pre">b!♭</span></code> for flat, or <code class="docutils literal notranslate"><span class="pre">#♯</span></code> for sharp) are supported.</p>
-<p>Examples: <code class="docutils literal notranslate"><span class="pre">C:maj,</span> <span class="pre">Db:min,</span> <span class="pre">A♭:min</span></code>.</p>
+key must be lower-case
+(<code class="docutils literal notranslate"><span class="pre">maj</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">ionian</span></code>, <code class="docutils literal notranslate"><span class="pre">dorian</span></code>, <code class="docutils literal notranslate"><span class="pre">phrygian</span></code>, <code class="docutils literal notranslate"><span class="pre">lydian</span></code>, <code class="docutils literal notranslate"><span class="pre">mixolydian</span></code>, <code class="docutils literal notranslate"><span class="pre">aeolian</span></code>, <code class="docutils literal notranslate"><span class="pre">locrian</span></code>).</p>
+<p>The following abbreviations are supported for the modes: either the first three letters of the mode name
+(e.g. “mix”) or the mode name without “ian” (e.g. “mixolyd”).</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">major</span></code> and <code class="docutils literal notranslate"><span class="pre">maj</span></code> are supported as abbreviations.</p>
+<p>Single and multiple accidentals (<code class="docutils literal notranslate"><span class="pre">b!♭</span></code> for flat, or <code class="docutils literal notranslate"><span class="pre">#♯</span></code> for sharp) are supported.</p>
+<p>Examples: <code class="docutils literal notranslate"><span class="pre">C:maj,</span> <span class="pre">C:major,</span> <span class="pre">Dbb:min,</span> <span class="pre">A♭:min,</span> <span class="pre">D:aeo,</span> <span class="pre">E𝄪:phryg</span></code>.</p>
 </dd>
 </dl>
 </dd>

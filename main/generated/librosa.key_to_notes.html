@@ -162,7 +162,7 @@
 <dt class="sig sig-object py" id="librosa.key_to_notes">
 <span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">key_to_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/notation.html#key_to_notes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.key_to_notes" title="Permalink to this definition"></a></dt>
 <dd><p>List all 12 note names in the chromatic scale, as spelled according to
-a given key (major or minor) or mode (ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian). The following abbreviations are accepted for the modes: either the first three letters of the mode name (e.g. “mix”) or the mode name without “ian” (e.g. “mixolyd”).</p>
+a given key (major or minor) or mode (see below for details and accepted abbreviations).</p>
 <p>This function exists to resolve enharmonic equivalences between different
 spellings for the same pitch (e.g. C♯ vs D♭), and is primarily useful when producing
 human-readable outputs (e.g. plotting) for pitch content.</p>
@@ -178,9 +178,13 @@ the total number used for diatonic scale degrees.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>key</strong><span class="classifier">string</span></dt><dd><p>Must be in the form TONIC:key.  Tonic must be upper case (<code class="docutils literal notranslate"><span class="pre">CDEFGAB</span></code>),
-key must be lower-case (<code class="docutils literal notranslate"><span class="pre">maj</span></code> or <code class="docutils literal notranslate"><span class="pre">min</span></code>).</p>
-<p>Single accidentals (<code class="docutils literal notranslate"><span class="pre">b!♭</span></code> for flat, or <code class="docutils literal notranslate"><span class="pre">#♯</span></code> for sharp) are supported.</p>
-<p>Examples: <code class="docutils literal notranslate"><span class="pre">C:maj,</span> <span class="pre">Db:min,</span> <span class="pre">A♭:min</span></code>.</p>
+key must be lower-case
+(<code class="docutils literal notranslate"><span class="pre">major</span></code>, <code class="docutils literal notranslate"><span class="pre">minor</span></code>, <code class="docutils literal notranslate"><span class="pre">ionian</span></code>, <code class="docutils literal notranslate"><span class="pre">dorian</span></code>, <code class="docutils literal notranslate"><span class="pre">phrygian</span></code>, <code class="docutils literal notranslate"><span class="pre">lydian</span></code>, <code class="docutils literal notranslate"><span class="pre">mixolydian</span></code>, <code class="docutils literal notranslate"><span class="pre">aeolian</span></code>, <code class="docutils literal notranslate"><span class="pre">locrian</span></code>).</p>
+<p>The following abbreviations are supported for the modes: either the first three letters of the mode name
+(e.g. “mix”) or the mode name without “ian” (e.g. “mixolyd”).</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">major</span></code> and <code class="docutils literal notranslate"><span class="pre">maj</span></code> are supported as mode abbreviations.</p>
+<p>Single and multiple accidentals (<code class="docutils literal notranslate"><span class="pre">b!♭</span></code> for flat, or <code class="docutils literal notranslate"><span class="pre">#♯</span></code> for sharp) are supported.</p>
+<p>Examples: <code class="docutils literal notranslate"><span class="pre">C:maj,</span> <span class="pre">C:major,</span> <span class="pre">Dbb:min,</span> <span class="pre">A♭:min,</span> <span class="pre">D:aeo,</span> <span class="pre">E𝄪:phryg</span></code>.</p>
 </dd>
 <dt><strong>unicode</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), use Unicode symbols (♯𝄪♭𝄫)for accidentals.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, Unicode symbols will be mapped to low-order ASCII representations:</p>

@@ -729,7 +729,7 @@
 <div class="viewcode-block" id="key_to_notes"><a class="viewcode-back" href="../../../generated/librosa.key_to_notes.html#librosa.key_to_notes">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">key_to_notes</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;List all 12 note names in the chromatic scale, as spelled according to</span>
-<span class="sd">    a given key (major or minor) or mode (ionian, dorian, phrygian, lydian, mixolydian, aeolian, locrian). The following abbreviations are accepted for the modes: either the first three letters of the mode name (e.g. &quot;mix&quot;) or the mode name without &quot;ian&quot; (e.g. &quot;mixolyd&quot;).</span>
+<span class="sd">    a given key (major or minor) or mode (see below for details and accepted abbreviations).</span>
 
 <span class="sd">    This function exists to resolve enharmonic equivalences between different</span>
 <span class="sd">    spellings for the same pitch (e.g. C♯ vs D♭), and is primarily useful when producing</span>
@@ -749,11 +749,17 @@
 <span class="sd">    ----------</span>
 <span class="sd">    key : string</span>
 <span class="sd">        Must be in the form TONIC:key.  Tonic must be upper case (``CDEFGAB``),</span>
-<span class="sd">        key must be lower-case (``maj`` or ``min``).</span>
+<span class="sd">        key must be lower-case</span>
+<span class="sd">        (``major``, ``minor``, ``ionian``, ``dorian``, ``phrygian``, ``lydian``, ``mixolydian``, ``aeolian``, ``locrian``).</span>
 
-<span class="sd">        Single accidentals (``b!♭`` for flat, or ``#♯`` for sharp) are supported.</span>
+<span class="sd">        The following abbreviations are supported for the modes: either the first three letters of the mode name</span>
+<span class="sd">        (e.g. &quot;mix&quot;) or the mode name without &quot;ian&quot; (e.g. &quot;mixolyd&quot;).</span>
 
-<span class="sd">        Examples: ``C:maj, Db:min, A♭:min``.</span>
+<span class="sd">        Both ``major`` and ``maj`` are supported as mode abbreviations.</span>
+
+<span class="sd">        Single and multiple accidentals (``b!♭`` for flat, or ``#♯`` for sharp) are supported.</span>
+
+<span class="sd">        Examples: ``C:maj, C:major, Dbb:min, A♭:min, D:aeo, E𝄪:phryg``.</span>
 
 <span class="sd">    unicode : bool</span>
 <span class="sd">        If ``True`` (default), use Unicode symbols (♯𝄪♭𝄫)for accidentals.</span>
@@ -938,11 +944,17 @@
 <span class="sd">    ----------</span>
 <span class="sd">    key : str</span>
 <span class="sd">        Must be in the form TONIC:key.  Tonic must be upper case (``CDEFGAB``),</span>
-<span class="sd">        key must be lower-case (``maj`` or ``min``).</span>
+<span class="sd">        key must be lower-case</span>
+<span class="sd">        (``maj``, ``min``, ``ionian``, ``dorian``, ``phrygian``, ``lydian``, ``mixolydian``, ``aeolian``, ``locrian``).</span>
 
-<span class="sd">        Single accidentals (``b!♭`` for flat, or ``#♯`` for sharp) are supported.</span>
+<span class="sd">        The following abbreviations are supported for the modes: either the first three letters of the mode name</span>
+<span class="sd">        (e.g. &quot;mix&quot;) or the mode name without &quot;ian&quot; (e.g. &quot;mixolyd&quot;).</span>
 
-<span class="sd">        Examples: ``C:maj, Db:min, A♭:min``.</span>
+<span class="sd">        Both ``major`` and ``maj`` are supported as abbreviations.</span>
+
+<span class="sd">        Single and multiple accidentals (``b!♭`` for flat, or ``#♯`` for sharp) are supported.</span>
+
+<span class="sd">        Examples: ``C:maj, C:major, Dbb:min, A♭:min, D:aeo, E𝄪:phryg``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
