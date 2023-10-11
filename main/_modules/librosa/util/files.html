@@ -130,9 +130,9 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">resources</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
 <span class="kn">import</span> <span class="nn">pooch</span>
 
 <span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
@@ -153,14 +153,12 @@
     <span class="n">__data_path</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://librosa.org/data/audio/&quot;</span><span class="p">,</span> <span class="n">registry</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 
-<span class="n">__GOODBOY</span><span class="o">.</span><span class="n">load_registry</span><span class="p">(</span>
-    <span class="n">resource_filename</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;example_data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;registry.txt&quot;</span><span class="p">))</span>
-<span class="p">)</span>
+<span class="k">with</span> <span class="n">resources</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;librosa.util.example_data&quot;</span><span class="p">,</span> <span class="s2">&quot;registry.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+    <span class="n">__GOODBOY</span><span class="o">.</span><span class="n">load_registry</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">reg</span><span class="p">))</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span>
-    <span class="n">resource_filename</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;example_data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;index.json&quot;</span><span class="p">)),</span> <span class="s2">&quot;r&quot;</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">_fdesc</span><span class="p">:</span>
-    <span class="n">__TRACKMAP</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">_fdesc</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">resources</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;librosa.util.example_data&quot;</span><span class="p">,</span> <span class="s2">&quot;index.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">index</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">index</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_fdesc</span><span class="p">:</span>
+        <span class="n">__TRACKMAP</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">_fdesc</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="example"><a class="viewcode-back" href="../../../generated/librosa.util.example.html#librosa.util.example">[docs]</a><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">hq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
