@@ -160,7 +160,7 @@
 <h1>librosa.key_to_notes<a class="headerlink" href="#librosa-key-to-notes" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.key_to_notes">
-<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">key_to_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/notation.html#key_to_notes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.key_to_notes" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">key_to_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">natural</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/notation.html#key_to_notes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.key_to_notes" title="Permalink to this definition"></a></dt>
 <dd><p>List all 12 note names in the chromatic scale, as spelled according to
 a given key (major or minor) or mode (see below for details and accepted abbreviations).</p>
 <p>This function exists to resolve enharmonic equivalences between different
@@ -183,14 +183,18 @@ key must be lower-case
 <p>The following abbreviations are supported for the modes: either the first three letters of the mode name
 (e.g. “mix”) or the mode name without “ian” (e.g. “mixolyd”).</p>
 <p>Both <code class="docutils literal notranslate"><span class="pre">major</span></code> and <code class="docutils literal notranslate"><span class="pre">maj</span></code> are supported as mode abbreviations.</p>
-<p>Single and multiple accidentals (<code class="docutils literal notranslate"><span class="pre">b!♭</span></code> for flat, or <code class="docutils literal notranslate"><span class="pre">#♯</span></code> for sharp) are supported.</p>
+<p>Single and multiple accidentals (<code class="docutils literal notranslate"><span class="pre">b!♭</span></code> for flat, <code class="docutils literal notranslate"><span class="pre">#♯</span></code> for sharp, <code class="docutils literal notranslate"><span class="pre">𝄪𝄫</span></code> for double-accidentals, or any combination thereof) are supported.</p>
 <p>Examples: <code class="docutils literal notranslate"><span class="pre">C:maj,</span> <span class="pre">C:major,</span> <span class="pre">Dbb:min,</span> <span class="pre">A♭:min,</span> <span class="pre">D:aeo,</span> <span class="pre">E𝄪:phryg</span></code>.</p>
 </dd>
 <dt><strong>unicode</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), use Unicode symbols (♯𝄪♭𝄫)for accidentals.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, Unicode symbols will be mapped to low-order ASCII representations:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>♯ -&gt; #, 𝄪 -&gt; ##, ♭ -&gt; b, 𝄫 -&gt; bb
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>♯ -&gt; #, 𝄪 -&gt; ##, ♭ -&gt; b, 𝄫 -&gt; bb, ♮ -&gt; n
 </pre></div>
 </div>
+</dd>
+<dt><strong>natural</strong><span class="classifier">bool</span></dt><dd><p>If <a href="#id1"><span class="problematic" id="id2">``</span></a>True’’, mark natural accidentals with a natural symbol (♮).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), do not print natural symbols.</p>
+<p>For example, <em class="xref py py-obj">note_to_degrees(‘D:maj’)[0]</em> is <em class="xref py py-obj">C</em> if <em class="xref py py-obj">natural=False</em> (default) and <em class="xref py py-obj">C♮</em> if <em class="xref py py-obj">natural=True</em>.</p>
 </dd>
 </dl>
 </dd>
@@ -238,6 +242,19 @@ included.</p>
 <p><em class="xref py py-obj">G:loc</em> uses flats</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;G:loc&#39;</span><span class="p">)</span>
 <span class="go">[&#39;C&#39;, &#39;D♭&#39;, &#39;D&#39;, &#39;E♭&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G♭&#39;, &#39;G&#39;, &#39;A♭&#39;, &#39;A&#39;, &#39;B♭&#39;, &#39;B&#39;]</span>
+</pre></div>
+</div>
+<p>If <em class="xref py py-obj">natural=True</em>, print natural accidentals.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;G:loc&#39;</span><span class="p">,</span> <span class="n">natural</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;C&#39;, &#39;D♭&#39;, &#39;D♮&#39;, &#39;E♭&#39;, &#39;E♮&#39;, &#39;F&#39;, &#39;G♭&#39;, &#39;G&#39;, &#39;A♭&#39;, &#39;A♮&#39;, &#39;B♭&#39;, &#39;B♮&#39;]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;D:maj&#39;</span><span class="p">,</span> <span class="n">natural</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;C♮&#39;, &#39;C♯&#39;, &#39;D&#39;, &#39;D♯&#39;, &#39;E&#39;, &#39;F♮&#39;, &#39;F♯&#39;, &#39;G&#39;, &#39;G♯&#39;, &#39;A&#39;, &#39;A♯&#39;, &#39;B&#39;]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;G#:maj&#39;</span><span class="p">,</span> <span class="n">unicode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">natural</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;B#&#39;, &#39;C#&#39;, &#39;Dn&#39;, &#39;D#&#39;, &#39;En&#39;, &#39;E#&#39;, &#39;F#&#39;, &#39;F##&#39;, &#39;G#&#39;, &#39;An&#39;, &#39;A#&#39;, &#39;B&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
