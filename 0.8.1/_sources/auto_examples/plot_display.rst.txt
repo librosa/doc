@@ -27,7 +27,7 @@ can do to help generate beautiful visualizations of spectro-temporal data.
 
 .. GENERATED FROM PYTHON SOURCE LINES 11-16
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Brian McFee
@@ -49,7 +49,7 @@ import matplotlib's pyplot API here.
 
 .. GENERATED FROM PYTHON SOURCE LINES 20-26
 
-.. code-block:: default
+.. code-block:: Python
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -70,7 +70,7 @@ First, we'll load in a demo track
 
 .. GENERATED FROM PYTHON SOURCE LINES 28-32
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y, sr = librosa.load(librosa.ex('trumpet'))
@@ -94,7 +94,7 @@ scale.
 
 .. GENERATED FROM PYTHON SOURCE LINES 39-43
 
-.. code-block:: default
+.. code-block:: Python
 
 
     D = librosa.stft(y)  # STFT of y
@@ -118,7 +118,7 @@ First, the pyplot interface:
 
 .. GENERATED FROM PYTHON SOURCE LINES 50-55
 
-.. code-block:: default
+.. code-block:: Python
 
 
     plt.figure()
@@ -143,7 +143,7 @@ And now the object-oriented interface
 
 .. GENERATED FROM PYTHON SOURCE LINES 57-62
 
-.. code-block:: default
+.. code-block:: Python
 
     fig, ax = plt.subplots()
     img = librosa.display.specshow(S_db, ax=ax)
@@ -188,7 +188,7 @@ We can tell specshow to decorate the axes accordingly:
 
 .. GENERATED FROM PYTHON SOURCE LINES 83-89
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -226,7 +226,7 @@ We can tell specshow to use log-scaled frequency axes just as above:
 
 .. GENERATED FROM PYTHON SOURCE LINES 102-108
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -258,7 +258,7 @@ This ensures that axis scales (e.g. time or frequency) are computed correctly.
 
 .. GENERATED FROM PYTHON SOURCE LINES 116-125
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -304,7 +304,7 @@ can be displayed as follows:
 
 .. GENERATED FROM PYTHON SOURCE LINES 143-151
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -334,7 +334,7 @@ or their note names in scientific pitch notation:
 
 .. GENERATED FROM PYTHON SOURCE LINES 155-167
 
-.. code-block:: default
+.. code-block:: Python
 
 
     C = librosa.cqt(y=y, sr=sr)
@@ -385,7 +385,7 @@ specshow can plot these too:
 
 .. GENERATED FROM PYTHON SOURCE LINES 175-182
 
-.. code-block:: default
+.. code-block:: Python
 
 
     chroma = librosa.feature.chroma_cqt(y=y, sr=sr)
@@ -413,7 +413,7 @@ pass this to specshow and it will spell the notes properly:
 
 .. GENERATED FROM PYTHON SOURCE LINES 185-191
 
-.. code-block:: default
+.. code-block:: Python
 
     fig, ax = plt.subplots()
     img = librosa.display.specshow(chroma, y_axis='chroma', x_axis='time',
@@ -444,7 +444,7 @@ Indian notation systems
 
 .. GENERATED FROM PYTHON SOURCE LINES 197-206
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # The examples above use Western music notation to identify pitch classes, but we can
@@ -469,7 +469,7 @@ which we can also represent in Hindustani notation as Sa=5 (F) and 'kafi' thaat:
 
 .. GENERATED FROM PYTHON SOURCE LINES 209-216
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -498,7 +498,7 @@ Carnatic.
 
 .. GENERATED FROM PYTHON SOURCE LINES 220-227
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -532,7 +532,7 @@ so we'll zoom into a single octave for this example.
 
 .. GENERATED FROM PYTHON SOURCE LINES 236-248
 
-.. code-block:: default
+.. code-block:: Python
 
 
     Sa = librosa.note_to_hz('F4')
@@ -580,7 +580,7 @@ are time-by-time, as illustrated below.
 
 .. GENERATED FROM PYTHON SOURCE LINES 254-261
 
-.. code-block:: default
+.. code-block:: Python
 
 
     R = librosa.segment.recurrence_matrix(chroma, mode='affinity')
@@ -610,7 +610,7 @@ chroma decorations on each axis:
 
 .. GENERATED FROM PYTHON SOURCE LINES 266-274
 
-.. code-block:: default
+.. code-block:: Python
 
 
     ccov = np.cov(chroma)
@@ -659,7 +659,7 @@ explicit `cmap`:
 
 .. GENERATED FROM PYTHON SOURCE LINES 296-302
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -689,7 +689,7 @@ reference point).
 
 .. GENERATED FROM PYTHON SOURCE LINES 308-317
 
-.. code-block:: default
+.. code-block:: Python
 
 
     max_var = np.max(np.abs(ccov))
@@ -723,7 +723,7 @@ here we'll go through it step by step.
 
 .. GENERATED FROM PYTHON SOURCE LINES 324-356
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Construct a subplot grid with 3 rows and 1 column, sharing the x-axis)
@@ -787,7 +787,7 @@ below.
 
 .. GENERATED FROM PYTHON SOURCE LINES 370-403
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y, sr = librosa.load(librosa.ex('nutcracker'))
@@ -848,7 +848,7 @@ effectively.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 9.323 seconds)
+   **Total running time of the script:** (0 minutes 9.018 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_display.py:
@@ -857,16 +857,13 @@ effectively.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_display.ipynb <plot_display.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_display.py <plot_display.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_display.ipynb <plot_display.ipynb>`
 
 
 .. only:: html

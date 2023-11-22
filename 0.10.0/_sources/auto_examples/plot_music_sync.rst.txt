@@ -35,7 +35,7 @@ Our objective is now to find an alignment between these two recordings by using 
 
 .. GENERATED FROM PYTHON SOURCE LINES 19-31
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Stefan Balke
@@ -65,7 +65,7 @@ First, let's load a first version of our audio recordings.
 
 .. GENERATED FROM PYTHON SOURCE LINES 36-48
 
-.. code-block:: default
+.. code-block:: Python
 
     x_1, fs = librosa.load('audio/sir_duke_slow.ogg')
     # And a second version, slightly faster.
@@ -99,7 +99,7 @@ Extract Chroma Features
 
 .. GENERATED FROM PYTHON SOURCE LINES 52-71
 
-.. code-block:: default
+.. code-block:: Python
 
     hop_length = 1024
 
@@ -140,7 +140,7 @@ Align Chroma Sequences
 
 .. GENERATED FROM PYTHON SOURCE LINES 75-86
 
-.. code-block:: default
+.. code-block:: Python
 
     D, wp = librosa.sequence.dtw(X=x_1_chroma, Y=x_2_chroma, metric='cosine')
     wp_s = librosa.frames_to_time(wp, sr=fs, hop_length=hop_length)
@@ -177,7 +177,7 @@ Red lines connect corresponding time positions in the input signals.
 
 .. GENERATED FROM PYTHON SOURCE LINES 94-120
 
-.. code-block:: default
+.. code-block:: Python
 
     from matplotlib.patches import ConnectionPatch
 
@@ -243,7 +243,7 @@ Literature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.343 seconds)
+   **Total running time of the script:** (0 minutes 3.361 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:
@@ -252,16 +252,13 @@ Literature
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_music_sync.py <plot_music_sync.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
 
 
 .. only:: html

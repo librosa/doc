@@ -36,7 +36,7 @@ This is based on the "REPET-SIM" method of `Rafii and Pardo, 2012
 
 .. GENERATED FROM PYTHON SOURCE LINES 19-31
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Brian McFee
@@ -63,7 +63,7 @@ Load an example with vocals.
 
 .. GENERATED FROM PYTHON SOURCE LINES 33-40
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('fishin'), duration=120)
 
@@ -85,7 +85,7 @@ Plot a 5-second slice of the spectrum
 
 .. GENERATED FROM PYTHON SOURCE LINES 42-48
 
-.. code-block:: default
+.. code-block:: Python
 
     idx = slice(*librosa.time_to_frames([10, 15], sr=sr))
     fig, ax = plt.subplots()
@@ -114,7 +114,7 @@ instrumentation.
 
 .. GENERATED FROM PYTHON SOURCE LINES 53-74
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # We'll compare frames using cosine similarity, and aggregate similar frames
@@ -151,7 +151,7 @@ but it sounds better if we use soft-masking.
 
 .. GENERATED FROM PYTHON SOURCE LINES 77-98
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # We can also use a margin to reduce bleed between the vocals and instrumentation masks.
@@ -187,7 +187,7 @@ Plot the same slice, but separated into its foreground and background
 
 .. GENERATED FROM PYTHON SOURCE LINES 100-120
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # sphinx_gallery_thumbnail_number = 2
@@ -229,7 +229,7 @@ that we had previously set aside.
 
 .. GENERATED FROM PYTHON SOURCE LINES 124-126
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y_foreground = librosa.istft(S_foreground * phase)
@@ -243,7 +243,7 @@ that we had previously set aside.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 19.219 seconds)
+   **Total running time of the script:** (0 minutes 19.256 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vocal_separation.py:
@@ -252,16 +252,13 @@ that we had previously set aside.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_vocal_separation.ipynb <plot_vocal_separation.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_vocal_separation.py <plot_vocal_separation.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_vocal_separation.ipynb <plot_vocal_separation.ipynb>`
 
 
 .. only:: html

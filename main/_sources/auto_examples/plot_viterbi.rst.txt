@@ -29,7 +29,7 @@ Our working example will be the problem of silence/non-silence detection.
 
 .. GENERATED FROM PYTHON SOURCE LINES 12-22
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Brian McFee
@@ -54,7 +54,7 @@ Load an example signal
 
 .. GENERATED FROM PYTHON SOURCE LINES 24-38
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('trumpet'))
 
@@ -90,7 +90,7 @@ non-silence throughout this recording.
 
 .. GENERATED FROM PYTHON SOURCE LINES 42-53
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # As a first step, we can plot the root-mean-square (RMS) curve
@@ -137,7 +137,7 @@ range of the probability vector
 
 .. GENERATED FROM PYTHON SOURCE LINES 70-74
 
-.. code-block:: default
+.. code-block:: Python
 
 
     r_normalized = (rms - 0.02) / np.std(rms)
@@ -156,7 +156,7 @@ We can plot the probability curve over time:
 
 .. GENERATED FROM PYTHON SOURCE LINES 76-83
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig, ax = plt.subplots()
@@ -185,7 +185,7 @@ independently of its neighbors, which would result in the following plot:
 
 .. GENERATED FROM PYTHON SOURCE LINES 87-98
 
-.. code-block:: default
+.. code-block:: Python
 
 
 
@@ -235,7 +235,7 @@ where `transition[i, j]` is the probability of moving from state
 
 .. GENERATED FROM PYTHON SOURCE LINES 107-111
 
-.. code-block:: default
+.. code-block:: Python
 
 
     transition = librosa.sequence.transition_loop(2, [0.5, 0.6])
@@ -262,7 +262,7 @@ so we need to also compute the probability of silence as its complement.
 
 .. GENERATED FROM PYTHON SOURCE LINES 114-118
 
-.. code-block:: default
+.. code-block:: Python
 
 
     full_p = np.vstack([1 - p, p])
@@ -366,7 +366,7 @@ state likelihoods conditional on data (in our case, data is rms).
 
 .. GENERATED FROM PYTHON SOURCE LINES 122-136
 
-.. code-block:: default
+.. code-block:: Python
 
 
     states = librosa.sequence.viterbi_discriminative(full_p, transition)
@@ -405,7 +405,7 @@ likely to change states.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.747 seconds)
+   **Total running time of the script:** (0 minutes 1.742 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_viterbi.py:
@@ -414,16 +414,13 @@ likely to change states.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_viterbi.ipynb <plot_viterbi.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_viterbi.py <plot_viterbi.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_viterbi.ipynb <plot_viterbi.ipynb>`
 
 
 .. only:: html

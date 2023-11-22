@@ -135,12 +135,12 @@ to download the full example code</p>
 <span id="sphx-glr-auto-examples-plot-audio-playback-py"></span><h1>Audio playback<a class="headerlink" href="#audio-playback" title="Permalink to this heading"></a></h1>
 <p>This notebook demonstrates how to use IPython’s audio playback
 to play audio signals through your web browser.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Brian McFee</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Brian McFee</span>
 <span class="c1"># License: ISC</span>
 </pre></div>
 </div>
 <p>We’ll need numpy and matplotlib for this example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1"># sphinx_gallery_thumbnail_path = &#39;_static/playback-thumbnail.png&#39;</span>
 
@@ -159,7 +159,7 @@ to play audio signals through your web browser.</p>
 audio signals.  This means we can synthesize signals
 directly and play them back in the browser.</p>
 <p>For example, we can make a sine sweep from C3 to C5:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a> <span class="o">=</span> <span class="mi">22050</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a> <span class="o">=</span> <span class="mi">22050</span>
 
 <span class="n">y_sweep</span> <span class="o">=</span> <a href="../generated/librosa.chirp.html#librosa.chirp" title="librosa.chirp" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">chirp</span></a><span class="p">(</span><span class="n">fmin</span><span class="o">=</span><a href="../generated/librosa.note_to_hz.html#librosa.note_to_hz" title="librosa.note_to_hz" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">note_to_hz</span></a><span class="p">(</span><span class="s1">&#39;C3&#39;</span><span class="p">),</span>
                         <span class="n">fmax</span><span class="o">=</span><a href="../generated/librosa.note_to_hz.html#librosa.note_to_hz" title="librosa.note_to_hz" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">note_to_hz</span></a><span class="p">(</span><span class="s1">&#39;C5&#39;</span><span class="p">),</span>
@@ -183,7 +183,7 @@ directly and play them back in the browser.</p>
 <h2>Playing a real sound<a class="headerlink" href="#playing-a-real-sound" title="Permalink to this heading"></a></h2>
 <p>Of course, we can also play back real recorded sounds
 in the same way.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a> <span class="o">=</span> <a href="../generated/librosa.load.html#librosa.load" title="librosa.load" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;trumpet&#39;</span><span class="p">))</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a> <span class="o">=</span> <a href="../generated/librosa.load.html#librosa.load" title="librosa.load" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;trumpet&#39;</span><span class="p">))</span>
 
 <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Audio" title="IPython.lib.display.Audio" class="sphx-glr-backref-module-IPython-lib-display sphx-glr-backref-type-py-class"><span class="n">Audio</span></a><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
 </pre></div>
@@ -205,7 +205,7 @@ use sonification to directly observe the output of a
 fundamental frequency estimator.</p>
 <p>We’ll do this using <a class="reference internal" href="../generated/librosa.pyin.html#librosa.pyin" title="librosa.pyin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.pyin</span></code></a> for analysis,
 and <a class="reference external" href="https://craffel.github.io/mir_eval/index.html#mir_eval.sonify.pitch_contour" title="(in mir_eval v0.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mir_eval.sonify.pitch_contour</span></code></a> for synthesis.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using fill_na=None retains the best-guess f0 at unvoiced frames</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using fill_na=None retains the best-guess f0 at unvoiced frames</span>
 <span class="n">f0</span><span class="p">,</span> <span class="n">voiced_flag</span><span class="p">,</span> <span class="n">voiced_probs</span> <span class="o">=</span> <a href="../generated/librosa.pyin.html#librosa.pyin" title="librosa.pyin" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">pyin</span></a><span class="p">(</span><span class="n">y</span><span class="p">,</span>
                                              <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">,</span>
                                              <span class="n">fmin</span><span class="o">=</span><a href="../generated/librosa.note_to_hz.html#librosa.note_to_hz" title="librosa.note_to_hz" class="sphx-glr-backref-module-librosa sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">note_to_hz</span></a><span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">),</span>
@@ -222,7 +222,7 @@ unvoiced regions.</p>
 -1 for unvoiced frames.
 This way, <em class="xref py py-obj">f0 * vneg</em> will leave voiced estimates unchanged,
 and negate the frequency for unvoiced frames.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vneg</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">~</span><span class="n">voiced_flag</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">vneg</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">~</span><span class="n">voiced_flag</span><span class="p">)</span>
 
 <span class="c1"># And sonify the f0 using mir_eval</span>
 <span class="n">y_f0</span> <span class="o">=</span> <a href="https://craffel.github.io/mir_eval/index.html#mir_eval.sonify.pitch_contour" title="mir_eval.sonify.pitch_contour" class="sphx-glr-backref-module-mir_eval-sonify sphx-glr-backref-type-py-function"><span class="n">mir_eval</span><span class="o">.</span><span class="n">sonify</span><span class="o">.</span><span class="n">pitch_contour</span></a><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">f0</span> <span class="o">*</span> <span class="n">vneg</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">)</span>
@@ -250,7 +250,7 @@ test clip, and then synthesizes a click at each detection.</p>
 and hear them both.</p>
 <p>For this to work, we need to ensure that both the synthesized
 click track and the original signal are of the same length.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the onset strength envelope, using a max filter of 5 frequency bins</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the onset strength envelope, using a max filter of 5 frequency bins</span>
 <span class="c1"># to cut down on false positives</span>
 <span class="n">onset_env</span> <span class="o">=</span> <a href="../generated/librosa.onset.onset_strength.html#librosa.onset.onset_strength" title="librosa.onset.onset_strength" class="sphx-glr-backref-module-librosa-onset sphx-glr-backref-type-py-function"><span class="n">librosa</span><span class="o">.</span><span class="n">onset</span><span class="o">.</span><span class="n">onset_strength</span></a><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
@@ -293,13 +293,13 @@ in the same cell, you can use
 each widget.  This is helpful when playing back multiple related signals.</p></li>
 </ul>
 </div></blockquote>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.811 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.785 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-audio-playback-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/79b4d41009c9d9cb0c35328f4de7afb2/plot_audio_playback.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_audio_playback.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/61cbc24fcfe9c9c2b0e1172e5d9b66f7/plot_audio_playback.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_audio_playback.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/79b4d41009c9d9cb0c35328f4de7afb2/plot_audio_playback.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_audio_playback.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

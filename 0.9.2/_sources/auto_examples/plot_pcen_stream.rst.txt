@@ -34,7 +34,7 @@ We'll need numpy and matplotlib for this example
 
 .. GENERATED FROM PYTHON SOURCE LINES 18-27
 
-.. code-block:: default
+.. code-block:: Python
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -58,7 +58,7 @@ First, we'll start with an audio file that we want to stream
 
 .. GENERATED FROM PYTHON SOURCE LINES 29-31
 
-.. code-block:: default
+.. code-block:: Python
 
     filename = librosa.ex('humpback')
 
@@ -76,7 +76,7 @@ audio at a time.
 
 .. GENERATED FROM PYTHON SOURCE LINES 34-52
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # We'll generate 64 frames at a time, each frame having 2048 samples
@@ -110,7 +110,7 @@ response over frequency, and store the results in a list.
 
 .. GENERATED FROM PYTHON SOURCE LINES 55-79
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Make an array to store the frequency-averaged PCEN values
@@ -150,7 +150,7 @@ run PCEN on the entire spectrum without block-wise processing
 
 .. GENERATED FROM PYTHON SOURCE LINES 82-95
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y, sr = librosa.load(filename, sr=sr)
@@ -178,7 +178,7 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 .. GENERATED FROM PYTHON SOURCE LINES 97-114
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # First, plot the spectrum
@@ -212,7 +212,7 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.851 seconds)
+   **Total running time of the script:** (0 minutes 1.848 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_pcen_stream.py:
@@ -221,16 +221,13 @@ Plot the PCEN spectrum and the resulting magnitudes
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_pcen_stream.ipynb <plot_pcen_stream.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_pcen_stream.py <plot_pcen_stream.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_pcen_stream.ipynb <plot_pcen_stream.ipynb>`
 
 
 .. only:: html

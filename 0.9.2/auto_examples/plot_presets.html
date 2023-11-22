@@ -135,12 +135,12 @@ to download the full example code</p>
 <span id="sphx-glr-auto-examples-plot-presets-py"></span><h1>Presets<a class="headerlink" href="#presets" title="Permalink to this heading"></a></h1>
 <p>This notebook demonstrates how to use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">presets</span></code> package to change the
 default parameters for librosa.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Brian McFee</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Brian McFee</span>
 <span class="c1"># License: ISC</span>
 </pre></div>
 </div>
 <p>We’ll need numpy and matplotlib for this example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Import the Preset class</span>
@@ -168,7 +168,7 @@ default parameters for librosa.</p>
 doing so consistently in every function call can be somewhat cumbersome.</p>
 <p>Presets makes it easy to do this all at once by wrapping the module
 and all function calls, and overriding default arguments.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, we need to set up the preset-wrapped librosa import</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, we need to set up the preset-wrapped librosa import</span>
 
 <span class="n">librosa</span> <span class="o">=</span> <span class="n">Preset</span><span class="p">(</span><span class="n">_librosa</span><span class="p">)</span>
 
@@ -185,7 +185,7 @@ and all function calls, and overriding default arguments.</p>
 </pre></div>
 </div>
 <p>Now we can load in a file and do some analysis with the new defaults</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filename</span></a> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;fishin&#39;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filename</span></a> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;fishin&#39;</span><span class="p">)</span>
 
 <span class="n">y</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sr</span></a> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filename</span></a><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
 
@@ -226,13 +226,13 @@ and all function calls, and overriding default arguments.</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;11025/1024/4096&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_presets_001.png" srcset="../_images/sphx_glr_plot_presets_001.png" alt="44100/1024/4096, 44100/512/4096, 11025/1024/4096" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.181 seconds)</p>
+<img src="../_images/sphx_glr_plot_presets_001.png" srcset="../_images/sphx_glr_plot_presets_001.png" alt="44100/1024/4096, 44100/512/4096, 11025/1024/4096" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.346 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-presets-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/670f5f097a3ab107ecd192151187b33b/plot_presets.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_presets.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/214b52beef056936e193f53a8f67ac69/plot_presets.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_presets.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/670f5f097a3ab107ecd192151187b33b/plot_presets.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_presets.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

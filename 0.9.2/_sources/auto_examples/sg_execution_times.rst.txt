@@ -6,28 +6,62 @@
 
 Computation times
 =================
-**01:07.646** total execution time for **auto_examples** files:
+**01:06.706** total execution time for 11 files **from auto_examples**:
 
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_vocal_separation.py` (``plot_vocal_separation.py``) | 00:18.640 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_chroma.py` (``plot_chroma.py``)                     | 00:18.018 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_display.py` (``plot_display.py``)                   | 00:09.485 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_segmentation.py` (``plot_segmentation.py``)         | 00:05.960 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_music_sync.py` (``plot_music_sync.py``)             | 00:04.117 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_hprss.py` (``plot_hprss.py``)                       | 00:03.775 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_audio_playback.py` (``plot_audio_playback.py``)     | 00:02.169 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_pcen_stream.py` (``plot_pcen_stream.py``)           | 00:01.851 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_viterbi.py` (``plot_viterbi.py``)                   | 00:01.763 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_presets.py` (``plot_presets.py``)                   | 00:01.181 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)               | 00:00.688 | 0.0 MB |
-+---------------------------------------------------------------------------------------+-----------+--------+
+.. container::
+
+  .. raw:: html
+
+    <style scoped>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('table.sg-datatable').DataTable({order: [[1, 'desc']]});
+    } );
+    </script>
+
+  .. list-table::
+   :header-rows: 1
+   :class: table table-striped sg-datatable
+
+   * - Example
+     - Time
+     - Mem (MB)
+   * - :ref:`sphx_glr_auto_examples_plot_vocal_separation.py` (``plot_vocal_separation.py``)
+     - 00:18.569
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_chroma.py` (``plot_chroma.py``)
+     - 00:17.819
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_display.py` (``plot_display.py``)
+     - 00:08.946
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_segmentation.py` (``plot_segmentation.py``)
+     - 00:05.930
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_music_sync.py` (``plot_music_sync.py``)
+     - 00:03.953
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_hprss.py` (``plot_hprss.py``)
+     - 00:03.751
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_audio_playback.py` (``plot_audio_playback.py``)
+     - 00:02.099
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_pcen_stream.py` (``plot_pcen_stream.py``)
+     - 00:01.848
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_viterbi.py` (``plot_viterbi.py``)
+     - 00:01.761
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_presets.py` (``plot_presets.py``)
+     - 00:01.346
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)
+     - 00:00.683
+     - 0.0

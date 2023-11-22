@@ -32,7 +32,7 @@ and its margin-based extension due to `Dreidger, Mueller and Disch, 2014
 
 .. GENERATED FROM PYTHON SOURCE LINES 17-24
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -54,7 +54,7 @@ Load an example clip with harmonics and percussives
 
 .. GENERATED FROM PYTHON SOURCE LINES 26-29
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('fishin'), duration=5, offset=10)
 
@@ -72,7 +72,7 @@ Compute the short-time Fourier transform of y
 
 .. GENERATED FROM PYTHON SOURCE LINES 31-33
 
-.. code-block:: default
+.. code-block:: Python
 
     D = librosa.stft(y)
 
@@ -91,7 +91,7 @@ Decompose D into harmonic and percussive components
 
 .. GENERATED FROM PYTHON SOURCE LINES 37-40
 
-.. code-block:: default
+.. code-block:: Python
 
     D_harmonic, D_percussive = librosa.decompose.hpss(D)
 
@@ -109,7 +109,7 @@ We can plot the two components along with the original spectrogram
 
 .. GENERATED FROM PYTHON SOURCE LINES 42-63
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Pre-compute a global reference power from the input spectrum
@@ -162,7 +162,7 @@ Note: the default (above) corresponds to margin=1
 
 .. GENERATED FROM PYTHON SOURCE LINES 77-85
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Let's compute separations for a few different margins and compare the results below
@@ -186,7 +186,7 @@ components, and vocals have been suppressed in the percussive components.
 
 .. GENERATED FROM PYTHON SOURCE LINES 88-125
 
-.. code-block:: default
+.. code-block:: Python
 
     fig, ax = plt.subplots(nrows=5, ncols=2, sharex=True, sharey=True, figsize=(10, 10))
     librosa.display.specshow(librosa.amplitude_to_db(np.abs(D_harmonic), ref=rp),
@@ -240,7 +240,7 @@ components, and vocals have been suppressed in the percussive components.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.814 seconds)
+   **Total running time of the script:** (0 minutes 3.787 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_hprss.py:
@@ -249,16 +249,13 @@ components, and vocals have been suppressed in the percussive components.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_hprss.ipynb <plot_hprss.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_hprss.py <plot_hprss.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_hprss.ipynb <plot_hprss.ipynb>`
 
 
 .. only:: html

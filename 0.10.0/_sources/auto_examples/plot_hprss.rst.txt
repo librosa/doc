@@ -32,7 +32,7 @@ and its margin-based extension due to `Dreidger, Mueller and Disch, 2014
 
 .. GENERATED FROM PYTHON SOURCE LINES 17-25
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -55,7 +55,7 @@ Load an example clip with harmonics and percussives
 
 .. GENERATED FROM PYTHON SOURCE LINES 27-31
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('fishin'), duration=5, offset=10)
 
@@ -85,7 +85,7 @@ Compute the short-time Fourier transform of y
 
 .. GENERATED FROM PYTHON SOURCE LINES 33-35
 
-.. code-block:: default
+.. code-block:: Python
 
     D = librosa.stft(y)
 
@@ -104,7 +104,7 @@ Decompose D into harmonic and percussive components
 
 .. GENERATED FROM PYTHON SOURCE LINES 39-42
 
-.. code-block:: default
+.. code-block:: Python
 
     D_harmonic, D_percussive = librosa.decompose.hpss(D)
 
@@ -122,7 +122,7 @@ We can plot the two components along with the original spectrogram
 
 .. GENERATED FROM PYTHON SOURCE LINES 44-65
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Pre-compute a global reference power from the input spectrum
@@ -164,7 +164,7 @@ First the harmonic signal:
 
 .. GENERATED FROM PYTHON SOURCE LINES 68-72
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y_harmonic = librosa.istft(D_harmonic, length=len(y))
@@ -194,7 +194,7 @@ And next the percussive signal:
 
 .. GENERATED FROM PYTHON SOURCE LINES 74-79
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y_percussive = librosa.istft(D_percussive, length=len(y))
@@ -238,7 +238,7 @@ Note: the default (above) corresponds to margin=1
 
 .. GENERATED FROM PYTHON SOURCE LINES 94-102
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Let's compute separations for a few different margins and compare the results below
@@ -262,7 +262,7 @@ components, and vocals have been suppressed in the percussive components.
 
 .. GENERATED FROM PYTHON SOURCE LINES 105-144
 
-.. code-block:: default
+.. code-block:: Python
 
     fig, ax = plt.subplots(nrows=5, ncols=2, sharex=True, sharey=True, figsize=(10, 10))
     librosa.display.specshow(librosa.amplitude_to_db(np.abs(D_harmonic), ref=rp),
@@ -325,7 +325,7 @@ Again, starting with the harmonic component:
 
 .. GENERATED FROM PYTHON SOURCE LINES 150-154
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y_harmonic4 = librosa.istft(D_harmonic4, length=len(y))
@@ -355,7 +355,7 @@ And the percussive component:
 
 .. GENERATED FROM PYTHON SOURCE LINES 156-159
 
-.. code-block:: default
+.. code-block:: Python
 
 
     y_percussive4 = librosa.istft(D_percussive4, length=len(y))
@@ -381,7 +381,7 @@ And the percussive component:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.821 seconds)
+   **Total running time of the script:** (0 minutes 3.823 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_hprss.py:
@@ -390,16 +390,13 @@ And the percussive component:
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_hprss.ipynb <plot_hprss.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_hprss.py <plot_hprss.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_hprss.ipynb <plot_hprss.ipynb>`
 
 
 .. only:: html

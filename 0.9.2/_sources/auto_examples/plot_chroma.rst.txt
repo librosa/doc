@@ -40,7 +40,7 @@ enhancements:
 
 .. GENERATED FROM PYTHON SOURCE LINES 24-37
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Brian McFee
@@ -69,7 +69,7 @@ We'll use a track that has harmonic, melodic, and percussive elements
 
 .. GENERATED FROM PYTHON SOURCE LINES 40-43
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('fishin'))
 
@@ -87,7 +87,7 @@ First, let's plot the original chroma
 
 .. GENERATED FROM PYTHON SOURCE LINES 45-66
 
-.. code-block:: default
+.. code-block:: Python
 
     chroma_orig = librosa.feature.chroma_cqt(y=y, sr=sr)
 
@@ -129,7 +129,7 @@ We'll use a large margin for separating harmonics from percussives:
 
 .. GENERATED FROM PYTHON SOURCE LINES 69-82
 
-.. code-block:: default
+.. code-block:: Python
 
     y_harm = librosa.effects.harmonic(y=y, margin=8)
     chroma_harm = librosa.feature.chroma_cqt(y=y_harm, sr=sr)
@@ -164,7 +164,7 @@ This effectively removes any sparse additive noise from the features.
 
 .. GENERATED FROM PYTHON SOURCE LINES 86-101
 
-.. code-block:: default
+.. code-block:: Python
 
     chroma_filter = np.minimum(chroma_harm,
                                librosa.decompose.nn_filter(chroma_harm,
@@ -200,7 +200,7 @@ using a horizontal median filter.
 
 .. GENERATED FROM PYTHON SOURCE LINES 104-116
 
-.. code-block:: default
+.. code-block:: Python
 
     chroma_smooth = scipy.ndimage.median_filter(chroma_filter, size=(1, 9))
 
@@ -233,7 +233,7 @@ and the result of our filtering.
 
 .. GENERATED FROM PYTHON SOURCE LINES 119-132
 
-.. code-block:: default
+.. code-block:: Python
 
     fig, ax = plt.subplots(nrows=3, sharex=True)
     librosa.display.specshow(librosa.amplitude_to_db(C, ref=np.max)[idx],
@@ -272,7 +272,7 @@ A comparison between the STFT and the CQT methods for chromagram.
 
 .. GENERATED FROM PYTHON SOURCE LINES 140-153
 
-.. code-block:: default
+.. code-block:: Python
 
     chromagram_stft = librosa.feature.chroma_stft(y=y, sr=sr)
     chromagram_cqt = librosa.feature.chroma_cqt(y=y, sr=sr)
@@ -318,7 +318,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. GENERATED FROM PYTHON SOURCE LINES 168-177
 
-.. code-block:: default
+.. code-block:: Python
 
     chromagram_cens = librosa.feature.chroma_cens(y=y, sr=sr)
 
@@ -344,7 +344,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 18.018 seconds)
+   **Total running time of the script:** (0 minutes 17.819 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:
@@ -353,16 +353,13 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_chroma.ipynb <plot_chroma.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_chroma.py <plot_chroma.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_chroma.ipynb <plot_chroma.ipynb>`
 
 
 .. only:: html

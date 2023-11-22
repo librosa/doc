@@ -27,7 +27,7 @@ to play audio signals through your web browser.
 
 .. GENERATED FROM PYTHON SOURCE LINES 11-15
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Brian McFee
@@ -46,7 +46,7 @@ We'll need numpy and matplotlib for this example
 
 .. GENERATED FROM PYTHON SOURCE LINES 17-30
 
-.. code-block:: default
+.. code-block:: Python
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -80,7 +80,7 @@ For example, we can make a sine sweep from C3 to C5:
 
 .. GENERATED FROM PYTHON SOURCE LINES 38-48
 
-.. code-block:: default
+.. code-block:: Python
 
 
     sr = 22050
@@ -120,7 +120,7 @@ in the same way.
 
 .. GENERATED FROM PYTHON SOURCE LINES 54-59
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('trumpet'))
 
@@ -158,7 +158,7 @@ and `mir_eval.sonify.pitch_contour` for synthesis.
 
 .. GENERATED FROM PYTHON SOURCE LINES 68-79
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Using fill_na=None retains the best-guess f0 at unvoiced frames
@@ -190,7 +190,7 @@ and negate the frequency for unvoiced frames.
 
 .. GENERATED FROM PYTHON SOURCE LINES 87-94
 
-.. code-block:: default
+.. code-block:: Python
 
     vneg = (-1)**(~voiced_flag)
 
@@ -235,7 +235,7 @@ click track and the original signal are of the same length.
 
 .. GENERATED FROM PYTHON SOURCE LINES 108-122
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Compute the onset strength envelope, using a max filter of 5 frequency bins
@@ -292,7 +292,7 @@ Finally, some important things to note when using interactive playback:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.169 seconds)
+   **Total running time of the script:** (0 minutes 2.099 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_audio_playback.py:
@@ -301,16 +301,13 @@ Finally, some important things to note when using interactive playback:
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_audio_playback.ipynb <plot_audio_playback.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_audio_playback.py <plot_audio_playback.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_audio_playback.ipynb <plot_audio_playback.ipynb>`
 
 
 .. only:: html

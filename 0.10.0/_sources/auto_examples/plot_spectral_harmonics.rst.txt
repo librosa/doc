@@ -38,7 +38,7 @@ either for resynthesis [1]_ or downstream analysis [2]_.
 
 .. GENERATED FROM PYTHON SOURCE LINES 21-25
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Brian McFee
@@ -57,7 +57,7 @@ We'll need numpy and matplotlib as usual
 
 .. GENERATED FROM PYTHON SOURCE LINES 27-39
 
-.. code-block:: default
+.. code-block:: Python
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -84,7 +84,7 @@ We'll start by loading a speech example to analyze
 
 .. GENERATED FROM PYTHON SOURCE LINES 41-45
 
-.. code-block:: default
+.. code-block:: Python
 
     y, sr = librosa.load(librosa.ex('libri2'), duration=5)
 
@@ -129,7 +129,7 @@ We'll handle this situation later on when resynthesizing the signal.
 
 .. GENERATED FROM PYTHON SOURCE LINES 62-64
 
-.. code-block:: default
+.. code-block:: Python
 
     f0, voicing, voicing_probability = librosa.pyin(y=y, sr=sr, fmin=50, fmax=300)
 
@@ -146,7 +146,7 @@ We can visualize the f0 contour on top of a spectrogram as follows
 
 .. GENERATED FROM PYTHON SOURCE LINES 66-77
 
-.. code-block:: default
+.. code-block:: Python
 
 
     S = np.abs(librosa.stft(y))
@@ -185,7 +185,7 @@ from a specified set of harmonics relative to the f0.
 
 .. GENERATED FROM PYTHON SOURCE LINES 87-96
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Let's use the first 30 harmonics: 1, 2, 3, ..., 30
@@ -210,7 +210,7 @@ full spectrogram `S` to see how they compare to each other.
 
 .. GENERATED FROM PYTHON SOURCE LINES 99-111
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # sphinx_gallery_thumbnail_number = 2
@@ -263,7 +263,7 @@ signal.
 
 .. GENERATED FROM PYTHON SOURCE LINES 133-151
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # f0 takes value np.nan for unvoiced regions, but this isn't
@@ -316,7 +316,7 @@ with a constant f0 to produce a monotone effect.
 
 .. GENERATED FROM PYTHON SOURCE LINES 162-176
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Make a fake f0 contour
@@ -353,7 +353,7 @@ with a constant f0 to produce a monotone effect.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.693 seconds)
+   **Total running time of the script:** (0 minutes 2.673 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_spectral_harmonics.py:
@@ -362,16 +362,13 @@ with a constant f0 to produce a monotone effect.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_spectral_harmonics.ipynb <plot_spectral_harmonics.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_spectral_harmonics.py <plot_spectral_harmonics.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_spectral_harmonics.ipynb <plot_spectral_harmonics.ipynb>`
 
 
 .. only:: html

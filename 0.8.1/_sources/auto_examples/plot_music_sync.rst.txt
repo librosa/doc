@@ -35,7 +35,7 @@ Our objective is now to find an alignment between these two recordings by using 
 
 .. GENERATED FROM PYTHON SOURCE LINES 19-32
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Code source: Stefan Balke
@@ -66,7 +66,7 @@ First, let's load a first version of our audio recordings.
 
 .. GENERATED FROM PYTHON SOURCE LINES 37-49
 
-.. code-block:: default
+.. code-block:: Python
 
     x_1, fs = librosa.load('audio/sir_duke_slow.ogg')
     # And a second version, slightly faster.
@@ -100,7 +100,7 @@ Extract Chroma Features
 
 .. GENERATED FROM PYTHON SOURCE LINES 53-72
 
-.. code-block:: default
+.. code-block:: Python
 
     hop_length = 1024
 
@@ -141,7 +141,7 @@ Align Chroma Sequences
 
 .. GENERATED FROM PYTHON SOURCE LINES 76-87
 
-.. code-block:: default
+.. code-block:: Python
 
     D, wp = librosa.sequence.dtw(X=x_1_chroma, Y=x_2_chroma, metric='cosine')
     wp_s = librosa.frames_to_time(wp, sr=fs, hop_length=hop_length)
@@ -178,7 +178,7 @@ Red lines connect corresponding time positions in the input signals.
 
 .. GENERATED FROM PYTHON SOURCE LINES 95-120
 
-.. code-block:: default
+.. code-block:: Python
 
     from matplotlib.patches import ConnectionPatch
 
@@ -243,7 +243,7 @@ Springer Verlag, 2015.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.860 seconds)
+   **Total running time of the script:** (0 minutes 3.951 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_music_sync.py:
@@ -252,16 +252,13 @@ Springer Verlag, 2015.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_music_sync.py <plot_music_sync.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_music_sync.ipynb <plot_music_sync.ipynb>`
 
 
 .. only:: html
