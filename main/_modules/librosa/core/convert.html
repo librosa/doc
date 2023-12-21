@@ -725,14 +725,14 @@
 
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">blocks_to_time</span><span class="p">(</span>
-    <span class="n">blocks</span><span class="p">:</span> <span class="n">_IntLike_co</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sr</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">blocks</span><span class="p">:</span> <span class="n">_IntLike_co</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
     <span class="o">...</span>
 
 
 <span class="nd">@overload</span>
 <span class="k">def</span> <span class="nf">blocks_to_time</span><span class="p">(</span>
-    <span class="n">blocks</span><span class="p">:</span> <span class="n">_SequenceLike</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sr</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">blocks</span><span class="p">:</span> <span class="n">_SequenceLike</span><span class="p">[</span><span class="n">_IntLike_co</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="o">...</span>
 
@@ -743,7 +743,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">sr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="o">...</span>
 
@@ -753,7 +753,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">sr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert block indices to time (in seconds)</span>
 
