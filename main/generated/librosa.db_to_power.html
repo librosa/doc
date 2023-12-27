@@ -163,7 +163,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.db_to_power">
 <span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">db_to_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S_db</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/spectrum.html#db_to_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.db_to_power" title="Permalink to this definition"></a></dt>
-<dd><p>Convert a dB-scale spectrogram to a power spectrogram.</p>
+<dd><p>Convert dB-scale values to a power values.</p>
 <p>This effectively inverts <code class="docutils literal notranslate"><span class="pre">power_to_db</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">)</span> <span class="o">~=</span> <span class="n">ref</span> <span class="o">*</span> <span class="mf">10.0</span><span class="o">**</span><span class="p">(</span><span class="n">S_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -171,7 +171,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>S_db</strong><span class="classifier">np.ndarray</span></dt><dd><p>dB-scaled spectrogram</p>
+<dt><strong>S_db</strong><span class="classifier">np.ndarray</span></dt><dd><p>dB-scaled values</p>
 </dd>
 <dt><strong>ref</strong><span class="classifier">number &gt; 0</span></dt><dd><p>Reference power: output will be scaled by this value</p>
 </dd>
@@ -179,7 +179,7 @@
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>S</strong><span class="classifier">np.ndarray</span></dt><dd><p>Power spectrogram</p>
+<dt><strong>S</strong><span class="classifier">np.ndarray</span></dt><dd><p>Power values</p>
 </dd>
 </dl>
 </dd>

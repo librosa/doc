@@ -126,6 +126,7 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Utilities for spectral processing&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -147,7 +148,15 @@
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">DTypeLike</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
-<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_PadMode</span><span class="p">,</span> <span class="n">_PadModeSTFT</span>
+<span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_WindowSpec</span><span class="p">,</span>
+    <span class="n">_PadMode</span><span class="p">,</span>
+    <span class="n">_PadModeSTFT</span><span class="p">,</span>
+    <span class="n">_SequenceLike</span><span class="p">,</span>
+    <span class="n">_ScalarOrSequence</span><span class="p">,</span>
+    <span class="n">_ComplexLike_co</span><span class="p">,</span>
+    <span class="n">_FloatLike_co</span>
+<span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;stft&quot;</span><span class="p">,</span>
@@ -1780,14 +1789,44 @@
     <span class="k">return</span> <span class="n">bands_power</span></div>
 
 
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">power_to_db</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_ComplexLike_co</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">power_to_db</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_SequenceLike</span><span class="p">[</span><span class="n">_ComplexLike_co</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">power_to_db</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_ScalarOrSequence</span><span class="p">[</span><span class="n">_ComplexLike_co</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
+
 <div class="viewcode-block" id="power_to_db"><a class="viewcode-back" href="../../../generated/librosa.power_to_db.html#librosa.power_to_db">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">power_to_db</span><span class="p">(</span>
-    <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_ScalarOrSequence</span><span class="p">[</span><span class="n">_ComplexLike_co</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a power spectrogram (amplitude squared) to decibel (dB) units</span>
 
 <span class="sd">    This computes the scaling ``10 * log10(S / ref)`` in a numerically</span>
@@ -1908,9 +1947,33 @@
     <span class="k">return</span> <span class="n">log_spec</span></div>
 
 
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span>
+    <span class="n">S_db</span><span class="p">:</span> <span class="n">_FloatLike_co</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span>
+        <span class="n">S_db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span>
+    <span class="n">S_db</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
+
 <div class="viewcode-block" id="db_to_power"><a class="viewcode-back" href="../../../generated/librosa.db_to_power.html#librosa.db_to_power">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a dB-scale spectrogram to a power spectrogram.</span>
+<span class="k">def</span> <span class="nf">db_to_power</span><span class="p">(</span><span class="n">S_db</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert dB-scale values to a power values.</span>
 
 <span class="sd">    This effectively inverts ``power_to_db``::</span>
 
@@ -1919,30 +1982,60 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    S_db : np.ndarray</span>
-<span class="sd">        dB-scaled spectrogram</span>
+<span class="sd">        dB-scaled values</span>
 <span class="sd">    ref : number &gt; 0</span>
 <span class="sd">        Reference power: output will be scaled by this value</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    S : np.ndarray</span>
-<span class="sd">        Power spectrogram</span>
+<span class="sd">        Power values</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    This function caches at level 30.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">ref</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">S_db</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">ref</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">S_db</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span></div>
 
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">amplitude_to_db</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_ComplexLike_co</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">amplitude_to_db</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_SequenceLike</span><span class="p">[</span><span class="n">_ComplexLike_co</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">amplitude_to_db</span><span class="p">(</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_ScalarOrSequence</span><span class="p">[</span><span class="n">_ComplexLike_co</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
 
 <div class="viewcode-block" id="amplitude_to_db"><a class="viewcode-back" href="../../../generated/librosa.amplitude_to_db.html#librosa.amplitude_to_db">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">amplitude_to_db</span><span class="p">(</span>
-    <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">_ScalarOrSequence</span><span class="p">[</span><span class="n">_ComplexLike_co</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">ref</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">amin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
     <span class="n">top_db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert an amplitude spectrogram to dB-scaled spectrogram.</span>
 
 <span class="sd">    This is equivalent to ``power_to_db(S**2, ref=ref**2, amin=amin**2, top_db=top_db)``,</span>
@@ -1998,13 +2091,39 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ref_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
 
-    <span class="n">power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">magnitude</span><span class="p">)</span>
+    <span class="n">out_array</span> <span class="o">=</span> <span class="n">magnitude</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out_array</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref_value</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">amin</span><span class="o">=</span><span class="n">amin</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="n">top_db</span><span class="p">)</span></div>
+    <span class="n">db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref_value</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">amin</span><span class="o">=</span><span class="n">amin</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="n">top_db</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db</span></div>
 
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span>
+    <span class="n">S_db</span><span class="p">:</span> <span class="n">_FloatLike_co</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span>
+    <span class="n">S_db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span>
+    <span class="n">S_db</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="o">...</span>
 
 <div class="viewcode-block" id="db_to_amplitude"><a class="viewcode-back" href="../../../generated/librosa.db_to_amplitude.html#librosa.db_to_amplitude">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span><span class="n">S_db</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">db_to_amplitude</span><span class="p">(</span><span class="n">S_db</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a dB-scaled spectrogram to an amplitude spectrogram.</span>
 
 <span class="sd">    This effectively inverts `amplitude_to_db`::</span>
@@ -2014,14 +2133,14 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    S_db : np.ndarray</span>
-<span class="sd">        dB-scaled spectrogram</span>
+<span class="sd">        dB-scaled values</span>
 <span class="sd">    ref : number &gt; 0</span>
-<span class="sd">        Optional reference power.</span>
+<span class="sd">        Optional reference amplitude.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    S : np.ndarray</span>
-<span class="sd">        Linear magnitude spectrogram</span>
+<span class="sd">        Linear magnitude values</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>

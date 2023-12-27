@@ -685,6 +685,9 @@
         <span class="c1"># Convert to dBs</span>
         <span class="n">S</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">power_to_db</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 
+    <span class="c1"># Assertion to make type checking happy</span>
+    <span class="k">assert</span> <span class="n">S</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
     <span class="c1"># Ensure that S is at least 2-d</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
 
