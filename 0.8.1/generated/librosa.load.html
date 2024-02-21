@@ -166,12 +166,12 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>path</strong><span class="classifier">string, int, pathlib.Path or file-like object</span></dt><dd><p>path to the input file.</p>
-<p>Any codec supported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> will work.</p>
+<p>Any codec supported by <a class="reference external" href="https://python-soundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in python-soundfile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">audioread</span></code> will work.</p>
 <p>Any string file paths, or any object implementing Python’s
 file interface (e.g. <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a>) are supported as <em class="xref py py-obj">path</em>.</p>
-<p>If the codec is supported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>, then <em class="xref py py-obj">path</em> can also be
+<p>If the codec is supported by <a class="reference external" href="https://python-soundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in python-soundfile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>, then <em class="xref py py-obj">path</em> can also be
 an open file descriptor (int).</p>
-<p>On the contrary, if the codec is not supported by <a class="reference external" href="https://pysoundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in PySoundFile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>
+<p>On the contrary, if the codec is not supported by <a class="reference external" href="https://python-soundfile.readthedocs.io/en/latest/index.html#module-soundfile" title="(in python-soundfile)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soundfile</span></code></a>
 (for example, MP3), then <em class="xref py py-obj">path</em> must be a file path (string or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a>).</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>target sampling rate</p>
