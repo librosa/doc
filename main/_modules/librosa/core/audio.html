@@ -135,6 +135,7 @@
 <span class="kn">import</span> <span class="nn">soundfile</span> <span class="k">as</span> <span class="nn">sf</span>
 <span class="kn">import</span> <span class="nn">audioread</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">scipy.signal</span>
 <span class="kn">import</span> <span class="nn">soxr</span>
 <span class="kn">import</span> <span class="nn">lazy_loader</span> <span class="k">as</span> <span class="nn">lazy</span>
@@ -1039,22 +1040,27 @@
 
     <span class="n">fft</span> <span class="o">=</span> <span class="n">get_fftlib</span><span class="p">()</span>
 
-    <span class="c1"># Pad out the signal to support full-length auto-correlation.</span>
-    <span class="n">n_pad</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">real</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="c1"># Pad out the signal to support full-length auto-correlation</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="p">,</span> <span class="s2">&quot;next_fast_len&quot;</span><span class="p">):</span>
+        <span class="n">n_pad</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">next_fast_len</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="n">real</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># TODO: Bump to scipy&gt;=1.4.0 and remove this branch</span>
+        <span class="n">n_pad</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">next_fast_len</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">real</span><span class="p">:</span>
+        <span class="c1"># Compute the power spectrum along the chosen axis</span>
+        <span class="n">powspec</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span>
+
+        <span class="c1"># Convert back to time domain</span>
+        <span class="n">autocorr</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">powspec</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="c1"># Compute the power spectrum along the chosen axis</span>
         <span class="n">powspec</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span>
 
         <span class="c1"># Convert back to time domain</span>
         <span class="n">autocorr</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">powspec</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Compute the power spectrum along the chosen axis</span>
-        <span class="c1"># Pad out the signal to support full-length auto-correlation.</span>
-        <span class="n">powspec</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span>
-
-        <span class="c1"># Convert back to time domain</span>
-        <span class="n">autocorr</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">powspec</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_pad</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
     <span class="c1"># Slice down to max_size</span>
     <span class="n">subslice</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">autocorr</span><span class="o">.</span><span class="n">ndim</span>
