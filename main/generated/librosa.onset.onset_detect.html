@@ -139,7 +139,7 @@
 <h1>librosa.onset.onset_detect<a class="headerlink" href="#librosa-onset-onset-detect" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.onset.onset_detect">
-<span class="sig-prename descclassname"><span class="pre">librosa.onset.</span></span><span class="sig-name descname"><span class="pre">onset_detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/onset.html#onset_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.onset.onset_detect" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.onset.</span></span><span class="sig-name descname"><span class="pre">onset_detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backtrack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/onset.html#onset_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.onset.onset_detect" title="Permalink to this definition"></a></dt>
 <dd><p>Locate note onset events by picking peaks in an onset strength envelope.</p>
 <p>The <em class="xref py py-obj">peak_pick</em> parameters were chosen by large-scale hyper-parameter
 optimization over the dataset provided by <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
@@ -152,11 +152,11 @@ optimization over the dataset provided by <a class="footnote-reference brackets"
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>y</strong><span class="classifier">np.ndarray [shape=(n,)]</span></dt><dd><p>audio time series, must be monophonic</p>
+<dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)]</span></dt><dd><p>audio time-series. Multi-channel is supported.</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
 </dd>
-<dt><strong>onset_envelope</strong><span class="classifier">np.ndarray [shape=(m,)]</span></dt><dd><p>(optional) pre-computed onset strength envelope</p>
+<dt><strong>onset_envelope</strong><span class="classifier">np.ndarray [shape=(…, m)]</span></dt><dd><p>(optional) pre-computed onset strength envelope</p>
 </dd>
 <dt><strong>hop_length</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>hop length (in samples)</p>
 </dd>
@@ -166,6 +166,10 @@ By default, ‘frames’ are used.</p>
 <dt><strong>backtrack</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, detected onset events are backtracked to the nearest
 preceding minimum of <code class="docutils literal notranslate"><span class="pre">energy</span></code>.</p>
 <p>This is primarily useful when using onsets as slice points for segmentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>backtracking is only supported if <code class="docutils literal notranslate"><span class="pre">sparse=True</span></code>.</p>
+</div>
 </dd>
 <dt><strong>energy</strong><span class="classifier">np.ndarray [shape=(m,)] (optional)</span></dt><dd><p>An energy function to use for backtracking detected onset events.
 If none is provided, then <code class="docutils literal notranslate"><span class="pre">onset_envelope</span></code> is used.</p>
@@ -175,6 +179,15 @@ maximum of 1 prior to detection.  This is helpful for standardizing the
 parameters of <a class="reference internal" href="librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.peak_pick</span></code></a>.</p>
 <p>Otherwise, the onset envelope is left unnormalized.</p>
 </dd>
+<dt><strong>sparse</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), detections are returned as an array of frames,
+samples, or time indices (as specified by <code class="docutils literal notranslate"><span class="pre">units=</span></code>).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, detections are encoded as a dense boolean array where
+<code class="docutils literal notranslate"><span class="pre">onsets[n]</span></code> is True if there’s an onset at frame index <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>multi-channel input is only supported if <code class="docutils literal notranslate"><span class="pre">sparse=False</span></code>.</p>
+</div>
+</dd>
 <dt><strong>**kwargs</strong><span class="classifier">additional keyword arguments</span></dt><dd><p>Additional parameters for peak picking.</p>
 <p>See <a class="reference internal" href="librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.peak_pick</span></code></a> for details.</p>
 </dd>
@@ -182,12 +195,14 @@ parameters of <a class="reference internal" href="librosa.util.peak_pick.html#li
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>onsets</strong><span class="classifier">np.ndarray [shape=(n_onsets,)]</span></dt><dd><p>estimated positions of detected onsets, in whichever units
+<dt><strong>onsets</strong><span class="classifier">np.ndarray [shape=(n_onsets,) or onset_envelope.shape]</span></dt><dd><p>estimated positions of detected onsets, in whichever units
 are specified.  By default, frame indices.</p>
+<p>If <em class="xref py py-obj">sparse=False</em>, <em class="xref py py-obj">onsets[…, n]</em> indicates an onset
+detection at frame index <em class="xref py py-obj">n</em>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If no onset strength could be detected, onset_detect returns
-an empty list.</p>
+an empty array (sparse=True) or all-False array (sparse=False).</p>
 </div>
 </dd>
 </dl>

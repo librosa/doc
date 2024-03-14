@@ -161,6 +161,7 @@
     <span class="n">energy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;frames&quot;</span><span class="p">,</span>
     <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Locate note onset events by picking peaks in an onset strength envelope.</span>
@@ -172,13 +173,13 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    y : np.ndarray [shape=(n,)]</span>
-<span class="sd">        audio time series, must be monophonic</span>
+<span class="sd">    y : np.ndarray [shape=(..., n)]</span>
+<span class="sd">        audio time-series. Multi-channel is supported.</span>
 
 <span class="sd">    sr : number &gt; 0 [scalar]</span>
 <span class="sd">        sampling rate of ``y``</span>
 
-<span class="sd">    onset_envelope : np.ndarray [shape=(m,)]</span>
+<span class="sd">    onset_envelope : np.ndarray [shape=(..., m)]</span>
 <span class="sd">        (optional) pre-computed onset strength envelope</span>
 
 <span class="sd">    hop_length : int &gt; 0 [scalar]</span>
@@ -194,6 +195,8 @@
 
 <span class="sd">        This is primarily useful when using onsets as slice points for segmentation.</span>
 
+<span class="sd">        .. note:: backtracking is only supported if ``sparse=True``.</span>
+
 <span class="sd">    energy : np.ndarray [shape=(m,)] (optional)</span>
 <span class="sd">        An energy function to use for backtracking detected onset events.</span>
 <span class="sd">        If none is provided, then ``onset_envelope`` is used.</span>
@@ -205,6 +208,15 @@
 
 <span class="sd">        Otherwise, the onset envelope is left unnormalized.</span>
 
+<span class="sd">    sparse : bool</span>
+<span class="sd">        If ``True`` (default), detections are returned as an array of frames,</span>
+<span class="sd">        samples, or time indices (as specified by ``units=``).</span>
+
+<span class="sd">        If ``False``, detections are encoded as a dense boolean array where</span>
+<span class="sd">        ``onsets[n]`` is True if there&#39;s an onset at frame index ``n``.</span>
+
+<span class="sd">        .. note:: multi-channel input is only supported if ``sparse=False``.</span>
+
 <span class="sd">    **kwargs : additional keyword arguments</span>
 <span class="sd">        Additional parameters for peak picking.</span>
 
@@ -212,13 +224,16 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    onsets : np.ndarray [shape=(n_onsets,)]</span>
+<span class="sd">    onsets : np.ndarray [shape=(n_onsets,) or onset_envelope.shape]</span>
 <span class="sd">        estimated positions of detected onsets, in whichever units</span>
 <span class="sd">        are specified.  By default, frame indices.</span>
 
+<span class="sd">        If `sparse=False`, `onsets[..., n]` indicates an onset</span>
+<span class="sd">        detection at frame index `n`.</span>
+
 <span class="sd">        .. note::</span>
 <span class="sd">            If no onset strength could be detected, onset_detect returns</span>
-<span class="sd">            an empty list.</span>
+<span class="sd">            an empty array (sparse=True) or all-False array (sparse=False).</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -271,18 +286,22 @@
     <span class="c1"># (a common normalization step to make the threshold more consistent)</span>
     <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
         <span class="c1"># Normalize onset strength function to [0, 1] range</span>
-        <span class="n">onset_envelope</span> <span class="o">=</span> <span class="n">onset_envelope</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>
+        <span class="c1"># Normalization is performed over the trailing axis</span>
+        <span class="n">onset_envelope</span> <span class="o">=</span> <span class="n">onset_envelope</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Mypy does not realize that oenv is not None by now</span>
         <span class="c1"># Max-scale with safe division</span>
-        <span class="n">onset_envelope</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="n">onset_envelope</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># help out mypy</span>
     <span class="k">assert</span> <span class="n">onset_envelope</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
     <span class="c1"># Do we have any onsets to grab?</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)):</span>
-        <span class="n">onsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
+            <span class="n">onsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">onsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># These parameter settings found by large-scale search</span>
@@ -294,23 +313,27 @@
         <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">)</span>
 
         <span class="c1"># Peak pick the onset envelope</span>
-        <span class="n">onsets</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">peak_pick</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">onsets</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">peak_pick</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="n">sparse</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Optionally backtrack the events</span>
         <span class="k">if</span> <span class="n">backtrack</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sparse</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;onset backtracking is only supported if sparse=True&quot;</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">energy</span> <span class="o">=</span> <span class="n">onset_envelope</span>
             <span class="k">assert</span> <span class="n">energy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="n">onsets</span> <span class="o">=</span> <span class="n">onset_backtrack</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;samples&quot;</span><span class="p">:</span>
-        <span class="n">onsets</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
-        <span class="n">onsets</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid unit type: </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;samples&quot;</span><span class="p">:</span>
+            <span class="n">onsets</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
+            <span class="n">onsets</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">onsets</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid unit type: </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">onsets</span></div>
 

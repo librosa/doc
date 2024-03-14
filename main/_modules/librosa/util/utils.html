@@ -1330,6 +1330,48 @@
     <span class="k">return</span> <span class="n">lmin</span></div>
 
 
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;void(float32[:], uint32, uint32, uint32, uint32, float32, uint32, bool_[:])&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;void(float64[:], uint32, uint32, uint32, uint32, float32, uint32, bool_[:])&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;void(int32[:], uint32, uint32, uint32, uint32, float32, uint32, bool_[:])&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;void(int64[:], uint32, uint32, uint32, uint32, float32, uint32, bool_[:])&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;(n),(),(),(),(),(),()-&gt;(n)&quot;</span><span class="p">,</span>
+    <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">__peak_pick</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pre_max</span><span class="p">,</span> <span class="n">post_max</span><span class="p">,</span> <span class="n">pre_avg</span><span class="p">,</span> <span class="n">post_avg</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">peaks</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vectorized wrapper for the peak-picker&quot;&quot;&quot;</span>
+    <span class="c1"># Special case the first frame</span>
+    <span class="n">peaks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="nb">min</span><span class="p">(</span><span class="n">post_max</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]))</span>
+    <span class="n">peaks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="nb">min</span><span class="p">(</span><span class="n">post_avg</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">peaks</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">wait</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">maxn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">pre_max</span><span class="p">):</span><span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">post_max</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+
+        <span class="c1"># Are we the local max and sufficiently above average?</span>
+        <span class="n">peaks</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="n">maxn</span><span class="p">)</span> 
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">peaks</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="n">avgn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">pre_avg</span><span class="p">):</span><span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">post_avg</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="n">peaks</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">avgn</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">peaks</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Skip the next `wait` frames</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="n">wait</span> <span class="o">+</span> <span class="mi">1</span>
+
+
 <div class="viewcode-block" id="peak_pick"><a class="viewcode-back" href="../../../generated/librosa.util.peak_pick.html#librosa.util.peak_pick">[docs]</a><span class="k">def</span> <span class="nf">peak_pick</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1339,6 +1381,8 @@
     <span class="n">post_avg</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">wait</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Use a flexible heuristic to pick peaks in a signal.</span>
 
@@ -1361,7 +1405,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray [shape=(n,)]</span>
+<span class="sd">    x : np.ndarray</span>
 <span class="sd">        input signal to peak picks from</span>
 <span class="sd">    pre_max : int &gt;= 0 [scalar]</span>
 <span class="sd">        number of samples before ``n`` over which max is computed</span>
@@ -1375,11 +1419,18 @@
 <span class="sd">        threshold offset for mean</span>
 <span class="sd">    wait : int &gt;= 0 [scalar]</span>
 <span class="sd">        number of samples to wait after picking a peak</span>
+<span class="sd">    sparse : bool [scalar]</span>
+<span class="sd">        If `True`, the output are indices of detected peaks.</span>
+<span class="sd">        If `False`, the output is a dense boolean array of the same</span>
+<span class="sd">        shape as ``x``.</span>
+<span class="sd">    axis : int [scalar]</span>
+<span class="sd">        the axis over which to detect peaks.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    peaks : np.ndarray [shape=(n_peaks,), dtype=int]</span>
-<span class="sd">        indices of peaks in ``x``</span>
+<span class="sd">    peaks : np.ndarray [shape=(n_peaks,) or shape=x.shape, dtype=int or bool]</span>
+<span class="sd">        indices of peaks in ``x`` (sparse=True)</span>
+<span class="sd">        or a boolean array where `peaks[..., n]` indicates a peak at frame index `n` (sparse=False)</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -1395,6 +1446,11 @@
 <span class="sd">    &gt;&gt;&gt; peaks = librosa.util.peak_pick(onset_env, pre_max=3, post_max=3, pre_avg=3, post_avg=5, delta=0.5, wait=10)</span>
 <span class="sd">    &gt;&gt;&gt; peaks</span>
 <span class="sd">    array([  3,  27,  40,  61,  72,  88, 103])</span>
+
+<span class="sd">    Using dense output to make a boolean array of peak indicators</span>
+<span class="sd">    &gt;&gt;&gt; librosa.util.peak_pick(onset_env, pre_max=3, post_max=3, pre_avg=3, post_avg=5,</span>
+<span class="sd">    ...                        delta=0.5, wait=10, sparse=False)</span>
+<span class="sd">    array([False, False, ..., False, False])</span>
 
 <span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">    &gt;&gt;&gt; times = librosa.times_like(onset_env, sr=sr, hop_length=512)</span>
@@ -1417,15 +1473,14 @@
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;delta must be non-negative&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">wait</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;wait must be non-negative&quot;</span><span class="p">)</span>
-
     <span class="k">if</span> <span class="n">post_max</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;post_max must be positive&quot;</span><span class="p">)</span>
-
     <span class="k">if</span> <span class="n">post_avg</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;post_avg must be positive&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;input array must be one-dimensional&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sparse</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sparse=True (default) does not support &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">-dimensional inputs. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Either set sparse=False or process each dimension independently.&quot;</span><span class="p">)</span>
 
     <span class="c1"># Ensure valid index types</span>
     <span class="n">pre_max</span> <span class="o">=</span> <span class="n">valid_int</span><span class="p">(</span><span class="n">pre_max</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">)</span>
@@ -1434,64 +1489,13 @@
     <span class="n">post_avg</span> <span class="o">=</span> <span class="n">valid_int</span><span class="p">(</span><span class="n">post_avg</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">)</span>
     <span class="n">wait</span> <span class="o">=</span> <span class="n">valid_int</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">)</span>
 
-    <span class="c1"># Get the maximum of the signal over a sliding window</span>
-    <span class="n">max_length</span> <span class="o">=</span> <span class="n">pre_max</span> <span class="o">+</span> <span class="n">post_max</span>
-    <span class="n">max_origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">pre_max</span> <span class="o">-</span> <span class="n">post_max</span><span class="p">))</span>
-    <span class="c1"># Using mode=&#39;constant&#39; and cval=x.min() effectively truncates</span>
-    <span class="c1"># the sliding window at the boundaries</span>
-    <span class="n">mov_max</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">ndimage</span><span class="o">.</span><span class="n">maximum_filter1d</span><span class="p">(</span>
-        <span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_length</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">max_origin</span><span class="p">),</span> <span class="n">cval</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">__peak_pick</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">pre_max</span><span class="p">,</span> <span class="n">post_max</span><span class="p">,</span> <span class="n">pre_avg</span><span class="p">,</span> <span class="n">post_avg</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">peaks</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
-    <span class="c1"># Get the mean of the signal over a sliding window</span>
-    <span class="n">avg_length</span> <span class="o">=</span> <span class="n">pre_avg</span> <span class="o">+</span> <span class="n">post_avg</span>
-    <span class="n">avg_origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">pre_avg</span> <span class="o">-</span> <span class="n">post_avg</span><span class="p">))</span>
-    <span class="c1"># Here, there is no mode which results in the behavior we want,</span>
-    <span class="c1"># so we&#39;ll correct below.</span>
-    <span class="n">mov_avg</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">ndimage</span><span class="o">.</span><span class="n">uniform_filter1d</span><span class="p">(</span>
-        <span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">avg_length</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">avg_origin</span><span class="p">)</span>
-    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>
 
-    <span class="c1"># Correct sliding average at the beginning</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="c1"># Only need to correct in the range where the window needs to be truncated</span>
-    <span class="k">while</span> <span class="n">n</span> <span class="o">-</span> <span class="n">pre_avg</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="c1"># This just explicitly does mean(x[n - pre_avg:n + post_avg])</span>
-        <span class="c1"># with truncation</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">pre_avg</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">start</span> <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="n">mov_avg</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">post_avg</span><span class="p">])</span>
-        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="c1"># Correct sliding average at the end</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">post_avg</span>
-    <span class="c1"># When post_avg &gt; x.shape[0] (weird case), reset to 0</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">pre_avg</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">start</span> <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="n">mov_avg</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">post_avg</span><span class="p">])</span>
-        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="c1"># First mask out all entries not equal to the local max</span>
-    <span class="n">detections</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">mov_max</span><span class="p">)</span>
-
-    <span class="c1"># Then mask out all entries less than the thresholded average</span>
-    <span class="n">detections</span> <span class="o">=</span> <span class="n">detections</span> <span class="o">*</span> <span class="p">(</span><span class="n">detections</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">mov_avg</span> <span class="o">+</span> <span class="n">delta</span><span class="p">))</span>
-
-    <span class="c1"># Initialize peaks array, to be filled greedily</span>
-    <span class="n">peaks</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="c1"># Remove onsets which are close together in time</span>
-    <span class="n">last_onset</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">detections</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="c1"># Only report an onset if the &quot;wait&quot; samples was reported</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">last_onset</span> <span class="o">+</span> <span class="n">wait</span><span class="p">:</span>
-            <span class="n">peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-            <span class="c1"># Save last reported onset</span>
-            <span class="n">last_onset</span> <span class="o">=</span> <span class="n">i</span>
-
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">peaks</span></div>
 
 
 <div class="viewcode-block" id="sparsify_rows"><a class="viewcode-back" href="../../../generated/librosa.util.sparsify_rows.html#librosa.util.sparsify_rows">[docs]</a><span class="nd">@cache</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>

@@ -138,6 +138,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span> <span class="nn">numba</span>
 
 <span class="kn">from</span> <span class="nn">._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">core</span>
@@ -146,8 +147,9 @@
 <span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">tempogram</span><span class="p">,</span> <span class="n">fourier_tempogram</span>
 <span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">tempo</span> <span class="k">as</span> <span class="n">_tempo</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">.util.decorators</span> <span class="kn">import</span> <span class="n">moved</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">.util.decorators</span> <span class="kn">import</span> <span class="n">moved</span><span class="p">,</span> <span class="n">vectorize</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;beat_track&quot;</span><span class="p">,</span> <span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="s2">&quot;plp&quot;</span><span class="p">]</span>
 
@@ -166,10 +168,11 @@
     <span class="n">start_bpm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">120.0</span><span class="p">,</span>
     <span class="n">tightness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
     <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">bpm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bpm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">prior</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">rv_continuous</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;frames&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="n">sparse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dynamic programming beat tracker.</span>
 
 <span class="sd">    Beats are detected in three stages, following the method of [#]_:</span>
@@ -185,37 +188,69 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    y : np.ndarray [shape=(n,)] or None</span>
+<span class="sd">    y : np.ndarray [shape=(..., n)] or None</span>
 <span class="sd">        audio time series</span>
+
 <span class="sd">    sr : number &gt; 0 [scalar]</span>
 <span class="sd">        sampling rate of ``y``</span>
-<span class="sd">    onset_envelope : np.ndarray [shape=(n,)] or None</span>
+
+<span class="sd">    onset_envelope : np.ndarray [shape=(..., m)] or None</span>
 <span class="sd">        (optional) pre-computed onset strength envelope.</span>
+
 <span class="sd">    hop_length : int &gt; 0 [scalar]</span>
 <span class="sd">        number of audio samples between successive ``onset_envelope`` values</span>
+
 <span class="sd">    start_bpm : float &gt; 0 [scalar]</span>
 <span class="sd">        initial guess for the tempo estimator (in beats per minute)</span>
+
 <span class="sd">    tightness : float [scalar]</span>
 <span class="sd">        tightness of beat distribution around tempo</span>
+
 <span class="sd">    trim : bool [scalar]</span>
 <span class="sd">        trim leading/trailing beats with weak onsets</span>
-<span class="sd">    bpm : float [scalar]</span>
+
+<span class="sd">    bpm : float [scalar] or np.ndarray [shape=(...)]</span>
 <span class="sd">        (optional) If provided, use ``bpm`` as the tempo instead of</span>
 <span class="sd">        estimating it from ``onsets``.</span>
+
+<span class="sd">        If multichannel, tempo estimates can be provided for all channels.</span>
+
+<span class="sd">        Tempo estimates may also be time-varying, in which case the shape</span>
+<span class="sd">        of ``bpm`` should match that of ``onset_envelope``, i.e.,</span>
+<span class="sd">        one estimate provided for each frame.</span>
+
 <span class="sd">    prior : scipy.stats.rv_continuous [optional]</span>
 <span class="sd">        An optional prior distribution over tempo.</span>
 <span class="sd">        If provided, ``start_bpm`` will be ignored.</span>
+
 <span class="sd">    units : {&#39;frames&#39;, &#39;samples&#39;, &#39;time&#39;}</span>
 <span class="sd">        The units to encode detected beat events in.</span>
 <span class="sd">        By default, &#39;frames&#39; are used.</span>
 
+<span class="sd">    sparse : bool</span>
+<span class="sd">        If ``True`` (default), detections are returned as an array of frames,</span>
+<span class="sd">        samples, or time indices (as specified by ``units=``).</span>
+
+<span class="sd">        If ``False``, detections are encoded as a dense boolean array where</span>
+<span class="sd">        ``beats[..., n]`` is true if there&#39;s a beat at frame index ``n``.</span>
+
+<span class="sd">        .. note:: multi-channel input is only supported when ``sparse=False``.</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    tempo : float [scalar, non-negative]</span>
+<span class="sd">    tempo : float [scalar, non-negative] or np.ndarray</span>
 <span class="sd">        estimated global tempo (in beats per minute)</span>
-<span class="sd">    beats : np.ndarray [shape=(m,)]</span>
-<span class="sd">        estimated beat event locations in the specified units</span>
-<span class="sd">        (default is frame indices)</span>
+
+<span class="sd">        If multi-channel and ``bpm`` is not provided, a separate</span>
+<span class="sd">        tempo will be returned for each channel</span>
+<span class="sd">    beats : np.ndarray</span>
+<span class="sd">        estimated beat event locations.</span>
+
+<span class="sd">        If `sparse=True` (default), beat locations are given in the specified units</span>
+<span class="sd">        (default is frame indices).</span>
+
+<span class="sd">        If `sparse=False` (required for multichannel input), beat events are</span>
+<span class="sd">        indicated by a boolean for each frame.</span>
 <span class="sd">    .. note::</span>
 <span class="sd">        If no onset strength could be detected, beat_tracker estimates 0 BPM</span>
 <span class="sd">        and returns an empty list.</span>
@@ -252,6 +287,16 @@
 <span class="sd">    array([0.07 , 0.488, 0.929, 1.37 , 1.811, 2.229, 2.694, 3.135,</span>
 <span class="sd">           3.576, 4.017, 4.458, 4.899, 5.341, 5.782, 6.223, 6.664,</span>
 <span class="sd">           7.105, 7.546, 7.988, 8.429])</span>
+
+<span class="sd">    Output beat detections as a boolean array instead of frame indices</span>
+<span class="sd">    &gt;&gt;&gt; tempo, beats_dense = librosa.beat.beat_track(y=y, sr=sr, sparse=False)</span>
+<span class="sd">    &gt;&gt;&gt; beats_dense</span>
+<span class="sd">    array([False, False, False,  True, False, False, False, False,</span>
+<span class="sd">       False, False, False, False, False, False, False, False,</span>
+<span class="sd">       False, False, False, False, ..., False, False,  True,</span>
+<span class="sd">       False, False, False, False, False, False, False, False,</span>
+<span class="sd">       False, False, False, False, False, False, False, False,</span>
+<span class="sd">       False])</span>
 
 <span class="sd">    Track beats using a pre-computed onset envelope</span>
 
@@ -292,9 +337,18 @@
             <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">median</span>
         <span class="p">)</span>
 
+    <span class="k">if</span> <span class="n">sparse</span> <span class="ow">and</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sparse=True (default) does not support &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">onset_envelope</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">-dimensional inputs. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Either set sparse=False or convert the signal to mono.&quot;</span><span class="p">)</span>
+
     <span class="c1"># Do we have any onsets to grab?</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">onset_envelope</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span>
 
     <span class="c1"># Estimate BPM if one was not provided</span>
     <span class="k">if</span> <span class="n">bpm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -304,19 +358,29 @@
             <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
             <span class="n">start_bpm</span><span class="o">=</span><span class="n">start_bpm</span><span class="p">,</span>
             <span class="n">prior</span><span class="o">=</span><span class="n">prior</span><span class="p">,</span>
-        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
 
+    <span class="c1"># Ensure that tempo is in a shape that is compatible with vectorization</span>
+    <span class="n">_bpm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">bpm</span><span class="p">)</span>
+    <span class="n">bpm_expanded</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">expand_to</span><span class="p">(</span><span class="n">_bpm</span><span class="p">,</span>
+                                  <span class="n">ndim</span><span class="o">=</span><span class="n">onset_envelope</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span>
+                                  <span class="n">axes</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">_bpm</span><span class="o">.</span><span class="n">ndim</span><span class="p">))</span>
+                                
     <span class="c1"># Then, run the tracker</span>
-    <span class="n">beats</span> <span class="o">=</span> <span class="n">__beat_tracker</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">bpm</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="o">/</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
+    <span class="n">beats</span> <span class="o">=</span> <span class="n">__beat_tracker</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">bpm_expanded</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="o">/</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">beats</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;samples&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">))</span>
-    <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid unit type: </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+    <span class="k">if</span> <span class="n">sparse</span><span class="p">:</span>
+        <span class="n">beats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">beats</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;samples&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">units</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">frames_to_time</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid unit type: </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">bpm</span><span class="p">,</span> <span class="n">beats</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="plp"><a class="viewcode-back" href="../../generated/librosa.beat.plp.html#librosa.beat.plp">[docs]</a><span class="k">def</span> <span class="nf">plp</span><span class="p">(</span>
@@ -509,19 +573,19 @@
 
 
 <span class="k">def</span> <span class="nf">__beat_tracker</span><span class="p">(</span>
-    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">bpm</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">fft_res</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tightness</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">onset_envelope</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">bpm</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">frame_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tightness</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Tracks beats in an onset strength envelope.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    onset_envelope : np.ndarray [shape=(n,)]</span>
+<span class="sd">    onset_envelope : np.ndarray [shape=(..., n,)]</span>
 <span class="sd">        onset strength envelope</span>
-<span class="sd">    bpm : float [scalar]</span>
+<span class="sd">    bpm : float [scalar] or np.ndarray [shape=(...)]</span>
 <span class="sd">        tempo estimate</span>
-<span class="sd">    fft_res : float [scalar]</span>
-<span class="sd">        resolution of the fft (sr / hop_length)</span>
-<span class="sd">    tightness : float [scalar]</span>
+<span class="sd">    frame_rate : float [scalar]</span>
+<span class="sd">        frame rate of the spectrogram (sr / hop_length, frames per second)</span>
+<span class="sd">    tightness : float [scalar, positive]</span>
 <span class="sd">        how closely do we adhere to bpm?</span>
 <span class="sd">    trim : bool [scalar]</span>
 <span class="sd">        trim leading/trailing beats with weak onsets?</span>
@@ -531,114 +595,227 @@
 <span class="sd">    beats : np.ndarray [shape=(n,)]</span>
 <span class="sd">        frame numbers of beat events</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">bpm</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;bpm must be strictly positive&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bpm</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bpm=</span><span class="si">{</span><span class="n">bpm</span><span class="si">}</span><span class="s2"> must be strictly positive&quot;</span><span class="p">)</span>
 
-    <span class="c1"># convert bpm to a sample period for searching</span>
-    <span class="n">period</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mf">60.0</span> <span class="o">*</span> <span class="n">fft_res</span> <span class="o">/</span> <span class="n">bpm</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tightness</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;tightness must be strictly positive&quot;</span><span class="p">)</span>
+
+    <span class="c1"># TODO: this might be better accomplished with a np.broadcast_shapes check</span>
+    <span class="k">if</span> <span class="n">bpm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">onset_envelope</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid bpm shape=</span><span class="si">{</span><span class="n">bpm</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> does not match onset envelope shape=</span><span class="si">{</span><span class="n">onset_envelope</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># convert bpm to frames per beat (rounded)</span>
+    <span class="c1"># [frames / sec] * [60 sec / min] / [beat / min] = [frames / beat]</span>
+    <span class="n">frames_per_beat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">frame_rate</span> <span class="o">*</span> <span class="mf">60.0</span> <span class="o">/</span> <span class="n">bpm</span><span class="p">)</span>
 
     <span class="c1"># localscore is a smoothed version of AGC&#39;d onset envelope</span>
-    <span class="n">localscore</span> <span class="o">=</span> <span class="n">__beat_local_score</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+    <span class="n">localscore</span> <span class="o">=</span> <span class="n">__beat_local_score</span><span class="p">(</span><span class="n">__normalize_onsets</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">),</span> <span class="n">frames_per_beat</span><span class="p">)</span>
 
     <span class="c1"># run the DP</span>
-    <span class="n">backlink</span><span class="p">,</span> <span class="n">cumscore</span> <span class="o">=</span> <span class="n">__beat_track_dp</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">tightness</span><span class="p">)</span>
-
-    <span class="c1"># get the position of the last beat</span>
-    <span class="n">beats</span> <span class="o">=</span> <span class="p">[</span><span class="n">__last_beat</span><span class="p">(</span><span class="n">cumscore</span><span class="p">)]</span>
+    <span class="n">backlink</span><span class="p">,</span> <span class="n">cumscore</span> <span class="o">=</span> <span class="n">__beat_track_dp</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">frames_per_beat</span><span class="p">,</span> <span class="n">tightness</span><span class="p">)</span>
 
     <span class="c1"># Reconstruct the beat path from backlinks</span>
-    <span class="k">while</span> <span class="n">backlink</span><span class="p">[</span><span class="n">beats</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">beats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">backlink</span><span class="p">[</span><span class="n">beats</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-
-    <span class="c1"># Put the beats in ascending order</span>
-    <span class="c1"># Convert into an array of frame numbers</span>
-    <span class="n">beats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">beats</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">tail</span> <span class="o">=</span> <span class="n">__last_beat</span><span class="p">(</span><span class="n">cumscore</span><span class="p">)</span>
+    <span class="n">beats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">__dp_backtrack</span><span class="p">(</span><span class="n">backlink</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="n">beats</span><span class="p">)</span>
 
     <span class="c1"># Discard spurious trailing beats</span>
-    <span class="n">beats</span> <span class="o">=</span> <span class="n">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
+    <span class="n">beats</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">beats</span>
 
 
 <span class="c1"># -- Helper functions for beat tracking</span>
 <span class="k">def</span> <span class="nf">__normalize_onsets</span><span class="p">(</span><span class="n">onsets</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map onset strength function into the range [0, 1]&quot;&quot;&quot;</span>
-    <span class="n">norm</span> <span class="o">=</span> <span class="n">onsets</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">onsets</span> <span class="o">=</span> <span class="n">onsets</span> <span class="o">/</span> <span class="n">norm</span>
-    <span class="k">return</span> <span class="n">onsets</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalize onset strength by its standard deviation&quot;&quot;&quot;</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">onsets</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">onsets</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">onsets</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">__beat_local_score</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">period</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the local score for an onset envlope and given period&quot;&quot;&quot;</span>
-    <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">period</span><span class="p">,</span> <span class="n">period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">32.0</span> <span class="o">/</span> <span class="n">period</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">__normalize_onsets</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">),</span> <span class="n">window</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;void(float32[:], float32[:], float32[:])&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;void(float64[:], float64[:], float64[:])&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;(t),(n)-&gt;(t)&quot;</span><span class="p">,</span>
+        <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">__beat_local_score</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">frames_per_beat</span><span class="p">,</span> <span class="n">localscore</span><span class="p">):</span>
+    <span class="c1"># This function essentially implements a same-mode convolution,</span>
+    <span class="c1"># but also allows for a time-varying convolution-like filter to support dynamic tempo.</span>
 
 
-<span class="k">def</span> <span class="nf">__beat_track_dp</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">tightness</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames_per_beat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Static tempo mode</span>
+        <span class="c1"># NOTE: when we can bump the minimum numba to 0.58, we can eliminate this branch and just use</span>
+        <span class="c1"># np.convolve(..., mode=&#39;same&#39;) directly</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">frames_per_beat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">frames_per_beat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">32.0</span> <span class="o">/</span> <span class="n">frames_per_beat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+        <span class="c1"># This is a vanilla same-mode convolution</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)):</span>
+            <span class="n">localscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+            <span class="c1"># we need i + K // 2 - k &lt; N ==&gt; k &gt; i + K //2 - N</span>
+            <span class="c1"># and i + K // 2 - k &gt;= 0 ==&gt;    k &lt;= i + K // 2</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">K</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">K</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">K</span><span class="p">)):</span>
+                <span class="n">localscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">window</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">onset_envelope</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">K</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span><span class="n">k</span><span class="p">]</span>
+                
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames_per_beat</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">):</span>
+        <span class="c1"># Time-varying tempo estimates</span>
+        <span class="c1"># This isn&#39;t exactly a convolution anymore, since the filter is time-varying, but it&#39;s pretty close</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">)):</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">frames_per_beat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">frames_per_beat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">32.0</span> <span class="o">/</span> <span class="n">frames_per_beat</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">frames_per_beat</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
+            
+            <span class="n">localscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">K</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">K</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">K</span><span class="p">)):</span>
+                <span class="n">localscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">window</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">onset_envelope</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">K</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span>
+
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;void(float32[:], float32[:], float32, int32[:], float32[:])&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;void(float64[:], float64[:], float32, int32[:], float64[:])&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;(t),(n),()-&gt;(t),(t)&quot;</span><span class="p">,</span>
+        <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">__beat_track_dp</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">frames_per_beat</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">backlink</span><span class="p">,</span> <span class="n">cumscore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Core dynamic program for beat tracking&quot;&quot;&quot;</span>
-    <span class="n">backlink</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">cumscore</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">localscore</span><span class="p">)</span>
-
-    <span class="c1"># Search range for previous beat</span>
-    <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">period</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">period</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-
-    <span class="c1"># Make a score window, which begins biased toward start_bpm and skewed</span>
-    <span class="k">if</span> <span class="n">tightness</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;tightness must be strictly positive&quot;</span><span class="p">)</span>
-
-    <span class="n">txwt</span> <span class="o">=</span> <span class="o">-</span><span class="n">tightness</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="n">window</span> <span class="o">/</span> <span class="n">period</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Threshold for the first beat to exceed</span>
+    <span class="n">score_thresh</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">localscore</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
     <span class="c1"># Are we on the first beat?</span>
     <span class="n">first_beat</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">backlink</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">cumscore</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">localscore</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># If tv == 0, then tv * i will always be 0, so we only ever use frames_per_beat[0]</span>
+    <span class="c1"># If tv == 1, then tv * i = i, so we use the time-varying FPB</span>
+    <span class="n">tv</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frames_per_beat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">score_i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">localscore</span><span class="p">):</span>
-        <span class="c1"># Are we reaching back before time 0?</span>
-        <span class="n">z_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="n">window</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)))</span>
-
-        <span class="c1"># Search over all possible predecessors</span>
-        <span class="n">candidates</span> <span class="o">=</span> <span class="n">txwt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">candidates</span><span class="p">[</span><span class="n">z_pad</span><span class="p">:]</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">[</span><span class="n">z_pad</span><span class="p">:]</span> <span class="o">+</span> <span class="n">cumscore</span><span class="p">[</span><span class="n">window</span><span class="p">[</span><span class="n">z_pad</span><span class="p">:]]</span>
-
-        <span class="c1"># Find the best preceding beat</span>
-        <span class="n">beat_location</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+        <span class="n">best_score</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">beat_location</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1"># Search over all possible predecessors to find the best preceding beat</span>
+        <span class="c1"># NOTE: to provide time-varying tempo estimates, we replace</span>
+        <span class="c1"># frames_per_beat[0] by frames_per_beat[i] in this loop body.</span>
+        <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">frames_per_beat</span><span class="p">[</span><span class="n">tv</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">frames_per_beat</span><span class="p">[</span><span class="n">tv</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Once we&#39;re searching past the start, break out</span>
+            <span class="k">if</span> <span class="n">loc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="n">cumscore</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span> <span class="o">-</span> <span class="n">tightness</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">loc</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">frames_per_beat</span><span class="p">[</span><span class="n">tv</span> <span class="o">*</span> <span class="n">i</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
+            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
+                <span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
+                <span class="n">beat_location</span> <span class="o">=</span> <span class="n">loc</span>
 
         <span class="c1"># Add the local score</span>
-        <span class="n">cumscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">score_i</span> <span class="o">+</span> <span class="n">candidates</span><span class="p">[</span><span class="n">beat_location</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">beat_location</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">cumscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">score_i</span> <span class="o">+</span> <span class="n">best_score</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No back-link found, so just use the current score</span>
+            <span class="n">cumscore</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">score_i</span>
 
         <span class="c1"># Special case the first onset.  Stop if the localscore is small</span>
-        <span class="k">if</span> <span class="n">first_beat</span> <span class="ow">and</span> <span class="n">score_i</span> <span class="o">&lt;</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">localscore</span><span class="o">.</span><span class="n">max</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">first_beat</span> <span class="ow">and</span> <span class="n">score_i</span> <span class="o">&lt;</span> <span class="n">score_thresh</span><span class="p">:</span>
             <span class="n">backlink</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">backlink</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="p">[</span><span class="n">beat_location</span><span class="p">]</span>
+            <span class="n">backlink</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">beat_location</span>
             <span class="n">first_beat</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="c1"># Update the time range</span>
-        <span class="n">window</span> <span class="o">=</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="n">backlink</span><span class="p">,</span> <span class="n">cumscore</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;void(float32[:], bool_[:], bool_, bool_[:])&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;void(float64[:], bool_[:], bool_, bool_[:])&quot;</span>
+        <span class="p">],</span>
+    <span class="s2">&quot;(t),(t),()-&gt;(t)&quot;</span><span class="p">,</span>
+    <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+<span class="k">def</span> <span class="nf">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">,</span> <span class="n">beats</span><span class="p">,</span> <span class="n">trim</span><span class="p">,</span> <span class="n">beats_trimmed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove spurious leading and trailing beats from the detection array&quot;&quot;&quot;</span>
+    <span class="c1"># Populate the trimmed beats array with the existing values</span>
+    <span class="n">beats_trimmed</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">beats</span>
 
+    <span class="c1"># Compute the threshold: 1/2 RMS of the smoothed beat envelope</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Slicing here to implement same-mode convolution in older numba where</span>
+    <span class="c1"># mode=&#39;same&#39; is not yet supported</span>
+    <span class="n">smooth_boe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">localscore</span><span class="p">[</span><span class="n">beats</span><span class="p">],</span> <span class="n">w</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">localscore</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">__last_beat</span><span class="p">(</span><span class="n">cumscore</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the last beat from the cumulative score array&quot;&quot;&quot;</span>
-    <span class="n">maxes</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">localmax</span><span class="p">(</span><span class="n">cumscore</span><span class="p">)</span>
-    <span class="n">med_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">cumscore</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">maxes</span><span class="p">)])</span>
-
-    <span class="c1"># The last of these is the last beat (since score generally increases)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">((</span><span class="n">cumscore</span> <span class="o">*</span> <span class="n">maxes</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">med_score</span><span class="p">))</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">__trim_beats</span><span class="p">(</span><span class="n">localscore</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">beats</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">trim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove spurious leading and trailing beats&quot;&quot;&quot;</span>
-    <span class="n">smooth_boe</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">localscore</span><span class="p">[</span><span class="n">beats</span><span class="p">],</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">fftbins</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
-
+    <span class="c1"># This logic is to preserve old behavior and always discard beats detected with oenv==0</span>
     <span class="k">if</span> <span class="n">trim</span><span class="p">:</span>
-        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">smooth_boe</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">smooth_boe</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    <span class="n">valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">smooth_boe</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="c1"># Suppress bad beats</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">localscore</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="n">beats_trimmed</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="n">beats</span><span class="p">[</span><span class="n">valid</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="p">:</span> <span class="n">valid</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">localscore</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">localscore</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="n">beats_trimmed</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">__last_beat</span><span class="p">(</span><span class="n">cumscore</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identify the position of the last detected beat&quot;&quot;&quot;</span>
+    <span class="c1"># Use a masked array to support multidimensional statistics</span>
+    <span class="c1"># We negate the mask here because of numpy masked array semantics</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">util</span><span class="o">.</span><span class="n">localmax</span><span class="p">(</span><span class="n">cumscore</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">masked_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cumscore</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">medians</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">masked_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">thresholds</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">medians</span><span class="p">)</span>
+
+    <span class="c1"># Also find the last beat positions</span>
+    <span class="n">tail</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">cumscore</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">__last_beat_selector</span><span class="p">(</span><span class="n">cumscore</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">,</span> <span class="n">tail</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tail</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;void(float32[:], bool_[:], float32, int64[:])&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;void(float64[:], bool_[:], float64, int64[:])&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;(t),(t),()-&gt;()&quot;</span><span class="p">,</span>
+        <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+<span class="k">def</span> <span class="nf">__last_beat_selector</span><span class="p">(</span><span class="n">cumscore</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vectorized helper to identify the last valid beat position:</span>
+
+<span class="sd">    cumscore[n] &gt; threshold and not mask[n]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cumscore</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mask</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="ow">and</span> <span class="n">cumscore</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">guvectorize</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;void(int32[:], int32, bool_[:])&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;void(int64[:], int64, bool_[:])&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;(t),()-&gt;(t)&quot;</span><span class="p">,</span>
+        <span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+<span class="k">def</span> <span class="nf">__dp_backtrack</span><span class="p">(</span><span class="n">backlinks</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="n">beats</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate the beat indicator array from a sequence of backlinks&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">tail</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">beats</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">backlinks</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 </pre></div>
 
 

@@ -153,7 +153,7 @@
 <h1>librosa.util.peak_pick<a class="headerlink" href="#librosa-util-peak-pick" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.util.peak_pick">
-<span class="sig-prename descclassname"><span class="pre">librosa.util.</span></span><span class="sig-name descname"><span class="pre">peak_pick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/util/utils.html#peak_pick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.util.peak_pick" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.util.</span></span><span class="sig-name descname"><span class="pre">peak_pick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_avg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/util/utils.html#peak_pick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.util.peak_pick" title="Permalink to this definition"></a></dt>
 <dd><p>Use a flexible heuristic to pick peaks in a signal.</p>
 <p>A sample n is selected as an peak if the corresponding <code class="docutils literal notranslate"><span class="pre">x[n]</span></code>
 fulfills the following three conditions:</p>
@@ -179,7 +179,7 @@ fulfills the following three conditions:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>x</strong><span class="classifier">np.ndarray [shape=(n,)]</span></dt><dd><p>input signal to peak picks from</p>
+<dt><strong>x</strong><span class="classifier">np.ndarray</span></dt><dd><p>input signal to peak picks from</p>
 </dd>
 <dt><strong>pre_max</strong><span class="classifier">int &gt;= 0 [scalar]</span></dt><dd><p>number of samples before <code class="docutils literal notranslate"><span class="pre">n</span></code> over which max is computed</p>
 </dd>
@@ -193,11 +193,18 @@ fulfills the following three conditions:</p>
 </dd>
 <dt><strong>wait</strong><span class="classifier">int &gt;= 0 [scalar]</span></dt><dd><p>number of samples to wait after picking a peak</p>
 </dd>
+<dt><strong>sparse</strong><span class="classifier">bool [scalar]</span></dt><dd><p>If <em class="xref py py-obj">True</em>, the output are indices of detected peaks.
+If <em class="xref py py-obj">False</em>, the output is a dense boolean array of the same
+shape as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int [scalar]</span></dt><dd><p>the axis over which to detect peaks.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>peaks</strong><span class="classifier">np.ndarray [shape=(n_peaks,), dtype=int]</span></dt><dd><p>indices of peaks in <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<dt><strong>peaks</strong><span class="classifier">np.ndarray [shape=(n_peaks,) or shape=x.shape, dtype=int or bool]</span></dt><dd><p>indices of peaks in <code class="docutils literal notranslate"><span class="pre">x</span></code> (sparse=True)
+or a boolean array where <em class="xref py py-obj">peaks[…, n]</em> indicates a peak at frame index <em class="xref py py-obj">n</em> (sparse=False)</p>
 </dd>
 </dl>
 </dd>
@@ -218,6 +225,10 @@ fulfills the following three conditions:</p>
 <span class="go">array([  3,  27,  40,  61,  72,  88, 103])</span>
 </pre></div>
 </div>
+<p>Using dense output to make a boolean array of peak indicators
+&gt;&gt;&gt; librosa.util.peak_pick(onset_env, pre_max=3, post_max=3, pre_avg=3, post_avg=5,
+…                        delta=0.5, wait=10, sparse=False)
+array([False, False, …, False, False])</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">times</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">times_like</span><span class="p">(</span><span class="n">onset_env</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

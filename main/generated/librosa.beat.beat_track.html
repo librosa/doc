@@ -137,7 +137,7 @@
 <h1>librosa.beat.beat_track<a class="headerlink" href="#librosa-beat-beat-track" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.beat.beat_track">
-<span class="sig-prename descclassname"><span class="pre">librosa.beat.</span></span><span class="sig-name descname"><span class="pre">beat_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#beat_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.beat_track" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.beat.</span></span><span class="sig-name descname"><span class="pre">beat_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onset_envelope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frames'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/beat.html#beat_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.beat.beat_track" title="Permalink to this definition"></a></dt>
 <dd><p>Dynamic programming beat tracker.</p>
 <p>Beats are detected in three stages, following the method of <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
 <blockquote>
@@ -158,12 +158,12 @@ Journal of New Music Research 36.1 (2007): 51-60.
 </aside>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>y</strong><span class="classifier">np.ndarray [shape=(n,)] or None</span></dt><dd><p>audio time series</p>
+<dd class="field-odd"><dl>
+<dt><strong>y</strong><span class="classifier">np.ndarray [shape=(…, n)] or None</span></dt><dd><p>audio time series</p>
 </dd>
 <dt><strong>sr</strong><span class="classifier">number &gt; 0 [scalar]</span></dt><dd><p>sampling rate of <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
 </dd>
-<dt><strong>onset_envelope</strong><span class="classifier">np.ndarray [shape=(n,)] or None</span></dt><dd><p>(optional) pre-computed onset strength envelope.</p>
+<dt><strong>onset_envelope</strong><span class="classifier">np.ndarray [shape=(…, m)] or None</span></dt><dd><p>(optional) pre-computed onset strength envelope.</p>
 </dd>
 <dt><strong>hop_length</strong><span class="classifier">int &gt; 0 [scalar]</span></dt><dd><p>number of audio samples between successive <code class="docutils literal notranslate"><span class="pre">onset_envelope</span></code> values</p>
 </dd>
@@ -173,8 +173,12 @@ Journal of New Music Research 36.1 (2007): 51-60.
 </dd>
 <dt><strong>trim</strong><span class="classifier">bool [scalar]</span></dt><dd><p>trim leading/trailing beats with weak onsets</p>
 </dd>
-<dt><strong>bpm</strong><span class="classifier">float [scalar]</span></dt><dd><p>(optional) If provided, use <code class="docutils literal notranslate"><span class="pre">bpm</span></code> as the tempo instead of
+<dt><strong>bpm</strong><span class="classifier">float [scalar] or np.ndarray [shape=(…)]</span></dt><dd><p>(optional) If provided, use <code class="docutils literal notranslate"><span class="pre">bpm</span></code> as the tempo instead of
 estimating it from <code class="docutils literal notranslate"><span class="pre">onsets</span></code>.</p>
+<p>If multichannel, tempo estimates can be provided for all channels.</p>
+<p>Tempo estimates may also be time-varying, in which case the shape
+of <code class="docutils literal notranslate"><span class="pre">bpm</span></code> should match that of <code class="docutils literal notranslate"><span class="pre">onset_envelope</span></code>, i.e.,
+one estimate provided for each frame.</p>
 </dd>
 <dt><strong>prior</strong><span class="classifier">scipy.stats.rv_continuous [optional]</span></dt><dd><p>An optional prior distribution over tempo.
 If provided, <code class="docutils literal notranslate"><span class="pre">start_bpm</span></code> will be ignored.</p>
@@ -182,14 +186,28 @@ If provided, <code class="docutils literal notranslate"><span class="pre">start_
 <dt><strong>units</strong><span class="classifier">{‘frames’, ‘samples’, ‘time’}</span></dt><dd><p>The units to encode detected beat events in.
 By default, ‘frames’ are used.</p>
 </dd>
+<dt><strong>sparse</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), detections are returned as an array of frames,
+samples, or time indices (as specified by <code class="docutils literal notranslate"><span class="pre">units=</span></code>).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, detections are encoded as a dense boolean array where
+<code class="docutils literal notranslate"><span class="pre">beats[...,</span> <span class="pre">n]</span></code> is true if there’s a beat at frame index <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>multi-channel input is only supported when <code class="docutils literal notranslate"><span class="pre">sparse=False</span></code>.</p>
+</div>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>tempo</strong><span class="classifier">float [scalar, non-negative]</span></dt><dd><p>estimated global tempo (in beats per minute)</p>
+<dd class="field-even"><dl>
+<dt><strong>tempo</strong><span class="classifier">float [scalar, non-negative] or np.ndarray</span></dt><dd><p>estimated global tempo (in beats per minute)</p>
+<p>If multi-channel and <code class="docutils literal notranslate"><span class="pre">bpm</span></code> is not provided, a separate
+tempo will be returned for each channel</p>
 </dd>
-<dt><strong>beats</strong><span class="classifier">np.ndarray [shape=(m,)]</span></dt><dd><p>estimated beat event locations in the specified units
-(default is frame indices)</p>
+<dt><strong>beats</strong><span class="classifier">np.ndarray</span></dt><dd><p>estimated beat event locations.</p>
+<p>If <em class="xref py py-obj">sparse=True</em> (default), beat locations are given in the specified units
+(default is frame indices).</p>
+<p>If <em class="xref py py-obj">sparse=False</em> (required for multichannel input), beat events are
+indicated by a boolean for each frame.</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -235,6 +253,17 @@ or if <code class="docutils literal notranslate"><span class="pre">units</span><
 <span class="go">       7.105, 7.546, 7.988, 8.429])</span>
 </pre></div>
 </div>
+<p>Output beat detections as a boolean array instead of frame indices
+&gt;&gt;&gt; tempo, beats_dense = librosa.beat.beat_track(y=y, sr=sr, sparse=False)
+&gt;&gt;&gt; beats_dense
+array([False, False, False,  True, False, False, False, False,</p>
+<blockquote>
+<div><p>False, False, False, False, False, False, False, False,
+False, False, False, False, …, False, False,  True,
+False, False, False, False, False, False, False, False,
+False, False, False, False, False, False, False, False,
+False])</p>
+</div></blockquote>
 <p>Track beats using a pre-computed onset envelope</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">onset_env</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">onset</span><span class="o">.</span><span class="n">onset_strength</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
 <span class="gp">... </span>                                         <span class="n">aggregate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">)</span>
