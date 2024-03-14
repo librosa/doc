@@ -123,7 +123,7 @@ response over frequency, and store the results in a list.
     zi = None
 
     # Create a handle for storing the block STFT outputs
-    # After the first block has been processed, we can re-use
+    # After the first block has been processed, we can reuse
     # this buffer instead of allocating a new one for each block.
     D = None
 
@@ -220,7 +220,7 @@ Plot the PCEN spectrum and the resulting magnitudes
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.094 seconds)
+   **Total running time of the script:** (0 minutes 2.230 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_pcen_stream.py:

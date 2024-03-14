@@ -1160,7 +1160,7 @@
     <span class="k">if</span> <span class="n">freq</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># If frequencies are constant over frames, then we only need to fit once</span>
         <span class="n">fitter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">),</span> <span class="n">signature</span><span class="o">=</span><span class="s2">&quot;(f,t)-&gt;(d,t)&quot;</span>  <span class="c1"># type: ignore</span>
+            <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">),</span> <span class="n">signature</span><span class="o">=</span><span class="s2">&quot;(f,t)-&gt;(d,t)&quot;</span>
         <span class="p">)</span>
         <span class="n">coefficients</span> <span class="o">=</span> <span class="n">fitter</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
