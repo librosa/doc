@@ -1062,6 +1062,8 @@
     <span class="n">win_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">fmin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">fmax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tempo_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="n">tempo_max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">480</span><span class="p">,</span>
     <span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;C:maj&quot;</span><span class="p">,</span>
@@ -1189,6 +1191,12 @@
 
 <span class="sd">    fmax : float &gt; 0 [scalar] or None</span>
 <span class="sd">        Used for setting the Mel frequency scales</span>
+
+<span class="sd">    tempo_min : float &gt; 0 [scalar]</span>
+<span class="sd">        Lowest tempo (in beats per minute) for tempogram display.</span>
+
+<span class="sd">    tempo_max : float &gt; 0 [scalar]</span>
+<span class="sd">        Highest tempo (in beats per minute) for tempogram display.</span>
 
 <span class="sd">    tuning : float</span>
 <span class="sd">        Tuning deviation from A440, in fractions of a bin.</span>
@@ -1338,8 +1346,8 @@
     <span class="n">__set_current_image</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 
     <span class="c1"># Set up axis scaling</span>
-    <span class="n">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">x_axis</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
-    <span class="n">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
+    <span class="n">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">x_axis</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">tempo_min</span><span class="o">=</span><span class="n">tempo_min</span><span class="p">,</span> <span class="n">tempo_max</span><span class="o">=</span><span class="n">tempo_max</span><span class="p">)</span>
+    <span class="n">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">tempo_min</span><span class="o">=</span><span class="n">tempo_min</span><span class="p">,</span> <span class="n">tempo_max</span><span class="o">=</span><span class="n">tempo_max</span><span class="p">)</span>
 
     <span class="c1"># Construct tickers and locators</span>
     <span class="n">__decorate_axis</span><span class="p">(</span>
@@ -1452,7 +1460,7 @@
     <span class="k">return</span> <span class="n">axes</span>
 
 
-<span class="k">def</span> <span class="nf">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">which</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">__scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">ax_type</span><span class="p">,</span> <span class="n">which</span><span class="p">,</span> <span class="n">tempo_min</span><span class="p">,</span> <span class="n">tempo_max</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the axis scaling&quot;&quot;&quot;</span>
     <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">thresh</span> <span class="o">=</span> <span class="s2">&quot;linthresh&quot;</span>
@@ -1493,7 +1501,7 @@
     <span class="k">elif</span> <span class="n">ax_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="s2">&quot;fourier_tempo&quot;</span><span class="p">]:</span>
         <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-        <span class="n">limit</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+        <span class="n">limit</span><span class="p">(</span><span class="n">tempo_min</span><span class="p">,</span> <span class="n">tempo_max</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span>
 
