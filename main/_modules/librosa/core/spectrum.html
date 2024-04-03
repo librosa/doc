@@ -1693,7 +1693,7 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;), duration=3)</span>
-<span class="sd">    &gt;&gt;&gt; D = np.abs(librosa.iirt(y))</span>
+<span class="sd">    &gt;&gt;&gt; D = np.abs(librosa.iirt(y, sr=sr))</span>
 <span class="sd">    &gt;&gt;&gt; C = np.abs(librosa.cqt(y=y, sr=sr))</span>
 <span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=2, sharex=True, sharey=True)</span>
 <span class="sd">    &gt;&gt;&gt; img = librosa.display.specshow(librosa.amplitude_to_db(C, ref=np.max),</span>

@@ -441,7 +441,7 @@
 <span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;), duration=3)</span>
 <span class="sd">    &gt;&gt;&gt; D = np.abs(librosa.stft(y))</span>
-<span class="sd">    &gt;&gt;&gt; times = librosa.times_like(D)</span>
+<span class="sd">    &gt;&gt;&gt; times = librosa.times_like(D, sr=sr)</span>
 <span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=2, sharex=True)</span>
 <span class="sd">    &gt;&gt;&gt; librosa.display.specshow(librosa.amplitude_to_db(D, ref=np.max),</span>
 <span class="sd">    ...                          y_axis=&#39;log&#39;, x_axis=&#39;time&#39;, ax=ax[0])</span>
@@ -527,7 +527,7 @@
 
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;), duration=3)</span>
 <span class="sd">    &gt;&gt;&gt; oenv = librosa.onset.onset_strength(y=y, sr=sr)</span>
-<span class="sd">    &gt;&gt;&gt; times = librosa.times_like(oenv)</span>
+<span class="sd">    &gt;&gt;&gt; times = librosa.times_like(oenv, sr=sr)</span>
 <span class="sd">    &gt;&gt;&gt; # Detect events without backtracking</span>
 <span class="sd">    &gt;&gt;&gt; onset_raw = librosa.onset.onset_detect(onset_envelope=oenv,</span>
 <span class="sd">    ...                                        backtrack=False)</span>

@@ -150,6 +150,14 @@
 <dt class="sig sig-object py" id="librosa.effects.trim">
 <span class="sig-prename descclassname"><span class="pre">librosa.effects.</span></span><span class="sig-name descname"><span class="pre">trim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_db=60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref=&lt;function</span> <span class="pre">amax&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length=2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length=512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate=&lt;function</span> <span class="pre">amax&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/effects.html#trim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.effects.trim" title="Permalink to this definition"></a></dt>
 <dd><p>Trim leading and trailing silence from an audio signal.</p>
+<p>Silence is defined as segments of the audio signal that are <em class="xref py py-obj">top_db</em>
+decibels (or more) quieter than a reference level, <em class="xref py py-obj">ref</em>.
+By default, <em class="xref py py-obj">ref</em> is set to the signal’s maximum RMS value.
+It’s important to note that if the entire signal maintains a uniform
+RMS value, there will be no segments considered quieter than the maximum,
+leading to no trimming.
+This implies that a completely silent signal will remain untrimmed with the default <em class="xref py py-obj">ref</em> setting.
+In these situations, an explicit value for <em class="xref py py-obj">ref</em> (in decibels) should be used instead.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -186,7 +194,7 @@ to the peak amplitude in the signal.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Trim the beginning and ending silence</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">yt</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">effects</span><span class="o">.</span><span class="n">trim</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Print the durations</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">get_duration</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">librosa</span><span class="o">.</span><span class="n">get_duration</span><span class="p">(</span><span class="n">yt</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">get_duration</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">),</span> <span class="n">librosa</span><span class="o">.</span><span class="n">get_duration</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
 <span class="go">25.025986394557822 25.007891156462584</span>
 </pre></div>
 </div>

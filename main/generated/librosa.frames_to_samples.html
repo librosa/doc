@@ -199,7 +199,7 @@ to counteract windowing effects when using a non-centered STFT.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="s1">&#39;choice&#39;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tempo</span><span class="p">,</span> <span class="n">beats</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">beat</span><span class="o">.</span><span class="n">beat_track</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">beat_samples</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">beats</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beat_samples</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">frames_to_samples</span><span class="p">(</span><span class="n">beats</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

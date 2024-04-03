@@ -691,8 +691,8 @@
 <span class="sd">    --------</span>
 <span class="sd">    Computing a fundamental frequency (F0) curve from an audio input</span>
 
-<span class="sd">    &gt;&gt;&gt; y = librosa.chirp(fmin=440, fmax=880, duration=5.0)</span>
-<span class="sd">    &gt;&gt;&gt; librosa.yin(y, fmin=440, fmax=880)</span>
+<span class="sd">    &gt;&gt;&gt; y = librosa.chirp(fmin=440, fmax=880, duration=5.0, sr=22050)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.yin(y, fmin=440, fmax=880, sr=22050)</span>
 <span class="sd">    array([442.66354675, 441.95299983, 441.58010963, ...,</span>
 <span class="sd">        871.161732  , 873.99001454, 877.04297681])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -882,9 +882,10 @@
 
 <span class="sd">    &gt;&gt;&gt; y, sr = librosa.load(librosa.ex(&#39;trumpet&#39;))</span>
 <span class="sd">    &gt;&gt;&gt; f0, voiced_flag, voiced_probs = librosa.pyin(y,</span>
+<span class="sd">    ...                                              sr=sr,</span>
 <span class="sd">    ...                                              fmin=librosa.note_to_hz(&#39;C2&#39;),</span>
 <span class="sd">    ...                                              fmax=librosa.note_to_hz(&#39;C7&#39;))</span>
-<span class="sd">    &gt;&gt;&gt; times = librosa.times_like(f0)</span>
+<span class="sd">    &gt;&gt;&gt; times = librosa.times_like(f0, sr=sr)</span>
 
 <span class="sd">    Overlay F0 over a spectrogram</span>
 

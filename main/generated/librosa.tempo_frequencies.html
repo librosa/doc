@@ -185,7 +185,7 @@ to an onset auto-correlation or tempogram matrix.</p>
 </dl>
 <p class="rubric">Examples</p>
 <p>Get the tempo frequencies corresponding to a 384-bin (8-second) tempogram</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">tempo_frequencies</span><span class="p">(</span><span class="mi">384</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">librosa</span><span class="o">.</span><span class="n">tempo_frequencies</span><span class="p">(</span><span class="mi">384</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
 <span class="go">array([      inf,  2583.984,  1291.992, ...,     6.782,</span>
 <span class="go">           6.764,     6.747])</span>
 </pre></div>
