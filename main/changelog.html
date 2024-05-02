@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; librosa 0.10.2dev documentation</title>
+  <title>Changelog &mdash; librosa 0.10.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -22,7 +22,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=817e7d7f"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=69c39844"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -89,6 +89,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#v0-10">v0.10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-10-2">v0.10.2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v0-10-1">v0.10.1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v0-10-0-post2">v0.10.0.post2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v0-10-0-post1">v0.10.0.post1</a></li>
@@ -188,6 +189,46 @@
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading"></a></h1>
 <section id="v0-10">
 <h2>v0.10<a class="headerlink" href="#v0-10" title="Permalink to this heading"></a></h2>
+<section id="v0-10-2">
+<h3>v0.10.2<a class="headerlink" href="#v0-10-2" title="Permalink to this heading"></a></h3>
+<p>2024-05-02</p>
+<dl class="simple">
+<dt>New features</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1829">#1829</a> <em class="xref py py-obj">librosa.cite()</em> returns a DOI (document object identifier) for citing librosa in academic publications. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1766">#1766</a> <a class="reference internal" href="generated/librosa.beat.beat_track.html#librosa.beat.beat_track" title="librosa.beat.beat_track"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.beat.beat_track</span></code></a>, <a class="reference internal" href="generated/librosa.onset.onset_detect.html#librosa.onset.onset_detect" title="librosa.onset.onset_detect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.onset.onset_detect</span></code></a>, and <a class="reference internal" href="generated/librosa.util.peak_pick.html#librosa.util.peak_pick" title="librosa.util.peak_pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.util.peak_pick</span></code></a> now support multi-channel inputs. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1739">#1739</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1756">#1756</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1762">#1762</a> <em class="xref py py-obj">key_to_degrees</em> and <em class="xref py py-obj">key_to_notes</em> now support multiple accidentals in the tonic, and modes (ionian, dorian, etc). <em>Eugene Rabinovich</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1770">#1770</a> Out-of-key notes are now optionally decorated with natural (♮) accidentals. <em>Eugene Rabinovich</em></p></li>
+</ul>
+</dd>
+<dt>Bug fixes</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1814">#1814</a> Corrected an off-by-one error when computing phase advance in <a class="reference internal" href="generated/librosa.phase_vocoder.html#librosa.phase_vocoder" title="librosa.phase_vocoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.phase_vocoder</span></code></a>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1784">#1784</a> Improved handling of warnings in the test suite, and fixed a bug in dtype propagation through <em class="xref py py-obj">ivqt</em>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1733">#1733</a> Fixed an off-by-one error in trimming of detected beats. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1755">#1755</a> Avoid deprecated features in matplotlib and ensure compatibility with mpl 3.8. <em>Brian McFee</em></p></li>
+</ul>
+</dd>
+<dt>Documentation</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1801">#1801</a> Improved top-level structure of the documentation site. <em>Dana Lee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1827">#1827</a> Improvements to example code in documentation to include sampling rate parameters whenever necessary. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1821">#1821</a> Added “copy button” to code examples in documentation. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1789">#1789</a> Fixed type annotations for sampling rate parameters. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1780">#1780</a> Corrected mistake in <em class="xref py py-obj">util.frame</em> documentation. <em>Gao Lei</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1783">#1783</a> Removed problematic language from test code and documentation. <em>Dan Ellis</em></p></li>
+</ul>
+</dd>
+<dt>Other changes and maintenance</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1826">#1826</a> Expanded parameter pass-through support in <em class="xref py py-obj">effects.hpss</em> and related functions. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1822">#1822</a> Allow <em class="xref py py-obj">display.specshow</em> to control min and max tempo in tempogram plots. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1820">#1820</a> Updated github actions. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1813">#1813</a> Improved performance of <em class="xref py py-obj">autocorrelate</em>. <em>Jize Guo</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1808">#1808</a>, <a class="reference external" href="https://github.com/librosa/librosa/issues/1769">#1769</a> Added python 3.11 and 3.12 to CI test matrix. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1790">#1790</a> Explicitly allow scalar inputs in decibel conversions. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1782">#1782</a> Modernized usage of matplotlib colormaps. <em>Phillip S.M. Skelton</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/issues/1765">#1765</a> Modernized usage of importlib and package resources. <em>Matt Pitkin</em></p></li>
+</ul>
+</dd>
+</dl>
+</section>
 <section id="v0-10-1">
 <h3>v0.10.1<a class="headerlink" href="#v0-10-1" title="Permalink to this heading"></a></h3>
 <p>2023-08-16</p>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Caching &mdash; librosa 0.10.2dev documentation</title>
+  <title>Caching &mdash; librosa 0.10.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -22,7 +22,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=817e7d7f"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=69c39844"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -165,7 +165,7 @@ To purge the cache directly, call:</p>
 </section>
 <section id="cache-configuration">
 <h2>Cache configuration<a class="headerlink" href="#cache-configuration" title="Permalink to this heading"></a></h2>
-<p>The cache is implemented on top of <a class="reference external" href="https://joblib.readthedocs.io/en/stable/generated/joblib.Memory.html#joblib.Memory" title="(in joblib v1.3.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code></a>.
+<p>The cache is implemented on top of <a class="reference external" href="https://joblib.readthedocs.io/en/stable/generated/joblib.Memory.html#joblib.Memory" title="(in joblib v1.4.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code></a>.
 The default configuration can be overridden by setting the following environment variables</p>
 <blockquote>
 <div><ul class="simple">
@@ -176,8 +176,8 @@ The default configuration can be overridden by setting the following environment
 <li><p><em class="xref py py-obj">LIBROSA_CACHE_LEVEL</em> : controls the caching level: the larger this value, the more data is cached. <em class="xref py py-obj">{int}</em></p></li>
 </ul>
 </div></blockquote>
-<p>Please refer to the <a class="reference external" href="https://joblib.readthedocs.io/en/stable/generated/joblib.Memory.html#joblib.Memory" title="(in joblib v1.3.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code></a> documentation for a detailed explanation of these parameters.</p>
-<p>As of 0.7, librosa’s cache wraps (rather than extends) the <a class="reference external" href="https://joblib.readthedocs.io/en/stable/generated/joblib.Memory.html#joblib.Memory" title="(in joblib v1.3.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code></a> object.
+<p>Please refer to the <a class="reference external" href="https://joblib.readthedocs.io/en/stable/generated/joblib.Memory.html#joblib.Memory" title="(in joblib v1.4.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code></a> documentation for a detailed explanation of these parameters.</p>
+<p>As of 0.7, librosa’s cache wraps (rather than extends) the <a class="reference external" href="https://joblib.readthedocs.io/en/stable/generated/joblib.Memory.html#joblib.Memory" title="(in joblib v1.4.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.Memory</span></code></a> object.
 The memory object can be directly accessed by <code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.cache.memory</span></code>.</p>
 </section>
 <section id="cache-levels">

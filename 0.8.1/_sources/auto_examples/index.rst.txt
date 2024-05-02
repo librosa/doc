@@ -10,6 +10,7 @@ Advanced examples
 
     <div class="sphx-glr-thumbnails">
 
+.. thumbnail-parent-div-open
 
 .. raw:: html
 
@@ -180,6 +181,8 @@ Advanced examples
       <div class="sphx-glr-thumbnail-title">Using display.specshow</div>
     </div>
 
+
+.. thumbnail-parent-div-close
 
 .. raw:: html
 
