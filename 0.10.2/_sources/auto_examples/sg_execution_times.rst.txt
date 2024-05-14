@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:48.986** total execution time for 15 files **from auto_examples**:
+**01:47.652** total execution time for 15 files **from auto_examples**:
 
 .. container::
 
@@ -33,47 +33,47 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_plot_patch_generation.py` (``plot_patch_generation.py``)
-     - 00:36.890
+     - 00:36.698
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_vocal_separation.py` (``plot_vocal_separation.py``)
-     - 00:18.759
+     - 00:18.828
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_chroma.py` (``plot_chroma.py``)
-     - 00:14.632
+     - 00:14.716
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_display.py` (``plot_display.py``)
-     - 00:09.688
+     - 00:09.467
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_rainbowgram.py` (``plot_rainbowgram.py``)
-     - 00:05.344
+     - 00:05.504
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_segmentation.py` (``plot_segmentation.py``)
-     - 00:04.913
+     - 00:04.802
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_hprss.py` (``plot_hprss.py``)
-     - 00:03.884
+     - 00:03.847
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_music_sync.py` (``plot_music_sync.py``)
-     - 00:03.436
+     - 00:03.434
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_spectral_harmonics.py` (``plot_spectral_harmonics.py``)
-     - 00:02.898
+     - 00:02.609
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_audio_playback.py` (``plot_audio_playback.py``)
-     - 00:02.259
+     - 00:02.019
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_pcen_stream.py` (``plot_pcen_stream.py``)
-     - 00:02.030
+     - 00:01.918
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_viterbi.py` (``plot_viterbi.py``)
-     - 00:01.758
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)
-     - 00:00.948
+     - 00:01.755
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_dynamic_beat.py` (``plot_dynamic_beat.py``)
-     - 00:00.908
+     - 00:00.898
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)
+     - 00:00.646
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_presets.py` (``plot_presets.py``)
-     - 00:00.639
+     - 00:00.511
      - 0.0
