@@ -145,6 +145,7 @@
 <span class="kn">from</span> <span class="nn">..core.constantq</span> <span class="kn">import</span> <span class="n">cqt</span><span class="p">,</span> <span class="n">hybrid_cqt</span><span class="p">,</span> <span class="n">vqt</span>
 <span class="kn">from</span> <span class="nn">..core.pitch</span> <span class="kn">import</span> <span class="n">estimate_tuning</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Collection</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">DTypeLike</span>
 <span class="kn">from</span> <span class="nn">.._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span><span class="p">,</span> <span class="n">_WindowSpec</span><span class="p">,</span> <span class="n">_PadMode</span><span class="p">,</span> <span class="n">_PadModeSTFT</span>
 
@@ -1966,6 +1967,7 @@
     <span class="n">dct_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
     <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ortho&quot;</span><span class="p">,</span>
     <span class="n">lifter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">mel_norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;slaney&quot;</span><span class="p">],</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">&quot;slaney&quot;</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Mel-frequency cepstral coefficients (MFCCs)</span>
@@ -1997,6 +1999,7 @@
 <span class="sd">            M[n, :] &lt;- M[n, :] * (1 + sin(pi * (n + 1) / lifter) * lifter / 2)</span>
 <span class="sd">        Setting ``lifter &gt;= 2 * n_mfcc`` emphasizes the higher-order coefficients.</span>
 <span class="sd">        As ``lifter`` increases, the coefficient weighting becomes approximately linear.</span>
+<span class="sd">    mel_norm : `norm` argument to `melspectrogram`</span>
 <span class="sd">    **kwargs : additional keyword arguments to `melspectrogram`</span>
 <span class="sd">        if operating on time series input</span>
 <span class="sd">    n_fft : int &gt; 0 [scalar]</span>
@@ -2114,7 +2117,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">S</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># multichannel behavior may be different due to relative noise floor differences between channels</span>
-        <span class="n">S</span> <span class="o">=</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">melspectrogram</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">power_to_db</span><span class="p">(</span><span class="n">melspectrogram</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">mel_norm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
 
     <span class="n">M</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">dct</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">dct_type</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)[</span>
         <span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">n_mfcc</span><span class="p">,</span> <span class="p">:</span>
