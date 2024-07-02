@@ -836,7 +836,7 @@
         <span class="p">)</span>
 
         <span class="c1"># Transpose the basis</span>
-        <span class="n">inv_basis</span> <span class="o">=</span> <span class="n">fft_basis</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+        <span class="n">inv_basis</span> <span class="o">=</span> <span class="n">fft_basis</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
 
         <span class="c1"># Compute each filter&#39;s frequency-domain power</span>
         <span class="n">freq_power</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">abs2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">inv_basis</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
