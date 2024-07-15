@@ -2336,14 +2336,14 @@
 <span class="sd">    &gt;&gt;&gt; # Auto-correlate with up to 10 seconds lag</span>
 <span class="sd">    &gt;&gt;&gt; odf_ac = librosa.autocorrelate(odf, max_size=10 * sr // 512)</span>
 <span class="sd">    &gt;&gt;&gt; # Normalize</span>
-<span class="sd">    &gt;&gt;&gt; odf_ac = librosa.util.normalize(odf_ac, norm=np.inf)</span>
+<span class="sd">    &gt;&gt;&gt; odf_ac_norm = librosa.util.normalize(odf_ac, norm=np.inf)</span>
 <span class="sd">    &gt;&gt;&gt; # Compute the scale transform</span>
-<span class="sd">    &gt;&gt;&gt; odf_ac_scale = librosa.fmt(librosa.util.normalize(odf_ac), n_fmt=512)</span>
+<span class="sd">    &gt;&gt;&gt; odf_ac_scale = librosa.fmt(odf_ac_norm, n_fmt=512)</span>
 <span class="sd">    &gt;&gt;&gt; # Plot the results</span>
 <span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=3)</span>
 <span class="sd">    &gt;&gt;&gt; ax[0].plot(odf, label=&#39;Onset strength&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[0].set(xlabel=&#39;Time (frames)&#39;, title=&#39;Onset strength&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; ax[1].plot(odf_ac, label=&#39;Onset autocorrelation&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].plot(odf_ac_norm, label=&#39;Onset autocorrelation&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[1].set(xlabel=&#39;Lag (frames)&#39;, title=&#39;Onset autocorrelation&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[2].semilogy(np.abs(odf_ac_scale), label=&#39;Scale transform magnitude&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ax[2].set(xlabel=&#39;scale coefficients&#39;)</span>
