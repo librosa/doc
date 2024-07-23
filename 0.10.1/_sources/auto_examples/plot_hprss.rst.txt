@@ -381,7 +381,7 @@ And the percussive component:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.756 seconds)
+   **Total running time of the script:** (0 minutes 3.855 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_hprss.py:
@@ -397,6 +397,10 @@ And the percussive component:
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_hprss.py <plot_hprss.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_hprss.zip <plot_hprss.zip>`
 
 
 .. only:: html

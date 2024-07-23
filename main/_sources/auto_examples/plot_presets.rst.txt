@@ -166,7 +166,7 @@ Now we can load in a file and do some analysis with the new defaults
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.622 seconds)
+   **Total running time of the script:** (0 minutes 0.734 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_presets.py:
@@ -182,6 +182,10 @@ Now we can load in a file and do some analysis with the new defaults
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_presets.py <plot_presets.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_presets.zip <plot_presets.zip>`
 
 
 .. only:: html

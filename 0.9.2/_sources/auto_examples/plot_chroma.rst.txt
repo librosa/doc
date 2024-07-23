@@ -344,7 +344,7 @@ A comparison between the original constant-Q chromagram and the CENS features.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 18.270 seconds)
+   **Total running time of the script:** (0 minutes 18.187 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_chroma.py:
@@ -360,6 +360,10 @@ A comparison between the original constant-Q chromagram and the CENS features.
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_chroma.py <plot_chroma.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_chroma.zip <plot_chroma.zip>`
 
 
 .. only:: html

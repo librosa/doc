@@ -370,6 +370,10 @@ with a constant f0 to produce a monotone effect.
 
       :download:`Download Python source code: plot_spectral_harmonics.py <plot_spectral_harmonics.py>`
 
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_spectral_harmonics.zip <plot_spectral_harmonics.zip>`
+
 
 .. only:: html
 

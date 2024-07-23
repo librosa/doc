@@ -353,7 +353,7 @@ with a constant f0 to produce a monotone effect.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.612 seconds)
+   **Total running time of the script:** (0 minutes 2.678 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_spectral_harmonics.py:
@@ -369,6 +369,10 @@ with a constant f0 to produce a monotone effect.
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_spectral_harmonics.py <plot_spectral_harmonics.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_spectral_harmonics.zip <plot_spectral_harmonics.zip>`
 
 
 .. only:: html

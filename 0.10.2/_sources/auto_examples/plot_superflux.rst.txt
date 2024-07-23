@@ -247,7 +247,7 @@ does not detect onset events at those points.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.696 seconds)
+   **Total running time of the script:** (0 minutes 0.650 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_superflux.py:
@@ -263,6 +263,10 @@ does not detect onset events at those points.
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_superflux.py <plot_superflux.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_superflux.zip <plot_superflux.zip>`
 
 
 .. only:: html

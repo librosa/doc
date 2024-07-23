@@ -847,7 +847,7 @@ effectively.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 9.568 seconds)
+   **Total running time of the script:** (0 minutes 9.088 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_display.py:
@@ -863,6 +863,10 @@ effectively.
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_display.py <plot_display.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_display.zip <plot_display.zip>`
 
 
 .. only:: html
