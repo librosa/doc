@@ -190,16 +190,16 @@ offer different trade-offs of speed and quality.</p>
 </dd>
 <dt>‘sinc_best’, ‘sinc_medium’ or ‘sinc_fastest’</dt><dd><p><em class="xref py py-obj">samplerate</em> high-, medium-, and low-quality sinc interpolation.</p>
 </dd>
-<dt>‘soxr_vhq’, ‘soxr_hq’, ‘soxr_mq’ or ‘soxr_lq’</dt><dd><p><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.
-<code class="docutils literal notranslate"><span class="pre">'soxr_hq'</span></code> is the default setting of <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> (fast)</p>
+<dt>‘soxr_vhq’, ‘soxr_hq’, ‘soxr_mq’ or ‘soxr_lq’</dt><dd><p><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.
+<code class="docutils literal notranslate"><span class="pre">'soxr_hq'</span></code> is the default setting of <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> (fast)</p>
 </dd>
-<dt>‘soxr_qq’</dt><dd><p><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> Quick cubic interpolation (very fast)</p>
+<dt>‘soxr_qq’</dt><dd><p><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> Quick cubic interpolation (very fast)</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><em class="xref py py-obj">samplerate</em> and <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> are not installed with <a class="reference internal" href="../core.html#module-librosa" title="librosa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa</span></code></a>.
-To use <em class="xref py py-obj">samplerate</em> or <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a>, they should be installed manually:</p>
+<p><em class="xref py py-obj">samplerate</em> and <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a> are not installed with <a class="reference internal" href="../core.html#module-librosa" title="librosa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa</span></code></a>.
+To use <em class="xref py py-obj">samplerate</em> or <a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#module-soxr" title="(in Python-SoXR v0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr</span></code></a>, they should be installed manually:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install samplerate
 $ pip install soxr
 </pre></div>
@@ -243,7 +243,7 @@ integer-valued.</p>
 <dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v1.14.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.resample</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://resampy.readthedocs.io/en/stable/api.html#module-resampy" title="(in resampy v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resampy</span></code></a></dt><dd></dd>
 <dt><a class="reference external" href="https://python-samplerate.readthedocs.io/en/latest/samplerate/converters.html#samplerate.converters.resample" title="(in python-samplerate v0.1.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">samplerate.converters.resample</span></code></a></dt><dd></dd>
-<dt><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#soxr.resample" title="(in Python-SoXR v0.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr.resample</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://python-soxr.readthedocs.io/en/latest/soxr.html#soxr.resample" title="(in Python-SoXR v0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soxr.resample</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
