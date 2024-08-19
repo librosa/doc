@@ -172,7 +172,7 @@ dimensions are used when computing distance to <code class="docutils literal not
 <dt><strong>metric</strong><span class="classifier">str</span></dt><dd><p>Identifier for the cost-function as documented
 in <em class="xref py py-obj">scipy.spatial.distance.cdist()</em></p>
 </dd>
-<dt><strong>step_sizes_sigma</strong><span class="classifier">np.ndarray [shape=[n, 2]]</span></dt><dd><p>Specifies allowed step sizes as used by the dtw.</p>
+<dt><strong>step_sizes_sigma</strong><span class="classifier">np.ndarray [shape=[n, 2]]</span></dt><dd><p>Specifies allowed step sizes as used by the DTW.</p>
 </dd>
 <dt><strong>weights_add</strong><span class="classifier">np.ndarray [shape=[n, ]]</span></dt><dd><p>Additive weights to penalize certain step sizes.</p>
 </dd>
@@ -195,12 +195,14 @@ the indices of the used steps from the cost accumulation step.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>D</strong><span class="classifier">np.ndarray [shape=(N, M)]</span></dt><dd><p>accumulated cost matrix.
-D[N, M] is the total alignment cost.
-When doing subsequence DTW, D[N,:] indicates a matching function.</p>
+The value at the final index position <code class="docutils literal notranslate"><span class="pre">D[-1,</span> <span class="pre">-1]</span></code> is the total alignment cost.</p>
 </dd>
-<dt><strong>wp</strong><span class="classifier">np.ndarray [shape=(N, 2)]</span></dt><dd><p>Warping path with index pairs.
+<dt><strong>wp</strong><span class="classifier">np.ndarray [shape=(L, 2)]</span></dt><dd><p>Warping path with index pairs.
 Each row of the array contains an index pair (n, m).
-Only returned when <code class="docutils literal notranslate"><span class="pre">backtrack</span></code> is True.</p>
+Only returned when <code class="docutils literal notranslate"><span class="pre">backtrack</span></code> is True.
+Note that the length <code class="docutils literal notranslate"><span class="pre">L</span></code> of the warping path need not match the
+lengths of the input data, depending on the <code class="docutils literal notranslate"><span class="pre">step_sizes_sigma</span></code> values
+and <code class="docutils literal notranslate"><span class="pre">subseq</span></code>.</p>
 </dd>
 <dt><strong>steps</strong><span class="classifier">np.ndarray [shape=(N, M)]</span></dt><dd><p>Step matrix, containing the indices of the used steps from the cost
 accumulation step.

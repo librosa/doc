@@ -371,7 +371,7 @@
 <span class="sd">        in `scipy.spatial.distance.cdist()`</span>
 
 <span class="sd">    step_sizes_sigma : np.ndarray [shape=[n, 2]]</span>
-<span class="sd">        Specifies allowed step sizes as used by the dtw.</span>
+<span class="sd">        Specifies allowed step sizes as used by the DTW.</span>
 
 <span class="sd">    weights_add : np.ndarray [shape=[n, ]]</span>
 <span class="sd">        Additive weights to penalize certain step sizes.</span>
@@ -400,12 +400,14 @@
 <span class="sd">    -------</span>
 <span class="sd">    D : np.ndarray [shape=(N, M)]</span>
 <span class="sd">        accumulated cost matrix.</span>
-<span class="sd">        D[N, M] is the total alignment cost.</span>
-<span class="sd">        When doing subsequence DTW, D[N,:] indicates a matching function.</span>
-<span class="sd">    wp : np.ndarray [shape=(N, 2)]</span>
+<span class="sd">        The value at the final index position ``D[-1, -1]`` is the total alignment cost.</span>
+<span class="sd">    wp : np.ndarray [shape=(L, 2)]</span>
 <span class="sd">        Warping path with index pairs.</span>
 <span class="sd">        Each row of the array contains an index pair (n, m).</span>
 <span class="sd">        Only returned when ``backtrack`` is True.</span>
+<span class="sd">        Note that the length ``L`` of the warping path need not match the</span>
+<span class="sd">        lengths of the input data, depending on the ``step_sizes_sigma`` values</span>
+<span class="sd">        and ``subseq``.</span>
 <span class="sd">    steps : np.ndarray [shape=(N, M)]</span>
 <span class="sd">        Step matrix, containing the indices of the used steps from the cost</span>
 <span class="sd">        accumulation step.</span>
