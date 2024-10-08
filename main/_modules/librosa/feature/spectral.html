@@ -451,7 +451,8 @@
             <span class="s2">&quot;Spectral bandwidth is only defined &quot;</span> <span class="s2">&quot;with non-negative energies&quot;</span>
         <span class="p">)</span>
 
-    <span class="c1"># centroid or center?</span>
+    <span class="c1"># If we don&#39;t have a centroid provided, compute it using the existing</span>
+    <span class="c1"># spectrogram S</span>
     <span class="k">if</span> <span class="n">centroid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">centroid</span> <span class="o">=</span> <span class="n">spectral_centroid</span><span class="p">(</span>
             <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span>

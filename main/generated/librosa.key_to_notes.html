@@ -262,6 +262,13 @@ included.</p>
 <span class="go">[&#39;B#&#39;, &#39;C#&#39;, &#39;Dn&#39;, &#39;D#&#39;, &#39;En&#39;, &#39;E#&#39;, &#39;F#&#39;, &#39;F##&#39;, &#39;G#&#39;, &#39;An&#39;, &#39;A#&#39;, &#39;B&#39;]</span>
 </pre></div>
 </div>
+<p>We can combine this with <code class="docutils literal notranslate"><span class="pre">key_to_degrees</span></code> to get the notes for a given scale:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">key_to_notes</span><span class="p">(</span><span class="s1">&#39;D:maj&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">degrees</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">key_to_degrees</span><span class="p">(</span><span class="s1">&#39;D:maj&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">([</span><span class="n">notes</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">degrees</span><span class="p">])</span>
+<span class="go">[&#39;D&#39;, &#39;E&#39;, &#39;F♯&#39;, &#39;G&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C♯&#39;]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

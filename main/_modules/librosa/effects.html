@@ -705,9 +705,12 @@
 <span class="sd">    hop_length : int &gt; 0</span>
 <span class="sd">        The number of samples between frames</span>
 
-<span class="sd">    top_db : number &gt; 0</span>
+<span class="sd">    top_db : number</span>
 <span class="sd">        The threshold (in decibels) below reference to consider as</span>
-<span class="sd">        silence</span>
+<span class="sd">        silence.</span>
+<span class="sd">        You can also use a negative value for `top_db` to treat any value</span>
+<span class="sd">        below `ref + |top_db|` as silent.  This will only make sense if</span>
+<span class="sd">        `ref` is not `np.max`.</span>
 
 <span class="sd">    ref : callable or float</span>
 <span class="sd">        The reference amplitude</span>
@@ -762,9 +765,12 @@
 <span class="sd">    ----------</span>
 <span class="sd">    y : np.ndarray, shape=(..., n)</span>
 <span class="sd">        Audio signal. Multi-channel is supported.</span>
-<span class="sd">    top_db : number &gt; 0</span>
+<span class="sd">    top_db : number</span>
 <span class="sd">        The threshold (in decibels) below reference to consider as</span>
-<span class="sd">        silence</span>
+<span class="sd">        silence.</span>
+<span class="sd">        You can also use a negative value for `top_db` to treat any value</span>
+<span class="sd">        below `ref + |top_db|` as silent.  This will only make sense if</span>
+<span class="sd">        `ref` is not `np.max`.</span>
 <span class="sd">    ref : number or callable</span>
 <span class="sd">        The reference amplitude.  By default, it uses `np.max` and compares</span>
 <span class="sd">        to the peak amplitude in the signal.</span>
@@ -817,11 +823,8 @@
         <span class="c1"># The entire signal is trimmed here: nothing is above the threshold</span>
         <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
-    <span class="c1"># Build the mono/stereo index</span>
-    <span class="n">full_index</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="n">full_index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">y</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">full_index</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">])</span></div>
+    <span class="c1"># Slice the buffer and return the corresponding interval</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="split"><a class="viewcode-back" href="../../generated/librosa.effects.split.html#librosa.effects.split">[docs]</a><span class="k">def</span> <span class="nf">split</span><span class="p">(</span>

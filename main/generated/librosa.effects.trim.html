@@ -163,8 +163,11 @@ In these situations, an explicit value for <em class="xref py py-obj">ref</em> (
 <dd class="field-odd"><dl class="simple">
 <dt><strong>y</strong><span class="classifier">np.ndarray, shape=(…, n)</span></dt><dd><p>Audio signal. Multi-channel is supported.</p>
 </dd>
-<dt><strong>top_db</strong><span class="classifier">number &gt; 0</span></dt><dd><p>The threshold (in decibels) below reference to consider as
-silence</p>
+<dt><strong>top_db</strong><span class="classifier">number</span></dt><dd><p>The threshold (in decibels) below reference to consider as
+silence.
+You can also use a negative value for <em class="xref py py-obj">top_db</em> to treat any value
+below <em class="xref py py-obj">ref + |top_db|</em> as silent.  This will only make sense if
+<em class="xref py py-obj">ref</em> is not <code class="xref py py-obj docutils literal notranslate"><span class="pre">np.max</span></code>.</p>
 </dd>
 <dt><strong>ref</strong><span class="classifier">number or callable</span></dt><dd><p>The reference amplitude.  By default, it uses <code class="xref py py-obj docutils literal notranslate"><span class="pre">np.max</span></code> and compares
 to the peak amplitude in the signal.</p>

@@ -834,6 +834,12 @@
 <span class="sd">    &gt;&gt;&gt; librosa.key_to_notes(&#39;G#:maj&#39;, unicode = False, natural = True)</span>
 <span class="sd">    [&#39;B#&#39;, &#39;C#&#39;, &#39;Dn&#39;, &#39;D#&#39;, &#39;En&#39;, &#39;E#&#39;, &#39;F#&#39;, &#39;F##&#39;, &#39;G#&#39;, &#39;An&#39;, &#39;A#&#39;, &#39;B&#39;]</span>
 
+<span class="sd">    We can combine this with ``key_to_degrees`` to get the notes for a given scale:</span>
+
+<span class="sd">    &gt;&gt;&gt; notes = librosa.key_to_notes(&#39;D:maj&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; degrees = librosa.key_to_degrees(&#39;D:maj&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print([notes[d] for d in degrees])</span>
+<span class="sd">    [&#39;D&#39;, &#39;E&#39;, &#39;F♯&#39;, &#39;G&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C♯&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Parse the key signature</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">KEY_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
