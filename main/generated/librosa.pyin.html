@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>librosa.pyin &mdash; librosa 0.10.2.post1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
@@ -16,17 +18,13 @@
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5e94ddc7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=5fdb309d"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=5fdb309d"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,9 +44,6 @@
             
               <img src="../_static/librosa_logo_text.svg" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.10
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -158,7 +153,7 @@
 <h1>librosa.pyin<a class="headerlink" href="#librosa-pyin" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="librosa.pyin">
-<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">pyin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">18)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boltzmann_parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_transition_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">35.92</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">switch_prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_trough_prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'constant'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/pitch.html#pyin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.pyin" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">librosa.</span></span><span class="sig-name descname"><span class="pre">pyin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr=22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length=2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length=&lt;DEPRECATED</span> <span class="pre">parameter&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_thresholds=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_parameters=(2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">18)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boltzmann_parameter=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution=0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_transition_rate=35.92</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">switch_prob=0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_trough_prob=0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_na=nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_mode='constant'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/librosa/core/pitch.html#pyin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#librosa.pyin" title="Permalink to this definition"></a></dt>
 <dd><p>Fundamental frequency (F0) estimation using probabilistic YIN (pYIN).</p>
 <p>pYIN <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> is a modificatin of the YIN algorithm <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> for fundamental frequency (F0) estimation.
 In the first step of pYIN, F0 candidates and their probabilities are computed using the YIN algorithm.
@@ -196,9 +191,6 @@ though higher values may be feasible.</p>
 By default, <code class="docutils literal notranslate"><span class="pre">frame_length=2048</span></code> corresponds to a time scale of about 93 ms at
 a sampling rate of 22050 Hz.</p>
 </dd>
-<dt><strong>win_length</strong><span class="classifier">None or int &gt; 0 [scalar]</span></dt><dd><p>length of the window for calculating autocorrelation in samples.
-If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to <code class="docutils literal notranslate"><span class="pre">frame_length</span> <span class="pre">//</span> <span class="pre">2</span></code></p>
-</dd>
 <dt><strong>hop_length</strong><span class="classifier">None or int &gt; 0 [scalar]</span></dt><dd><p>number of audio samples between adjacent pYIN predictions.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to <code class="docutils literal notranslate"><span class="pre">frame_length</span> <span class="pre">//</span> <span class="pre">4</span></code>.</p>
 </dd>
@@ -232,6 +224,13 @@ the edges of the signal <code class="docutils literal notranslate"><span class="
 <code class="docutils literal notranslate"><span class="pre">y</span></code> is padded on both sides with zeros.
 If <code class="docutils literal notranslate"><span class="pre">center=False</span></code>,  this argument is ignored.
 .. see also:: <em class="xref py py-obj">np.pad</em></p>
+</dd>
+<dt><strong>win_length</strong><span class="classifier">Deprecated</span></dt><dd><p>length of the window for calculating autocorrelation in samples.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This parameter is deprecated as of 0.11.0 and
+will be removed in 1.0.</p>
+</div>
 </dd>
 </dl>
 </dd>
