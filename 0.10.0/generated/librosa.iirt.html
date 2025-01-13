@@ -168,7 +168,7 @@ using a multirate filter bank consisting of IIR filters. <a class="footnote-refe
 <p>First, <code class="docutils literal notranslate"><span class="pre">y</span></code> is resampled as needed according to the provided <code class="docutils literal notranslate"><span class="pre">sample_rates</span></code>.</p>
 <p>Then, a filterbank with with <code class="docutils literal notranslate"><span class="pre">n</span></code> band-pass filters is designed.</p>
 <p>The resampled input signals are processed by the filterbank as a whole.
-(<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.14.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a> resp. <em class="xref py py-obj">sosfiltfilt</em> is used to make the phase linear.)
+(<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.15.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a> resp. <em class="xref py py-obj">sosfiltfilt</em> is used to make the phase linear.)
 The output of the filterbank is cut into frames.
 For each band, the short-time mean-square power (STMSP) is calculated by
 summing <code class="docutils literal notranslate"><span class="pre">win_length</span></code> subsequent filtered time samples.</p>
@@ -212,9 +212,9 @@ If not supplied, defaults to <code class="docutils literal notranslate"><span cl
 By default, this function uses zero padding.</p>
 </dd>
 <dt><strong>flayout</strong><span class="classifier">string</span></dt><dd><ul class="simple">
-<li><p>If <em class="xref py py-obj">sos</em> (default), a series of second-order filters is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.14.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a>.
+<li><p>If <em class="xref py py-obj">sos</em> (default), a series of second-order filters is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.15.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a>.
 Minimizes numerical precision errors for high-order filters, but is slower.</p></li>
-<li><p>If <em class="xref py py-obj">ba</em>, the standard difference equation is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.14.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a>.
+<li><p>If <em class="xref py py-obj">ba</em>, the standard difference equation is used for filtering with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.15.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a>.
 Can be unstable for high-order filters.</p></li>
 </ul>
 </dd>
@@ -244,8 +244,8 @@ Can be unstable for high-order filters.</p></li>
 <dt><a class="reference internal" href="librosa.filters.semitone_filterbank.html#librosa.filters.semitone_filterbank" title="librosa.filters.semitone_filterbank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.semitone_filterbank</span></code></a></dt><dd></dd>
 <dt><a class="reference internal" href="librosa.filters.mr_frequencies.html#librosa.filters.mr_frequencies" title="librosa.filters.mr_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.filters.mr_frequencies</span></code></a></dt><dd></dd>
 <dt><a class="reference internal" href="librosa.cqt.html#librosa.cqt" title="librosa.cqt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.cqt</span></code></a></dt><dd></dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.14.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a></dt><dd></dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.14.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html#scipy.signal.filtfilt" title="(in SciPy v1.15.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.filtfilt</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.sosfiltfilt.html#scipy.signal.sosfiltfilt" title="(in SciPy v1.15.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.signal.sosfiltfilt</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>

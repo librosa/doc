@@ -162,7 +162,7 @@ spectrogram decomposition using matrix decomposition methods implemented in
 </dl>
 </li>
 <li><dl class="simple">
-<dt><a class="reference internal" href="display.html#display"><span class="std std-ref">librosa.display</span></a></dt><dd><p>Visualization and display routines using <a class="reference external" href="https://matplotlib.org/stable/index.html#module-matplotlib" title="(in Matplotlib v3.9.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib</span></code></a>.</p>
+<dt><a class="reference internal" href="display.html#display"><span class="std std-ref">librosa.display</span></a></dt><dd><p>Visualization and display routines using <a class="reference external" href="https://matplotlib.org/stable/index.html#module-matplotlib" title="(in Matplotlib v3.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib</span></code></a>.</p>
 </dd>
 </dl>
 </li>
@@ -343,7 +343,7 @@ cepstral coefficients from the raw signal <code class="docutils literal notransl
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mfcc</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The output of this function is the matrix <code class="docutils literal notranslate"><span class="pre">mfcc</span></code>, which is a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> of
+<p>The output of this function is the matrix <code class="docutils literal notranslate"><span class="pre">mfcc</span></code>, which is a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> of
 shape <code class="docutils literal notranslate"><span class="pre">(n_mfcc,</span> <span class="pre">T)</span></code> (where <code class="docutils literal notranslate"><span class="pre">T</span></code> denotes the track duration in <a class="reference internal" href="glossary.html#term-frame"><span class="xref std std-term">frames</span></a>).
 Note that we use the same <code class="docutils literal notranslate"><span class="pre">hop_length</span></code> here as in the beat tracker, so the detected <code class="docutils literal notranslate"><span class="pre">beat_frames</span></code>
 values correspond to columns of <code class="docutils literal notranslate"><span class="pre">mfcc</span></code>.</p>
@@ -370,7 +370,7 @@ span the full range <code class="docutils literal notranslate"><span class="pre"
                                         <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>After this line, <code class="docutils literal notranslate"><span class="pre">chromagram</span></code> will be a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> of shape <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">T)</span></code>, and
+<p>After this line, <code class="docutils literal notranslate"><span class="pre">chromagram</span></code> will be a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> of shape <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">T)</span></code>, and
 each row corresponds to a pitch class (e.g., <em>C</em>, <em>C#</em>, etc.).  Each column of
 <code class="docutils literal notranslate"><span class="pre">chromagram</span></code> is normalized by its peak value, though this behavior can be overridden
 by setting the <code class="docutils literal notranslate"><span class="pre">norm</span></code> parameter.</p>

@@ -143,7 +143,7 @@
 <p>Given a spectrogram <code class="docutils literal notranslate"><span class="pre">S</span></code>, produce a decomposition into <code class="docutils literal notranslate"><span class="pre">components</span></code>
 and <code class="docutils literal notranslate"><span class="pre">activations</span></code> such that <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">~=</span> <span class="pre">components.dot(activations)</span></code>.</p>
 <p>By default, this is done with with non-negative matrix factorization (NMF),
-but any <a class="reference external" href="https://scikit-learn.org/stable/api/sklearn.decomposition.html#module-sklearn.decomposition" title="(in scikit-learn v1.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code></a>-type object will work.</p>
+but any <a class="reference external" href="https://scikit-learn.org/stable/api/sklearn.decomposition.html#module-sklearn.decomposition" title="(in scikit-learn v1.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code></a>-type object will work.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
@@ -158,7 +158,7 @@ automatically reshaped to <em class="xref py py-obj">(2 * n_features, n_samples)
 <dt><strong>n_components</strong><span class="classifier">int &gt; 0 [scalar] or None</span></dt><dd><p>number of desired components</p>
 <p>if None, then <code class="docutils literal notranslate"><span class="pre">n_features</span></code> components are used</p>
 </dd>
-<dt><strong>transformer</strong><span class="classifier">None or object</span></dt><dd><p>If None, use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html#sklearn.decomposition.NMF" title="(in scikit-learn v1.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition.NMF</span></code></a></p>
+<dt><strong>transformer</strong><span class="classifier">None or object</span></dt><dd><p>If None, use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html#sklearn.decomposition.NMF" title="(in scikit-learn v1.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition.NMF</span></code></a></p>
 <p>Otherwise, any object with a similar interface to NMF should work.
 <code class="docutils literal notranslate"><span class="pre">transformer</span></code> must follow the scikit-learn convention, where
 input data is <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code>.</p>
@@ -191,7 +191,7 @@ is not supported and a <code class="xref py py-obj docutils literal notranslate"
 <p>If <em class="xref py py-obj">False</em>, components are assumed to be pre-computed and stored
 in <code class="docutils literal notranslate"><span class="pre">transformer</span></code>, and are not changed.</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">Additional keyword arguments to the default transformer</span></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html#sklearn.decomposition.NMF" title="(in scikit-learn v1.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition.NMF</span></code></a></p>
+<dt><strong>**kwargs</strong><span class="classifier">Additional keyword arguments to the default transformer</span></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html#sklearn.decomposition.NMF" title="(in scikit-learn v1.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition.NMF</span></code></a></p>
 </dd>
 </dl>
 </dd>
@@ -214,7 +214,7 @@ in <code class="docutils literal notranslate"><span class="pre">transformer</spa
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://scikit-learn.org/stable/api/sklearn.decomposition.html#module-sklearn.decomposition" title="(in scikit-learn v1.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code></a></dt><dd><p>SciKit-Learn matrix decomposition modules</p>
+<dt><a class="reference external" href="https://scikit-learn.org/stable/api/sklearn.decomposition.html#module-sklearn.decomposition" title="(in scikit-learn v1.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code></a></dt><dd><p>SciKit-Learn matrix decomposition modules</p>
 </dd>
 </dl>
 </div>
