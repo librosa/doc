@@ -398,7 +398,7 @@
 
     <span class="c1"># If we can&#39;t match left or right, then only strict equivalence</span>
     <span class="c1"># counts as a match.</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">left</span> <span class="ow">or</span> <span class="n">right</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">in1d</span><span class="p">(</span><span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">left</span> <span class="ow">or</span> <span class="n">right</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">events_from</span><span class="p">,</span> <span class="n">events_to</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
             <span class="s2">&quot;Cannot match events with left=right=False &quot;</span>
             <span class="s2">&quot;and events_from is not contained &quot;</span>
