@@ -1189,7 +1189,7 @@
     <span class="c1"># These two arrays hold the forward and backward prediction error. They</span>
     <span class="c1"># correspond to f_{M-1,k} and b_{M-1,k} in eqns 10, 11, 13 and 14 of</span>
     <span class="c1"># Marple. First they are used to compute the reflection coefficient at</span>
-    <span class="c1"># order M from M-1 then are re-used as f_{M,k} and b_{M,k} for each</span>
+    <span class="c1"># order M from M-1 then are used as f_{M,k} and b_{M,k} for each</span>
     <span class="c1"># iteration of the below loop</span>
     <span class="n">fwd_pred_error</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
     <span class="n">bwd_pred_error</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>

@@ -60,6 +60,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#no-attribute-display">no attribute ‘display’</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pysoundfile-failed">PySoundFile failed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#import-librosa-hangs-indefinitely"><em class="xref py py-obj">import librosa</em> hangs indefinitely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-in-isolated-environments">Testing in isolated environments</a></li>
 </ul>
 </li>
 </ul>
@@ -183,6 +184,19 @@ user does have write permissions to.  See <a class="reference external" href="ht
 </ol>
 <p>Note that in librosa 0.10 and later, you may not encounter this issue when importing the library, but it may arise later when executing functions.
 The solutions above are applicable in either case.</p>
+</section>
+<section id="testing-in-isolated-environments">
+<h2>Testing in isolated environments<a class="headerlink" href="#testing-in-isolated-environments" title="Permalink to this heading"></a></h2>
+<p>Librosa provides a few functions that require network access to collect externally hosted data.
+While these functions are optional to use, they can be problematic for running the test suite in
+environments that restrict network access, which most commonly occurs in packaging workflows.
+To run the test suite in such restricted environments, you can specify the <code class="docutils literal notranslate"><span class="pre">--librosa-isolation</span></code> parameter
+on the command-line to pytest</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--librosa-isolation
+</pre></div>
+</div>
+<p>which will skip any test functions known to require network access.  Test coverage will necessarily be reduced, but
+the remaining tests should still pass without problems.</p>
 </section>
 </section>
 
