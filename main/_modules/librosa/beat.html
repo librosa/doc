@@ -4,8 +4,17 @@
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-171031946-1');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>librosa.beat &mdash; librosa 0.10.2.post1 documentation</title>
+  <title>librosa.beat &mdash; librosa 0.11.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -19,7 +28,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=5fdb309d"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=9d66fbe6"></script>
       <script src="../../_static/doctools.js?v=888ff710"></script>
       <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,15 +147,14 @@
 <span class="kn">import</span> <span class="nn">scipy.stats</span>
 <span class="kn">import</span> <span class="nn">numba</span>
 
-<span class="kn">from</span> <span class="nn">._cache</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">core</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">onset</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
-<span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">tempogram</span><span class="p">,</span> <span class="n">fourier_tempogram</span>
+<span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">fourier_tempogram</span>
 <span class="kn">from</span> <span class="nn">.feature</span> <span class="kn">import</span> <span class="n">tempo</span> <span class="k">as</span> <span class="n">_tempo</span>
 <span class="kn">from</span> <span class="nn">.util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
-<span class="kn">from</span> <span class="nn">.util.decorators</span> <span class="kn">import</span> <span class="n">moved</span><span class="p">,</span> <span class="n">vectorize</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">.util.decorators</span> <span class="kn">import</span> <span class="n">moved</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">._typing</span> <span class="kn">import</span> <span class="n">_FloatLike_co</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;beat_track&quot;</span><span class="p">,</span> <span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="s2">&quot;plp&quot;</span><span class="p">]</span>
@@ -181,8 +189,8 @@
 <span class="sd">         tempo</span>
 
 <span class="sd">    .. [#] Ellis, Daniel PW. &quot;Beat tracking by dynamic programming.&quot;</span>
-<span class="sd">           Journal of New Music Research 36.1 (2007): 51-60.</span>
-<span class="sd">           http://labrosa.ee.columbia.edu/projects/beattrack/</span>
+<span class="sd">        Journal of New Music Research 36.1 (2007): 51-60.</span>
+<span class="sd">        http://labrosa.ee.columbia.edu/projects/beattrack/</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -240,7 +248,12 @@
 <span class="sd">        estimated global tempo (in beats per minute)</span>
 
 <span class="sd">        If multi-channel and ``bpm`` is not provided, a separate</span>
-<span class="sd">        tempo will be returned for each channel</span>
+<span class="sd">        tempo will be returned for each channel.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            By default, the tempo is returned as an ndarray even for mono input.</span>
+<span class="sd">            In this case, the array will have a single element and be one-dimensional.</span>
+<span class="sd">            This is to ensure consistent return types for multi-channel input.</span>
 <span class="sd">    beats : np.ndarray</span>
 <span class="sd">        estimated beat event locations.</span>
 
@@ -249,9 +262,10 @@
 
 <span class="sd">        If `sparse=False` (required for multichannel input), beat events are</span>
 <span class="sd">        indicated by a boolean for each frame.</span>
-<span class="sd">    .. note::</span>
-<span class="sd">        If no onset strength could be detected, beat_tracker estimates 0 BPM</span>
-<span class="sd">        and returns an empty list.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            If no onset strength could be detected, beat_tracker estimates 0 BPM</span>
+<span class="sd">            and returns an empty list.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -363,7 +377,7 @@
     <span class="n">bpm_expanded</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">expand_to</span><span class="p">(</span><span class="n">_bpm</span><span class="p">,</span>
                                   <span class="n">ndim</span><span class="o">=</span><span class="n">onset_envelope</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span>
                                   <span class="n">axes</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">_bpm</span><span class="o">.</span><span class="n">ndim</span><span class="p">))</span>
-                                
+
     <span class="c1"># Then, run the tracker</span>
     <span class="n">beats</span> <span class="o">=</span> <span class="n">__beat_tracker</span><span class="p">(</span><span class="n">onset_envelope</span><span class="p">,</span> <span class="n">bpm_expanded</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="o">/</span> <span class="n">hop_length</span><span class="p">,</span> <span class="n">tightness</span><span class="p">,</span> <span class="n">trim</span><span class="p">)</span>
 
@@ -824,7 +838,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013--2023, librosa development team.</p>
+    <p>&#169; Copyright 2013--2025, librosa development team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
@@ -848,10 +862,7 @@
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../../../0.10.0/index.html">0.10.0</a></dd>
-      <dd><a href="../../../0.10.1/index.html">0.10.1</a></dd>
       <dd><a href="../../../0.10.2/index.html">0.10.2</a></dd>
-      <dd><a href="../../../0.8.1/index.html">0.8.1</a></dd>
       <dd><a href="../../../0.9.2/index.html">0.9.2</a></dd>
     </dl>
     <dl>
@@ -863,18 +874,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-    <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-171031946-1', {
-          'anonymize_ip': false,
-      });
-    </script> 
+  </script> 
 
 </body>
 </html>

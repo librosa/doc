@@ -5,8 +5,17 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-171031946-1');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; librosa 0.10.2.post1 documentation</title>
+  <title>Changelog &mdash; librosa 0.11.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -20,7 +29,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=5fdb309d"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=9d66fbe6"></script>
       <script src="_static/doctools.js?v=888ff710"></script>
       <script src="_static/sphinx_highlight.js?v=4825356b"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -83,62 +92,65 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#v0-10">v0.10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-10-2-post1">v0.10.2.post1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-10-2">v0.10.2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-10-1">v0.10.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-10-0-post2">v0.10.0.post2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-10-0-post1">v0.10.0.post1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-10-0">v0.10.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-11-0">v0.11.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-10">v0.10</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-9">v0.9</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-9-2">v0.9.2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-9-1">v0.9.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-9-0">v0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-2-post1">v0.10.2.post1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-2">v0.10.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-1">v0.10.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-0-post2">v0.10.0.post2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-0-post1">v0.10.0.post1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-0">v0.10.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-9">v0.9</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-8">v0.8</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-8-1">v0.8.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-8-0">v0.8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-9-2">v0.9.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-9-1">v0.9.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-9-0">v0.9.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-8">v0.8</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-7">v0.7</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-7-2">v0.7.2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-7-1">v0.7.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-7-0">v0.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-8-1">v0.8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-8-0">v0.8.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-7">v0.7</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-6">v0.6</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-6-3">v0.6.3</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-6-2">v0.6.2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-6-1">v0.6.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-6-0">v0.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-7-2">v0.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-7-1">v0.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-7-0">v0.7.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-6">v0.6</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-5">v0.5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-5-1">v0.5.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-5-0">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-6-3">v0.6.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-6-2">v0.6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-6-1">v0.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-6-0">v0.6.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-5">v0.5</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-4">v0.4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-4-3">v0.4.3</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-4-2">v0.4.2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-4-1">v0.4.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-4-0">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-5-1">v0.5.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-5-0">v0.5.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-4">v0.4</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-3">v0.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-3-1">v0.3.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-3-0">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-3">v0.4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-2">v0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-1">v0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-0">v0.4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-3">v0.3</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-2">v0.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v0-2-1">v0.2.1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#v0-2-0">v0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-3-1">v0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-3-0">v0.3.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-2">v0.2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#v0-1">v0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-1">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-0">v0.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-1">v0.1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -183,10 +195,51 @@
 
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading"></a></h1>
+<section id="v0-11-0">
+<h2>v0.11.0<a class="headerlink" href="#v0-11-0" title="Permalink to this heading"></a></h2>
+<p>2025-02-XX</p>
+<p>Maintenance</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1831">#1831</a> Numpy 2.0 is now supported.</p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1898">#1898</a> Updated codecov action. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1860">#1860</a> Updated GitHub issue templates. <em>Brian McFee</em></p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Enhancements</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1864">#1864</a> Accelerated <em class="xref py py-obj">abs2</em> calculation on real-typed inputs. <em>Brian McFee</em></p></li>
+</ul>
+</dd>
+<dt>Bug fixes</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1900">#1900</a> Fixed an error in pooch registry definition. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1897">#1897</a> Accommodate dependency resolution issues with <em class="xref py py-obj">uv</em>. <em>David Südholt</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1878">#1878</a> Improved accuracy for <em class="xref py py-obj">yin</em> and <em class="xref py py-obj">pyin</em>. <em>David Südholt</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1851">#1851</a> Fixed sparse matrix compatibility for scipy&gt;=1.14. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1844">#1844</a> Fixed parameter name collision for norm argument in <em class="xref py py-obj">feature.mfcc</em>. <em>Slava Chaunin</em></p></li>
+</ul>
+</dd>
+<dt>Documentation</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1899">#1899</a> Avoid documentation link-checking failures from unreliable URLs. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1891">#1891</a> Corrected typo in effects module. <em>Scott VanRavenswaay</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1878">#1878</a> Numerous documentation updates (spectral centroid, <em class="xref py py-obj">key_to_notes</em>, <em class="xref py py-obj">effects.trim</em>). <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1866">#1866</a> Updated documentation for <em class="xref py py-obj">dtw</em>. <em>Brian McFee</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1858">#1858</a> Fixed documentation example for onset detection. <em>&#64;BenedictSt</em></p></li>
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1856">#1856</a> Updated documentation example for Fast Mellin Transform. <em>Anmol Mishra</em></p></li>
+</ul>
+</dd>
+<dt>Deprecations</dt><dd><ul class="simple">
+<li><p>Expired deprecation of <em class="xref py py-obj">mono=</em> parameter in <em class="xref py py-obj">util.valid_audio</em>.</p></li>
+<li><p><em class="xref py py-obj">win_length</em> parameter in <em class="xref py py-obj">yin</em> and <em class="xref py py-obj">pyin</em></p></li>
+</ul>
+</dd>
+</dl>
 <section id="v0-10">
-<h2>v0.10<a class="headerlink" href="#v0-10" title="Permalink to this heading"></a></h2>
+<h3>v0.10<a class="headerlink" href="#v0-10" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-10-2-post1">
-<h3>v0.10.2.post1<a class="headerlink" href="#v0-10-2-post1" title="Permalink to this heading"></a></h3>
+<h2>v0.10.2.post1<a class="headerlink" href="#v0-10-2-post1" title="Permalink to this heading"></a></h2>
 <p>2024-05-14</p>
 <dl class="simple">
 <dt>Maintenance</dt><dd><ul class="simple">
@@ -196,7 +249,7 @@
 </dl>
 </section>
 <section id="v0-10-2">
-<h3>v0.10.2<a class="headerlink" href="#v0-10-2" title="Permalink to this heading"></a></h3>
+<h2>v0.10.2<a class="headerlink" href="#v0-10-2" title="Permalink to this heading"></a></h2>
 <p>2024-05-02</p>
 <dl class="simple">
 <dt>New features</dt><dd><ul class="simple">
@@ -235,7 +288,7 @@
 </dl>
 </section>
 <section id="v0-10-1">
-<h3>v0.10.1<a class="headerlink" href="#v0-10-1" title="Permalink to this heading"></a></h3>
+<h2>v0.10.1<a class="headerlink" href="#v0-10-1" title="Permalink to this heading"></a></h2>
 <p>2023-08-16</p>
 <p>This release consists primarily of corrections to documentation and updates to tests and development
 environment specifications.</p>
@@ -265,7 +318,7 @@ environment specifications.</p>
 </dl>
 </section>
 <section id="v0-10-0-post2">
-<h3>v0.10.0.post2<a class="headerlink" href="#v0-10-0-post2" title="Permalink to this heading"></a></h3>
+<h2>v0.10.0.post2<a class="headerlink" href="#v0-10-0-post2" title="Permalink to this heading"></a></h2>
 <p>2023-03-17</p>
 <p>This maintenance release updates the dependency specifications to avoid an incompatibility with
 pooch &gt;= 1.7.0.
@@ -273,14 +326,14 @@ This restriction only affects loading of specific example files, and does not ot
 functionality of the library.</p>
 </section>
 <section id="v0-10-0-post1">
-<h3>v0.10.0.post1<a class="headerlink" href="#v0-10-0-post1" title="Permalink to this heading"></a></h3>
+<h2>v0.10.0.post1<a class="headerlink" href="#v0-10-0-post1" title="Permalink to this heading"></a></h2>
 <p>2023-03-16</p>
 <p>This maintenance release updates the dependency specifications to avoid an incompatibility with
 numpy versions 1.22.0, 1.22.1, and 1.22.2.  Functionality is otherwise identical to librosa version
 0.10.0.</p>
 </section>
 <section id="v0-10-0">
-<h3>v0.10.0<a class="headerlink" href="#v0-10-0" title="Permalink to this heading"></a></h3>
+<h2>v0.10.0<a class="headerlink" href="#v0-10-0" title="Permalink to this heading"></a></h2>
 <p>2023-02-20</p>
 <dl class="simple">
 <dt>New features</dt><dd><ul class="simple">
@@ -346,12 +399,12 @@ numpy versions 1.22.0, 1.22.1, and 1.22.2.  Functionality is otherwise identical
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-9">
-<h2>v0.9<a class="headerlink" href="#v0-9" title="Permalink to this heading"></a></h2>
+<h3>v0.9<a class="headerlink" href="#v0-9" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-9-2">
-<h3>v0.9.2<a class="headerlink" href="#v0-9-2" title="Permalink to this heading"></a></h3>
+<h2>v0.9.2<a class="headerlink" href="#v0-9-2" title="Permalink to this heading"></a></h2>
 <p>2022-06-27</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -380,7 +433,7 @@ numpy versions 1.22.0, 1.22.1, and 1.22.2.  Functionality is otherwise identical
 </dl>
 </section>
 <section id="v0-9-1">
-<h3>v0.9.1<a class="headerlink" href="#v0-9-1" title="Permalink to this heading"></a></h3>
+<h2>v0.9.1<a class="headerlink" href="#v0-9-1" title="Permalink to this heading"></a></h2>
 <p>2022-02-15</p>
 <p>This release provides partial backward compatibility to the 0.8 series.
 The 0.9.0 release introduced restrictions on positional arguments to many functions, requiring
@@ -393,7 +446,7 @@ Explicit <em class="xref py py-obj">ref</em> values now measure amplitude rather
 </ul>
 </section>
 <section id="v0-9-0">
-<h3>v0.9.0<a class="headerlink" href="#v0-9-0" title="Permalink to this heading"></a></h3>
+<h2>v0.9.0<a class="headerlink" href="#v0-9-0" title="Permalink to this heading"></a></h2>
 <p>2022-02-07</p>
 <p>The main feature of this release is (nearly) full support for arbitrary multi-channel processing, along with several speed and stability enhancements.
 A detailed list of changes is provided below.</p>
@@ -447,12 +500,12 @@ A detailed list of changes is provided below.</p>
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-8">
-<h2>v0.8<a class="headerlink" href="#v0-8" title="Permalink to this heading"></a></h2>
+<h3>v0.8<a class="headerlink" href="#v0-8" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-8-1">
-<h3>v0.8.1<a class="headerlink" href="#v0-8-1" title="Permalink to this heading"></a></h3>
+<h2>v0.8.1<a class="headerlink" href="#v0-8-1" title="Permalink to this heading"></a></h2>
 <p>2021-05-26</p>
 <dl class="simple">
 <dt>New Features</dt><dd><ul class="simple">
@@ -501,7 +554,7 @@ a plot if the axes are of the same type and shape. <em>N. Dorukhan Sergin</em></
 </dl>
 </section>
 <section id="v0-8-0">
-<h3>v0.8.0<a class="headerlink" href="#v0-8-0" title="Permalink to this heading"></a></h3>
+<h2>v0.8.0<a class="headerlink" href="#v0-8-0" title="Permalink to this heading"></a></h2>
 <p>2020-07-22</p>
 <dl class="simple">
 <dt>New Features</dt><dd><ul class="simple">
@@ -585,12 +638,12 @@ contiguity restrictions. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-7">
-<h2>v0.7<a class="headerlink" href="#v0-7" title="Permalink to this heading"></a></h2>
+<h3>v0.7<a class="headerlink" href="#v0-7" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-7-2">
-<h3>v0.7.2<a class="headerlink" href="#v0-7-2" title="Permalink to this heading"></a></h3>
+<h2>v0.7.2<a class="headerlink" href="#v0-7-2" title="Permalink to this heading"></a></h2>
 <p>2020-01-13</p>
 <dl class="simple">
 <dt>New Features</dt><dd><ul class="simple">
@@ -622,7 +675,7 @@ documentation. <em>Scott Seyfarth</em></p></li>
 </dl>
 </section>
 <section id="v0-7-1">
-<h3>v0.7.1<a class="headerlink" href="#v0-7-1" title="Permalink to this heading"></a></h3>
+<h2>v0.7.1<a class="headerlink" href="#v0-7-1" title="Permalink to this heading"></a></h2>
 <p>2019-10-09</p>
 <dl class="simple">
 <dt>New Features</dt><dd><ul class="simple">
@@ -667,7 +720,7 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 </dl>
 </section>
 <section id="v0-7-0">
-<h3>v0.7.0<a class="headerlink" href="#v0-7-0" title="Permalink to this heading"></a></h3>
+<h2>v0.7.0<a class="headerlink" href="#v0-7-0" title="Permalink to this heading"></a></h2>
 <p>2019-07-07</p>
 <p>Note: the 0.7 series will be the last to officially support Python 2.7.</p>
 <dl class="simple">
@@ -734,12 +787,12 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-6">
-<h2>v0.6<a class="headerlink" href="#v0-6" title="Permalink to this heading"></a></h2>
+<h3>v0.6<a class="headerlink" href="#v0-6" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-6-3">
-<h3>v0.6.3<a class="headerlink" href="#v0-6-3" title="Permalink to this heading"></a></h3>
+<h2>v0.6.3<a class="headerlink" href="#v0-6-3" title="Permalink to this heading"></a></h2>
 <p>2019-02-13</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -769,7 +822,7 @@ warning to class <em class="xref py py-obj">FutureWarning</em>. <em>Brian McFee,
 </dl>
 </section>
 <section id="v0-6-2">
-<h3>v0.6.2<a class="headerlink" href="#v0-6-2" title="Permalink to this heading"></a></h3>
+<h2>v0.6.2<a class="headerlink" href="#v0-6-2" title="Permalink to this heading"></a></h2>
 <p>2018-08-09</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -793,7 +846,7 @@ corresponding to an existing feature matrix or shape specification. <em>Steve Tj
 </dl>
 </section>
 <section id="v0-6-1">
-<h3>v0.6.1<a class="headerlink" href="#v0-6-1" title="Permalink to this heading"></a></h3>
+<h2>v0.6.1<a class="headerlink" href="#v0-6-1" title="Permalink to this heading"></a></h2>
 <p>2018-05-24</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -829,7 +882,7 @@ corresponding to an existing feature matrix or shape specification. <em>Steve Tj
 </dl>
 </section>
 <section id="v0-6-0">
-<h3>v0.6.0<a class="headerlink" href="#v0-6-0" title="Permalink to this heading"></a></h3>
+<h2>v0.6.0<a class="headerlink" href="#v0-6-0" title="Permalink to this heading"></a></h2>
 <p>2018-02-17</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -897,12 +950,12 @@ code that requires integer-valued output, consider using <a class="reference ext
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-5">
-<h2>v0.5<a class="headerlink" href="#v0-5" title="Permalink to this heading"></a></h2>
+<h3>v0.5<a class="headerlink" href="#v0-5" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-5-1">
-<h3>v0.5.1<a class="headerlink" href="#v0-5-1" title="Permalink to this heading"></a></h3>
+<h2>v0.5.1<a class="headerlink" href="#v0-5-1" title="Permalink to this heading"></a></h2>
 <p>2017-05-08</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -932,7 +985,7 @@ code that requires integer-valued output, consider using <a class="reference ext
 </dl>
 </section>
 <section id="v0-5-0">
-<h3>v0.5.0<a class="headerlink" href="#v0-5-0" title="Permalink to this heading"></a></h3>
+<h2>v0.5.0<a class="headerlink" href="#v0-5-0" title="Permalink to this heading"></a></h2>
 <p>2017-02-17</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1050,12 +1103,12 @@ has been renamed to <em class="xref py py-obj">ref</em>.</p></li>
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-4">
-<h2>v0.4<a class="headerlink" href="#v0-4" title="Permalink to this heading"></a></h2>
+<h3>v0.4<a class="headerlink" href="#v0-4" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-4-3">
-<h3>v0.4.3<a class="headerlink" href="#v0-4-3" title="Permalink to this heading"></a></h3>
+<h2>v0.4.3<a class="headerlink" href="#v0-4-3" title="Permalink to this heading"></a></h2>
 <p>2016-05-17</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1093,7 +1146,7 @@ matrices.</p></li>
 </dl>
 </section>
 <section id="v0-4-2">
-<h3>v0.4.2<a class="headerlink" href="#v0-4-2" title="Permalink to this heading"></a></h3>
+<h2>v0.4.2<a class="headerlink" href="#v0-4-2" title="Permalink to this heading"></a></h2>
 <p>2016-02-20</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1128,7 +1181,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </dl>
 </section>
 <section id="v0-4-1">
-<h3>v0.4.1<a class="headerlink" href="#v0-4-1" title="Permalink to this heading"></a></h3>
+<h2>v0.4.1<a class="headerlink" href="#v0-4-1" title="Permalink to this heading"></a></h2>
 <p>2015-10-17</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1169,7 +1222,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </dl>
 </section>
 <section id="v0-4-0">
-<h3>v0.4.0<a class="headerlink" href="#v0-4-0" title="Permalink to this heading"></a></h3>
+<h2>v0.4.0<a class="headerlink" href="#v0-4-0" title="Permalink to this heading"></a></h2>
 <p>2015-07-08</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1250,12 +1303,12 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-3">
-<h2>v0.3<a class="headerlink" href="#v0-3" title="Permalink to this heading"></a></h2>
+<h3>v0.3<a class="headerlink" href="#v0-3" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-3-1">
-<h3>v0.3.1<a class="headerlink" href="#v0-3-1" title="Permalink to this heading"></a></h3>
+<h2>v0.3.1<a class="headerlink" href="#v0-3-1" title="Permalink to this heading"></a></h2>
 <p>2015-02-18</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1282,7 +1335,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </dl>
 </section>
 <section id="v0-3-0">
-<h3>v0.3.0<a class="headerlink" href="#v0-3-0" title="Permalink to this heading"></a></h3>
+<h2>v0.3.0<a class="headerlink" href="#v0-3-0" title="Permalink to this heading"></a></h2>
 <p>2014-06-30</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1323,12 +1376,12 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-2">
-<h2>v0.2<a class="headerlink" href="#v0-2" title="Permalink to this heading"></a></h2>
+<h3>v0.2<a class="headerlink" href="#v0-2" title="Permalink to this heading"></a></h3>
+</section>
+</section>
 <section id="v0-2-1">
-<h3>v0.2.1<a class="headerlink" href="#v0-2-1" title="Permalink to this heading"></a></h3>
+<h2>v0.2.1<a class="headerlink" href="#v0-2-1" title="Permalink to this heading"></a></h2>
 <p>2014-01-21</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1367,7 +1420,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </dl>
 </section>
 <section id="v0-2-0">
-<h3>v0.2.0<a class="headerlink" href="#v0-2-0" title="Permalink to this heading"></a></h3>
+<h2>v0.2.0<a class="headerlink" href="#v0-2-0" title="Permalink to this heading"></a></h2>
 <p>2013-12-14</p>
 <dl class="simple">
 <dt>Bug fixes</dt><dd><ul class="simple">
@@ -1438,11 +1491,10 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
 </ul>
 </dd>
 </dl>
-</section>
-</section>
 <section id="v0-1">
-<h2>v0.1<a class="headerlink" href="#v0-1" title="Permalink to this heading"></a></h2>
+<h3>v0.1<a class="headerlink" href="#v0-1" title="Permalink to this heading"></a></h3>
 <p>Initial public release.</p>
+</section>
 </section>
 </section>
 
@@ -1458,7 +1510,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013--2023, librosa development team.</p>
+    <p>&#169; Copyright 2013--2025, librosa development team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
@@ -1482,10 +1534,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
   <div class="rst-other-versions">
     <dl>
       <dt>Releases</dt>
-      <dd><a href="../0.10.0/changelog.html">0.10.0</a></dd>
-      <dd><a href="../0.10.1/changelog.html">0.10.1</a></dd>
       <dd><a href="../0.10.2/changelog.html">0.10.2</a></dd>
-      <dd><a href="../0.8.1/changelog.html">0.8.1</a></dd>
       <dd><a href="../0.9.2/changelog.html">0.9.2</a></dd>
     </dl>
     <dl>
@@ -1497,18 +1546,7 @@ adapt to scale (mHz, Hz, KHz, MHz, GHz) and use automatic precision formatting (
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-    <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-171031946-1', {
-          'anonymize_ip': false,
-      });
-    </script> 
+  </script> 
 
 </body>
 </html>
