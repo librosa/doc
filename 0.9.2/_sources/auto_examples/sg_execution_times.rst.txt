@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:08.198** total execution time for 11 files **from auto_examples**:
+**01:08.611** total execution time for 11 files **from auto_examples**:
 
 .. container::
 
@@ -33,35 +33,35 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_plot_vocal_separation.py` (``plot_vocal_separation.py``)
-     - 00:18.848
+     - 00:18.641
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_chroma.py` (``plot_chroma.py``)
-     - 00:18.178
+     - 00:18.592
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_display.py` (``plot_display.py``)
-     - 00:08.911
+     - 00:09.288
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_segmentation.py` (``plot_segmentation.py``)
-     - 00:05.803
+     - 00:06.037
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_music_sync.py` (``plot_music_sync.py``)
-     - 00:04.190
+     - 00:03.984
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_hprss.py` (``plot_hprss.py``)
-     - 00:03.874
+     - 00:03.856
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_audio_playback.py` (``plot_audio_playback.py``)
-     - 00:02.349
+     - 00:02.254
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_pcen_stream.py` (``plot_pcen_stream.py``)
-     - 00:01.918
+     - 00:01.854
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_viterbi.py` (``plot_viterbi.py``)
-     - 00:01.793
+     - 00:01.782
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_presets.py` (``plot_presets.py``)
-     - 00:01.640
+     - 00:01.634
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_superflux.py` (``plot_superflux.py``)
-     - 00:00.694
+     - 00:00.690
      - 0.0
