@@ -136,8 +136,8 @@
 
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.fftpack</span>
 
+<span class="kn">from</span> <span class="nn">..core.fft</span> <span class="kn">import</span> <span class="n">get_fftlib</span>
 <span class="kn">from</span> <span class="nn">..util.exceptions</span> <span class="kn">import</span> <span class="n">ParameterError</span>
 <span class="kn">from</span> <span class="nn">..core.spectrum</span> <span class="kn">import</span> <span class="n">griffinlim</span>
 <span class="kn">from</span> <span class="nn">..core.spectrum</span> <span class="kn">import</span> <span class="n">db_to_power</span>
@@ -385,7 +385,7 @@
 <span class="sd">    --------</span>
 <span class="sd">    librosa.feature.mfcc</span>
 <span class="sd">    librosa.feature.melspectrogram</span>
-<span class="sd">    scipy.fftpack.dct</span>
+<span class="sd">    scipy.fft.dct</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">lifter</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">n_mfcc</span> <span class="o">=</span> <span class="n">mfcc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
@@ -407,7 +407,8 @@
     <span class="k">elif</span> <span class="n">lifter</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">&quot;MFCC to mel lifter must be a non-negative number.&quot;</span><span class="p">)</span>
 
-    <span class="n">logmel</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">mfcc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">dct_type</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_mels</span><span class="p">)</span>
+    <span class="n">fft</span> <span class="o">=</span> <span class="n">get_fftlib</span><span class="p">()</span>
+    <span class="n">logmel</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">mfcc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">dct_type</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_mels</span><span class="p">)</span>
     <span class="n">melspec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">db_to_power</span><span class="p">(</span><span class="n">logmel</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">melspec</span></div>
 
@@ -495,7 +496,7 @@
 <span class="sd">    mel_to_audio</span>
 <span class="sd">    librosa.feature.mfcc</span>
 <span class="sd">    librosa.griffinlim</span>
-<span class="sd">    scipy.fftpack.dct</span>
+<span class="sd">    scipy.fft.dct</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mel_spec</span> <span class="o">=</span> <span class="n">mfcc_to_mel</span><span class="p">(</span>
         <span class="n">mfcc</span><span class="p">,</span> <span class="n">n_mels</span><span class="o">=</span><span class="n">n_mels</span><span class="p">,</span> <span class="n">dct_type</span><span class="o">=</span><span class="n">dct_type</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref</span><span class="p">,</span> <span class="n">lifter</span><span class="o">=</span><span class="n">lifter</span>

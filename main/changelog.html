@@ -198,20 +198,20 @@
 <section id="v0-11-0">
 <h2>v0.11.0<a class="headerlink" href="#v0-11-0" title="Permalink to this heading"></a></h2>
 <p>2025-02-XX</p>
-<p>Maintenance</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="simple">
+<dt>Maintenance</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1831">#1831</a> Numpy 2.0 is now supported.</p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1898">#1898</a> Updated codecov action. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1860">#1860</a> Updated GitHub issue templates. <em>Brian McFee</em></p></li>
 </ul>
-</div></blockquote>
-<dl class="simple">
+</dd>
 <dt>Enhancements</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1916">#1916</a> The default FFT backend has been changed from <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v2.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> to <a class="reference external" href="https://docs.scipy.org/doc/scipy/index.html#module-scipy" title="(in SciPy v1.15.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy</span></code></a>.</p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1864">#1864</a> Accelerated <em class="xref py py-obj">abs2</em> calculation on real-typed inputs. <em>Brian McFee</em></p></li>
 </ul>
 </dd>
 <dt>Bug fixes</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1916">#1916</a> Utility decorators now preserve type annotations properly. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1900">#1900</a> Fixed an error in pooch registry definition. <em>Brian McFee</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1897">#1897</a> Accommodate dependency resolution issues with <em class="xref py py-obj">uv</em>. <em>David Südholt</em></p></li>
 <li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1878">#1878</a> Improved accuracy for <em class="xref py py-obj">yin</em> and <em class="xref py py-obj">pyin</em>. <em>David Südholt</em></p></li>
@@ -229,6 +229,7 @@
 </ul>
 </dd>
 <dt>Deprecations</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/librosa/librosa/pull/1916">#1916</a> <a class="reference internal" href="generated/librosa.set_fftlib.html#librosa.set_fftlib" title="librosa.set_fftlib"><code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.set_fftlib</span></code></a> is deprecated and will be removed in version 1.0.  Users should transition to using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.set_backend.html#scipy.fft.set_backend" title="(in SciPy v1.15.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.fft.set_backend</span></code></a> instead.</p></li>
 <li><p>Expired deprecation of <em class="xref py py-obj">mono=</em> parameter in <em class="xref py py-obj">util.valid_audio</em>.</p></li>
 <li><p><em class="xref py py-obj">win_length</em> parameter in <em class="xref py py-obj">yin</em> and <em class="xref py py-obj">pyin</em></p></li>
 </ul>
