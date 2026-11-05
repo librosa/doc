@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>librosa.display.signal &#8212; librosa 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=1a5a4894" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../../_static/documentation_options.js?v=a12e3537"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+            </script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-171031946-1');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/librosa/display/signal';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.24.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://librosa.org/doc/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.0.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            true;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+  <div class="pst-sticky-header">
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/librosa_logo_text.svg" class="logo__image only-light" alt="librosa"/>
+    <img src="../../../_static/librosa_logo_dark.svg" class="logo__image only-dark pst-js-only" alt="librosa"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../advanced/index.html">
+    Advanced topics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa/issues" title="GitHub Issues" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-bug fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub Issues</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/forum/#!forum/librosa" title="Discussion" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-comments fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discussion</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://librosa.org/blog/" title="Blog" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-pen-nib fa-lg" aria-hidden="true"></i><span class="visually-hidden">Blog</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+  </div>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../advanced/index.html">
+    Advanced topics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa/issues" title="GitHub Issues" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-bug fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub Issues</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/forum/#!forum/librosa" title="Discussion" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-comments fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discussion</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://librosa.org/blog/" title="Blog" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-pen-nib fa-lg" aria-hidden="true"></i><span class="visually-hidden">Blog</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">librosa.display.signal</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <h1>Source code for librosa.display.signal</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">"""</span>
+<span class="sd">Time-domain signal visualization</span>
+<span class="sd">================================</span>
+
+<span class="sd">This module contains tools for visualizing time-domain audio signals,</span>
+<span class="sd">waveforms, and their overlays. It includes functions like `waveshow`,</span>
+<span class="sd">`wavebars`, and `wavef0` which handle adaptive plotting based on</span>
+<span class="sd">zoom levels and sequence lengths.</span>
+<span class="sd">"""</span>
+<span class="c1"># mypy: disable-error-code="attr-defined"</span>
+
+<span class="c1"># Standard library imports for type checking and future compatibility</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">weakref</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="c1"># Third-party imports for plotting and numerical operations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mplaxes</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.collections</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcollections</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mlines</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.transforms</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mtransforms</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.legend</span><span class="w"> </span><span class="kn">import</span> <span class="n">Legend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.legend_handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">HandlerBase</span><span class="p">,</span> <span class="n">HandlerLine2D</span><span class="p">,</span> <span class="n">HandlerPatch</span>
+
+<span class="c1"># Core and utility imports for audio processing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">core</span><span class="p">,</span> <span class="n">util</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..util.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterError</span>
+
+<span class="c1"># Signal visualization utilities for time-domain waveforms</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Sequence</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.artist</span><span class="w"> </span><span class="kn">import</span> <span class="n">Artist</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolyCollection</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.markers</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkerStyle</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span> <span class="k">as</span> <span class="n">MplPath</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.._typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span>
+
+<span class="c1"># Module imports for waveform formatting and adaptive plotting</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.formatting</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Transformf0</span><span class="p">,</span>
+    <span class="n">_check_axes</span><span class="p">,</span>
+    <span class="n">_decorate_axis</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="AdaptiveWaveplot">
+<a class="viewcode-back" href="../../../api/generated/librosa.display.AdaptiveWaveplot.html#librosa.display.AdaptiveWaveplot">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdaptiveWaveplot</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A helper class for managing adaptive wave visualizations.</span>
+
+<span class="sd">    This object is used to dynamically switch between sample-based and envelope-based</span>
+<span class="sd">    visualizations of waveforms.</span>
+<span class="sd">    When the display is zoomed in such that no more than `max_samples` would be</span>
+<span class="sd">    visible, the sample-based display is used.</span>
+<span class="sd">    When displaying the raw samples would require more than `max_samples`, an</span>
+<span class="sd">    envelope-based plot is used instead.</span>
+
+<span class="sd">    You should never need to instantiate this object directly, as it is constructed</span>
+<span class="sd">    automatically by `waveshow`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    times : np.ndarray</span>
+<span class="sd">        An array containing the time index (in seconds) for each sample.</span>
+
+<span class="sd">    y : np.ndarray</span>
+<span class="sd">        An array containing the (monophonic) wave samples.</span>
+
+<span class="sd">    steps : matplotlib.lines.Line2D</span>
+<span class="sd">        The matplotlib artist used for the sample-based visualization.</span>
+<span class="sd">        This is constructed by `matplotlib.pyplot.step`.</span>
+
+<span class="sd">    envelope : matplotlib.collections.PolyCollection</span>
+<span class="sd">        The matplotlib artist used for the envelope-based visualization.</span>
+<span class="sd">        This is constructed by `matplotlib.pyplot.fill_between`.</span>
+
+<span class="sd">    sr : number &gt; 0</span>
+<span class="sd">        The sampling rate of the audio</span>
+
+<span class="sd">    max_samples : int &gt; 0</span>
+<span class="sd">        The maximum number of samples to use for sample-based display.</span>
+
+<span class="sd">    transpose : bool</span>
+<span class="sd">        If `True`, display the wave vertically instead of horizontally.</span>
+
+<span class="sd">    label : str or None</span>
+<span class="sd">        An optional label for the waveplot, used in legend entries.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    waveshow</span>
+<span class="sd">    """</span>
+
+    <span class="n">times</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">samples</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">max_samples</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">cid</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">label_proxy_</span><span class="p">:</span> <span class="n">_WaveplotDecoy</span>
+
+<div class="viewcode-block" id="AdaptiveWaveplot.__init__">
+<a class="viewcode-back" href="../../../api/generated/librosa.display.AdaptiveWaveplot.html#librosa.display.AdaptiveWaveplot.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">times</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">steps</span><span class="p">:</span> <span class="n">Line2D</span><span class="p">,</span>
+        <span class="n">envelope</span><span class="p">:</span> <span class="n">PolyCollection</span><span class="p">,</span>
+        <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+        <span class="n">max_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">11025</span><span class="p">,</span>
+        <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times</span> <span class="o">=</span> <span class="n">times</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_steps_ref</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_envelope_ref</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sr</span> <span class="o">=</span> <span class="n">sr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">=</span> <span class="n">max_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transpose</span> <span class="o">=</span> <span class="n">transpose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cid</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ax_ref</span><span class="p">:</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">[</span><span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># This creates an invisible proxy artist to contain the label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_proxy_</span> <span class="o">=</span> <span class="n">_WaveplotDecoy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_proxy_</span><span class="o">.</span><span class="n">set_in_layout</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_proxy_</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">label</span><span class="p">)</span></div>
+
+
+    <span class="c1"># Preserve the old attribute API by exposing properties with same names</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">steps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line2D</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The step plot artist (Line2D), or None if garbage collected.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Line2D or None</span>
+<span class="sd">            The step plot artist, or ``None`` if it has been garbage collected.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_steps_ref</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">envelope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PolyCollection</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The envelope artist (PolyCollection), or None if garbage collected.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PolyCollection or None</span>
+<span class="sd">            The envelope artist, or ``None`` if it has been garbage collected.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_envelope_ref</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ax</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The connected Axes, or None if not connected or garbage collected.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        matplotlib.axes.Axes or None</span>
+<span class="sd">            The connected axes, or ``None`` if not connected or garbage collected.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ax_ref</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ax_ref</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Disconnect callback methods on delete"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">signal</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"xlim_changed"</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Connect the adaptor to a signal on an axes object.</span>
+
+<span class="sd">        Note that if the adaptor has already been connected to an axes object,</span>
+<span class="sd">        that connect is first broken and then replaced by a new callback.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : matplotlib.axes.Axes</span>
+<span class="sd">            The axes to connect with this adaptor's `update`</span>
+<span class="sd">        signal : string, {"xlim_changed", "ylim_changed"}</span>
+<span class="sd">            The signal to connect</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        disconnect</span>
+<span class="sd">        """</span>
+        <span class="c1"># Disconnect any existing callback first</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+        <span class="c1"># Attach to axes and store the connection id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ax_ref</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_proxy_</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cid</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Disconnect the adaptor's update callback.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        strict : bool</span>
+<span class="sd">            If `True`, remove references to the connected axes.</span>
+<span class="sd">            If `False` (default), only disconnect the callback.</span>
+
+<span class="sd">            This functionality is intended primarily for internal use,</span>
+<span class="sd">            and should have no observable effects for users.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        connect</span>
+<span class="sd">        """</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">cid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cid</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cid</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_proxy_</span><span class="o">.</span><span class="n">axes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">label_proxy_</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ax_ref</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Update the matplotlib display according to the current viewport limits.</span>
+
+<span class="sd">        This is a callback function, and should not be used directly.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : matplotlib.axes.Axes</span>
+<span class="sd">            The axes object to update</span>
+<span class="sd">        """</span>
+        <span class="c1"># Deref artists and bail if they've been garbage collected</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span>
+        <span class="n">envelope</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">envelope</span>
+        <span class="k">if</span> <span class="n">steps</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">envelope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">lims</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">viewLim</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transpose</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">lims</span><span class="o">.</span><span class="n">y1</span>
+            <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">times</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">lims</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">lims</span><span class="o">.</span><span class="n">x1</span>
+            <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
+        <span class="c1"># Does our width cover fewer than max_samples?</span>
+        <span class="c1"># If so, then use the sample-based plot</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">:</span>
+            <span class="n">envelope</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># Now check our viewport</span>
+            <span class="c1"># we have to squash mypy errors on operand compatibility</span>
+            <span class="c1"># here because the type annotations from matplotlib are too</span>
+            <span class="c1"># loose.</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">end</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>  <span class="c1"># type: ignore[index]</span>
+                <span class="c1"># Viewport expands beyond current data in steps; update</span>
+                <span class="c1"># we want to cover a window of self.max_samples centered on the current viewport</span>
+                <span class="n">midpoint_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">idx_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">,</span> <span class="n">midpoint_time</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span><span class="p">)</span>
+                <span class="n">steps</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span>
+                    <span class="n">xdata</span><span class="p">[</span><span class="n">idx_start</span> <span class="p">:</span> <span class="n">idx_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">],</span>
+                    <span class="n">ydata</span><span class="p">[</span><span class="n">idx_start</span> <span class="p">:</span> <span class="n">idx_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">],</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Otherwise, use the envelope plot</span>
+            <span class="n">envelope</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span></div>
+
+
+<span class="c1"># Keeps adaptors alive as long as their Axes exists, preventing GC</span>
+<span class="n">_WAVESHOW_ADAPTORS</span><span class="p">:</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">[</span><span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="s2">"AdaptiveWaveplot"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_WaveplotDecoy</span><span class="p">(</span><span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_waveplot</span><span class="p">:</span> <span class="n">AdaptiveWaveplot</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="c1"># We'll never actually set the color on this decoy at construction time</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"none"</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([],</span> <span class="p">[],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_waveplot_ref</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">parent_waveplot</span><span class="p">)</span>  <span class="c1"># Store weak reference to the parent wrapper</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">waveplot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdaptiveWaveplot</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_waveplot_ref</span><span class="p">()</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_AdaptiveWaveplotHandler</span><span class="p">(</span><span class="n">HandlerBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_artists</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">legend</span><span class="p">:</span> <span class="n">Legend</span><span class="p">,</span>
+        <span class="n">orig_handle</span><span class="p">:</span> <span class="n">Artist</span><span class="p">,</span>
+        <span class="n">xdescent</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">ydescent</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">trans</span><span class="p">:</span> <span class="n">mtransforms</span><span class="o">.</span><span class="n">Transform</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Artist</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Matplotlib automatically passes the exact dimensions and coordinate</span>
+<span class="sd">        transform (`trans`) needed to paint safely inside the legend key box.</span>
+<span class="sd">        """</span>
+        <span class="n">orig_handle</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"_WaveplotDecoy"</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">)</span>
+        <span class="n">waveplot</span> <span class="o">=</span> <span class="n">orig_handle</span><span class="o">.</span><span class="n">waveplot</span>
+        <span class="k">if</span> <span class="n">waveplot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">waveplot</span><span class="o">.</span><span class="n">ax</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">bgcolor</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bgcolor</span> <span class="o">=</span> <span class="s2">"none"</span>
+        <span class="n">bg_rect</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">bgcolor</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+        <span class="n">bg_artists</span> <span class="o">=</span> <span class="n">HandlerPatch</span><span class="p">()</span><span class="o">.</span><span class="n">create_artists</span><span class="p">(</span><span class="n">legend</span><span class="p">,</span> <span class="n">bg_rect</span><span class="p">,</span> <span class="n">xdescent</span><span class="p">,</span> <span class="n">ydescent</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span>
+
+        <span class="n">proxy_line</span> <span class="o">=</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="n">waveplot</span><span class="o">.</span><span class="n">steps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">proxy_line</span><span class="o">.</span><span class="n">update_from</span><span class="p">(</span><span class="n">waveplot</span><span class="o">.</span><span class="n">steps</span><span class="p">)</span>
+        <span class="n">proxy_line</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],</span> <span class="p">[])</span>
+        <span class="n">proxy_line</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">line_artists</span> <span class="o">=</span> <span class="n">HandlerLine2D</span><span class="p">()</span><span class="o">.</span><span class="n">create_artists</span><span class="p">(</span>
+            <span class="n">legend</span><span class="p">,</span> <span class="n">proxy_line</span><span class="p">,</span> <span class="n">xdescent</span><span class="p">,</span> <span class="n">ydescent</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">,</span> <span class="n">trans</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="n">bg_artists</span><span class="p">,</span> <span class="o">*</span><span class="n">line_artists</span><span class="p">]</span>
+
+<span class="c1"># Add our custom handler to the default legend handler map</span>
+<span class="k">if</span> <span class="n">_WaveplotDecoy</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Legend</span><span class="o">.</span><span class="n">get_default_handler_map</span><span class="p">():</span>
+    <span class="n">Legend</span><span class="o">.</span><span class="n">update_default_handler_map</span><span class="p">({</span><span class="n">_WaveplotDecoy</span><span class="p">:</span> <span class="n">_AdaptiveWaveplotHandler</span><span class="p">()})</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_envelope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hop</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Compute the max-envelope of non-overlapping frames of x at length hop</span>
+
+<span class="sd">    x is assumed to be multi-channel, of shape (n_channels, n_samples).</span>
+<span class="sd">    """</span>
+    <span class="n">x_frame</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="n">hop</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x_frame</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="waveshow">
+<a class="viewcode-back" href="../../../api/generated/librosa.display.waveshow.html#librosa.display.waveshow">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">waveshow</span><span class="p">(</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">max_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">11025</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">MplPath</span> <span class="o">|</span> <span class="n">MarkerStyle</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="n">where</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"pre"</span><span class="p">,</span> <span class="s2">"post"</span><span class="p">,</span> <span class="s2">"mid"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"post"</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">invert</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">invert_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdaptiveWaveplot</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Visualize a waveform in the time domain.</span>
+
+<span class="sd">    This function constructs a plot which adaptively switches between a raw</span>
+<span class="sd">    samples-based view of the signal (`matplotlib.pyplot.step`) and an</span>
+<span class="sd">    amplitude-envelope view of the signal (`matplotlib.pyplot.fill_between`)</span>
+<span class="sd">    depending on the time extent of the plot's viewport.</span>
+
+<span class="sd">    More specifically, when the plot spans a time interval of less than ``max_points /</span>
+<span class="sd">    sr`` (by default, 1/2 second), the samples-based view is used, and otherwise a</span>
+<span class="sd">    downsampled amplitude envelope is used.</span>
+<span class="sd">    This is done to limit the complexity of the visual elements to guarantee an</span>
+<span class="sd">    efficient, visually interpretable plot.</span>
+
+<span class="sd">    When using interactive rendering (e.g., in a Jupyter notebook or IPython</span>
+<span class="sd">    console), the plot will automatically update as the view-port is changed, either</span>
+<span class="sd">    through widget controls or programmatic updates.</span>
+
+<span class="sd">    .. note:: When visualizing stereo waveforms, the amplitude envelope will be generated</span>
+<span class="sd">        so that the upper limits derive from the left channel, and the lower limits derive</span>
+<span class="sd">        from the right channel, which can produce a vertically asymmetric plot.</span>
+
+<span class="sd">        When zoomed in to the sample view, only the first channel will be shown.</span>
+<span class="sd">        If you want to visualize both channels at the sample level, it is recommended to</span>
+<span class="sd">        plot each signal independently.</span>
+
+<span class="sd">        To visualize stereo waveforms as two separate signal displays, see `multiplot`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : np.ndarray [shape=(n,) or (2,n)]</span>
+<span class="sd">        audio time series (mono or stereo)</span>
+<span class="sd">        If stereo, the left channel's amplitude envelope will be used for the top of the plot,,</span>
+<span class="sd">        and the right channel's amplitude envelope (negated) will be used for the bottom of the plot.</span>
+<span class="sd">        If mono, the signal's envelope is mirrored across the axis.</span>
+
+<span class="sd">    sr : number &gt; 0 [scalar]</span>
+<span class="sd">        sampling rate of ``y`` (samples per second)</span>
+
+<span class="sd">    max_points : int &gt; 0</span>
+<span class="sd">        Maximum number of samples to draw.  When the plot covers a time extent</span>
+<span class="sd">        smaller than ``max_points / sr`` (default: 1/2 second), samples are drawn.</span>
+
+<span class="sd">        If drawing raw samples would exceed `max_points`, then a downsampled</span>
+<span class="sd">        amplitude envelope extracted from non-overlapping windows of `y` is</span>
+<span class="sd">        visualized instead.  The parameters of the amplitude envelope are defined so</span>
+<span class="sd">        that the resulting plot cannot produce more than `max_points` frames.</span>
+
+<span class="sd">    axis : str or None</span>
+<span class="sd">        Display style of the axis ticks and tick markers. Accepted values are:</span>
+
+<span class="sd">        - 'time' : markers are shown as milliseconds, seconds, minutes, or hours.</span>
+<span class="sd">                    Values are plotted in units of seconds.</span>
+
+<span class="sd">        - 'h' : markers are shown as hours, minutes, and seconds.</span>
+
+<span class="sd">        - 'm' : markers are shown as minutes and seconds.</span>
+
+<span class="sd">        - 's' : markers are shown as seconds.</span>
+
+<span class="sd">        - 'ms' : markers are shown as milliseconds.</span>
+
+<span class="sd">        - 'lag' : like time, but past the halfway point counts as negative values.</span>
+
+<span class="sd">        - 'lag_h' : same as lag, but in hours.</span>
+
+<span class="sd">        - 'lag_m' : same as lag, but in minutes.</span>
+
+<span class="sd">        - 'lag_s' : same as lag, but in seconds.</span>
+
+<span class="sd">        - 'lag_ms' : same as lag, but in milliseconds.</span>
+
+<span class="sd">        - `None`, 'none', or 'off': ticks and tick markers are hidden.</span>
+
+<span class="sd">    offset : float</span>
+<span class="sd">        Offset (in seconds) to start the waveform plot</span>
+
+<span class="sd">    marker : str</span>
+<span class="sd">        Marker symbol to use for sample values. (default: no markers)</span>
+
+<span class="sd">        See Also: `matplotlib.markers`.</span>
+
+<span class="sd">    where : {'pre', 'mid', 'post'}</span>
+<span class="sd">        This setting determines how both waveform and envelope plots interpolate</span>
+<span class="sd">        between observations.</span>
+
+<span class="sd">        See `matplotlib.pyplot.step` for details.</span>
+
+<span class="sd">        Default: 'post'</span>
+
+<span class="sd">    label : str or None</span>
+<span class="sd">        The label string applied to this plot.</span>
+<span class="sd">        Note that the label</span>
+
+<span class="sd">    transpose : bool</span>
+<span class="sd">        If `True`, display the wave vertically instead of horizontally.</span>
+
+<span class="sd">    mask : np.ndarray [shape=(n,)] or None</span>
+<span class="sd">        If provided, this mask will be used to determine which samples to display.</span>
+<span class="sd">        The mask should be a 1D boolean array of the same length as `y` (`y.shape[-1]`),</span>
+<span class="sd">        where `True` indicates that the sample should be displayed, and `False` indicates</span>
+<span class="sd">        that it should be ignored.</span>
+
+<span class="sd">        .. note:: This mask is only used directly by the envelope display, and a raw sample</span>
+<span class="sd">            display will not be masked.  The `mask` parameter is intended to be used by the</span>
+<span class="sd">            `wavef0` function, and it is not recommended to be used directly by the user.</span>
+
+<span class="sd">    ax : matplotlib.axes.Axes or None</span>
+<span class="sd">        Axes to plot on instead of the default `plt.gca()`.</span>
+
+<span class="sd">    invert : bool</span>
+<span class="sd">        If `True`, invert the foreground and background of the display, so that the axes background</span>
+<span class="sd">        is colored.</span>
+<span class="sd">        If `False` (default), the waveform display is colored and the background is unchanged.</span>
+
+<span class="sd">        .. note:: This option should only be used if the wave display is the only element in the axes.</span>
+
+<span class="sd">    invert_color : str, tuple, None</span>
+<span class="sd">        If `invert` is `True`, this parameter specifies the color to use for the inverted</span>
+<span class="sd">        waveform display.</span>
+<span class="sd">        If `None` (default), the color is set to the current axes background color.</span>
+
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional keyword arguments to `matplotlib.pyplot.fill_between` and</span>
+<span class="sd">        `matplotlib.pyplot.step`.</span>
+
+<span class="sd">        Note that only those arguments which are common to both functions will be</span>
+<span class="sd">        supported.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    librosa.display.AdaptiveWaveplot</span>
+<span class="sd">        An object of type `librosa.display.AdaptiveWaveplot`</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    wavebars</span>
+<span class="sd">    AdaptiveWaveplot</span>
+<span class="sd">    multiplot</span>
+<span class="sd">    matplotlib.pyplot.step</span>
+<span class="sd">    matplotlib.pyplot.fill_between</span>
+<span class="sd">    matplotlib.pyplot.fill_betweenx</span>
+<span class="sd">    matplotlib.markers</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Plot a monophonic waveform with an envelope view</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('choice', duration=10)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=3, sharex=True)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, sr=sr, ax=ax[0])</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].set(title='Envelope view, mono')</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].label_outer()</span>
+
+<span class="sd">    Or a stereo waveform</span>
+
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('choice', mono=False, duration=10)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, sr=sr, ax=ax[1])</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].set(title='Envelope view, stereo')</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
+
+<span class="sd">    Or harmonic and percussive components with transparency</span>
+
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('choice', duration=10)</span>
+<span class="sd">    &gt;&gt;&gt; y_harm, y_perc = librosa.effects.hpss(y)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y_harm, sr=sr, color='C1', alpha=0.75, ax=ax[2], label='Harmonic')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y_perc, sr=sr, color='C2', alpha=0.75, ax=ax[2], label='Percussive')</span>
+<span class="sd">    &gt;&gt;&gt; ax[2].set(title='Multiple waveforms')</span>
+<span class="sd">    &gt;&gt;&gt; ax[2].legend()</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+
+<span class="sd">    Zooming in on a plot to show raw sample values</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, (ax, ax2) = plt.subplots(nrows=2, sharex=True)</span>
+<span class="sd">    &gt;&gt;&gt; ax.set(xlim=[6.1, 6.25], title='Sample view')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, sr=sr, ax=ax, label='Full signal')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y_harm, sr=sr, color='C1', alpha=0.75, ax=ax2, label='Harmonic')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y_perc, sr=sr, color='C2', alpha=0.75, ax=ax2, label='Percussive')</span>
+<span class="sd">    &gt;&gt;&gt; ax.label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax.legend()</span>
+<span class="sd">    &gt;&gt;&gt; ax2.legend(ncols=2)</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+
+<span class="sd">    Plotting a transposed wave along with a self-similarity matrix</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplot_mosaic("hSSS;hSSS;hSSS;.vvv", layout='compressed')</span>
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('trumpet')</span>
+<span class="sd">    &gt;&gt;&gt; chroma = librosa.feature.chroma_cqt(y=y, sr=sr)</span>
+<span class="sd">    &gt;&gt;&gt; sim = librosa.segment.recurrence_matrix(chroma, mode='affinity')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.specshow(sim, ax=ax['S'], sr=sr,</span>
+<span class="sd">    ...                          x_axis='time', y_axis='time',</span>
+<span class="sd">    ...                          auto_aspect=False)</span>
+<span class="sd">    &gt;&gt;&gt; ax['S'].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax['S'].sharex(ax['v'])</span>
+<span class="sd">    &gt;&gt;&gt; ax['S'].sharey(ax['h'])</span>
+<span class="sd">    &gt;&gt;&gt; ax['S'].set(title='Self-similarity')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, ax=ax['v'])</span>
+<span class="sd">    &gt;&gt;&gt; ax['v'].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax['v'].set(title='transpose=False')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y, ax=ax['h'], transpose=True)</span>
+<span class="sd">    &gt;&gt;&gt; ax['h'].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax['h'].set(title='transpose=True')</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+<span class="sd">    """</span>
+    <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Pad an extra channel dimension, if necessary</span>
+    <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">if</span> <span class="n">max_points</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"max_points=</span><span class="si">{</span><span class="n">max_points</span><span class="si">}</span><span class="s2"> must be strictly positive"</span><span class="p">)</span>
+
+    <span class="c1"># Create the adaptive drawing object</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">_check_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="c1"># Reduce by envelope calculation</span>
+    <span class="c1"># this choice of hop ensures that the envelope has at most max_points values</span>
+    <span class="n">hop_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">max_points</span><span class="p">)</span>
+    <span class="n">y_env</span> <span class="o">=</span> <span class="n">_envelope</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">hop_length</span><span class="p">)</span>
+
+    <span class="c1"># Split the envelope into top and bottom</span>
+    <span class="n">y_bottom</span><span class="p">,</span> <span class="n">y_top</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_env</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_env</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">times</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">core</span><span class="o">.</span><span class="n">times_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Only plot up to max_points worth of data here</span>
+    <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="n">times</span><span class="p">[:</span><span class="n">max_points</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="n">max_points</span><span class="p">]</span>
+    <span class="n">dec_axis</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">Axis</span>
+    <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">ydata</span><span class="p">,</span> <span class="n">xdata</span> <span class="o">=</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span>
+        <span class="n">filler</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">fill_betweenx</span>
+        <span class="n">signal</span> <span class="o">=</span> <span class="s2">"ylim_changed"</span>
+        <span class="n">dec_axis</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">filler</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">fill_between</span>
+        <span class="n">signal</span> <span class="o">=</span> <span class="s2">"xlim_changed"</span>
+        <span class="n">dec_axis</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span>
+
+    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Sequence[bool]"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_top</span><span class="p">)</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="p">:</span> <span class="n">hop_length</span><span class="p">])</span>
+
+    <span class="p">(</span><span class="n">steps</span><span class="p">,)</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Pull color property from the steps object, if we don't already have it</span>
+    <span class="k">if</span> <span class="s2">"color"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"color"</span><span class="p">,</span> <span class="n">steps</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
+
+    <span class="n">envelope</span> <span class="o">=</span> <span class="n">filler</span><span class="p">(</span>
+        <span class="n">times</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_top</span><span class="p">)</span> <span class="o">*</span> <span class="n">hop_length</span> <span class="p">:</span> <span class="n">hop_length</span><span class="p">],</span>
+        <span class="n">y_bottom</span><span class="p">,</span>
+        <span class="n">y_top</span><span class="p">,</span>
+        <span class="n">step</span><span class="o">=</span><span class="n">where</span><span class="p">,</span>
+        <span class="n">where</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">adaptor</span> <span class="o">=</span> <span class="n">AdaptiveWaveplot</span><span class="p">(</span>
+        <span class="n">times</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">steps</span><span class="p">,</span>
+        <span class="n">envelope</span><span class="p">,</span>
+        <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+        <span class="n">max_samples</span><span class="o">=</span><span class="n">max_points</span><span class="p">,</span>
+        <span class="n">transpose</span><span class="o">=</span><span class="n">transpose</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Register adaptor to keep it alive as long as Axes exists</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">_WAVESHOW_ADAPTORS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bucket</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">_WAVESHOW_ADAPTORS</span><span class="p">[</span><span class="n">axes</span><span class="p">]</span> <span class="o">=</span> <span class="n">bucket</span>
+    <span class="n">bucket</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">adaptor</span><span class="p">)</span>
+
+    <span class="n">adaptor</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="c1"># Force an initial update to ensure the state is consistent</span>
+    <span class="n">adaptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+
+    <span class="c1"># Handle color inversion if needed</span>
+    <span class="k">if</span> <span class="n">invert</span><span class="p">:</span>
+        <span class="c1"># If no inverted color is given, just swap it from the axes face</span>
+        <span class="k">if</span> <span class="n">invert_color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">invert_color</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()</span>
+
+        <span class="c1"># Get the fg color from the steps plot</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">get_color</span><span class="p">()</span>
+
+        <span class="c1"># Set the axes facecolor to our wave color</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">steps</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">invert_color</span><span class="p">)</span>
+        <span class="n">envelope</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">invert_color</span><span class="p">)</span>
+
+    <span class="c1"># Construct tickers and locators</span>
+    <span class="n">_decorate_axis</span><span class="p">(</span><span class="n">dec_axis</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">adaptor</span></div>
+
+
+
+<div class="viewcode-block" id="wavebars">
+<a class="viewcode-back" href="../../../api/generated/librosa.display.wavebars.html#librosa.display.wavebars">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavebars</span><span class="p">(</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">n_bars</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">gap_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">rounding_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">invert</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">invert_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">patch_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mcollections</span><span class="o">.</span><span class="n">PatchCollection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Visualize a waveform as a series of bars representing the amplitude envelope.</span>
+
+<span class="sd">    This visualization is appropriate for displaying a simplified view of the</span>
+<span class="sd">    signal, and is best suited for small figures where simplicity is desired.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : np.ndarray [shape=(n,) or (2,n)]</span>
+<span class="sd">        audio time series (mono or stereo)</span>
+<span class="sd">        If stereo, the left channel's amplitude envelope will be used for the top of the bars,</span>
+<span class="sd">        and the right channel's amplitude envelope (negated) will be used for the bottom of the bars.</span>
+<span class="sd">        If mono, the signal's envelope is mirrored across the axis.</span>
+<span class="sd">    sr : number &gt; 0 [scalar]</span>
+<span class="sd">        sampling rate of ``y`` (samples per second)</span>
+<span class="sd">    n_bars : int &gt; 0</span>
+<span class="sd">        Number of bars to display in the waveform plot.</span>
+<span class="sd">        The total time extent of the plot will be divided into `n_bars` segments,</span>
+<span class="sd">        and the amplitude envelope of each segment will be represented as a bar.</span>
+<span class="sd">    gap_ratio : float in [0, 1]</span>
+<span class="sd">        The fraction of the bar width that will be left as a gap between adjacent bars.</span>
+<span class="sd">    rounding_ratio : float in [0, 1]</span>
+<span class="sd">        The fraction of the bar width that will be used for rounding the corners of the bars.</span>
+<span class="sd">        A value of 0.5 will produce bars with rounded corners, while a value of 0 will produce</span>
+<span class="sd">        rectangular bars.</span>
+<span class="sd">    axis : str or None</span>
+<span class="sd">        Display style of the axis ticks and tick markers. Accepted values are:</span>
+<span class="sd">            - 'time' : markers are shown as milliseconds, seconds, minutes, or hours.</span>
+<span class="sd">            - 'h' : markers are shown as hours, minutes, and seconds.</span>
+<span class="sd">            - 'm' : markers are shown as minutes and seconds.</span>
+<span class="sd">            - 's' : markers are shown as seconds.</span>
+<span class="sd">            - 'ms' : markers are shown as milliseconds.</span>
+<span class="sd">            - 'lag' : like time, but past the halfway point counts as negative values.</span>
+<span class="sd">            - 'lag_h' : same as lag, but in hours.</span>
+<span class="sd">            - 'lag_m' : same as lag, but in minutes.</span>
+<span class="sd">            - 'lag_s' : same as lag, but in seconds.</span>
+<span class="sd">            - 'lag_ms' : same as lag, but in milliseconds.</span>
+<span class="sd">            - `None`, 'none', or 'off': ticks and tick markers are hidden.</span>
+<span class="sd">    offset : float</span>
+<span class="sd">        Offset (in seconds) to start the waveform plot.</span>
+<span class="sd">    invert : bool</span>
+<span class="sd">        If `True`, invert the foreground and background of the display, so that the axes background</span>
+<span class="sd">        is colored.</span>
+<span class="sd">        If `False` (default), the envelope display is colored and the background is unchanged.</span>
+<span class="sd">    invert_color : str, tuple, None</span>
+<span class="sd">        If `invert` is `True`, this parameter specifies the color to use for the inverted</span>
+<span class="sd">        waveform display.</span>
+<span class="sd">        If `None` (default), the color is set to the current axes background color.</span>
+<span class="sd">    transpose : bool</span>
+<span class="sd">        If `True`, display the wave vertically instead of horizontally.</span>
+<span class="sd">    label : str or None</span>
+<span class="sd">        The label string applied to this plot.</span>
+<span class="sd">        If `None`, no label is applied.</span>
+<span class="sd">    ax : matplotlib.axes.Axes or None</span>
+<span class="sd">        Axes to plot on instead of the default `plt.gca()`.</span>
+<span class="sd">    **patch_kwargs : dict</span>
+<span class="sd">        Additional keyword arguments to pass to `matplotlib.patches.FancyBboxPatch`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.collections.PatchCollection</span>
+<span class="sd">        A collection of patches representing the amplitude envelope of the waveform.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    waveshow</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Plot a waveform as bars, compared to the `waveshow` version of the plot</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('libri1', duration=10)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=2, sharex=True)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.waveshow(y=y, sr=sr, ax=ax[0], label='waveshow()')</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].legend()</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavebars(y=y, sr=sr, ax=ax[1], label='wavebars()')</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+
+<span class="sd">    Make plots with varying amounts of detail, squared corners, and inverted colors.</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=3, sharex=True, sharey=True)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavebars(y=y, sr=sr, n_bars=100, rounding_ratio=0,</span>
+<span class="sd">    ...                          invert=True, ax=ax[0], label='100 bars')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavebars(y=y, sr=sr, n_bars=200, rounding_ratio=0,</span>
+<span class="sd">    ...                          color='C1', invert=True, ax=ax[1], label='200 bars')</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavebars(y=y, sr=sr, n_bars=50, rounding_ratio=0,</span>
+<span class="sd">    ...                          color='C2', invert=True, ax=ax[2], label='50 bars')</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].legend()</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].legend()</span>
+<span class="sd">    &gt;&gt;&gt; ax[2].legend()</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+<span class="sd">    """</span>
+    <span class="n">util</span><span class="o">.</span><span class="n">valid_audio</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">patch_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"linewidth"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">_check_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n_bars</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_bars=</span><span class="si">{</span><span class="n">n_bars</span><span class="si">}</span><span class="s2"> must be strictly positive"</span><span class="p">)</span>
+
+    <span class="n">hop</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">n_bars</span><span class="p">)</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">_envelope</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+    <span class="n">env_bottom</span><span class="p">,</span> <span class="n">env_top</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">env</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">bar_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">hop</span> <span class="o">/</span> <span class="n">sr</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gap_ratio</span><span class="p">)</span>
+    <span class="n">rounding_size</span> <span class="o">=</span> <span class="n">bar_width</span> <span class="o">*</span> <span class="n">rounding_ratio</span>
+
+    <span class="n">times</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">core</span><span class="o">.</span><span class="n">times_like</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">hop</span><span class="p">)</span>
+
+    <span class="n">patches</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">boxstyle</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"round,pad=0,rounding_size=</span><span class="si">{</span><span class="n">rounding_size</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">env_bottom</span><span class="p">,</span> <span class="n">env_top</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="n">rounding_size</span><span class="p">,</span> <span class="o">-</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rounding_size</span><span class="p">,</span> <span class="n">a1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+            <span class="n">xy</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">top</span> <span class="o">-</span> <span class="n">base</span><span class="p">,</span> <span class="n">bar_width</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">xy</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">base</span><span class="p">),</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">top</span> <span class="o">-</span> <span class="n">base</span>
+
+        <span class="n">p</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">FancyBboxPatch</span><span class="p">(</span>
+            <span class="n">xy</span><span class="p">,</span>
+            <span class="n">width</span><span class="p">,</span>
+            <span class="n">height</span><span class="p">,</span>
+            <span class="n">boxstyle</span><span class="o">=</span><span class="n">boxstyle</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="n">patch_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"transform"</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span>
+    <span class="n">coll</span> <span class="o">=</span> <span class="n">mcollections</span><span class="o">.</span><span class="n">PatchCollection</span><span class="p">(</span><span class="n">patches</span><span class="p">,</span> <span class="o">**</span><span class="n">patch_kwargs</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="n">coll</span><span class="p">)</span>
+
+    <span class="c1"># Create a proxy artist if we have a label to set</span>
+    <span class="c1"># Even if we don't have a label, we'll still need it for handling inversion later on</span>
+    <span class="n">proxy</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">FancyBboxPatch</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">boxstyle</span><span class="o">=</span><span class="n">boxstyle</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="o">**</span><span class="n">patch_kwargs</span><span class="p">)</span>
+    <span class="n">proxy</span><span class="o">.</span><span class="n">set_in_layout</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
+
+    <span class="n">axes</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">invert</span><span class="p">:</span>
+        <span class="c1"># If no inverted color is given, just swap it from the axes face</span>
+        <span class="k">if</span> <span class="n">invert_color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">invert_color</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()</span>
+
+        <span class="c1"># Get the fg color from the steps plot</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># PatchCollection.get_facecolor() returns a 2D array of shape (1, 4).</span>
+        <span class="c1"># Unpack the first row [0] to supply a 1D (4,) RGBA sequence expected</span>
+        <span class="c1"># by single Patch artists (axes.patch and proxy) without relying on</span>
+        <span class="c1"># implicit downstream array flattening.</span>
+
+        <span class="c1"># Set the axes facecolor to our wave color</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+        <span class="n">proxy</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+        <span class="n">coll</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">invert_color</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">_decorate_axis</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_decorate_axis</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">coll</span></div>
+
+
+
+<div class="viewcode-block" id="wavef0">
+<a class="viewcode-back" href="../../../api/generated/librosa.display.wavef0.html#librosa.display.wavef0">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavef0</span><span class="p">(</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">f0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">time_axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
+    <span class="n">freq_axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"cqt_note"</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"C:maj"</span><span class="p">,</span>
+    <span class="n">Sa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mela</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">thaat</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"waveshow"</span><span class="p">,</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdaptiveWaveplot</span> <span class="o">|</span> <span class="n">mcollections</span><span class="o">.</span><span class="n">PatchCollection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Visualize a waveform with an f0-displacement.</span>
+
+<span class="sd">    This can be used to simultaneously visualize the fundamental frequency (f0)</span>
+<span class="sd">    estimates and the waveform or amplitude envelope of an audio signal in one</span>
+<span class="sd">    compact display.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : np.ndarray [shape=(n,) or (2,n)]</span>
+<span class="sd">        audio time series (mono or stereo)</span>
+<span class="sd">        If stereo, the left channel's amplitude envelope will be used for the top of</span>
+<span class="sd">        the plot,</span>
+<span class="sd">        and the right channel's amplitude envelope (negated) will be used for the</span>
+<span class="sd">        bottom of the plot.</span>
+<span class="sd">        If mono, the signal's envelope is mirrored across the axis.</span>
+
+<span class="sd">    f0 : np.ndarray [shape=(m,)]</span>
+<span class="sd">        Fundamental frequency (f0) estimates in Hz.</span>
+<span class="sd">        This should be computed using a pitch estimation algorithm such as</span>
+<span class="sd">        `librosa.pyin` or `librosa.yin`.</span>
+
+<span class="sd">    sr : number &gt; 0 [scalar]</span>
+<span class="sd">        sampling rate of ``y`` (samples per second)</span>
+
+<span class="sd">    hop_length : int &gt; 0</span>
+<span class="sd">        Hop length (in samples) between successive f0 estimates.</span>
+<span class="sd">        This should match the hop length used to compute `f0`.</span>
+
+<span class="sd">    bins_per_octave : int &gt; 0</span>
+<span class="sd">        Number of frequency bins per octave used to scale the waveform's</span>
+<span class="sd">        amplitude displacement around f0.  Combined with the waveform's peak</span>
+<span class="sd">        amplitude (used as the displacement norm), this controls how many bins</span>
+<span class="sd">        of vertical displacement correspond to one octave above or below f0.</span>
+
+<span class="sd">    time_axis : str</span>
+<span class="sd">        Display style of the time axis ticks and tick markers.</span>
+<span class="sd">        Accepted values are:</span>
+
+<span class="sd">          - 'time' : markers are shown as milliseconds, seconds, minutes, or hours.</span>
+<span class="sd">          - 'h' : markers are shown as hours, minutes, and seconds.</span>
+<span class="sd">          - 'm' : markers are shown as minutes and seconds.</span>
+<span class="sd">          - 's' : markers are shown as seconds.</span>
+<span class="sd">          - 'ms' : markers are shown as milliseconds.</span>
+<span class="sd">          - 'lag' : like time, but past the halfway point counts as negative values.</span>
+<span class="sd">          - 'lag_h' : same as lag, but in hours.</span>
+<span class="sd">          - 'lag_m' : same as lag, but in minutes.</span>
+<span class="sd">          - 'lag_s' : same as lag, but in seconds.</span>
+<span class="sd">          - 'lag_ms' : same as lag, but in milliseconds.</span>
+<span class="sd">          - `None`, 'none', or 'off': ticks and tick markers are hidden.</span>
+
+<span class="sd">    freq_axis : str</span>
+<span class="sd">        Display style of the frequency axis ticks and tick markers.</span>
+<span class="sd">        Accepted values are:</span>
+
+<span class="sd">          - 'cqt_note' : markers are shown as note names.</span>
+<span class="sd">          - 'cqt_hz' : markers are shown as frequencies in Hz.</span>
+<span class="sd">          - 'cqt_oct3' : markers are shown in Hz using 1/3-octave intervals.</span>
+<span class="sd">          - 'cqt_svara' : markers are shown as Indian classical music svara names.</span>
+
+<span class="sd">    offset : float</span>
+<span class="sd">        Offset (in seconds) to start the waveform plot.</span>
+
+<span class="sd">    key : str</span>
+<span class="sd">        Key signature for the frequency axis.</span>
+<span class="sd">        This is used to determine the note names for the frequency axis when using</span>
+<span class="sd">        `cqt_note` mode.</span>
+
+<span class="sd">    Sa : float or None</span>
+<span class="sd">        Sa (tonic) frequency in Hz for the frequency axis.</span>
+<span class="sd">        Required for `cqt_svara` mode.</span>
+
+<span class="sd">    mela : str or int or None</span>
+<span class="sd">        Mela (scale) name or index for the frequency axis.</span>
+<span class="sd">        This is used to determine the svara names for the frequency axis when using</span>
+<span class="sd">        `cqt_svara` mode.</span>
+
+<span class="sd">    thaat : str or None</span>
+<span class="sd">        Thaat (scale) name for the frequency axis.</span>
+<span class="sd">        This is used to determine the svara names for the frequency axis when using</span>
+<span class="sd">        `cqt_svara` mode.</span>
+
+<span class="sd">    unicode : bool</span>
+<span class="sd">        If `True`, use Unicode characters for frequency axis labels.</span>
+
+<span class="sd">    ax : matplotlib.axes.Axes or None</span>
+<span class="sd">        Axes to plot on instead of the default `plt.gca()`.</span>
+
+<span class="sd">    method : str</span>
+<span class="sd">        Method to use for visualizing the waveform with f0 displacement.</span>
+<span class="sd">        Accepted values are:</span>
+
+<span class="sd">          - 'waveshow' : Use `librosa.display.waveshow` to visualize the waveform with an f0 displacement.</span>
+<span class="sd">          - 'wavebars' : Use `librosa.display.wavebars` to visualize the waveform as bars with an f0 displacement.</span>
+
+<span class="sd">    transpose : bool</span>
+<span class="sd">        If `True`, display the wave vertically instead of horizontally.</span>
+
+<span class="sd">    **kwargs : dict</span>
+<span class="sd">        Additional keyword arguments forwarded to the plotting function selected</span>
+<span class="sd">        by `method`.</span>
+
+<span class="sd">        If `method='waveshow'`, these must be keyword arguments supported by</span>
+<span class="sd">        `librosa.display.waveshow` (for example, `max_points`).</span>
+
+<span class="sd">        If `method='wavebars'`, these must be keyword arguments supported by</span>
+<span class="sd">        `librosa.display.wavebars` (for example, `n_bars`, `gap_ratio`,</span>
+<span class="sd">        `rounding_ratio`, `invert`, and `invert_color`).</span>
+
+<span class="sd">        Keyword arguments for one method are not valid when using the other.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    AdaptiveWaveplot or PatchCollection</span>
+<span class="sd">        An object of type `librosa.display.AdaptiveWaveplot` if `method='waveshow'`,</span>
+<span class="sd">        or a `matplotlib.collections.PatchCollection` if `method='wavebars'`.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    waveshow</span>
+<span class="sd">    wavebars</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Visualize a waveform with an f0 displacement using `waveshow`</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('trumpet')</span>
+<span class="sd">    &gt;&gt;&gt; f0, _, _ = librosa.pyin(y, fmin=librosa.note_to_hz('C2'),</span>
+<span class="sd">    ...                         fmax=librosa.note_to_hz('C7'),</span>
+<span class="sd">    ...                         sr=sr, hop_length=512)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavef0(y=y, f0=f0, sr=sr, ax=ax,</span>
+<span class="sd">    ...                        method='waveshow')</span>
+<span class="sd">    &gt;&gt;&gt; ax.set(title='Waveform with f0 displacement (waveshow)')</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+
+<span class="sd">    Visualize a waveform with an f0 displacement using `wavebars`, and Hz</span>
+<span class="sd">    labels instead of note names.</span>
+<span class="sd">    Using a larger number of bars shows more detail here.</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavef0(y=y, f0=f0, sr=sr, ax=ax, n_bars=256,</span>
+<span class="sd">    ...                        method='wavebars', freq_axis='cqt_hz')</span>
+<span class="sd">    &gt;&gt;&gt; ax.set(title='Waveform with f0 displacement (wavebars, cqt_hz)')</span>
+<span class="sd">    &gt;&gt;&gt; plt.show()</span>
+
+<span class="sd">    Overlay a displaced waveform on a CQT plot via `specshow`.</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; C = librosa.cqt(y, sr=sr)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.specshow(C, ax=ax, sr=sr, x_axis='time', y_axis='cqt_note',</span>
+<span class="sd">    ...                          vscale='dBFS', cmap='gray_r')</span>
+<span class="sd">    &gt;&gt;&gt; hl = librosa.display.highlight(ax=ax)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.wavef0(y=y, f0=f0, sr=sr, ax=ax, path_effects=hl)</span>
+<span class="sd">    """</span>
+    <span class="c1"># Create the adaptive drawing object</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">_check_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"waveshow"</span><span class="p">,</span> <span class="s2">"wavebars"</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid display method=</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+    <span class="c1"># Force norm to be strictly positive and handle empty arrays</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">tiny</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">norm</span> <span class="o">+=</span> <span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="o">-</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+    <span class="n">trans</span> <span class="o">=</span> <span class="n">Transformf0</span><span class="p">(</span>
+        <span class="n">f0</span><span class="p">,</span>
+        <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+        <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
+        <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
+        <span class="n">transpose</span><span class="o">=</span><span class="n">transpose</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># and transposed mode here</span>
+    <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">_decorate_axis</span><span class="p">(</span>
+            <span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span>
+            <span class="n">freq_axis</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+            <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span>
+            <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span>
+            <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span>
+            <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_decorate_axis</span><span class="p">(</span>
+            <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="p">,</span>
+            <span class="n">freq_axis</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+            <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span>
+            <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span>
+            <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span>
+            <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"waveshow"</span><span class="p">:</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">sr</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">trans</span><span class="o">.</span><span class="n">f0_interp</span><span class="p">(</span><span class="n">times</span><span class="p">))</span>
+
+        <span class="n">adaptor</span> <span class="o">=</span> <span class="n">waveshow</span><span class="p">(</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">time_axis</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">trans</span> <span class="o">+</span> <span class="n">axes</span><span class="o">.</span><span class="n">transData</span><span class="p">,</span>
+            <span class="n">transpose</span><span class="o">=</span><span class="n">transpose</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Kludge the data limits because the fill_between collection does not automatically</span>
+        <span class="c1"># update the data limits</span>
+        <span class="k">assert</span> <span class="n">adaptor</span><span class="o">.</span><span class="n">envelope</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">adaptor</span><span class="o">.</span><span class="n">envelope</span><span class="o">.</span><span class="n">get_datalim</span><span class="p">(</span><span class="n">trans</span> <span class="o">+</span> <span class="n">axes</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span><span class="o">.</span><span class="n">get_points</span><span class="p">()</span>
+
+        <span class="n">f0min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">f0</span><span class="p">)</span>
+        <span class="n">f0max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">f0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">transpose</span><span class="p">:</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">f0min</span><span class="p">,</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">f0max</span><span class="p">],</span> <span class="n">xy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">f0min</span><span class="p">,</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">f0max</span><span class="p">])</span>
+
+        <span class="n">axes</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">()</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="c1"># end kludge</span>
+        <span class="k">return</span> <span class="n">adaptor</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">wavebars</span><span class="p">(</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">time_axis</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">trans</span> <span class="o">+</span> <span class="n">axes</span><span class="o">.</span><span class="n">transData</span><span class="p">,</span>
+            <span class="n">transpose</span><span class="o">=</span><span class="n">transpose</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+</pre></div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2013--2026, librosa development team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
