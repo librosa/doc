@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>librosa.display.image &#8212; librosa 1.1.0dev documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=1a5a4894" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../../_static/documentation_options.js?v=0143acc7"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+            </script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-171031946-1');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/librosa/display/image';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.24.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://librosa.org/doc/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.1.0dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            true;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.1.0dev" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+  <div class="pst-sticky-header">
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/librosa_logo_text.svg" class="logo__image only-light" alt="librosa"/>
+    <img src="../../../_static/librosa_logo_dark.svg" class="logo__image only-dark pst-js-only" alt="librosa"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../advanced/index.html">
+    Advanced topics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa/issues" title="GitHub Issues" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-bug fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub Issues</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/forum/#!forum/librosa" title="Discussion" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-comments fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discussion</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://librosa.org/blog/" title="Blog" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-pen-nib fa-lg" aria-hidden="true"></i><span class="visually-hidden">Blog</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+  </div>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../advanced/index.html">
+    Advanced topics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa/issues" title="GitHub Issues" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-bug fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub Issues</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/forum/#!forum/librosa" title="Discussion" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-comments fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discussion</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://librosa.org/blog/" title="Blog" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-pen-nib fa-lg" aria-hidden="true"></i><span class="visually-hidden">Blog</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">librosa.display.image</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <h1>Source code for librosa.display.image</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">"""</span>
+<span class="sd">Image and spectral visualization</span>
+<span class="sd">================================</span>
+
+<span class="sd">This module provides functionalities for visualizing 2D spectral data</span>
+<span class="sd">and matrices as images. It forms the core of `specshow`, handling the</span>
+<span class="sd">coordinate grids, color mapping, and rendering of spectrograms and</span>
+<span class="sd">chromagrams.</span>
+<span class="sd">"""</span>
+<span class="c1"># mypy: disable-error-code="attr-defined"</span>
+
+<span class="c1"># Standard library imports for type checking and future compatibility</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="c1"># Third-party imports for plotting and numerical operations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mplaxes</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">colors</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">colormaps</span> <span class="k">as</span> <span class="n">mcm</span>
+
+<span class="c1"># Core and utility imports for audio processing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">core</span><span class="p">,</span> <span class="n">util</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..util.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterError</span>
+
+<span class="c1"># Image visualization utilities for spectral and 2D matrix displays</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuadMesh</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.._typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">_FloatLike_co</span>
+
+<span class="c1"># Module imports for image formatting and coordinate handling</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.formatting</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_check_axes</span><span class="p">,</span>
+    <span class="n">_coord_chroma</span><span class="p">,</span>
+    <span class="n">_coord_cqt_hz</span><span class="p">,</span>
+    <span class="n">_coord_fft_hz</span><span class="p">,</span>
+    <span class="n">_coord_fourier_tempo</span><span class="p">,</span>
+    <span class="n">_coord_mel_hz</span><span class="p">,</span>
+    <span class="n">_coord_n</span><span class="p">,</span>
+    <span class="n">_coord_tempo</span><span class="p">,</span>
+    <span class="n">_coord_time</span><span class="p">,</span>
+    <span class="n">_coord_vqt_hz</span><span class="p">,</span>
+    <span class="n">_decorate_axis</span><span class="p">,</span>
+    <span class="n">_same_axes</span><span class="p">,</span>
+    <span class="n">_scale_axes</span><span class="p">,</span>
+    <span class="n">infer_cmap</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="specshow">
+<a class="viewcode-back" href="../../../api/generated/librosa.display.specshow.html#librosa.display.specshow">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">specshow</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">x_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">y_coords</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">y_axis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">vscale</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="n">n_fft</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">win_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fmin</span><span class="p">:</span> <span class="n">_FloatLike_co</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fmax</span><span class="p">:</span> <span class="n">_FloatLike_co</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tempo_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="n">tempo_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">480</span><span class="p">,</span>
+    <span class="n">tuning</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">bins_per_octave</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"C:maj"</span><span class="p">,</span>
+    <span class="n">Sa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mela</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">thaat</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">auto_aspect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">htk</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">intervals</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">unison</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">top_db</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span>
+    <span class="n">cmap_seq</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">colors</span><span class="o">.</span><span class="n">Colormap</span> <span class="o">=</span> <span class="s2">"magma"</span><span class="p">,</span>
+    <span class="n">cmap_bool</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">colors</span><span class="o">.</span><span class="n">Colormap</span> <span class="o">=</span> <span class="s2">"gray_r"</span><span class="p">,</span>
+    <span class="n">cmap_div</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">colors</span><span class="o">.</span><span class="n">Colormap</span> <span class="o">=</span> <span class="s2">"coolwarm"</span><span class="p">,</span>
+    <span class="n">cmap_cyclic</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">colors</span><span class="o">.</span><span class="n">Colormap</span> <span class="o">=</span> <span class="s2">"twilight_shifted"</span><span class="p">,</span>
+    <span class="n">div_thresh</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">mplaxes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuadMesh</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Display a spectrogram/chromagram/cqt/etc.</span>
+
+<span class="sd">    For a detailed overview of display functionality, see the</span>
+<span class="sd">    :ref:`Display and visualization tutorial &lt;tutorial-display-index&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : np.ndarray [shape=(d, n)]</span>
+<span class="sd">        Matrix to display (e.g., spectrogram)</span>
+
+<span class="sd">    x_coords, y_coords : np.ndarray [shape=data.shape[0 or 1]]</span>
+<span class="sd">        Optional positioning coordinates of the input data.</span>
+<span class="sd">        These can be use to explicitly set the location of each</span>
+<span class="sd">        element ``data[i, j]``, e.g., for displaying beat-synchronous</span>
+<span class="sd">        features in natural time coordinates.</span>
+
+<span class="sd">        If not provided, they are inferred from ``x_axis`` and ``y_axis``.</span>
+
+<span class="sd">    x_axis, y_axis : None or str</span>
+<span class="sd">        Range for the x- and y-axes.</span>
+
+<span class="sd">        Valid types are:</span>
+
+<span class="sd">        - None, 'none', or 'off' : no axis decoration is displayed,</span>
+<span class="sd">          and coordinates are plotted as sample/frame indices.</span>
+
+<span class="sd">        Frequency types:</span>
+
+<span class="sd">        - 'linear', 'fft', 'hz' : frequency range is determined by</span>
+<span class="sd">          the FFT window and sampling rate.</span>
+<span class="sd">        - 'log' : the spectrum is displayed on a log scale.</span>
+<span class="sd">        - 'oct3' : the spectrum is displayed on a log scale with frequencies marked</span>
+<span class="sd">          in scientific notation at 1/3-octave intervals</span>
+<span class="sd">        - 'fft_note': the spectrum is displayed on a log scale with pitches marked.</span>
+<span class="sd">        - 'fft_svara': the spectrum is displayed on a log scale with svara marked.</span>
+<span class="sd">        - 'mel' : frequencies are determined by the mel scale.</span>
+<span class="sd">        - 'mel_oct3' : like 'oct3' above, but using the mel scale.</span>
+<span class="sd">        - 'cqt_hz' : frequencies are determined by the CQT scale.</span>
+<span class="sd">        - 'cqt_oct3' : like 'oct3' above, but using the CQT scale.</span>
+<span class="sd">        - 'cqt_note' : pitches are determined by the CQT scale.</span>
+<span class="sd">        - 'cqt_svara' : like `cqt_note` but using Hindustani or Carnatic svara</span>
+<span class="sd">        - 'vqt_hz' : like `cqt_hz` but using Variable-Q Transform (VQT) scale.</span>
+<span class="sd">        - 'vqt_oct3' : like 'oct3' above, but using the VQT scale.</span>
+<span class="sd">        - 'vqt_fjs' : like `cqt_note` but using Functional Just System (FJS)</span>
+<span class="sd">          notation.  This requires a just intonation-based variable-Q</span>
+<span class="sd">          transform representation.</span>
+<span class="sd">        - 'vqt_note' : like 'cqt_note' but using the VQT scale.</span>
+
+<span class="sd">        All frequency types are plotted in units of Hz.</span>
+
+<span class="sd">        `oct3`-type use SI prefixes for frequencies, e.g., `1 kHz`, `2 MHz`, and are</span>
+<span class="sd">        well adapted for scientific applications using high-frequency data.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            The 'log', 'fft_note', 'fft_svara', 'log_oct3', 'mel', and</span>
+<span class="sd">            'mel_oct3' axes use symmetric-log scaling to retain frequency</span>
+<span class="sd">            bins near 0 Hz.  CQT and VQT axes use logarithmic scaling.</span>
+
+<span class="sd">        Any spectrogram parameters (hop_length, sr, bins_per_octave, etc.)</span>
+<span class="sd">        used to generate the input data should also be provided when</span>
+<span class="sd">        calling `specshow`.</span>
+
+<span class="sd">        Categorical types:</span>
+
+<span class="sd">        - 'chroma' : pitches are determined by the chroma filters.</span>
+<span class="sd">          Pitch classes are arranged at integer locations (0-11) according to</span>
+<span class="sd">          a given key.</span>
+
+<span class="sd">        - `chroma_h`, `chroma_c`: pitches are determined by chroma filters,</span>
+<span class="sd">          and labeled as svara in the Hindustani (`chroma_h`) or Carnatic (`chroma_c`)</span>
+<span class="sd">          according to a given thaat (Hindustani) or melakarta raga (Carnatic).</span>
+
+<span class="sd">        - 'chroma_fjs': pitches are determined by chroma filters using just</span>
+<span class="sd">          intonation.  All pitch classes are annotated.</span>
+
+<span class="sd">        - 'tonnetz' : axes are labeled by Tonnetz dimensions (0-5)</span>
+<span class="sd">        - 'frames' : markers are shown as frame counts.</span>
+
+<span class="sd">        Time types:</span>
+
+<span class="sd">        - 'time' : markers are shown as milliseconds, seconds, minutes, or hours.</span>
+<span class="sd">            Values are plotted in units of seconds.</span>
+
+<span class="sd">        - 'h' : markers are shown as hours, minutes, and seconds.</span>
+
+<span class="sd">        - 'm' : markers are shown as minutes and seconds.</span>
+
+<span class="sd">        - 's' : markers are shown as seconds.</span>
+
+<span class="sd">        - 'ms' : markers are shown as milliseconds.</span>
+
+<span class="sd">        - 'lag' : like time, but past the halfway point counts as negative values.</span>
+
+<span class="sd">        - 'lag_h' : same as lag, but in hours, minutes and seconds.</span>
+
+<span class="sd">        - 'lag_m' : same as lag, but in minutes and seconds.</span>
+
+<span class="sd">        - 'lag_s' : same as lag, but in seconds.</span>
+
+<span class="sd">        - 'lag_ms' : same as lag, but in milliseconds.</span>
+
+<span class="sd">        Rhythm:</span>
+
+<span class="sd">        - 'tempo' : markers are shown as beats-per-minute (BPM)</span>
+<span class="sd">            using a logarithmic scale.  This is useful for</span>
+<span class="sd">            visualizing the outputs of `feature.tempogram`.</span>
+
+<span class="sd">        - 'fourier_tempo' : same as `'tempo'`, but used when</span>
+<span class="sd">            tempograms are calculated in the Frequency domain</span>
+<span class="sd">            using `feature.fourier_tempogram`.</span>
+
+<span class="sd">    vscale : str</span>
+<span class="sd">        Optional value transformation for `data`.  The following are supported:</span>
+
+<span class="sd">        - 'dB' : decibels with `1` as a reference amplitude</span>
+
+<span class="sd">        - 'dB[&lt;value&gt;]' : decibels with the given value as a reference amplitude, e.g. 'dB[0.1]'.</span>
+
+<span class="sd">        - 'dB[power]' : like above, but treating `data` as power rather than amplitude measurements.</span>
+
+<span class="sd">        - 'dB[power,&lt;value&gt;]' : like above, but with an explicit reference power value, e.g. 'dB[power,0.1]'.</span>
+
+<span class="sd">        - 'dBFS' : decibels relative to full scale, using `np.max(data)` as a reference amplitude</span>
+
+<span class="sd">        - 'dBFS[power]' : like above, but treating `data` as power rather than amplitude measurements.</span>
+
+<span class="sd">        - 'phase' : phase values in radians, with a range of `[-π, π]`.</span>
+
+<span class="sd">        - 'dphase' : unwrapped phase differences in radians.  Each pixel corresponds to the residual between the</span>
+<span class="sd">          observed phase and the expected phase if the frequency was stationary at the previous time step.</span>
+<span class="sd">          Values are in the range of `[-π, π]`.</span>
+
+<span class="sd">        - 'dphase_t' : as above, but differences are computed along the vertical axis instead of horizontal.</span>
+<span class="sd">          This is intended for use with transposed spectrograms where the time axis is</span>
+<span class="sd">          vertical and the frequency axis is horizontal.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            When using phase difference modes (`dphase` or `dphase_t`), the x and y coordinates must be provided</span>
+<span class="sd">            via either the `x_axis` and `y_axis` parameters (e.g., `'time', 'fft'`), or explicitly by</span>
+<span class="sd">            the `x_coords` and `y_coords` parameters.  All time-like and frequency-like axes are supported.</span>
+
+<span class="sd">    sr : number &gt; 0 [scalar]</span>
+<span class="sd">        Sample rate used to determine time scale in x-axis.</span>
+
+<span class="sd">    hop_length : int &gt; 0 [scalar]</span>
+<span class="sd">        Hop length, also used to determine time scale in x-axis</span>
+
+<span class="sd">    n_fft : int &gt; 0 or None</span>
+<span class="sd">        Number of samples per frame in STFT/spectrogram displays.</span>
+<span class="sd">        By default, this will be inferred from the shape of ``data``</span>
+<span class="sd">        as ``2 * (d - 1)``.</span>
+<span class="sd">        If ``data`` was generated using an odd frame length, the correct</span>
+<span class="sd">        value can be specified here.</span>
+
+<span class="sd">    win_length : int &gt; 0 or None</span>
+<span class="sd">        The number of samples per window.</span>
+<span class="sd">        By default, this will be inferred to match ``n_fft``.</span>
+<span class="sd">        This is primarily useful for specifying odd window lengths in</span>
+<span class="sd">        Fourier tempogram displays.</span>
+
+<span class="sd">    fmin : float &gt; 0 [scalar], str, or None</span>
+<span class="sd">        Frequency of the lowest spectrogram bin.  Used for Mel, CQT, and VQT</span>
+<span class="sd">        scales.  Can be provided as a number (in Hz) or a note name in SPN format (e.g., 'C1').</span>
+
+<span class="sd">        If ``y_axis`` is `cqt_hz` or `cqt_note` and ``fmin`` is not given,</span>
+<span class="sd">        it is set by default to ``note_to_hz('C1')``.</span>
+
+<span class="sd">    fmax : float &gt; 0 [scalar], str, or None</span>
+<span class="sd">        Used for setting the Mel frequency scales.</span>
+<span class="sd">        Can be provided as a number (in Hz) or a note name in SPN format (e.g., 'C7').</span>
+
+<span class="sd">    tempo_min : float &gt; 0 [scalar]</span>
+<span class="sd">        Lowest tempo (in beats per minute) for tempogram display.</span>
+
+<span class="sd">    tempo_max : float &gt; 0 [scalar]</span>
+<span class="sd">        Highest tempo (in beats per minute) for tempogram display.</span>
+
+<span class="sd">    tuning : float</span>
+<span class="sd">        Tuning deviation from A440, in fractions of a bin.</span>
+
+<span class="sd">        This is used for CQT frequency scales, so that ``fmin`` is adjusted</span>
+<span class="sd">        to ``fmin * 2**(tuning / bins_per_octave)``.</span>
+
+<span class="sd">    bins_per_octave : int &gt; 0 [scalar]</span>
+<span class="sd">        Number of bins per octave.  Used for CQT frequency scale.</span>
+
+<span class="sd">    key : str</span>
+<span class="sd">        The reference key to use when using note axes (`cqt_note`, `chroma`).</span>
+
+<span class="sd">    Sa : float or int</span>
+<span class="sd">        If using Hindustani or Carnatic svara axis decorations, specify Sa.</span>
+
+<span class="sd">        For `cqt_svara` or `fft_svara`, ``Sa`` should be specified as a frequency in Hz.</span>
+
+<span class="sd">        For `chroma_c` or `chroma_h`, ``Sa`` should correspond to the position</span>
+<span class="sd">        of Sa within the chromagram.</span>
+<span class="sd">        If not provided, Sa will default to 0 (equivalent to `C`).</span>
+
+<span class="sd">    mela : str or int, optional</span>
+<span class="sd">        If using `chroma_c` or `cqt_svara` display mode, specify the melakarta raga.</span>
+
+<span class="sd">    thaat : str, optional</span>
+<span class="sd">        If using `chroma_h` display mode, specify the parent thaat.</span>
+
+<span class="sd">    auto_aspect : bool</span>
+<span class="sd">        Axes will have 'equal' aspect if the horizontal and vertical dimensions</span>
+<span class="sd">        cover the same extent and their types match.</span>
+
+<span class="sd">        To override, set to `False`.</span>
+
+<span class="sd">    htk : bool</span>
+<span class="sd">        If plotting on a mel frequency axis, specify which version of the mel</span>
+<span class="sd">        scale to use.</span>
+
+<span class="sd">            - `False`: use Slaney formula (default)</span>
+<span class="sd">            - `True`: use HTK formula</span>
+
+<span class="sd">        See `core.mel_frequencies` for more information.</span>
+
+<span class="sd">    unicode : bool</span>
+<span class="sd">        If using note or svara decorations, setting `unicode=True`</span>
+<span class="sd">        will use unicode glyphs for accidentals and octave encoding.</span>
+
+<span class="sd">        Setting `unicode=False` will use ASCII glyphs.  This can be helpful</span>
+<span class="sd">        if your font does not support musical notation symbols.</span>
+
+<span class="sd">    intervals : str or array of floats in [1, 2), optional</span>
+<span class="sd">        If using an FJS notation (`chroma_fjs`, `vqt_fjs`), the interval specification.</span>
+
+<span class="sd">        See `core.interval_frequencies` for a description of supported values.</span>
+
+<span class="sd">    unison : str, optional</span>
+<span class="sd">        If using an FJS notation (`chroma_fjs`, `vqt_fjs`), the pitch name of the unison</span>
+<span class="sd">        interval.  If not provided, it will be inferred from `fmin` (for VQT display) or</span>
+<span class="sd">        assumed as `'C'` (for chroma display).</span>
+
+<span class="sd">    top_db : float</span>
+<span class="sd">        If using a decibel scale, how many dB below the peak to allow</span>
+<span class="sd">        before clipping.</span>
+
+<span class="sd">    cmap_seq : str or matplotlib.colors.Colormap</span>
+<span class="sd">        The name of the sequential colormap to use for decibel scales.</span>
+<span class="sd">        Default is 'magma'.</span>
+
+<span class="sd">    cmap_bool : str or matplotlib.colors.Colormap</span>
+<span class="sd">        The name of the colormap to use for boolean data.</span>
+<span class="sd">        Default is 'gray_r'.</span>
+
+<span class="sd">    cmap_div : str or matplotlib.colors.Colormap</span>
+<span class="sd">        The name of the diverging colormap to use for diverging data.</span>
+<span class="sd">        Default is 'coolwarm'.</span>
+
+<span class="sd">    cmap_cyclic : str or matplotlib.colors.Colormap</span>
+<span class="sd">        The name of the cyclic colormap to use for phase data.</span>
+<span class="sd">        Default is 'twilight_shifted'.</span>
+
+<span class="sd">    div_thresh : float</span>
+<span class="sd">        The threshold for determining whether to use a diverging colormap.</span>
+<span class="sd">        If the data has values both above and below this threshold, then</span>
+<span class="sd">        a diverging colormap is used.</span>
+
+<span class="sd">    ax : matplotlib.axes.Axes or None</span>
+<span class="sd">        Axes to plot on instead of the default `plt.gca()`.</span>
+
+<span class="sd">    **kwargs : additional keyword arguments</span>
+<span class="sd">        Arguments passed through to `matplotlib.pyplot.pcolormesh`.</span>
+
+<span class="sd">        By default, the following options are set:</span>
+
+<span class="sd">            - ``rasterized=True``</span>
+<span class="sd">            - ``shading='auto'``</span>
+<span class="sd">            - ``edgecolors='None'``</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    colormesh : `matplotlib.collections.QuadMesh`</span>
+<span class="sd">        The color mesh object produced by `matplotlib.pyplot.pcolormesh`</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    colorbar_db</span>
+<span class="sd">    colorbar_phase</span>
+<span class="sd">    infer_cmap : Automatic colormap detection</span>
+<span class="sd">    matplotlib.pyplot.pcolormesh</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The ``cmap`` option if not provided via `kwargs`, is inferred from data automatically.</span>
+<span class="sd">    If `vscale` is specified, the colormap will be sequential for decibels, and cyclic for phase</span>
+<span class="sd">    and phase differences.</span>
+
+<span class="sd">    If a diverging colormap is inferred, the color scale is normalized so that the center</span>
+<span class="sd">    value (``div_thresh=0`` by default) is at the center of the colormap.</span>
+
+<span class="sd">    To use matplotlib's default colormap, explicitly set ``cmap=None``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Visualize an STFT magnitude spectrum using default parameters</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; y, sr = librosa.loadx('choice', duration=15)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots(nrows=2, ncols=1, sharex=True)</span>
+<span class="sd">    &gt;&gt;&gt; D = librosa.stft(y)</span>
+<span class="sd">    &gt;&gt;&gt; img = librosa.display.specshow(D, y_axis='linear', x_axis='time',</span>
+<span class="sd">    ...                                vscale='dBFS', sr=sr, ax=ax[0])</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].set(title='Linear-frequency magnitude spectrogram')</span>
+<span class="sd">    &gt;&gt;&gt; ax[0].label_outer()</span>
+
+<span class="sd">    Or on a logarithmic scale, and using a larger hop</span>
+
+<span class="sd">    &gt;&gt;&gt; hop_length = 1024</span>
+<span class="sd">    &gt;&gt;&gt; D = librosa.stft(y, hop_length=hop_length)</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.specshow(D, y_axis='log', sr=sr, hop_length=hop_length,</span>
+<span class="sd">    ...                          vscale='dBFS', x_axis='time', ax=ax[1])</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].set(title='Log-frequency magnitude spectrogram')</span>
+<span class="sd">    &gt;&gt;&gt; ax[1].label_outer()</span>
+<span class="sd">    &gt;&gt;&gt; librosa.display.colorbar_db(img, ax=ax)</span>
+<span class="sd">    """</span>
+    <span class="n">fmin</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">_ensure_hz</span><span class="p">(</span><span class="n">fmin</span><span class="p">)</span>
+    <span class="n">fmax</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">_ensure_hz</span><span class="p">(</span><span class="n">fmax</span><span class="p">)</span>
+
+    <span class="n">all_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+        <span class="n">fmax</span><span class="o">=</span><span class="n">fmax</span><span class="p">,</span>
+        <span class="n">tuning</span><span class="o">=</span><span class="n">tuning</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
+        <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span>
+        <span class="n">win_length</span><span class="o">=</span><span class="n">win_length</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+        <span class="n">htk</span><span class="o">=</span><span class="n">htk</span><span class="p">,</span>
+        <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Get the x and y coordinates</span>
+    <span class="n">y_coords</span> <span class="o">=</span> <span class="n">_mesh_coords</span><span class="p">(</span><span class="n">y_axis</span><span class="p">,</span> <span class="n">y_coords</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">all_params</span><span class="p">)</span>
+    <span class="n">x_coords</span> <span class="o">=</span> <span class="n">_mesh_coords</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">x_coords</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">all_params</span><span class="p">)</span>
+
+    <span class="c1"># Parse the value scale into a normalizer and possibly a colormap</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">norm_cmap</span> <span class="o">=</span> <span class="n">_scale_data</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">vscale</span><span class="o">=</span><span class="n">vscale</span><span class="p">,</span>
+        <span class="n">top_db</span><span class="o">=</span><span class="n">top_db</span><span class="p">,</span>
+        <span class="n">x_coords</span><span class="o">=</span><span class="n">x_coords</span><span class="p">,</span>
+        <span class="n">y_coords</span><span class="o">=</span><span class="n">y_coords</span><span class="p">,</span>
+        <span class="n">cmap_seq</span><span class="o">=</span><span class="n">cmap_seq</span><span class="p">,</span>
+        <span class="n">cmap_cyclic</span><span class="o">=</span><span class="n">cmap_cyclic</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">"Trying to display complex-valued input. Showing magnitude instead."</span><span class="p">,</span>
+            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">norm_cmap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"cmap"</span><span class="p">,</span> <span class="n">norm_cmap</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="s2">"cmap"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="c1"># Neither vscale nor the user gave us a cmap, so we have to infer it</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">"cmap"</span><span class="p">]</span> <span class="o">=</span> <span class="n">infer_cmap</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">cmap_seq</span><span class="o">=</span><span class="n">cmap_seq</span><span class="p">,</span>
+            <span class="n">cmap_bool</span><span class="o">=</span><span class="n">cmap_bool</span><span class="p">,</span>
+            <span class="n">cmap_div</span><span class="o">=</span><span class="n">cmap_div</span><span class="p">,</span>
+            <span class="n">div_thresh</span><span class="o">=</span><span class="n">div_thresh</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap_div</span><span class="p">,</span> <span class="n">colors</span><span class="o">.</span><span class="n">Colormap</span><span class="p">):</span>
+            <span class="n">is_diverging_cmap</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"cmap"</span><span class="p">]</span> <span class="o">==</span> <span class="n">cmap_div</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">is_diverging_cmap</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"cmap"</span><span class="p">]</span> <span class="o">==</span> <span class="n">mcm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cmap_div</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap_bool</span><span class="p">,</span> <span class="n">colors</span><span class="o">.</span><span class="n">Colormap</span><span class="p">):</span>
+            <span class="n">is_boolean_cmap</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"cmap"</span><span class="p">]</span> <span class="o">==</span> <span class="n">cmap_bool</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">is_boolean_cmap</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"cmap"</span><span class="p">]</span> <span class="o">==</span> <span class="n">mcm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cmap_bool</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># Harden this check to ensure that it only hits when</span>
+        <span class="c1"># data is really boolean</span>
+        <span class="n">is_boolean_cmap</span> <span class="o">&amp;=</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">"b"</span>
+
+        <span class="k">if</span> <span class="n">is_diverging_cmap</span><span class="p">:</span>
+            <span class="c1"># If we have an inferred diverging colormap,</span>
+            <span class="c1"># use a twoslope normalizer around the divergence threshold.</span>
+            <span class="c1"># But only if the user didn't also set their own normalizer</span>
+            <span class="c1"># If the user gave vmin/vmax values, move them from kwargs to the norm</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span>
+                <span class="s2">"norm"</span><span class="p">,</span>
+                <span class="n">colors</span><span class="o">.</span><span class="n">TwoSlopeNorm</span><span class="p">(</span>
+                    <span class="n">vcenter</span><span class="o">=</span><span class="n">div_thresh</span><span class="p">,</span>
+                    <span class="n">vmin</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"vmin"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                    <span class="n">vmax</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"vmax"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">is_boolean_cmap</span><span class="p">:</span>
+            <span class="c1"># If we have an inferred boolean colormap, use a boundary norm</span>
+            <span class="c1"># But only if the user didn't also set their own normalizer</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span>
+                <span class="s2">"norm"</span><span class="p">,</span>
+                <span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">boundaries</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ncolors</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">"cmap"</span><span class="p">]</span><span class="o">.</span><span class="n">N</span><span class="p">),</span>
+            <span class="p">)</span>
+
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"rasterized"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"edgecolors"</span><span class="p">,</span> <span class="s2">"None"</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"shading"</span><span class="p">,</span> <span class="s2">"auto"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">vscale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">"phase"</span> <span class="ow">in</span> <span class="n">vscale</span><span class="p">:</span>
+        <span class="c1"># If we're displaying phase, try to ensure that the color gamut</span>
+        <span class="c1"># covers the full range.</span>
+        <span class="c1"># A user can override this if they want to.</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"vmin"</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"vmax"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">_check_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">y_coords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">_set_current_image</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+
+    <span class="c1"># Set up axis scaling</span>
+    <span class="n">_scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">x_axis</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="n">tempo_min</span><span class="o">=</span><span class="n">tempo_min</span><span class="p">,</span> <span class="n">tempo_max</span><span class="o">=</span><span class="n">tempo_max</span><span class="p">)</span>
+    <span class="n">_scale_axes</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="n">tempo_min</span><span class="o">=</span><span class="n">tempo_min</span><span class="p">,</span> <span class="n">tempo_max</span><span class="o">=</span><span class="n">tempo_max</span><span class="p">)</span>
+
+    <span class="c1"># Construct tickers and locators</span>
+    <span class="n">_decorate_axis</span><span class="p">(</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span>
+        <span class="n">x_axis</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+        <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span>
+        <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span>
+        <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span>
+        <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x_coords</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">_decorate_axis</span><span class="p">(</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="p">,</span>
+        <span class="n">y_axis</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+        <span class="n">Sa</span><span class="o">=</span><span class="n">Sa</span><span class="p">,</span>
+        <span class="n">mela</span><span class="o">=</span><span class="n">mela</span><span class="p">,</span>
+        <span class="n">thaat</span><span class="o">=</span><span class="n">thaat</span><span class="p">,</span>
+        <span class="n">unicode</span><span class="o">=</span><span class="n">unicode</span><span class="p">,</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">fmin</span><span class="p">,</span>
+        <span class="n">unison</span><span class="o">=</span><span class="n">unison</span><span class="p">,</span>
+        <span class="n">intervals</span><span class="o">=</span><span class="n">intervals</span><span class="p">,</span>
+        <span class="n">bins_per_octave</span><span class="o">=</span><span class="n">bins_per_octave</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">y_coords</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># If the plot is a self-similarity/covariance etc. plot, square it</span>
+    <span class="k">if</span> <span class="n">_same_axes</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">axes</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">())</span> <span class="ow">and</span> <span class="n">auto_aspect</span><span class="p">:</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_set_current_image</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Set the current image when working in pyplot mode.</span>
+
+<span class="sd">    If the provided ``ax`` is not `None`, then we assume that the user is using the object API.</span>
+<span class="sd">    In this case, the pyplot current image is not set.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">sci</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_mesh_coords</span><span class="p">(</span><span class="n">ax_type</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Compute axis coordinates"""</span>
+    <span class="k">if</span> <span class="n">coords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coordinate shape mismatch: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s2">!=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> or </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">+1"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">coords</span>
+
+    <span class="n">coord_map</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"linear"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"fft"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"fft_note"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"fft_svara"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"hz"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"oct3"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"log_oct3"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"log"</span><span class="p">:</span> <span class="n">_coord_fft_hz</span><span class="p">,</span>
+        <span class="s2">"mel"</span><span class="p">:</span> <span class="n">_coord_mel_hz</span><span class="p">,</span>
+        <span class="s2">"mel_oct3"</span><span class="p">:</span> <span class="n">_coord_mel_hz</span><span class="p">,</span>
+        <span class="s2">"cqt"</span><span class="p">:</span> <span class="n">_coord_cqt_hz</span><span class="p">,</span>
+        <span class="s2">"cqt_hz"</span><span class="p">:</span> <span class="n">_coord_cqt_hz</span><span class="p">,</span>
+        <span class="s2">"cqt_note"</span><span class="p">:</span> <span class="n">_coord_cqt_hz</span><span class="p">,</span>
+        <span class="s2">"cqt_svara"</span><span class="p">:</span> <span class="n">_coord_cqt_hz</span><span class="p">,</span>
+        <span class="s2">"cqt_oct3"</span><span class="p">:</span> <span class="n">_coord_cqt_hz</span><span class="p">,</span>
+        <span class="s2">"vqt_fjs"</span><span class="p">:</span> <span class="n">_coord_vqt_hz</span><span class="p">,</span>
+        <span class="s2">"vqt_hz"</span><span class="p">:</span> <span class="n">_coord_vqt_hz</span><span class="p">,</span>
+        <span class="s2">"vqt_note"</span><span class="p">:</span> <span class="n">_coord_vqt_hz</span><span class="p">,</span>
+        <span class="s2">"vqt_oct3"</span><span class="p">:</span> <span class="n">_coord_vqt_hz</span><span class="p">,</span>
+        <span class="s2">"chroma"</span><span class="p">:</span> <span class="n">_coord_chroma</span><span class="p">,</span>
+        <span class="s2">"chroma_c"</span><span class="p">:</span> <span class="n">_coord_chroma</span><span class="p">,</span>
+        <span class="s2">"chroma_h"</span><span class="p">:</span> <span class="n">_coord_chroma</span><span class="p">,</span>
+        <span class="s2">"chroma_fjs"</span><span class="p">:</span> <span class="n">_coord_n</span><span class="p">,</span>  <span class="c1"># We can't use a 12-normalized tick locator here</span>
+        <span class="s2">"time"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"h"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"m"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"s"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"ms"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"lag"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"lag_h"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"lag_m"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"lag_s"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="s2">"lag_ms"</span><span class="p">:</span> <span class="n">_coord_time</span><span class="p">,</span>
+        <span class="c1"># 'tonnetz' and 'off' fall back to basic index coordinates [0, ..., n]</span>
+        <span class="c1"># to match documented axis options without raising ParameterError.</span>
+        <span class="s2">"tonnetz"</span><span class="p">:</span> <span class="n">_coord_n</span><span class="p">,</span>
+        <span class="s2">"off"</span><span class="p">:</span> <span class="n">_coord_n</span><span class="p">,</span>
+        <span class="s2">"none"</span><span class="p">:</span> <span class="n">_coord_n</span><span class="p">,</span>
+        <span class="s2">"tempo"</span><span class="p">:</span> <span class="n">_coord_tempo</span><span class="p">,</span>
+        <span class="s2">"fourier_tempo"</span><span class="p">:</span> <span class="n">_coord_fourier_tempo</span><span class="p">,</span>
+        <span class="s2">"frames"</span><span class="p">:</span> <span class="n">_coord_n</span><span class="p">,</span>
+        <span class="kc">None</span><span class="p">:</span> <span class="n">_coord_n</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">ax_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">coord_map</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown axis type: </span><span class="si">{</span><span class="n">ax_type</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">coord_map</span><span class="p">[</span><span class="n">ax_type</span><span class="p">](</span><span class="n">n</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_scale_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">vscale</span><span class="p">,</span> <span class="n">top_db</span><span class="p">,</span> <span class="n">x_coords</span><span class="p">,</span> <span class="n">y_coords</span><span class="p">,</span> <span class="n">cmap_seq</span><span class="p">,</span> <span class="n">cmap_cyclic</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Parse the vscale parameter and return the transformed data and colormap</span>
+<span class="sd">    if necessary</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : np.ndarray</span>
+<span class="sd">        The data to be scaled and visualized.</span>
+<span class="sd">    vscale : str or None</span>
+<span class="sd">        The value scale to apply to the data.</span>
+<span class="sd">        If None, the data is returned as-is.</span>
+<span class="sd">    top_db : float</span>
+<span class="sd">        The maximum decibel level to display when using a dB scale.</span>
+<span class="sd">        This is only used if `vscale` is set to a dB mode.</span>
+<span class="sd">    x_coords, y_coords : np.ndarray</span>
+<span class="sd">        Time and frequency coordinates for the data.</span>
+<span class="sd">        These should be constructed using the `_mesh_coords` function.</span>
+<span class="sd">    cmap_seq : str or matplotlib.colors.Colormap</span>
+<span class="sd">        Default sequential colormap to use for dB scales.</span>
+<span class="sd">    cmap_cyclic : str or matplotlib.colors.Colormap</span>
+<span class="sd">        Default cyclic colormap to use for phase scales.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : np.ndarray</span>
+<span class="sd">        The scaled data, ready for visualization.</span>
+<span class="sd">    cmap : matplotlib.colors.Colormap or None</span>
+<span class="sd">        The colormap to use for visualization, or None if no scaling is applied.</span>
+<span class="sd">    """</span>
+    <span class="c1"># If vscale is None, we return the data as-is</span>
+    <span class="k">if</span> <span class="n">vscale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="c1"># First check for the easy cases</span>
+    <span class="k">if</span> <span class="n">vscale</span> <span class="o">==</span> <span class="s2">"phase"</span><span class="p">:</span>
+        <span class="c1"># Phase should use a cyclic colormap</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">cmap_cyclic</span>
+
+    <span class="k">elif</span> <span class="n">vscale</span> <span class="o">==</span> <span class="s2">"dphase"</span><span class="p">:</span>
+        <span class="c1"># Compute the difference of unwrapped phase</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># Correct it compared to the expected phase advance on this time-frequency grid</span>
+        <span class="c1">#   - 2π*y counts radians per second</span>
+        <span class="c1">#   - diff(x) counts seconds per frame</span>
+        <span class="c1">#   - The product counts radians per frame</span>
+        <span class="n">diff</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">y_coords</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>
+        <span class="c1"># Wrap back to +-pi</span>
+        <span class="n">diff</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">diff</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="c1"># Use a cyclic colormap for the phase difference</span>
+        <span class="k">return</span> <span class="n">diff</span><span class="p">,</span> <span class="n">cmap_cyclic</span>
+
+    <span class="k">elif</span> <span class="n">vscale</span> <span class="o">==</span> <span class="s2">"dphase_t"</span><span class="p">:</span>
+        <span class="c1"># Same computation as above, but on the opposite axes</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y_coords</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x_coords</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">diff</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="k">return</span> <span class="n">diff</span><span class="p">,</span> <span class="n">cmap_cyclic</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># In some kind of dB mode</span>
+        <span class="n">_mode</span><span class="p">,</span> <span class="n">scale_type</span><span class="p">,</span> <span class="n">ref_</span> <span class="o">=</span> <span class="n">_parse_vscale</span><span class="p">(</span><span class="n">vscale</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ref_</span> <span class="o">==</span> <span class="s2">"max"</span><span class="p">:</span>
+            <span class="n">ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">ref_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ref</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ref</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ref_</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">scale_type</span> <span class="o">==</span> <span class="s2">"power"</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">power_to_db</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">top_db</span><span class="o">=</span><span class="n">top_db</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">amplitude_to_db</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">top_db</span><span class="o">=</span><span class="n">top_db</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
+
+        <span class="c1"># Use the default colormap for sequential data</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">cmap_seq</span>
+
+
+<span class="n">VSCALE_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">"^(?P&lt;mode&gt;dBFS|dB)"</span>  <span class="c1"># Match "dBFS" or "dB"</span>
+    <span class="sa">r</span><span class="s2">"(?:\[(?:(?P&lt;type&gt;power)"</span>  <span class="c1"># Optionally match [power</span>
+    <span class="sa">r</span><span class="s2">"(?:,(?P&lt;ref_power&gt;[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?))?"</span>  <span class="c1"># Optional ref_power</span>
+    <span class="sa">r</span><span class="s2">"|(?P&lt;ref&gt;[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?))\])?$"</span>  <span class="c1"># Or ref alone</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_parse_vscale</span><span class="p">(</span><span class="n">vscale</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Parse a vscale string into mode, scale_type, and reference value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vscale : str</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mode is one of 'dBFS' or 'dB'</span>
+<span class="sd">    scale_type is one of 'power' or 'amplitude'</span>
+<span class="sd">    ref is a float, None, or 'max'</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - 'dBFS' -&gt; ('dBFS', 'amplitude', 'max')</span>
+<span class="sd">    - 'dBFS[power]' -&gt; ('dBFS', 'power', 'max')</span>
+<span class="sd">    - 'dB[power,0.1]' -&gt; ('dB', 'power', 0.1)</span>
+<span class="sd">    - 'dB[0.1]' -&gt; ('dB', 'amplitude', 0.1)</span>
+<span class="sd">    - 'dB' -&gt; ('dB', 'amplitude', None)</span>
+<span class="sd">    """</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">VSCALE_PATTERN</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">vscale</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid vscale specification: </span><span class="si">{</span><span class="n">vscale</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">"mode"</span><span class="p">)</span>
+
+    <span class="n">scale_type</span> <span class="o">=</span> <span class="s2">"power"</span> <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"type"</span><span class="p">)</span> <span class="k">else</span> <span class="s2">"amplitude"</span>
+
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ref"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ref_power"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"dBFS"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="s2">"dBFS vscale cannot have an explicit reference value"</span><span class="p">)</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="s2">"max"</span>
+    <span class="k">elif</span> <span class="n">ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># mode == 'dB'</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mode</span><span class="p">,</span> <span class="n">scale_type</span><span class="p">,</span> <span class="n">ref</span>
+</pre></div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2013--2026, librosa development team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.2.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
