@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>librosa.core.streaming &#8212; librosa 1.1.0dev documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=1a5a4894" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../../_static/documentation_options.js?v=0143acc7"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+            </script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-171031946-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-171031946-1');
+            </script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.3.0/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = "pre.mermaid {\n    /* Same as .mermaid-container > pre */\n    display: block;\n    width: 100%;\n}\n\npre.mermaid > svg {\n    /* Same as .mermaid-container > pre > svg */\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}";
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = ".mermaid-container {\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    width: 100%;\n}\n\n.mermaid-container > pre {\n    display: block;\n    width: 100%;\n}\n\n.mermaid-container > pre > svg {\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}\n\n.mermaid-fullscreen-btn {\n    position: absolute;\n    width: 28px;\n    height: 28px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.3);\n    border-radius: 4px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);\n    font-size: 14px;\n    line-height: 1;\n    padding: 0;\n    color: #333;\n}\n\n.mermaid-fullscreen-btn:hover {\n    opacity: 100% !important;\n    background: rgba(255, 255, 255, 1);\n    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-btn.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-btn.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal {\n    display: none;\n    position: fixed !important;\n    top: 0 !important;\n    left: 0 !important;\n    width: 95vw;\n    height: 100vh;\n    background: rgba(255, 255, 255, 0.98);\n    z-index: 9999;\n    padding: 20px;\n    overflow: auto;\n}\n\n.mermaid-fullscreen-modal.dark-theme {\n    background: rgba(0, 0, 0, 0.98);\n}\n\n.mermaid-fullscreen-modal.active {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen {\n    position: relative;\n    width: 95vw;\n    height: 90vh;\n    max-width: 95vw;\n    max-height: 90vh;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);\n    overflow: auto;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen.dark-theme {\n    background: #1a1a1a;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);\n}\n\n.mermaid-container-fullscreen pre.mermaid {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen .mermaid svg {\n    height: 100% !important;\n    width: 100% !important;\n    cursor: grab;\n}\n\n.mermaid-fullscreen-close {\n    position: fixed !important;\n    top: 20px !important;\n    right: 20px !important;\n    width: 40px;\n    height: 40px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.2);\n    border-radius: 50%;\n    cursor: pointer;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n    transition: all 0.2s;\n    font-size: 24px;\n    line-height: 1;\n    color: #333;\n}\n\n.mermaid-fullscreen-close:hover {\n    background: white;\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-close.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-close.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal .mermaid-fullscreen-btn {\n    display: none !important;\n}";
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+let _lazyObserver = null;
+let _renderQueue = Promise.resolve();
+let closeModal = () => {};
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Apply d3 zoom to each SVG. Idempotent: an SVG already wrapped is skipped,
+// so this is safe to call both for the initial batch and for diagrams that
+// render lazily once they become visible.
+const addZoomToSvgs = (svgs) => {
+    svgs.each(function() {
+        if (this.getAttribute('data-zoom-applied') === 'true') return;
+        var svg = d3.select(this);
+        svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+        var inner = svg.select("g");
+        var zoom = d3.zoom().on("zoom", function(event) {
+            inner.attr("transform", event.transform);
+        });
+        svg.call(zoom);
+        this.setAttribute('data-zoom-applied', 'true');
+    });
+};
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        // Disconnect any previous lazy rendering observer
+        if (_lazyObserver) {
+            _lazyObserver.disconnect();
+            _lazyObserver = null;
+        }
+
+        all_mermaids.forEach((el) => {
+            el.removeAttribute('data-mermaid-deferred');
+            el.removeAttribute('data-mermaid-render-failed');
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+
+        // Separate visible and hidden elements. Mermaid's layout engine measures
+        // text dimensions via the DOM, which fails for elements hidden by a parent
+        // (e.g., Reveal.js non-active slides, sphinx-design unopened tabs),
+        // producing broken SVGs. Render visible elements now, defer hidden ones.
+        const visible = [];
+        const hidden = [];
+        all_mermaids.forEach((el) => {
+            // offsetParent is null for display:none ancestors.
+            // getClientRects().length > 0 catches position:fixed elements
+            // (which also have null offsetParent but are still visible).
+            if (el.offsetParent !== null || el.getClientRects().length > 0) {
+                visible.push(el);
+            } else {
+                hidden.push(el);
+                el.setAttribute('data-mermaid-deferred', 'true');
+            }
+        });
+
+        if (visible.length > 0) {
+            try {
+                await mermaid.run({ nodes: visible });
+            } catch (e) {
+                console.error("Mermaid rendering failed:", e);
+            }
+        }
+
+        // Lazily render hidden elements when they become visible.
+        // Uses a promise chain (_renderQueue) to serialize rendering,
+        // since IntersectionObserver may report multiple entries at once
+        // and mermaid.run() is not safe to call concurrently.
+        if (hidden.length > 0) {
+            if (typeof IntersectionObserver === 'undefined') {
+                console.warn("IntersectionObserver not available; hidden mermaid diagrams will not render.");
+            } else {
+                _renderQueue = Promise.resolve();
+                _lazyObserver = new IntersectionObserver((entries) => {
+                    for (const entry of entries) {
+                        if (entry.isIntersecting && entry.target.getAttribute("data-processed") !== "true") {
+                            _lazyObserver.unobserve(entry.target);
+                            const el = entry.target;
+                            _renderQueue = _renderQueue.then(async () => {
+                                try {
+                                    await mermaid.run({ nodes: [el] });
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    // Apply zoom to the now-rendered diagram, matching
+                                    // the decoration visible diagrams receive.
+                                    if (false) {
+                                        addZoomToSvgs(d3.selectAll("").select(function() {
+                                            return this.querySelector("svg");
+                                        }));
+                                    }
+                                } catch (e) {
+                                    console.error("Mermaid deferred rendering failed:", e);
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    el.setAttribute('data-mermaid-render-failed', 'true');
+                                }
+                            });
+                        }
+                    }
+                });
+                hidden.forEach((el) => _lazyObserver.observe(el));
+            }
+        }
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    // Exclude deferred (hidden) and render-failed elements from completion checks
+    const mermaids_active = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])");
+    const mermaids_processed = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])[data-processed='true']");
+
+    if (false) {
+        const mermaids_to_add_zoom = 0 === -1 ? mermaids_active.length : 0;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("").select(function() {
+                return this.querySelector("svg");
+            });
+            // Wait until every active (visible) diagram has rendered. Deferred
+            // diagrams are excluded, so a fixed d3_node_count that counts a
+            // hidden diagram no longer loops forever waiting for its SVG.
+            if(mermaids_active.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            }
+            addZoomToSvgs(svgs);
+        }
+    } else if(mermaids_active.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if (!true) return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = "\u26f6";
+        fullscreenBtn.style.opacity = "50%";
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scrollX, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.display = 'block';
+
+                if (false) {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+
+
+const load = async () => {
+    initStyles();
+
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...{"startOnLoad": false},
+                ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...{"startOnLoad": false},
+    ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/librosa/core/streaming';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.24.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://librosa.org/doc/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.1.0dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            true;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.1.0dev" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+  <div class="pst-sticky-header">
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/librosa_logo_text.svg" class="logo__image only-light" alt="librosa"/>
+    <img src="../../../_static/librosa_logo_dark.svg" class="logo__image only-dark pst-js-only" alt="librosa"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../advanced/index.html">
+    Advanced topics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa/issues" title="GitHub Issues" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-bug fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub Issues</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/forum/#!forum/librosa" title="Discussion" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-comments fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discussion</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://librosa.org/blog/" title="Blog" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-pen-nib fa-lg" aria-hidden="true"></i><span class="visually-hidden">Blog</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+  </div>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../advanced/index.html">
+    Advanced topics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/librosa/librosa/issues" title="GitHub Issues" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-bug fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub Issues</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/forum/#!forum/librosa" title="Discussion" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-classic fa-comments fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discussion</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://librosa.org/blog/" title="Blog" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-pen-nib fa-lg" aria-hidden="true"></i><span class="visually-hidden">Blog</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">librosa.core.streaming</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <h1>Source code for librosa.core.streaming</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">"""Streaming utilities for audio I/O bridging and sliding window buffering."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">nullcontext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">soundfile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">soxr</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ParameterShapeError</span><span class="p">,</span>
+    <span class="n">ParameterTypeError</span><span class="p">,</span>
+    <span class="n">ParameterValueError</span><span class="p">,</span>
+    <span class="n">StreamBufferError</span><span class="p">,</span>
+    <span class="n">StreamClosedError</span><span class="p">,</span>
+    <span class="n">StreamTimeoutError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..util.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">align_samples</span><span class="p">,</span> <span class="n">fix_length</span><span class="p">,</span> <span class="n">is_positive_int</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.audio</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_mono</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Iterable</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryIO</span><span class="p">,</span> <span class="n">Self</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">DTypeLike</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"StreamBridge"</span><span class="p">,</span>
+    <span class="s2">"stream"</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_StreamBuffer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Internal sliding analysis window accumulator and streaming DSP processor.</span>
+
+<span class="sd">    `_StreamBuffer` maintains a sliding observation buffer for streaming audio</span>
+<span class="sd">    processing. It handles on-the-fly sample rate conversion via</span>
+<span class="sd">    `soxr.ResampleStream`, multi-channel downmixing to mono, offset skipping,</span>
+<span class="sd">    and duration bounds.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">orig_sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+        <span class="n">channels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">mono</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">warm_up</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">fill_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">res_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"soxr_hq"</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive_int</span><span class="p">(</span><span class="n">block_length</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"block_length=</span><span class="si">{</span><span class="n">block_length</span><span class="si">}</span><span class="s2"> must be a positive integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive_int</span><span class="p">(</span><span class="n">frame_length</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"frame_length=</span><span class="si">{</span><span class="n">frame_length</span><span class="si">}</span><span class="s2"> must be a positive integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive_int</span><span class="p">(</span><span class="n">hop_length</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"hop_length=</span><span class="si">{</span><span class="n">hop_length</span><span class="si">}</span><span class="s2"> must be a positive integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span> <span class="ow">and</span> <span class="n">orig_sr</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"orig_sr=</span><span class="si">{</span><span class="n">orig_sr</span><span class="si">}</span><span class="s2"> must be a positive number"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sr</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"sr=</span><span class="si">{</span><span class="n">sr</span><span class="si">}</span><span class="s2"> must be a positive number"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive_int</span><span class="p">(</span><span class="n">channels</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"channels=</span><span class="si">{</span><span class="n">channels</span><span class="si">}</span><span class="s2"> must be a positive integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">offset</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"offset=</span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s2"> must be non-negative"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">duration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">duration</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"duration=</span><span class="si">{</span><span class="n">duration</span><span class="si">}</span><span class="s2"> must be non-negative"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">res_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"soxr_vhq"</span><span class="p">,</span> <span class="s2">"soxr_hq"</span><span class="p">,</span> <span class="s2">"soxr_mq"</span><span class="p">,</span> <span class="s2">"soxr_lq"</span><span class="p">,</span> <span class="s2">"soxr_qq"</span><span class="p">}:</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"res_type=</span><span class="si">{</span><span class="n">res_type</span><span class="si">}</span><span class="s2"> is not a valid soxr resampling mode for streaming"</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">block_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">frame_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hop_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="k">if</span> <span class="n">sr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mono</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">mono</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="k">if</span> <span class="n">duration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span> <span class="o">=</span> <span class="n">fill_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res_type</span> <span class="o">=</span> <span class="n">res_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">block_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_hop_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_length</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_channels</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mono</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_read_size</span> <span class="o">=</span> <span class="n">align_samples</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block_hop_length</span><span class="p">,</span>
+            <span class="n">orig_sr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sr</span><span class="p">,</span>
+            <span class="n">target_sr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span><span class="p">,</span>
+            <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">needs_resampling</span> <span class="o">=</span> <span class="p">(</span><span class="n">sr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">needs_resampling</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resampler</span> <span class="o">=</span> <span class="n">soxr</span><span class="o">.</span><span class="n">ResampleStream</span><span class="p">(</span>
+                <span class="n">in_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span><span class="p">,</span>
+                <span class="n">out_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sr</span><span class="p">,</span>
+                <span class="n">num_channels</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">process_channels</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="n">quality</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resampler</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">block_hop_length</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warm_up</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">warm_up</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefill</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_length</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">warm_up</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefill</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples_to_skip</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_input</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_buffer_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacity</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return the buffer shape for a given sample capacity."""</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">capacity</span><span class="p">,)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_channels</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">(</span><span class="n">capacity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_channels</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Ingest a canonical audio chunk and return any ready analysis blocks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chunk : np.ndarray</span>
+<span class="sd">            Incoming audio chunk of shape ``(samples,)`` or ``(channels, samples)``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        blocks : list of np.ndarray</span>
+<span class="sd">            List of complete analysis blocks of size `target_yield_size`.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_complete</span><span class="p">()</span> <span class="ow">or</span> <span class="n">chunk</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">chunk</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">:</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="c1"># Downmix or transpose from canonical (channels, samples) to (samples, channels)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mono</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">to_mono</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">chunk</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">chunk</span>
+
+        <span class="c1"># Skip initial offset samples</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_to_skip</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">n_samples</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_to_skip</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">samples_to_skip</span> <span class="o">-=</span> <span class="n">n_samples</span>
+                <span class="k">return</span> <span class="p">[]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">samples_to_skip</span> <span class="p">:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">samples_to_skip</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Truncate to duration if specified</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span> <span class="o">-=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_input</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Resample on-the-fly</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampler</span><span class="o">.</span><span class="n">resample_chunk</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">target_chunk</span> <span class="o">=</span> <span class="n">y</span>
+
+        <span class="n">n_incoming</span> <span class="o">=</span> <span class="n">target_chunk</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">n_incoming</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="c1"># Shift buffer if near capacity</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">+</span> <span class="n">n_incoming</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+            <span class="n">available</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[:</span><span class="n">available</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">=</span> <span class="n">available</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">+</span> <span class="n">n_incoming</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">+</span> <span class="n">n_incoming</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span>
+                <span class="n">new_buffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="n">new_buffer</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">new_buffer</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">+</span> <span class="n">n_incoming</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_chunk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">+=</span> <span class="n">n_incoming</span>
+
+        <span class="c1"># Slice all complete blocks</span>
+        <span class="n">blocks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span><span class="p">:</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span><span class="p">]</span>
+            <span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_hop_length</span>
+
+        <span class="k">return</span> <span class="n">blocks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Flush resampler delay buffers and yield final (optionally padded) blocks.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        blocks : list of np.ndarray</span>
+<span class="sd">            Remaining complete or padded analysis blocks.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_input</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">remainder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">empty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">remainder</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resampler</span><span class="o">.</span><span class="n">resample_chunk</span><span class="p">(</span><span class="n">empty</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">tail</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">remainder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">remainder</span><span class="p">,</span> <span class="n">tail</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">blocks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rem_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">remainder</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_hop_length</span><span class="p">):</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="n">remainder</span><span class="p">[</span><span class="n">rem_idx</span> <span class="p">:</span> <span class="n">rem_idx</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">block</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">fix_length</span><span class="p">(</span>
+                    <span class="n">block</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_yield_size</span><span class="p">,</span>
+                    <span class="n">constant_values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_idx</span>
+        <span class="k">return</span> <span class="n">blocks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Check if the maximum input duration has been reached."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples_remaining</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Ingest chunks from an iterable, yielding ready analysis blocks followed by flush."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_complete</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+                <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_complete</span><span class="p">():</span>
+                    <span class="k">break</span>
+        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="StreamBridge">
+<a class="viewcode-back" href="../../../api/generated/librosa.StreamBridge.html#librosa.StreamBridge">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StreamBridge</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Universal I/O bridge connecting audio callbacks into `librosa.stream`.</span>
+
+<span class="sd">    `StreamBridge` acts as an audio callback (compatible with PortAudio,</span>
+<span class="sd">    :mod:`sounddevice`, and ``PyAudio``) that enqueues incoming raw audio chunks,</span>
+<span class="sd">    and simultaneously acts as an iterator of Librosa-canonical NumPy arrays.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    orig_sr : float &gt; 0</span>
+<span class="sd">        Sampling rate of the incoming audio stream (required keyword-only argument).</span>
+<span class="sd">    channels : int &gt; 0, default=1</span>
+<span class="sd">        Number of audio channels in the incoming stream.</span>
+<span class="sd">    channels_first : bool, default=False</span>
+<span class="sd">        If True, incoming multi-channel buffers are shaped ``(channels, samples)``.</span>
+<span class="sd">        If False, incoming multi-channel buffers are shaped ``(samples, channels)``</span>
+<span class="sd">        (standard for :mod:`sounddevice` and PortAudio) and will be transposed to</span>
+<span class="sd">        canonical shape ``(channels, samples)``.</span>
+<span class="sd">    dtype : DTypeLike, default=np.float32</span>
+<span class="sd">        Data type of incoming audio chunks or byte buffers. If integer PCM,</span>
+<span class="sd">        samples are normalized to floating-point ``[-1.0, 1.0]`` according to</span>
+<span class="sd">        their integer bit depth.</span>
+<span class="sd">    maxsize : int &gt;= 0, default=0</span>
+<span class="sd">        Maximum capacity of the internal chunk buffer. If 0, capacity is unbounded.</span>
+<span class="sd">        For live real-time hardware streams where downstream processing might</span>
+<span class="sd">        intermittently stall, setting a bounded capacity (e.g. ``maxsize=100``)</span>
+<span class="sd">        combined with ``overflow_policy="drop_oldest"`` prevents uncontrolled</span>
+<span class="sd">        memory growth and latency accumulation.</span>
+<span class="sd">    overflow_policy : {'warn', 'drop_oldest', 'drop_newest', 'error'}, default='warn'</span>
+<span class="sd">        Action taken when `maxsize` is reached:</span>
+<span class="sd">            - ``"warn"``: Discard the oldest queued chunk and emit a warning when chunks are retrieved.</span>
+<span class="sd">            - ``"drop_oldest"``: Discard the oldest queued chunk (fixed-latency ring buffer).</span>
+<span class="sd">            - ``"drop_newest"``: Discard the incoming chunk.</span>
+<span class="sd">            - ``"error"``: Raise `BufferError`.</span>
+<span class="sd">    timeout : float | None, default=None</span>
+<span class="sd">        Maximum time in seconds to wait for a chunk during iteration</span>
+<span class="sd">        before raising `queue.Empty`. If ``None``, blocks indefinitely.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Bridge real-time input from :mod:`sounddevice` and stream analysis blocks.</span>
+<span class="sd">    Note that streaming analysis requires left-aligned frames, so we pass</span>
+<span class="sd">    ``center=False`` to avoid boundary padding artifacts between blocks.</span>
+<span class="sd">    For a complete walkthrough, see :ref:`sphx_glr_auto_tutorials_03-advanced_plot_stream_capture.py`.</span>
+
+<span class="sd">    &gt;&gt;&gt; import sounddevice as sd  # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; with librosa.StreamBridge(</span>
+<span class="sd">    ...     orig_sr=48000, channels=1</span>
+<span class="sd">    ... ) as bridge:  # doctest: +SKIP</span>
+<span class="sd">    ...     with sd.InputStream(samplerate=48000, channels=1, callback=bridge):</span>
+<span class="sd">    ...         for i, block in enumerate(</span>
+<span class="sd">    ...             bridge.stream(</span>
+<span class="sd">    ...                 block_length=256, frame_length=2048, hop_length=512, sr=None</span>
+<span class="sd">    ...             )</span>
+<span class="sd">    ...         ):</span>
+<span class="sd">    ...             centroid = librosa.feature.spectral_centroid(</span>
+<span class="sd">    ...                 y=block, sr=48000, n_fft=2048, hop_length=512, center=False</span>
+<span class="sd">    ...             )</span>
+<span class="sd">    ...             print(f"Block {i}: mean centroid = {centroid.mean():.1f} Hz")</span>
+<span class="sd">    ...             if i &gt;= 10:</span>
+<span class="sd">    ...                 break</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="StreamBridge.__init__">
+<a class="viewcode-back" href="../../../api/generated/librosa.StreamBridge.html#librosa.StreamBridge.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">orig_sr</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">channels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">channels_first</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="n">maxsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">overflow_policy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"warn"</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span> <span class="ow">and</span> <span class="n">orig_sr</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"orig_sr=</span><span class="si">{</span><span class="n">orig_sr</span><span class="si">}</span><span class="s2"> must be a positive number"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive_int</span><span class="p">(</span><span class="n">channels</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"channels=</span><span class="si">{</span><span class="n">channels</span><span class="si">}</span><span class="s2"> must be a positive integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">maxsize</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">ParameterTypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxsize=</span><span class="si">{</span><span class="n">maxsize</span><span class="si">}</span><span class="s2"> must be an integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maxsize</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxsize=</span><span class="si">{</span><span class="n">maxsize</span><span class="si">}</span><span class="s2"> must be a non-negative integer"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">overflow_policy</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"warn"</span><span class="p">,</span> <span class="s2">"drop_oldest"</span><span class="p">,</span> <span class="s2">"drop_newest"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">}:</span>
+            <span class="k">raise</span> <span class="n">ParameterValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid overflow_policy='</span><span class="si">{</span><span class="n">overflow_policy</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">orig_sr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels_first</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">channels_first</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">maxsize</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overflow_policy</span> <span class="o">=</span> <span class="n">overflow_policy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">:</span> <span class="n">deque</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dropped_chunks</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Sampling rate of the incoming audio stream.</span>
+
+<span class="sd">        Alias for `orig_sr`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sr : float</span>
+<span class="sd">            Sampling rate of the incoming audio stream.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">bytes</span><span class="p">,</span> <span class="o">*</span><span class="n">_args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Universal audio callback.</span>
+
+<span class="sd">        Compatible with :mod:`sounddevice` (which ignores the return value) and</span>
+<span class="sd">        ``PyAudio`` (which expects a tuple ``(out_data, flag)`` where flag 0</span>
+<span class="sd">        corresponds to ``paContinue`` and flag 1 corresponds to ``paComplete``).</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enqueue</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raise_on_closed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="StreamBridge.push">
+<a class="viewcode-back" href="../../../api/generated/librosa.StreamBridge.html#librosa.StreamBridge.push">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">memoryview</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Push a raw audio chunk into the bridge.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : np.ndarray, bytes, or memoryview</span>
+<span class="sd">            Incoming audio buffer. Integer arrays or byte buffers are</span>
+<span class="sd">            converted to float32 according to `dtype`. Single-channel audio is</span>
+<span class="sd">            normalized to 1D shape ``(samples,)``, and multi-channel audio is</span>
+<span class="sd">            normalized to shape ``(channels, samples)``.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enqueue</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">raise_on_closed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">memoryview</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">raise_on_closed</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Normalize and atomically enqueue an audio chunk if the bridge is open."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">raise_on_closed</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">raise_on_closed</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">StreamClosedError</span><span class="p">(</span><span class="s2">"Cannot push data to a closed StreamBridge."</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxsize</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">overflow_policy</span> <span class="o">==</span> <span class="s2">"drop_oldest"</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">overflow_policy</span> <span class="o">==</span> <span class="s2">"drop_newest"</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">overflow_policy</span> <span class="o">==</span> <span class="s2">"error"</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">StreamBufferError</span><span class="p">(</span><span class="s2">"StreamBridge queue overflow: consumer is slower than capture."</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">overflow_policy</span> <span class="o">==</span> <span class="s2">"warn"</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_dropped_chunks</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="o">.</span><span class="n">notify</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">memoryview</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Normalize any incoming audio representation into Librosa canonical float32."""</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytearray</span><span class="p">,</span> <span class="nb">memoryview</span><span class="p">)):</span>
+            <span class="n">raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">raw</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterTypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported audio data type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">signedinteger</span><span class="p">):</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">raw</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span>
+        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unsignedinteger</span><span class="p">):</span>
+            <span class="n">midpoint</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">raw</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="n">midpoint</span><span class="p">)</span> <span class="o">/</span> <span class="n">midpoint</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">size</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterShapeError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">"1D input of size </span><span class="si">{</span><span class="n">arr</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> is not divisible by channels=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="si">}</span><span class="s2">"</span>
+                    <span class="p">)</span>
+                <span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels_first</span> <span class="k">else</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">elif</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels_first</span><span class="p">:</span>
+                <span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">T</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ParameterShapeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Expected </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="si">}</span><span class="s2"> channels, but got </span><span class="si">{</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ParameterShapeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Audio data must be 1D or 2D; got </span><span class="si">{</span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">D"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">arr</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return iterator."""</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return the next audio chunk from the buffer."""</span>
+        <span class="n">dropped</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="k">raise</span> <span class="n">StreamTimeoutError</span><span class="p">(</span><span class="s2">"Timeout waiting for audio data from StreamBridge."</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dropped_chunks</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">dropped</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dropped_chunks</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dropped_chunks</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">:</span>
+                <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">chunk</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">dropped</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"StreamBridge queue is full; dropped </span><span class="si">{</span><span class="n">dropped</span><span class="si">}</span><span class="s2"> chunk(s)."</span><span class="p">,</span>
+                <span class="ne">RuntimeWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">chunk</span>
+        <span class="k">raise</span> <span class="ne">StopIteration</span>
+
+<div class="viewcode-block" id="StreamBridge.stream">
+<a class="viewcode-back" href="../../../api/generated/librosa.StreamBridge.html#librosa.StreamBridge.stream">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+        <span class="n">mono</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">warm_up</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">fill_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">res_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"soxr_hq"</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Stream audio from this bridge in fixed-length analysis buffers.</span>
+
+<span class="sd">        This method is equivalent to calling ``librosa.stream(self, ...)``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        block_length : int &gt; 0</span>
+<span class="sd">            The number of frames to include in each block.</span>
+<span class="sd">        frame_length : int &gt; 0</span>
+<span class="sd">            The number of samples per frame.</span>
+<span class="sd">        hop_length : int &gt; 0</span>
+<span class="sd">            The number of samples to advance between frames.</span>
+<span class="sd">        sr : float &gt; 0, default=22050</span>
+<span class="sd">            Target sampling rate.</span>
+<span class="sd">            If None, uses `self.orig_sr` without resampling.</span>
+<span class="sd">        mono : bool, default=True</span>
+<span class="sd">            Convert multi-channel signals to mono during streaming.</span>
+<span class="sd">        offset : float &gt;= 0, default=0.0</span>
+<span class="sd">            Start reading after this time (in seconds).</span>
+<span class="sd">        duration : float &gt; 0, optional</span>
+<span class="sd">            Only yield up to this much audio (in seconds).</span>
+<span class="sd">        warm_up : bool, default=False</span>
+<span class="sd">            If True, pre-fill the buffer with silence (zeros) so that the first</span>
+<span class="sd">            incoming chunk of size ``block_length * hop_length`` immediately yields</span>
+<span class="sd">            a full analysis block without startup delay.</span>
+<span class="sd">        fill_value : float, optional</span>
+<span class="sd">            Value used to pad short blocks at the end of the stream.</span>
+<span class="sd">        res_type : str, default='soxr_hq'</span>
+<span class="sd">            Resample type for `soxr`.</span>
+<span class="sd">        dtype : numeric type, default=np.float32</span>
+<span class="sd">            Data type of the yielded blocks.</span>
+
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        block : np.ndarray</span>
+<span class="sd">            An audio buffer of (at most)</span>
+<span class="sd">            ``(block_length-1) * hop_length + frame_length`` samples.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        librosa.stream</span>
+<span class="sd">        """</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">_StreamBuffer</span><span class="p">(</span>
+            <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span>
+            <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
+            <span class="n">block_length</span><span class="o">=</span><span class="n">block_length</span><span class="p">,</span>
+            <span class="n">orig_sr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_sr</span><span class="p">,</span>
+            <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+            <span class="n">channels</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">,</span>
+            <span class="n">mono</span><span class="o">=</span><span class="n">mono</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span>
+            <span class="n">warm_up</span><span class="o">=</span><span class="n">warm_up</span><span class="p">,</span>
+            <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+            <span class="n">res_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">yield from</span> <span class="n">buf</span><span class="o">.</span><span class="n">process_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="StreamBridge.close">
+<a class="viewcode-back" href="../../../api/generated/librosa.StreamBridge.html#librosa.StreamBridge.close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Close the bridge and signal termination to waiting consumers."""</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Enter context manager."""</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">exc_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">exc_val</span><span class="p">:</span> <span class="ne">BaseException</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">exc_tb</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Exit context manager, closing the bridge."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="stream">
+<a class="viewcode-back" href="../../../api/generated/librosa.stream.html#librosa.stream">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span> <span class="o">|</span> <span class="n">BinaryIO</span> <span class="o">|</span> <span class="n">StreamBridge</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">block_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">22050</span><span class="p">,</span>
+    <span class="n">mono</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">warm_up</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">fill_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">res_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"soxr_hq"</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DTypeLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Stream audio in fixed-length buffers.</span>
+
+<span class="sd">    This is primarily useful for processing large files that won't</span>
+<span class="sd">    fit entirely in memory at once, or for processing live audio streams</span>
+<span class="sd">    captured via `librosa.StreamBridge`.</span>
+
+<span class="sd">    Instead of loading the entire audio signal into memory (as</span>
+<span class="sd">    in `load`), this function produces *blocks* of audio spanning</span>
+<span class="sd">    a fixed number of frames at a specified frame length and hop</span>
+<span class="sd">    length.</span>
+
+<span class="sd">    While this function strives for similar behavior to `load`,</span>
+<span class="sd">    there are a few caveats that users should be aware of:</span>
+
+<span class="sd">        1. This function does not return audio buffers directly.</span>
+<span class="sd">           It returns a generator, which you can iterate over</span>
+<span class="sd">           to produce blocks of audio.  A *block*, in this context,</span>
+<span class="sd">           refers to a buffer of audio which spans a given number of</span>
+<span class="sd">           (potentially overlapping) frames.</span>
+<span class="sd">        2. Automatic sample-rate conversion is supported,</span>
+<span class="sd">           but not all combinations of ``block_length``, ``frame_length``, and</span>
+<span class="sd">           ``hop_length`` will be compatible with all sampling rates.</span>
+<span class="sd">           Specifically, ``(block_length * hop_length * native_sr) / sr``</span>
+<span class="sd">           must evaluate to an exact integer, where ``native_sr`` is the original</span>
+<span class="sd">           sampling rate of the stream prior to resampling.</span>
+<span class="sd">        3. Many analyses require access to the entire signal</span>
+<span class="sd">           to behave correctly, such as `resample`, `cqt`, or</span>
+<span class="sd">           `beat_track`, so these methods will not be appropriate</span>
+<span class="sd">           for streamed data.</span>
+<span class="sd">        4. The ``block_length`` parameter specifies how many frames</span>
+<span class="sd">           of audio will be produced per block.  Larger values will</span>
+<span class="sd">           consume more memory, but will be more efficient to process</span>
+<span class="sd">           down-stream.  The best value will ultimately depend on your</span>
+<span class="sd">           application and other system constraints.</span>
+<span class="sd">        5. By default, most librosa analyses (e.g., short-time Fourier</span>
+<span class="sd">           transform) assume centered frames, which requires padding the</span>
+<span class="sd">           signal at the beginning and end.  This will not work correctly</span>
+<span class="sd">           when the signal is carved into blocks, because it would introduce</span>
+<span class="sd">           padding in the middle of the signal.  To disable this feature,</span>
+<span class="sd">           use ``center=False`` in all frame-based analyses.</span>
+<span class="sd">        6. If you break out of the generator loop early, the underlying audio</span>
+<span class="sd">           file handle and resampling buffers will remain open until the</span>
+<span class="sd">           generator object is garbage-collected. To explicitly release resources,</span>
+<span class="sd">           call the generator's ``.close()`` method.</span>
+
+<span class="sd">    See the examples below for proper usage of this function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path : str, int, os.PathLike, sf.SoundFile, file-like object, or librosa.StreamBridge</span>
+<span class="sd">        Path to the input file or a `librosa.StreamBridge` instance to stream.</span>
+
+<span class="sd">        Any codec supported by `soundfile` is permitted here.</span>
+<span class="sd">        An existing `soundfile.SoundFile` object may also be provided.</span>
+
+<span class="sd">        Alternatively, a `librosa.StreamBridge` receiving live audio chunks</span>
+<span class="sd">        may be provided.</span>
+
+<span class="sd">    block_length : int &gt; 0</span>
+<span class="sd">        The number of frames to include in each block.</span>
+
+<span class="sd">        Note that at the end of the file, there may not be enough</span>
+<span class="sd">        data to fill an entire block, resulting in a shorter block</span>
+<span class="sd">        by default.  To pad the signal out so that blocks are always</span>
+<span class="sd">        full length, set ``fill_value`` (see below).</span>
+
+<span class="sd">    frame_length : int &gt; 0</span>
+<span class="sd">        The number of samples per frame.</span>
+
+<span class="sd">    hop_length : int &gt; 0</span>
+<span class="sd">        The number of samples to advance between frames.</span>
+
+<span class="sd">        Note that when ``hop_length &lt; frame_length``, neighboring frames</span>
+<span class="sd">        will overlap.  Similarly, the last frame of one *block* will overlap</span>
+<span class="sd">        with the first frame of the next *block*.</span>
+
+<span class="sd">    sr : number &gt; 0 [scalar], default=22050</span>
+<span class="sd">        target sampling rate.</span>
+<span class="sd">        'None' uses the native sampling rate of the file or `StreamBridge`.</span>
+
+<span class="sd">    mono : bool</span>
+<span class="sd">        Convert the signal to mono during streaming</span>
+
+<span class="sd">    offset : float</span>
+<span class="sd">        Start reading after this time (in seconds)</span>
+
+<span class="sd">        If negative, it will be interpreted relative to the end of the file</span>
+<span class="sd">        (files only).</span>
+
+<span class="sd">    duration : float</span>
+<span class="sd">        Only load up to this much audio (in seconds)</span>
+
+<span class="sd">    warm_up : bool, default=False</span>
+<span class="sd">        If True, pre-fill the buffer with silence (zeros) so that the first</span>
+<span class="sd">        incoming chunk of size ``block_length * hop_length`` immediately yields</span>
+<span class="sd">        a full analysis block without startup delay.</span>
+
+<span class="sd">    fill_value : float [optional]</span>
+<span class="sd">        If padding the signal to produce constant-length blocks,</span>
+<span class="sd">        this value will be used at the end of the signal.</span>
+
+<span class="sd">        In most cases, ``fill_value=0`` (silence) is expected, but</span>
+<span class="sd">        you may specify any value here.</span>
+
+<span class="sd">    res_type : str</span>
+<span class="sd">        Resample type, must be one of the following:</span>
+
+<span class="sd">        'soxr_vhq', 'soxr_hq', 'soxr_mq' or 'soxr_lq'</span>
+<span class="sd">            `soxr` Very high-, High-, Medium-, Low-quality FFT-based bandlimited interpolation.</span>
+<span class="sd">            ``'soxr_hq'`` is the default setting of `soxr`.</span>
+<span class="sd">        'soxr_qq'</span>
+<span class="sd">            `soxr` Quick cubic interpolation (very fast, but not bandlimited)</span>
+<span class="sd">    dtype : numeric type</span>
+<span class="sd">        data type of audio buffers to be produced</span>
+
+<span class="sd">    Yields</span>
+<span class="sd">    ------</span>
+<span class="sd">    y : np.ndarray</span>
+<span class="sd">        An audio buffer of (at most)</span>
+<span class="sd">        ``(block_length-1) * hop_length + frame_length`` samples.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    StreamBridge</span>
+<span class="sd">    load</span>
+<span class="sd">    get_samplerate</span>
+<span class="sd">    soundfile.blocks</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Apply a short-term Fourier transform to blocks of 256 frames</span>
+<span class="sd">    at a time.  Note that streaming operation requires left-aligned</span>
+<span class="sd">    frames, so we must set ``center=False`` to avoid padding artifacts.</span>
+
+<span class="sd">    &gt;&gt;&gt; filename = librosa.ex("brahms")</span>
+<span class="sd">    &gt;&gt;&gt; stream = librosa.stream(</span>
+<span class="sd">    ...     filename, block_length=256, frame_length=4096, hop_length=1024</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; for y_block in stream:</span>
+<span class="sd">    ...     D_block = librosa.stft(y_block, center=False)</span>
+
+<span class="sd">    Or compute a mel spectrogram over a stream in its native sampling rate,</span>
+<span class="sd">    using a shorter frame and non-overlapping windows</span>
+
+<span class="sd">    &gt;&gt;&gt; filename = librosa.ex("brahms")</span>
+<span class="sd">    &gt;&gt;&gt; sr = librosa.get_samplerate(filename)</span>
+<span class="sd">    &gt;&gt;&gt; stream = librosa.stream(</span>
+<span class="sd">    ...     filename, block_length=256, frame_length=2048, hop_length=2048, sr=None</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; for y_block in stream:</span>
+<span class="sd">    ...     m_block = librosa.feature.melspectrogram(</span>
+<span class="sd">    ...         y=y_block, sr=sr, n_fft=2048, hop_length=2048, center=False</span>
+<span class="sd">    ...     )</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">StreamBridge</span><span class="p">):</span>
+        <span class="k">yield from</span> <span class="n">path</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>
+            <span class="n">block_length</span><span class="o">=</span><span class="n">block_length</span><span class="p">,</span>
+            <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span>
+            <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
+            <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+            <span class="n">mono</span><span class="o">=</span><span class="n">mono</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span>
+            <span class="n">warm_up</span><span class="o">=</span><span class="n">warm_up</span><span class="p">,</span>
+            <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+            <span class="n">res_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">is_file</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_file</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ParameterTypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported source type for stream: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="n">nullcontext</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">)</span> <span class="k">else</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">context</span> <span class="k">as</span> <span class="n">sfo</span><span class="p">:</span>
+        <span class="n">native_sr</span> <span class="o">=</span> <span class="n">sfo</span><span class="o">.</span><span class="n">samplerate</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="n">sfo</span><span class="o">.</span><span class="n">channels</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">_StreamBuffer</span><span class="p">(</span>
+            <span class="n">frame_length</span><span class="o">=</span><span class="n">frame_length</span><span class="p">,</span>
+            <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
+            <span class="n">block_length</span><span class="o">=</span><span class="n">block_length</span><span class="p">,</span>
+            <span class="n">orig_sr</span><span class="o">=</span><span class="n">native_sr</span><span class="p">,</span>
+            <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+            <span class="n">channels</span><span class="o">=</span><span class="n">num_channels</span><span class="p">,</span>
+            <span class="n">mono</span><span class="o">=</span><span class="n">mono</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span>
+            <span class="n">warm_up</span><span class="o">=</span><span class="n">warm_up</span><span class="p">,</span>
+            <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+            <span class="n">res_type</span><span class="o">=</span><span class="n">res_type</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">read_frames</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span> <span class="o">*</span> <span class="n">native_sr</span><span class="p">)</span> <span class="k">if</span> <span class="n">duration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">offset</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sfo</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">offset</span> <span class="o">*</span> <span class="n">native_sr</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sfo</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span> <span class="o">*</span> <span class="n">native_sr</span><span class="p">),</span> <span class="n">whence</span><span class="o">=</span><span class="n">sf</span><span class="o">.</span><span class="n">SEEK_END</span><span class="p">)</span>
+
+        <span class="n">chunk_iter</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">chunk</span><span class="o">.</span><span class="n">T</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">sfo</span><span class="o">.</span><span class="n">blocks</span><span class="p">(</span>
+                <span class="n">blocksize</span><span class="o">=</span><span class="n">buf</span><span class="o">.</span><span class="n">orig_read_size</span><span class="p">,</span>
+                <span class="n">overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="n">always_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">frames</span><span class="o">=</span><span class="n">read_frames</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">yield from</span> <span class="n">buf</span><span class="o">.</span><span class="n">process_stream</span><span class="p">(</span><span class="n">chunk_iter</span><span class="p">)</span></div>
+
+</pre></div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2013--2026, librosa development team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.2.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
